@@ -1,0 +1,5 @@
+#!/usr/bin/ruby 
+require_relative "../lib/cvMaker/runner.rb"
+
+runner=CvMaker::Runner.new(ARGV)
+puts runner.run
