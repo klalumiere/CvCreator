@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript">
+	
 	$( document ).ready(initialize);
+	
 	function initialize()
 	{
+		window.elementLoading=0
 		$( "#updated" ).hide();
 		$( "#loading" ).hide();
 
@@ -21,6 +23,36 @@
 		window.state["other"]=false;
 		updateCv("");
 	}
+	function updateCv(caller)
+	{
+		if(caller!="")
+			window.state[caller]=!window.state[caller]
+
+		window.elementLoading++;
+		if(window.elementLoading==1)
+			$( "#loading" ).show();
+		$('#cv').load(buildCvUrl(),function() {
+			window.elementLoading--;
+			if(window.elementLoading==0)
+				$( "#loading" ).hide();
+			if( !$("#updated").is(":visible") )
+				$( "#updated" ).fadeIn().delay(1000).fadeOut();
+		});
+	}
+	function buildCvUrl()
+	{
+		var result="cvMaker/"
+		for (var key in window.language) {
+		    	if(window.language[key])
+		    		result+=key;
+		}
+		for (var key in window.state) {
+		    	if(window.state[key])
+		    		result+="&"+key;
+		}
+		return result;
+	}
+
 	function switchLanguage(caller)
 	{
 		switchLabel(caller);
@@ -49,32 +81,6 @@
 		document.getElementById('loading').innerHTML=label[6];
 		document.getElementById('updated').innerHTML=label[7];
 	}
-	function updateCv(caller)
-	{
-		
-		if(caller!="")
-			window.state[caller]=!window.state[caller]
-
-		$( "#loading" ).fadeIn();
-		$('#cv').load(buildCvUrl(),function() {
-			$( "#loading" ).hide();
-			if( !$("#updated").is(":visible") )
-				$( "#updated" ).fadeIn().delay(1000).fadeOut();
-		});
-	}
-	function buildCvUrl()
-	{
-		var result="cvMaker/"
-		for (var key in window.language) {
-		    	if(window.language[key])
-		    		result+=key;
-		}
-		for (var key in window.state) {
-		    	if(window.state[key])
-		    		result+="&"+key;
-		}
-		return result;
-	}
 	</script>
 	<style>
 	body
@@ -96,8 +102,6 @@
 	}  
 	div.cvStyle
 	{
-		font-family: 'Trebuchet MS', Helvetica, sans-serif;
-		font-size:100%;
 		width: 7.0in;
 		margin-left: auto;
 		margin-right: auto;
@@ -121,10 +125,6 @@
 		background-color: #0000CC;
 		height: 1px;
 		padding: 0; 
-	}
-	hr.section
-	{
-		height: 2px;
 	}
 	hr.section
 	{
@@ -168,9 +168,9 @@
 		<input type="checkbox" onclick="updateCv('other')"><div id="other" style="display: inline">Autres</div><br>
 
 		<br>
-		<div id="loading">Chargement...</div>
+		<div style="height: 30px;"><div id="loading">Chargement...</div></div>
 		<br>
-		<div id="updated">Mis &agrave; jour</div>
+		<div style="height: 30px;"><div id="updated">Mis &agrave; jour</div></div>
 	</div>
     <div id="cv">  </div> 
 </body>
