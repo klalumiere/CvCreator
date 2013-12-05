@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+	$( document ).ready(initialize);
+	function initialize()
+	{
+		window.language={};
+		window.language["Fr"]=true;
+		window.language["En"]=false;
+
+		window.state={}
+		window.state["research"]=false;
+		window.state["computerScience"]=false;
+		window.state["teaching"]=false;
+		window.state["other"]=false;
+		updateCv("");
+	}
+	function switchLanguage(caller)
+	{
+		switchLabel(caller);
+		if(window.language[caller])
+			return;
+		
+		for (var key in window.language)
+			window.language[key]=false
+		window.language[caller]=true
+		updateCv("");
+	}
+	function switchLabel(language)
+	{
+		labelFr=["Cv Interactif","Comp&eacute;tences","Recherche","Informatique","Enseignement","Autres"];
+		labelEn=["Interactive Cv","Skills","Research","Computer Science","Teaching","Other"];
+		label=labelFr;
+		if(language=="En")
+			label=labelEn
+
+		document.getElementById('theTitle').innerHTML=label[0];
+		document.getElementById('skillTitle').innerHTML=label[1];
+		document.getElementById('research').innerHTML=label[2];
+		document.getElementById('computerScience').innerHTML=label[3];
+		document.getElementById('teaching').innerHTML=label[4];
+		document.getElementById('other').innerHTML=label[5];
+	}
+	function updateCv(caller)
+	{
+		if(caller!="")
+			window.state[caller]=!window.state[caller]
+		$('#cv').load(buildCvUrl());
+	}
+	function buildCvUrl()
+	{
+		var result="cvMaker/"
+		for (var key in window.language) {
+		    	if(window.language[key])
+		    		result+=key;
+		}
+		for (var key in window.state) {
+		    	if(window.state[key])
+		    		result+="&"+key;
+		}
+		return result;
+	}
+	</script>
+	<style>
+	body
+	{
+		font-family: 'Trebuchet MS', Helvetica, sans-serif;
+		font-size:100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#menu {  
+		width: 15%;  
+		margin: 2px 2px 2px 20px;  
+		float: left;  
+	}
+	#cv {  
+		width: 80%;  
+		margin: 2px 2px 2px 2px;  
+		float: left;  
+	}  
+	div.cvStyle
+	{
+		font-family: 'Trebuchet MS', Helvetica, sans-serif;
+		font-size:100%;
+		width: 7.0in;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	ul
+	{
+		margin: 0;
+	}
+	li
+	{
+		margin: 0 0 5px 0;
+	}
+	table 
+	{
+		width: 7.0in;
+	}
+	hr
+	{
+		border: 0;
+		color: #0000CC;
+		background-color: #0000CC;
+		height: 1px;
+		padding: 0; 
+	}
+	hr.section
+	{
+		height: 2px;
+	}
+	</style>
+
+	<title id="theTitle">Cv Interactif</title>
+
+</head>
+
+<body>
+
+	<div id="menu">
+		<br>
+		<form align>
+		<input type="radio" name="language" onclick="switchLanguage('Fr')" checked>Fran&ccedil;ais<br>
+		<input type="radio" name="language" onclick="switchLanguage('En')">English
+		</form>
+		<br>
+		<br>
+
+		 <strong><div id="skillTitle" style="display: inline">Comp&eacute;tences</div> </strong><br>
+		<input type="checkbox" onclick="updateCv('research')"><div id="research" style="display: inline">Recherche</div><br>
+		<input type="checkbox" onclick="updateCv('computerScience')"><div id="computerScience" style="display: inline">Informatique</div><br>
+		<input type="checkbox" onclick="updateCv('teaching')"><div id="teaching" style="display: inline">Enseignement</div><br>
+		<input type="checkbox" onclick="updateCv('other')"><div id="other" style="display: inline">Autres</div><br>
+
+		<br>
+		<div id="debug"></div>
+	</div>
+    <div id="cv">  
+    </div>  
+</body>
+</html>

@@ -1,34 +1,32 @@
-require_relative "section"
-require_relative "headers"
-
 module CvMaker
 	class Runner
-		def initialize(argumentList)
-			@sectionClasses={
-				skillSummary: CvMaker::SkillSummary,
-				education: CvMaker::Education,
-				experience: CvMaker::Experience,
-				autodidactTraining: CvMaker::AutodidactTraining,
-				honor: CvMaker::Honor,
-				socialImplication: CvMaker::SocialImplication,
-				publication: CvMaker::Publication,
-				talk: CvMaker::Talk
-			}
+		def initialize(viewClass,argumentList)
+			@sectionNames=[
+				"skillSummary",
+				"education",
+				"experience",
+				"autodidactTraining",
+				"honor",
+				"socialImplication",
+				"publication",
+				"talk"
+			]
 			@suffixFileName=".tex"
 
+			@viewClass=viewClass
 			parseArguments(argumentList)
 		end
 		def run
-			result=CvMaker::header()
-			@sectionClasses.each { |key,tagClass|
+			dataHash={}
+			@sectionNames.each { |name|
 				data=""
-				filePath=@directory+key.to_s+@suffixFileName
-				data= File.new(filePath).read if File.readable?(filePath)
-				newTex=tagClass.new(data,@options).tex
-				result+=newTex+"\n\n\n" if newTex != ""
+				@dataDirectory+="/" if @dataDirectory[-1] != "/"
+				filePath=@dataDirectory+name+@suffixFileName
+				data=File.new(filePath).read if File.readable?(filePath)
+				dataHash[name.intern]=data
 			}
-			result+=CvMaker::footer()
-			result
+
+			@viewClass.new(dataHash,@options).content
 		end
 
 	private
@@ -39,7 +37,7 @@ module CvMaker
 				exit
 			end
 
-			@directory=argumentList[0]
+			@dataDirectory=argumentList[0]
 			@options={language: "", classes: []}
 			@options[:language]=argumentList[1] if argumentList.size > 1
 			@options[:classes]+=argumentList[2..argumentList.size-1] if argumentList.size > 2
@@ -47,7 +45,7 @@ module CvMaker
 		def printUsage
 			puts "Usage: cvMaker pathToDataDirectory language [class ...]\n"
 			puts "Data directory will be searched for the files:"
-			@sectionClasses.each_key {|key| puts key.to_s+@suffixFileName }
+			@sectionNames.each {|name| puts name+@suffixFileName }
 		end
 	end
 end
