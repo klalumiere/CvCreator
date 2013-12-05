@@ -7,6 +7,9 @@
 	$( document ).ready(initialize);
 	function initialize()
 	{
+		$( "#updated" ).hide();
+		$( "#loading" ).hide();
+
 		window.language={};
 		window.language["Fr"]=true;
 		window.language["En"]=false;
@@ -31,8 +34,8 @@
 	}
 	function switchLabel(language)
 	{
-		labelFr=["Cv Interactif","Comp&eacute;tences","Recherche","Informatique","Enseignement","Autres"];
-		labelEn=["Interactive Cv","Skills","Research","Computer Science","Teaching","Other"];
+		labelFr=["Cv Interactif","Comp&eacute;tences","Recherche","Informatique","Enseignement","Autres","Chargement...","Mis &agrave; jour"];
+		labelEn=["Interactive Cv","Skills","Research","Computer Science","Teaching","Other","Loading...","Updated"];
 		label=labelFr;
 		if(language=="En")
 			label=labelEn
@@ -43,12 +46,21 @@
 		document.getElementById('computerScience').innerHTML=label[3];
 		document.getElementById('teaching').innerHTML=label[4];
 		document.getElementById('other').innerHTML=label[5];
+		document.getElementById('loading').innerHTML=label[6];
+		document.getElementById('updated').innerHTML=label[7];
 	}
 	function updateCv(caller)
 	{
+		
 		if(caller!="")
 			window.state[caller]=!window.state[caller]
-		$('#cv').load(buildCvUrl());
+
+		$( "#loading" ).fadeIn();
+		$('#cv').load(buildCvUrl(),function() {
+			$( "#loading" ).hide();
+			if( !$("#updated").is(":visible") )
+				$( "#updated" ).fadeIn().delay(1000).fadeOut();
+		});
 	}
 	function buildCvUrl()
 	{
@@ -114,6 +126,24 @@
 	{
 		height: 2px;
 	}
+	hr.section
+	{
+		height: 2px;
+	}
+	#updated {
+		background-color: #33CC00;
+		border-radius: 20px ;
+		text-align: center;
+		vertical-align:middle;
+		padding: 5px 0px 5px 0px; 	
+	}
+	#loading {
+		background-color: #FFFF00;
+		border-radius: 20px ;
+		text-align: center;
+		vertical-align:middle;
+		padding: 5px 0px 5px 0px; 	
+	}
 	</style>
 
 	<title id="theTitle">Cv Interactif</title>
@@ -138,9 +168,10 @@
 		<input type="checkbox" onclick="updateCv('other')"><div id="other" style="display: inline">Autres</div><br>
 
 		<br>
-		<div id="debug"></div>
+		<div id="loading">Chargement...</div>
+		<br>
+		<div id="updated">Mis &agrave; jour</div>
 	</div>
-    <div id="cv">  
-    </div>  
+    <div id="cv">  </div> 
 </body>
 </html>
