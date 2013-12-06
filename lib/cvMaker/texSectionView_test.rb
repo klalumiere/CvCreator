@@ -162,7 +162,7 @@ class ExperienceTexTest < Test::Unit::TestCase
 	end
 
 	def testExperienceTexAllClasses
-		@expectedResult=%q[\section{Exp\'eriences de travail}
+		@expectedResult=%q[~\\\\ \section{Exp\'eriences de travail}
 			\begin{job}{Stagiaire}{St\'ephane P\'eloquin, Infotierra, Sherbrooke(Qc), Canada}{\'Et\'e 2005}
 			\begin{itemize}
 			\item Conception d'un algorithme utilis\'e pour identifier les roches d'apr\`es les propri\'et\'es spectrales des pixels

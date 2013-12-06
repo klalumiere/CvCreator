@@ -2,10 +2,6 @@ require 'sinatra'
 require_relative "../lib/cvMaker/runner.rb"
 require_relative "../lib/cvMaker/htmlView"
 
-#TODO: arranger cv Latex
-#TODO: Faire un gem!
-#TODO: Permettre de télécharger le gem
-
 set :environment, :production
 
 ["/", "/cvInteractif"].each do |path|
@@ -24,4 +20,8 @@ get '/cvMaker/*' do
 	argumentList+=splitParams
 	runner=CvMaker::Runner.new(CvMaker::HtmlView,argumentList)
 	runner.run
+end
+
+get '/cvMakerGem' do
+  send_file "cvMaker-0.0.1.gem", :filename => "cvMaker-0.0.1.gem", :type => 'Application/octet-stream'
 end

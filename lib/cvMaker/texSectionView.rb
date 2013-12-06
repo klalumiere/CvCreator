@@ -75,6 +75,9 @@ module CvMaker
 	end
 
 	class ExperienceTex < TexSectionView
+		def sectionHeader(title)
+			"~\\\\ \\section{#{title}}\n"
+		end
 		def itemsName
 			["experience"]
 		end

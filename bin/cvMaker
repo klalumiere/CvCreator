@@ -3,6 +3,4 @@ require_relative "../lib/cvMaker/runner.rb"
 
 require_relative "../lib/cvMaker/texView"
 runner=CvMaker::Runner.new(CvMaker::TexView,ARGV)
-# require_relative "../lib/cvMaker/htmlView"
-# runner=CvMaker::Runner.new(CvMaker::HtmlView,ARGV)
 puts runner.run

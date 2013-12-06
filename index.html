@@ -66,8 +66,11 @@
 	}
 	function switchLabel(language)
 	{
-		labelFr=["Cv Interactif","Comp&eacute;tences","Recherche","Informatique","Enseignement","Autres","Chargement...","Mis &agrave; jour"];
-		labelEn=["Interactive Cv","Skills","Research","Computer Science","Teaching","Other","Loading...","Updated"];
+		labelFr=["Cv Interactif","Comp&eacute;tences","Recherche","Informatique","Enseignement","Autres",
+		"T&eacute;l&eacute;charger la source (Gem Ruby)","Chargement...","Mis &agrave; jour"];
+		labelEn=["Interactive Cv","Skills","Research","Computer Science",
+		"Teaching","Other","Download source (Ruby Gem)","Loading...","Updated"];
+		
 		label=labelFr;
 		if(language=="En")
 			label=labelEn
@@ -78,8 +81,9 @@
 		document.getElementById('computerScience').innerHTML=label[3];
 		document.getElementById('teaching').innerHTML=label[4];
 		document.getElementById('other').innerHTML=label[5];
-		document.getElementById('loading').innerHTML=label[6];
-		document.getElementById('updated').innerHTML=label[7];
+		document.getElementById('download').innerHTML=label[6];
+		document.getElementById('loading').innerHTML=label[7];
+		document.getElementById('updated').innerHTML=label[8];
 	}
 	</script>
 	<style>
@@ -166,6 +170,8 @@
 		<input type="checkbox" onclick="updateCv('computerScience')"><div id="computerScience" style="display: inline">Informatique</div><br>
 		<input type="checkbox" onclick="updateCv('teaching')"><div id="teaching" style="display: inline">Enseignement</div><br>
 		<input type="checkbox" onclick="updateCv('other')"><div id="other" style="display: inline">Autres</div><br>
+		<br>
+		<div style="text-align: center"><a id="download" href="cvMakerGem">T&eacute;l&eacute;charger la source (Gem Ruby)</a></div>
 
 		<br>
 		<div style="height: 30px;"><div id="loading">Chargement...</div></div>

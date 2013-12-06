@@ -30,6 +30,10 @@ module CvMaker
 	private
 		def header
 			of={"Fr"=>"de", "En"=>"of" }
+			mobile={"Fr"=>"Cellulaire", "En"=>"Mobile" }
+			phone={"Fr"=>"Domicile", "En"=>"Phone" }
+			webPage={"Fr"=>"Page web", "En"=>"Web page" }
+			
 			result=%q[\documentclass[letterpaper,11pt]{resume2}
 
 			\newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
@@ -48,17 +52,21 @@ module CvMaker
 			result+=%q[\ \pageref{LastPage}}
 			\cfoot{Kevin Lalumi\`ere}
 
-			\author{Kevin Lalumi\`ere}
-			\email{kevin.lalumiere@gmail.com}
-			\phone{(819)~347-3388}
-			\phonework{(819)~437-7749}
-			\webpage{http://fierce-hamlet-5053.herokuapp.com/cvInteractif}
-			\streetaddress{534 Short}
-			\citystatezip{Sherbrooke(Qc), Canada, J1H 2E4}
-			\maketitle
-
-
+			\begin{center}
+			\begin{tabular}{c}
+			\Large{\textbf{Kevin Lalumi\`ere}}\\\\
+			kevin.lalumiere@gmail.com
+			\end{tabular}
 			]
+
+			result+="
+			\\begin{tabular}{lr}
+			534 Short & #{mobile[@options[:language]]}: (819)~437-7749\\\\
+			Sherbrooke(Qc), Canada, J1H 2E4 & #{phone[@options[:language]]}: (819)~347-3388\\\\
+			#{webPage[@options[:language]]}: {\\color{rulestartcolor}{\\shorthandoff{:} http://fierce-hamlet-5053.herokuapp.com/cvInteractif}} & 
+			\\end{tabular}
+			\\end{center}\n\n"
+
 			result.gsub!("\t", "")
 			result
 		end
