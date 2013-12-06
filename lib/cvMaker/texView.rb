@@ -52,7 +52,7 @@ module CvMaker
 			\email{kevin.lalumiere@gmail.com}
 			\phone{(819)~347-3388}
 			\phonework{(819)~437-7749}
-			%\webpage{http://}
+			\webpage{http://fierce-hamlet-5053.herokuapp.com/cvInteractif}
 			\streetaddress{534 Short}
 			\citystatezip{Sherbrooke(Qc), Canada, J1H 2E4}
 			\maketitle

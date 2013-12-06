@@ -2,7 +2,6 @@ require 'sinatra'
 require_relative "../lib/cvMaker/runner.rb"
 require_relative "../lib/cvMaker/htmlView"
 
-#TODO: Add web page on cv!
 #TODO: arranger cv Latex
 #TODO: Faire un gem!
 #TODO: Permettre de télécharger le gem

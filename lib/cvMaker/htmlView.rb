@@ -32,6 +32,7 @@ module CvMaker
 		def header
 			phone={"Fr"=>"Cellulaire","En"=>"Mobile"}
 			phoneHome={"Fr"=>"Domicile","En"=>"Phone"}
+			webPage={"Fr"=>"Page web","En"=>"Web page"}
 			result="
 	 		<div class=\"cvStyle\">
 	 		<table align=\"center\">
@@ -50,6 +51,10 @@ module CvMaker
 	 		<tr>
 	 		<td style=\"text-align: left\">Sherbrooke(Qc), Canada, J1H 2E4</td>
 	 		<td style=\"text-align: right\">#{phoneHome[@options[:language]]}: (819) 347-3388</td>
+	 		</tr>
+	 		<tr>
+	 		<td colspan=\"2\">#{webPage[@options[:language]]}:  
+	 			<a href=\"http://fierce-hamlet-5053.herokuapp.com/cvInteractif\">http://fierce-hamlet-5053.herokuapp.com/cvInteractif</a></td>
 	 		</tr>
 	 		</table>
 			"
