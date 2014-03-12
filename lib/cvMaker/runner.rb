@@ -39,13 +39,23 @@ module CvMaker
 
 			@dataDirectory=argumentList[0]
 			@options={language: "", classes: []}
+			
 			@options[:language]=argumentList[1] if argumentList.size > 1
+			checkLanguage(@options[:language])
 			@options[:classes]+=argumentList[2..argumentList.size-1] if argumentList.size > 2
 		end
 		def printUsage
 			puts "Usage: cvMaker pathToDataDirectory language [class ...]\n"
 			puts "Data directory will be searched for the files:"
 			@sectionNames.each {|name| puts name+@suffixFileName }
+		end
+		def checkLanguage(language)
+			availableLanguage=["Fr", "En"]
+			if !availableLanguage.include?(language)
+				puts "Available language:"
+				puts availableLanguage
+				exit
+			end
 		end
 	end
 end
