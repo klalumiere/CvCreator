@@ -54,7 +54,7 @@ module CvMaker
 	 		</tr>
 	 		<tr>
 	 		<td colspan=\"2\">#{webPage[@options[:language]]}:  
-	 			<a href=\"http://fierce-hamlet-5053.herokuapp.com/cvInteractif\">http://fierce-hamlet-5053.herokuapp.com/cvInteractif</a></td>
+	 			<a href=\"http://fierce-hamlet-5053.herokuapp.com\">http://fierce-hamlet-5053.herokuapp.com</a></td>
 	 		</tr>
 	 		</table>
 			"
