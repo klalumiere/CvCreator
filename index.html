@@ -67,9 +67,9 @@
 	function switchLabel(language)
 	{
 		labelFr=["Cv Interactif","Comp&eacute;tences","Recherche","Informatique","Enseignement","Autres",
-		"T&eacute;l&eacute;charger la source (Gem Ruby)","Chargement...","Mis &agrave; jour"];
+		"Imprimer","T&eacute;l&eacute;charger la source (Gem Ruby)","Chargement...","Mis &agrave; jour"];
 		labelEn=["Interactive Cv","Skills","Research","Computer Science",
-		"Teaching","Other","Download source (Ruby Gem)","Loading...","Updated"];
+		"Teaching","Other","Print","Download source (Ruby Gem)","Loading...","Updated"];
 		
 		label=labelFr;
 		if(language=="En")
@@ -81,12 +81,13 @@
 		document.getElementById('computerScience').innerHTML=label[3];
 		document.getElementById('teaching').innerHTML=label[4];
 		document.getElementById('other').innerHTML=label[5];
-		document.getElementById('download').innerHTML=label[6];
-		document.getElementById('loading').innerHTML=label[7];
-		document.getElementById('updated').innerHTML=label[8];
+		document.getElementById('printPage').innerHTML=label[6];
+		document.getElementById('download').innerHTML=label[7];
+		document.getElementById('loading').innerHTML=label[8];
+		document.getElementById('updated').innerHTML=label[9];
 	}
 	</script>
-	<style>
+	<style type="text/css" media="screen">
 	body
 	{
 		font-family: 'Trebuchet MS', Helvetica, sans-serif;
@@ -150,6 +151,51 @@
 	}
 	</style>
 
+	<style type="text/css" media="print">
+	body
+	{
+		font-family: 'Trebuchet MS', Helvetica, sans-serif;
+		font-size:100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#menu {  
+		display: none;
+	}
+	#cv {  
+	}  
+	div.cvStyle
+	{
+		width: 6.5in;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	ul
+	{
+		margin: 0;
+	}
+	li
+	{
+		margin: 0 0 5px 0;
+	}
+	table 
+	{
+		width: 6.5in;
+	}
+	hr
+	{
+		border: 0;
+		color: #0000CC;
+		background-color: #0000CC;
+		height: 1px;
+		padding: 0; 
+	}
+	hr.section
+	{
+		height: 2px;
+	}
+	</style>
+
 	<title id="theTitle">Cv Interactif</title>
 
 </head>
@@ -170,6 +216,8 @@
 		<input type="checkbox" onclick="updateCv('computerScience')"><div id="computerScience" style="display: inline">Informatique</div><br>
 		<input type="checkbox" onclick="updateCv('teaching')"><div id="teaching" style="display: inline">Enseignement</div><br>
 		<input type="checkbox" onclick="updateCv('other')"><div id="other" style="display: inline">Autres</div><br>
+		<br>
+		<div style="text-align: center"><a id="printPage" href="#" onClick=" window.print(); return false">Imprimer</a></div>
 		<br>
 		<div style="text-align: center"><a id="download" href="cvMakerGem">T&eacute;l&eacute;charger la source (Gem Ruby)</a></div>
 
