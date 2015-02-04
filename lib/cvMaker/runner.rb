@@ -46,6 +46,7 @@ module CvMaker
 		end
 		def printUsage
 			puts "Usage: cvMaker pathToDataDirectory language [class ...]\n"
+			puts "Available classes are research, computerScience, teaching and other\n"
 			puts "Data directory will be searched for the files:"
 			@sectionNames.each {|name| puts name+@suffixFileName }
 		end
