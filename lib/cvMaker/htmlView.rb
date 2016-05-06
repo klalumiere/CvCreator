@@ -49,7 +49,7 @@ module CvMaker
 	 		<td style=\"text-align: right\">#{phone[@options[:language]]}: (819) 437-7749</td>
 	 		</tr>
 	 		<tr>
-	 		<td style=\"text-align: left\">Dorval (Qc), Canada, H9S 3W8</td>
+	 		<td style=\"text-align: left\">Dorval(Qc), Canada, H9S 3W8</td>
 	 		<td style=\"text-align: right\"></td>
 	 		</tr>
 	 		<tr>

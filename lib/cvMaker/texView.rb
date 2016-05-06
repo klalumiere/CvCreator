@@ -62,7 +62,7 @@ module CvMaker
 			result+="
 			\\begin{tabular}{lr}
 			445 Bourke, 3B & #{mobile[@options[:language]]}: (819)~437-7749\\\\
-			Dorval (Qc), Canada, H9S 3W8 & ~ \\\\
+			Dorval(Qc), Canada, H9S 3W8 & ~ \\\\
 			#{webPage[@options[:language]]}: {\\color{rulestartcolor}{\\shorthandoff{:} http://fierce-hamlet-5053.herokuapp.com}} & 
 			\\end{tabular}
 			\\end{center}\n\n"
