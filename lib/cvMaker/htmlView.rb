@@ -45,12 +45,12 @@ module CvMaker
 	 		</td>
 	 		</tr>
 	 		<tr>
-	 		<td style=\"text-align: left\">534 Short</td>
+	 		<td style=\"text-align: left\">445 Bourke, 3B</td>
 	 		<td style=\"text-align: right\">#{phone[@options[:language]]}: (819) 437-7749</td>
 	 		</tr>
 	 		<tr>
-	 		<td style=\"text-align: left\">Sherbrooke(Qc), Canada, J1H 2E4</td>
-	 		<td style=\"text-align: right\">#{phoneHome[@options[:language]]}: (819) 347-3388</td>
+	 		<td style=\"text-align: left\">Dorval (Qc), Canada, H9S 3W8</td>
+	 		<td style=\"text-align: right\"></td>
 	 		</tr>
 	 		<tr>
 	 		<td colspan=\"2\">#{webPage[@options[:language]]}:  

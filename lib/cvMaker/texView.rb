@@ -61,8 +61,8 @@ module CvMaker
 
 			result+="
 			\\begin{tabular}{lr}
-			534 Short & #{mobile[@options[:language]]}: (819)~437-7749\\\\
-			Sherbrooke(Qc), Canada, J1H 2E4 & #{phone[@options[:language]]}: (819)~347-3388\\\\
+			445 Bourke, 3B & #{mobile[@options[:language]]}: (819)~437-7749\\\\
+			Dorval (Qc), Canada, H9S 3W8 & ~ \\\\
 			#{webPage[@options[:language]]}: {\\color{rulestartcolor}{\\shorthandoff{:} http://fierce-hamlet-5053.herokuapp.com}} & 
 			\\end{tabular}
 			\\end{center}\n\n"
