@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
 	s.version = "0.0.1"
 	s.author = "Kevin Lalumiere"
 	s.email = "kevin.lalumiere@gmail.com"
-	s.license = "GPLv3"
+	s.license = "MPL"
 	s.homepage = ""
 	s.platform = Gem::Platform::RUBY
 	s.required_ruby_version = '>=2.0' 
