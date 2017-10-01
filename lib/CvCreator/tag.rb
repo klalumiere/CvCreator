@@ -54,7 +54,7 @@ module CvCreator
 
     def CvCreator.findTagContentByName(tagList, name)
         result = findTagsContentByName(tagList, name)
-        raise "This function expects a single match in the tag list." if result.length() > 1
+        raise "This function expects at most a single match in the tag list." if result.length() > 1
         result.reduce("") { |seed,x| seed + x }
     end
 
