@@ -22,18 +22,9 @@ module CvCreator
         attr_reader :name, :content, :subtags
 
     private
-        def self.parseSubtags(text,recursionDepth)
-            tagList = []
-            until text.empty?
-                matched = Tag.subtagPattern.match(text)
-                if !matched.nil?
-                    text=matched.post_match
-                    tagList.push(Tag.new(matched[:name],matched[:content],recursionDepth+1))
-                else
-                    text=""
-                end
-            end
-            tagList
+        def self.parseSubtags(content,recursionDepth)
+            toTag = lambda { |name,content,innerBraket| Tag.new(name,content,recursionDepth+1) }
+            content.scan(Tag.subtagPattern()).map(&toTag)
         end
 
         def self.subtagPattern
