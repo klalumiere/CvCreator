@@ -2,69 +2,64 @@ require_relative "Tag"
 
 module CvCreator
 
-	class Section
-		def initialize(data,options,view)
-			@tagList=CvCreator::Tag.parse(data)
-			@options=options
-			@view=view
-		end
-		def content
-			return "" if !dataInClass?(@tagList,@options[:classes])
-			
-			result=@view.sectionHeader(CvCreator::findTagContentByName(@tagList,"title"+@options[:language]))
-			itemAdded=0
-			@view.itemsName.each { |name|
-				items=CvCreator::findTagsByName(@tagList,name)
-				items=filterBadClassAndEmpty(items,@options[:classes],@view.itemEssentialTag)
-				result+=@view.itemHeader(CvCreator::findTagContentByName(@tagList,name+"Title"+@options[:language])) if !items.empty?
-				items.each { |itemTag|
-					result+=@view.itemBody(itemTag)
-					subitems=CvCreator::findTagsByName(itemTag.subtags,@view.subitemName)
-					subitems=filterBadClassAndEmpty(subitems,@options[:classes],@view.subitemEssentialTag)
-					result+=@view.subitemHeader if !subitems.empty?
-					subitems.each { |subitemTag|
-						result+=@view.subitemBody(subitemTag)
-					}
-					result+=subitemFooter(subitems.length)
-					itemAdded+=1
-				}
-				result+=@view.itemFooter() if !items.empty?
-			}
-			result="" if itemAdded==0
+    class Section
+        def initialize(data, options, view)
+            @tagList = CvCreator::Tag.parse(data)
+            @classes = options[:classes]
+            @language = options[:language]
+            @view = view
+        end
+        def content
+            return "" if itemsCount() == 0 or !dataInClasses?()
+            titleTag = CvCreator::findTagContentByName(@tagList, "title" + @language)
+            result = @view.itemsName.reduce(@view.sectionHeader(titleTag), &method(:addItemsWithName))
+            @view.removeUnwantedChars(result)
+        end
 
-			result=@view.removeUnwantedChars(result)
-		end
+    private
+        def addItemsWithName(partialResult, name)
+            items = CvCreator::findTagsByName(@tagList, name).select { |item|
+                itemInClass?(item, @classes) and containsTag(item, @view.itemEssentialTag)
+            }
+            return partialResult if items.empty?
+            titleTag = CvCreator::findTagContentByName(@tagList, name+"Title"+@language)
+            items.reduce(partialResult + @view.itemHeader(titleTag),  &method(:addItem)) + @view.itemFooter()
+        end
+        def dataInClasses?()
+            globalClasses=CvCreator::findTagsContentByName(@tagList, "class")
+            !(globalClasses & @classes).empty? or globalClasses.empty?
+        end
+        def itemsCount()
+            @view.itemsName.reduce(0) { |result, name|
+               result + CvCreator::findTagsByName(@tagList, name).size()
+            }
+        end
 
-	private
-		def dataInClass?(tagList, classes)
-			globalClasses=CvCreator::findTagsContentByName(tagList,"class")
-			!(globalClasses & classes).empty? or globalClasses.empty?
-		end
-		def filterBadClassAndEmpty(items,classes,essentialTag)
-			filteredItems=[]
-			items.each { |item|
-				filteredItems << item if itemInClass?(item,classes) and !emtpyItem?(item,essentialTag)
-			}
-			filteredItems
-		end
-		def subitemFooter(subitemsNumber)
-			result=@view.subitemFooter if subitemsNumber>0
-			result=@view.subitemEmptyFooter if subitemsNumber==0
-			result+=@view.subitemDefaultFooter
-		end
-
-		def itemInClass?(item,classes)
-			subTags=item.subtags
-			itemClasses=CvCreator::findTagsContentByName(subTags,"class")
-			subTags.each { |subTag|
-				itemClasses+=CvCreator::findTagsContentByName(subTag.subtags,"class")
-			}
-			!(itemClasses & classes).empty? or itemClasses.empty?
-		end
-		def emtpyItem?(item,essentialTag)
-			result=true if CvCreator::findTagsByName(item.subtags,essentialTag).empty? and essentialTag != ""
-			result
-		end
-	end
+        def addItem(partialResult, itemTag)
+            partialResult += @view.itemBody(itemTag)
+            subitems = CvCreator::findTagsByName(itemTag.subtags, @view.subitemName).select { |subitem|
+                itemInClass?(subitem, @classes) and containsTag(subitem, @view.subitemEssentialTag)
+            }
+            partialResult += @view.subitemHeader if !subitems.empty?
+            subitems.each { |subitemTag| partialResult += @view.subitemBody(subitemTag) }
+            partialResult + subitemFooter(subitems.length)
+        end
+        def containsTag(item, tagName)
+            return true if tagName == ""
+            !CvCreator::findTagsByName(item.subtags, tagName).empty?
+        end
+        def itemInClass?(item, classes)
+            itemClasses = CvCreator::findTagsContentByName(item.subtags, "class")
+            itemClassesAndSubclasses = item.subtags.reduce(itemClasses) { |result, subtag|
+                result + CvCreator::findTagsContentByName(subtag.subtags, "class")
+            }
+            !(itemClassesAndSubclasses & classes).empty? or itemClassesAndSubclasses.empty?
+        end
+        def subitemFooter(subitemsNumber)
+            result=@view.subitemFooter if subitemsNumber > 0
+            result=@view.subitemEmptyFooter if subitemsNumber == 0
+            result += @view.subitemDefaultFooter
+        end
+    end
 
 end # CvCreator

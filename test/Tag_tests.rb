@@ -17,20 +17,20 @@ module CvCreator
         end
         def testWithOneSubtag
             tag = createTagWithContent("\\name0{content0}")
-            assert_equal(1,tag.subtags().length())
+            assert_equal(1,tag.subtags().size)
             assertEqTag("name0","content0",tag.subtags()[0])
         end
         def testWithManySubtags
             tag = createTagWithContent("\\name0{content0}\\name1{content1}")
-            assert_equal(2,tag.subtags().length())
+            assert_equal(2,tag.subtags().size)
             assertEqTag("name0","content0",tag.subtags()[0])
             assertEqTag("name1","content1",tag.subtags()[1])
         end
         def testWithNestedSubtags
             tag = createTagWithContent("\\name0{\\nestedName{nestedContent}}")
-            assert_equal(1,tag.subtags().length())
+            assert_equal(1,tag.subtags().size)
             assertEqTag("name0","\\nestedName{nestedContent}",tag.subtags()[0])
-            assert_equal(1,tag.subtags()[0].subtags().length())
+            assert_equal(1,tag.subtags()[0].subtags().size)
             assertEqTag("nestedName", "nestedContent", tag.subtags()[0].subtags()[0])
         end
         def testMaxRecursionDepth
@@ -38,7 +38,7 @@ module CvCreator
         end
         def testParse
             tags = Tag.parse("\\name{content}");
-            assert_equal(1,tags.length)
+            assert_equal(1,tags.size)
             assertEqTag("name", "content", tags[0])
         end
 
@@ -69,7 +69,7 @@ module CvCreator
         end
         def testFindTagsByName
             result = CvCreator::findTagsByName(@tags,"name0");
-            assert_equal(2,result.length)
+            assert_equal(2,result.size)
             assert_equal(@contents[0],result[0].content())
             assert_equal(@contents[2],result[1].content())
         end
