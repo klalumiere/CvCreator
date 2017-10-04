@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../lib/CvCreator/tag.rb"
+require_relative "../lib/CvCreator/Tag"
 
 module CvCreator
 
