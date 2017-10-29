@@ -6,14 +6,13 @@ module CvCreator
 
     class ViewStub < CvCreator::SectionView
         def initialize(language)
-            @language=language
         end
         def sectionHeader(title)
             title
         end
         
         def itemsName
-            ["itemsNameOne","itemsNameTwo"]
+            ["itemsNameOne"]
         end
         def itemEssentialTag
             "itemEssentialTag"
@@ -33,9 +32,6 @@ module CvCreator
         end
         def subitemEssentialTag
             "subitemEssentialTag"
-        end
-        def subitemDefaultHeader
-            "subitemDefaultHeader "
         end
         def subitemHeader
             "subitemHeader "
@@ -60,12 +56,10 @@ module CvCreator
 
     class TestSection < Test::Unit::TestCase
         def setup
-            @language = "En"
-            @view = ViewStub.new(@language)
-            @class = "test"
-            @options = { language: @language, classes: [@class] }
-            @title = "arbitraryTitle"
-            @minimalNonEmptyData = %q[\itemsNameOne{}\class{] + @class + %q[}\title]+@language+"{" + @title + "}"
+            @options = { language: "En", classes: ["test"] }
+            @view = ViewStub.new("En")
+            @expectedFooterNoSubitems = "subitemEmptyFooter subitemDefaultFooter itemFooter "
+            @expectedFooterWithSubitems = "subitemFooter subitemDefaultFooter itemFooter "
         end
         def getSectionContentCustomOptions(data, options)
             CvCreator::Section.new(data,options,@view).content
@@ -78,176 +72,74 @@ module CvCreator
             assert_equal("", getSectionContent(""))
         end
         def testWrongItem
-            actual = getSectionContent(%q[\wrongItem{}\class{] + @class + %q[}\title]+@language+"{ab}")
+            actual = getSectionContent(%q[\wrongItem{}\titleEn{ab}])
             assert_equal("",actual)
         end
-        def testNoClasses
+        def testNoClassesInOptions
             newOptions = @options
             newOptions[:classes]=[""]
-            actual = getSectionContentCustomOptions(@minimalNonEmptyData, newOptions)
+            actual = getSectionContentCustomOptions(%q[\itemsNameOne{}\class{test}\titleEn{ab}], newOptions)
             assert_equal("",actual)
         end
         def testItemInWrongGlobalClass
-            actual = getSectionContent(%q[\itemsNameOne{}\class{notTest}\title]+@language+%q[{ab}])
+            actual = getSectionContent(%q[\itemsNameOne{}\class{notTest}\titleEn{ab}])
             assert_equal("",actual)
         end
         def testEmptyItem
-            actual = getSectionContent(%q[\itemsNameOne{}\class{] + @class + %q[}])
+            actual = getSectionContent(%q[\itemsNameOne{}])
+            assert_equal("",actual)
+        end
+        def testItemWithClassAndGlobalTitle
+            assert_equal("ab", getSectionContent(%q[\itemsNameOne{}\class{test}\titleEn{ab}]))
+        end
+        def testItemWithGlobalTitleWrongLanguage
+            actual = getSectionContent(%q[\itemsNameOne{}\titleWrongLanguage{ab}])
             assert_equal("",actual)
         end
         def testItemWithTitle
-            assert_equal(@title, getSectionContent(@minimalNonEmptyData))
+            actual = getSectionContent(%q[\itemsNameOne{\itemEssentialTag{}}\itemsNameOneTitleEn{aTitle}])
+            assert_equal("aTitle" + @expectedFooterNoSubitems,actual)
         end
         def testItemWithTitleWrongLanguage
-            actual = getSectionContent(%q[\itemsNameOne{}\class{] + @class + %q[}\titleWrongLanguage{ab}])
+            actual = getSectionContent(%q[\itemsNameOne{\itemEssentialTag{}}\itemsNameOneTitleWrongLanguage{aTitle}])
+            assert_equal(@expectedFooterNoSubitems,actual)
+        end
+        def testItemWithBody
+            actual = getSectionContent(%q[\itemsNameOne{\itemEssentialTag{aBody}}])
+            assert_equal("aBody" + @expectedFooterNoSubitems,actual)
+        end
+        def testItemWithSubitem
+            actual = getSectionContent(%q[\itemsNameOne{\itemEssentialTag{}\subitemName{ \subitemEssentialTag{body} }}])
+            assert_equal("subitemHeader body" + @expectedFooterWithSubitems,actual)
+        end
+        def testItemWithSubitemAndBadClass
+            data = %q[\itemsNameOne{\itemEssentialTag{}\subitemName{ \subitemEssentialTag{body}\class{notTest} }}]
+            actual = getSectionContent(data)
             assert_equal("",actual)
         end
+
+        class RemoveUnwantedCharsStub < ViewStub
+            def removeUnwantedChars(text)
+                ""
+            end
+        end
+        def testRemoveUnwantedChars
+            view = RemoveUnwantedCharsStub.new("En");
+            actual = CvCreator::Section.new(%q[\itemsNameOne{\itemEssentialTag{aBody}}],@options,view).content
+            assert_equal("",actual)
+        end
+
+        class NoEssentialSubitemTagStub < ViewStub
+            def subitemEssentialTag
+                ""
+            end
+        end
+        def testNoEssentialSubitemTag
+            view = NoEssentialSubitemTagStub.new("En");
+            actual = CvCreator::Section.new(%q[\itemsNameOne{\itemEssentialTag{}\subitemName{}}],@options,view).content
+            assert_equal("subitemHeader " + @expectedFooterWithSubitems,actual)
+        end
+
     end
-
-    # class SectionTest < Test::Unit::TestCase
-    #     def setup
-    #         @data=%q[\titleFr{sectionEnTete }\titleEn{sectionHeader }\class{fun}
-    #             \itemsNameOneTitleFr{itemHeader }\itemsNameOneTitleEn{itemHeaderEn }\itemsNameOne{\itemEssentialTag{itemBody }}
-    #             \itemsNameTwoTitleFr{itemHeader }\itemsNameTwoTitleEn{itemHeaderEn }]
-    #         @options={language: "Fr", classes: ["fun"]}
-    #         @view=ViewStub.new(@options[:language])
-    #         @itemExpectedResult="itemHeader itemBody subitemEmptyFooter subitemDefaultFooter itemFooter "
-    #     end
-    #     def testGlobalClass
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("sectionEnTete "+@itemExpectedResult,result)
-    #     end
-    #     def testTwoItems
-    #         @data+=%q[\itemsNameOne{\itemEssentialTag{itemBody2 }}]
-    #         @itemExpectedResult="itemHeader itemBody subitemEmptyFooter subitemDefaultFooter itemBody2 subitemEmptyFooter subitemDefaultFooter itemFooter "
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("sectionEnTete "+@itemExpectedResult,result)
-    #     end
-    #     def testEnglish
-    #         @options[:language]="En"
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         itemExpectedResultEn="itemHeaderEn itemBody subitemEmptyFooter subitemDefaultFooter itemFooter "
-    #         assert_equal("sectionHeader "+itemExpectedResultEn,result)
-    #     end
-    #     def testTwoItemType
-    #         @data+=%q[\itemsNameTwo{\itemEssentialTag{itemBody }}]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         expectedResult="sectionEnTete "
-    #         expectedResult+=@itemExpectedResult+@itemExpectedResult
-    #         assert_equal(expectedResult,result)
-    #     end
-    #     def testSkipBadClassItem
-    #         @data+=%q[\itemsNameTwo{\class{bad}\itemEssentialTag{itemBody }}]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("sectionEnTete "+@itemExpectedResult,result)
-    #     end
-    #     def testIncludeGoodClassItem
-    #         @data+=%q[\itemsNameTwo{\class{fun}\itemEssentialTag{itemBody }}]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         expectedResult="sectionEnTete "
-    #         expectedResult+=@itemExpectedResult+@itemExpectedResult
-    #         assert_equal(expectedResult,result)
-    #     end
-    #     def testNoEssentialTag
-    #         @data+=%q[\itemsNameTwo{\class{fun}}]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("sectionEnTete "+@itemExpectedResult,result)
-    #     end
-    #     def testSubitem
-    #         @data+=%q[\itemsNameTwo{
-    #             \itemEssentialTag{itemBody }  
-    #             \subitemName{\subitemEssentialTag{yo }}
-    #             }]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         subitemExpectedResult="itemHeader itemBody subitemHeader yo subitemFooter subitemDefaultFooter itemFooter "
-    #         assert_equal("sectionEnTete "+@itemExpectedResult+subitemExpectedResult,result)
-    #     end
-    #     def testTwoSubitems
-    #         @data+=%q[\itemsNameTwo{
-    #             \itemEssentialTag{itemBody }  
-    #             \subitemName{\subitemEssentialTag{yo1 }}
-    #             \subitemName{\subitemEssentialTag{yo2 }}
-    #             }]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         subitemExpectedResult="itemHeader itemBody subitemHeader yo1 yo2 subitemFooter subitemDefaultFooter itemFooter "
-    #         assert_equal("sectionEnTete "+@itemExpectedResult+subitemExpectedResult,result)
-    #     end
-    #     def testBadClassSubitems
-    #         @data+=%q[\itemsNameTwo{
-    #             \itemEssentialTag{itemBody }  
-    #             \subitemName{\class{bad}\subitemEssentialTag{yo }}
-    #             }]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("sectionEnTete "+@itemExpectedResult,result)
-    #     end
-    #     def testGoodClassSubitems
-    #         @data+=%q[\itemsNameTwo{
-    #             \itemEssentialTag{itemBody }  
-    #             \subitemName{\class{fun}\subitemEssentialTag{yo }}
-    #             }]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         subitemExpectedResult="itemHeader itemBody subitemHeader yo subitemFooter subitemDefaultFooter itemFooter "
-    #         assert_equal("sectionEnTete "+@itemExpectedResult+subitemExpectedResult,result)
-    #     end
-    #     def testBadAndGoodClassSubitems
-    #         @data+=%q[\itemsNameTwo{
-    #             \itemEssentialTag{itemBody }  
-    #             \subitemName{\class{fun}\subitemEssentialTag{yo1 }}
-    #             \subitemName{\class{bad}\subitemEssentialTag{yo2 }}
-    #             }]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         subitemExpectedResult="itemHeader itemBody subitemHeader yo1 subitemFooter subitemDefaultFooter itemFooter "
-    #         assert_equal("sectionEnTete "+@itemExpectedResult+subitemExpectedResult,result)
-    #     end
-    #     def testNoEssentialTagSubitems
-    #         @data+=%q[\itemsNameTwo{
-    #             \itemEssentialTag{itemBody }  
-    #             \subitemName{\class{fun}}
-    #             \subitemName{\class{bad}}
-    #             }]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("sectionEnTete "+@itemExpectedResult+@itemExpectedResult,result)
-    #     end
-    #     def testSommeEssentialTagSubitems
-    #         @data+=%q[\itemsNameTwo{
-    #             \itemEssentialTag{itemBody }  
-    #             \subitemName{\class{fun}\subitemEssentialTag{yo1 }}
-    #             \subitemName{\class{fun}}
-    #             }]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         subitemExpectedResult="itemHeader itemBody subitemHeader yo1 subitemFooter subitemDefaultFooter itemFooter "
-    #         assert_equal("sectionEnTete "+@itemExpectedResult+subitemExpectedResult,result)
-    #     end
-    #     def testNoItemAdded
-    #         @data=%q[\titleFr{sectionEnTete }\titleEn{sectionHeader }]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("",result)
-    #     end
-    # end
-
-    # class ClearedMockSectionView < ViewStub
-    #     def removeUnwantedChars(text)
-    #         ""
-    #     end
-    # end
-
-    # class ClearedSectionTest < Test::Unit::TestCase
-    #     def setup
-    #         @data=%q[\titleFr{sectionEnTete }\titleEn{sectionHeader }\class{fun}
-    #             \itemsNameOneTitleFr{itemHeader }\itemsNameOneTitleEn{itemHeaderEn }\itemsNameOne{\itemEssentialTag{itemBody }}
-    #             \itemsNameTwoTitleFr{itemHeader }\itemsNameTwoTitleEn{itemHeaderEn }]
-    #         @options={language: "Fr", classes: ["fun"]}
-    #         @view=ClearedMockSectionView.new(@options[:language])
-    #     end
-    #     def testGlobalClassEmptyCleared
-    #         @options[:classes]=[""]
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("",result)
-    #     end
-    #     def testGlobalClassCleared
-    #         result=CvCreator::Section.new(@data,@options,@view).content
-    #         assert_equal("",result)
-    #     end
-    # end
 
 end # CvCreator

@@ -30,9 +30,6 @@ module CvCreator
         def subitemEssentialTag
             ""
         end
-        def subitemDefaultHeader
-            ""
-        end
         def subitemHeader
             ""
         end
@@ -47,6 +44,10 @@ module CvCreator
         end
         def subitemDefaultFooter
             ""
+        end
+
+        def removeUnwantedChars(text)
+            text
         end
     end
 

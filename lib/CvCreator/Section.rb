@@ -13,7 +13,7 @@ module CvCreator
             return "" if itemsCount() == 0 or !dataInClasses?()
             titleTag = CvCreator::findTagContentByName(@tagList, "title" + @language)
             result = @view.itemsName.reduce(@view.sectionHeader(titleTag), &method(:addItemsWithName))
-            @view.removeUnwantedChars(result) # NOT tested
+            @view.removeUnwantedChars(result)
         end
 
     private
@@ -21,7 +21,7 @@ module CvCreator
             items = CvCreator::findTagsByName(@tagList, name).select { |item|
                 itemInClass?(item, @classes) and containsTag(item, @view.itemEssentialTag)
             }
-            return partialResult if items.empty? # tested
+            return partialResult if items.empty?
             titleTag = CvCreator::findTagContentByName(@tagList, name+"Title"+@language)
             items.reduce(partialResult + @view.itemHeader(titleTag),  &method(:addItem)) + @view.itemFooter()
         end
