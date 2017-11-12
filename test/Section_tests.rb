@@ -4,7 +4,7 @@ require_relative "../lib/CvCreator/SectionView"
 
 module CvCreator
 
-    class ViewStub < CvCreator::SectionView
+    class SectionViewStub < CvCreator::SectionView
         def initialize(language)
         end
         def sectionHeader(title)
@@ -57,7 +57,7 @@ module CvCreator
     class TestSection < Test::Unit::TestCase
         def setup
             @options = { language: "En", classes: ["test"] }
-            @view = ViewStub.new("En")
+            @view = SectionViewStub.new("En")
             @expectedFooterNoSubitems = "subitemEmptyFooter subitemDefaultFooter itemFooter "
             @expectedFooterWithSubitems = "subitemFooter subitemDefaultFooter itemFooter "
         end
@@ -118,7 +118,7 @@ module CvCreator
             assert_equal("",actual)
         end
 
-        class RemoveUnwantedCharsStub < ViewStub
+        class RemoveUnwantedCharsStub < SectionViewStub
             def removeUnwantedChars(text)
                 ""
             end
@@ -129,7 +129,7 @@ module CvCreator
             assert_equal("",actual)
         end
 
-        class NoEssentialSubitemTagStub < ViewStub
+        class NoEssentialSubitemTagStub < SectionViewStub
             def subitemEssentialTag
                 ""
             end
