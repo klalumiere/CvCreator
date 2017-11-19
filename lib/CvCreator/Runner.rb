@@ -1,19 +1,22 @@
+require_relative "Tag"
 
 module CvCreator
     class Runner
         def initialize(argumentList,viewClass)
             @maxArgumentsCount = 1000;
+            @fileExtension = ".tex"
+            @headerFile = "header"
             @typicalAvailableLanguages = ["En", "Fr"]
             @typicalAvailableClasses = ["research", "computerScience", "teaching", "other"]
-            @fileExtension = ".tex"
 
             parseArguments(argumentList)
             @viewClass = viewClass
         end
         def run
             printUsageAndExit if !areArgumentsValid()
+            headerTags = Tag::parse(fileContentToString(filePath(@headerFile)))
             dataHash = Hash[sectionNames().collect { |name| [name, fileContentToString(filePath(name))] }]
-            puts @viewClass.new(dataHash,@options).content
+            puts @viewClass.new(headerTags,dataHash,@options).content
         end
 
         def areArgumentsValid()
@@ -44,7 +47,7 @@ module CvCreator
         end
         def printUsageAndExit
             puts "Usage: bin/CvCreator pathToDataDirectory language [class ...]"
-            puts "\nData directory will be searched for the files:"
+            puts "\nData directory will be searched for the files:\n#{fileName(@headerFile)}"
             puts sectionNames.map { |name| fileName(name) }
             puts "\nTypical available languages:"
             puts @typicalAvailableLanguages
