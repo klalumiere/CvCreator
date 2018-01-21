@@ -1,6 +1,5 @@
 #! /usr/bin/ruby 
-require "CvCreator/HtmlView"
 require "CvCreator/Runner"
 
-runner = CvCreator::Runner.new(ARGV,CvCreator::HtmlView)
+runner = CvCreator::Runner.new(ARGV)
 runner.run
