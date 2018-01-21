@@ -6,6 +6,7 @@ module CvCreator
     class View
         HeaderDataKeys = ["name" , "email" , "address" , "phone" , "town" , "webPage"]
         
+        Of = {"Fr"=>"de", "En"=>"of" }
         Phone = { "Fr" => "Cellulaire", "En" => "Mobile" }
         WebPage = { "Fr" => "Page web", "En" => "Web page" }
         
