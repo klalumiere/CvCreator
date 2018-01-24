@@ -5,7 +5,7 @@ require_relative "View"
 module CvCreator
     class TexView < View
         def self.sectionToClass()
-            @sectionClasses={
+            @sectionClasses = {
                 "skillSummary" => CvCreator::SkillSummaryTex,
                 "education" => CvCreator::EducationTex,
                 "experience" => CvCreator::ExperienceTex,
@@ -25,7 +25,7 @@ module CvCreator
             "\\end{document}"
         end 
         def header(data,language)
-            result=%q[\documentclass[letterpaper,11pt]{resume2}
+            result = %q[\documentclass[letterpaper,11pt]{resume2}
 
             \newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
 
@@ -39,24 +39,19 @@ module CvCreator
             \begin{document}
             \renewcommand{\headrulewidth}{0pt}
             \rfoot{\thepage\ ]
-            result+=View::Of[@options[:language]]
-            result+=%q[\ \pageref{LastPage}}
-            \cfoot{]
-            result+="#{data["name"]}"
 
-            result+=%q[}
-
-            \begin{center}
+            result += View::Of[@options[:language]]
+            result += %q[\ \pageref{LastPage}} \cfoot{]
+            result += "#{data["name"]}"
+            result += %q[} \begin{center}
             \begin{tabular}{c}
             \Large{\textbf{]
-            result+="#{data["name"]}"
-            result+=%q[}}\\\\]
-            result+="#{data["email"]}"
-            result+=%q[\end{tabular}
-            ]
 
-            result+="
-            \\begin{tabular}{lr}
+            result += "#{data["name"]}"
+            result += %q[}}\\\\]
+            result += "#{data["email"]}"
+            result += %q[\end{tabular} ]
+            result += "\\begin{tabular}{lr}
             #{data["address"]} & #{View::Phone[@options[:language]]}: #{data["phone"]}\\\\
             #{data["town"]} & ~ \\\\
             #{View::WebPage[@options[:language]]}: {\\color{rulestartcolor}{\\shorthandoff{:} #{data["webPage"]}}} & 
