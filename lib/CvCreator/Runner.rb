@@ -26,7 +26,7 @@ module CvCreator
         end
 
         def areArgumentsValid()
-            @dataDirectory != nil and @typicalAvailableLanguages.include?(@options[:language])
+            @dataDirectory != nil
         end
         def fileName(name)
             name + @fileExtension

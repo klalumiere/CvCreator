@@ -25,10 +25,6 @@ module CvCreator
             invalidRunner = Runner.new([@viewClass])
             assert_false(invalidRunner.areArgumentsValid())
         end
-        def test_areArgumentsValidInvalidLanguage
-            invalidRunner = Runner.new([@viewClass,@dataDirectory,"InvalidLanguage"])
-            assert_false(invalidRunner.areArgumentsValid())
-        end
         def test_areArgumentsValidTrue
             assert_true(@runner.areArgumentsValid())
         end
