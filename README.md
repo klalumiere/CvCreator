@@ -13,5 +13,3 @@ The output of the CV can be in LaTeX or in HTML. The 3rd party package **resume2
 **Basic usage:** `./run.sh`
 
 **Typical usage (e.g. on branch [withData](https://github.com/klalumiere/CvCreator/tree/withData)):** `./run.sh TexView data En research computerScience teaching other > build/result.tex`
-
-<!-- TODO Talk about the website on Heroku. Also put a link to it in the description. -->
