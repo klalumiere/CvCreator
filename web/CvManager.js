@@ -1,7 +1,5 @@
 // Requires jquery.js
 
-// $( document ).ready(initialize);
-
 class CvManager {
     constructor() {
         this.availableLanguages = ["Fr", "En"];
@@ -70,9 +68,12 @@ class CvManager {
     }
 }
 
-function initialize() {
+// $( document ).ready(initialize);
+
+// function initialize() {
+    // window.cvManager = new CvManager;
     // updateCv("");
-}
+// }
 
 // function updateCv() {
 //     window.elementLoading++;
