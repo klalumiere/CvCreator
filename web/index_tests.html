@@ -30,25 +30,51 @@ describe("CvManager, at construction,", function() {
             expect(Object.keys(manager.labels[language]).length).not.toBe(0);
         }
     });
-    it("has available languages", function() {
-        expect(manager.availableLanguages).not.toBe(undefined);
-    });
-    it("has current language", function() {
-        expect(manager._currentLanguage).not.toBe(undefined);
-    });
-    it("has zero element loading", function() {
-        expect(manager._elementsLoadingCount).toBe(0);
-    });
-    it("has classes states set to false", function() {
-        expect(Object.keys(manager._classesState).length).not.toBe(0);
-        for(var key in manager._classesState) {
-            expect(manager._classesState[key]).toBe(false);
-        }
-    });
     it("hides labels", function() {
         expect(document.getElementById).toHaveBeenCalledWith("updated");
         expect(document.getElementById).toHaveBeenCalledWith("loading");
         expect(jQuery.fn.hide).toHaveBeenCalledTimes(2);
+    });
+});
+
+describe("CvManager's method", function() {
+    beforeEach(function() {
+        manager = new CvManager;
+    });
+
+    it("setCurrentLanguage", function() {
+        manager.setCurrentLanguage("En");
+        expect(manager.getCurrentLanguage()).toBe("En");
+    });
+    it("getElementsLoadingCount", function() {
+        expect(manager.getElementsLoadingCount()).toBe(0);
+    });
+    it("getAvailableClasses", function() {
+        expect(Object.keys(manager.getAvailableClasses()).length).not.toBe(0);
+    });
+    it("getClassState", function() {
+        for (let className of manager.getAvailableClasses()) {
+            expect(manager.getClassState(className)).toBe(false);
+        }
+    });
+    it("setClassState", function() {
+        manager.setClassState("research",true);
+        expect(manager.getClassState("research")).toBe(true);
+    });
+
+    describe("createUrl", function() {
+        beforeEach(function() {
+            manager.setCurrentLanguage("En");
+        });
+
+        it("with only language", function() {
+            expect(manager.createUrl()).toBe("CvCreator/En");
+        });
+
+        it("with one class on", function() {
+            manager.setClassState("research",true);
+            expect(manager.createUrl()).toBe("CvCreator/En&research");
+        });
     });
 });
 

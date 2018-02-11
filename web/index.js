@@ -30,66 +30,66 @@ class CvManager {
             },
         };
 
+        this._classesState = { research:false, computerScience:false, teaching:false, other:false };
         this._currentLanguage = this.availableLanguages[0];
         this._elementsLoadingCount = 0;
-        this._classesState = { research:false, computerScience:false, teaching:false, other:false };
 
         $("#updated").hide();
         $("#loading").hide();
+    }
+
+    createUrl() {
+        var result = "CvCreator/" + this.getCurrentLanguage();
+        for (var key in this._classesState) if(this._classesState[key]) result += "&" + key;
+        return result;
+    }
+    getAvailableClasses() {
+        var result = [];
+        for(var key in this._classesState) {
+            result.push(key);
+        }
+        return result;
+    }
+    getClassState(key) {
+        return this._classesState[key];
+    }
+    getCurrentLanguage() {
+        return this._currentLanguage;
+    }
+    getElementsLoadingCount() {
+        return this._elementsLoadingCount;
+    }
+
+    setClassState(key,rhs) {
+        var requiresUpdate = this._classesState[key] != rhs; // TODO: use this variable
+        this._classesState[key] = rhs;
+    }
+    setCurrentLanguage(rhs) {
+        var requiresUpdate = this._currentLanguage != rhs; // TODO: use this variable
+        this._currentLanguage = rhs;
     }
 }
 
 function initialize() {
     // updateCv("");
 }
-// function updateCv(caller)
-// {
-//     if(caller!="")
-//         window.state[caller]=!window.state[caller]
 
+// function updateCv() {
 //     window.elementLoading++;
-//     if(window.elementLoading==1)
-//         $( "#loading" ).show();
-//     $('#cv').load(buildCvUrl(),function() {
+//     if(window.elementLoading==1) $( "#loading" ).show();
+//     $('#cv').load(createUrl(),function() {
 //         window.elementLoading--;
-//         if(window.elementLoading==0)
-//             $( "#loading" ).hide();
-//         if( !$("#updated").is(":visible") )
-//             $( "#updated" ).fadeIn().delay(1000).fadeOut();
+//         if(window.elementLoading==0) $( "#loading" ).hide();
+//         if( !$("#updated").is(":visible") ) $( "#updated" ).fadeIn().delay(1000).fadeOut();
 //     });
 // }
-// function buildCvUrl()
+// function updateLabels(language)
 // {
-//     var result="cvMaker/"
-//     for (var key in window.language) {
-//             if(window.language[key])
-//                 result+=key;
-//     }
-//     for (var key in window.state) {
-//             if(window.state[key])
-//                 result+="&"+key;
-//     }
-//     return result;
+//         document.getElementById('skillTitle').innerHTML=label[1];
+//         $('#skillTitle').innerHTML=label[1];
+//     ...
 // }
-
-// function switchLanguage(caller)
-// {
-//     switchLabel(caller);
-//     if(window.language[caller])
-//         return;
-    
-//     for (var key in window.language)
-//         window.language[key]=false
-//     window.language[caller]=true
+// function updateLanguage(language) {
+//     updateLabels(language);
 //     updateCv("");
-// }
-// function switchLabel(language)
-// {
-    
-//     label=labelFr;
-//     if(language=="En")
-//         label=labelEn
-
-    //     document.getElementById('skillTitle').innerHTML=label[1];
-    //     $('#skillTitle').innerHTML=label[1];
 // }
