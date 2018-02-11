@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <style type="text/css" media="screen">
+    body
+    {
+        font-family: 'Trebuchet MS', Helvetica, sans-serif;
+        font-size:100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #menu {  
+        width: 15%;  
+        margin: 2px 2px 2px 20px;  
+        float: left;  
+    }
+    #cv {  
+        width: 80%;  
+        margin: 2px 2px 2px 2px;  
+        float: left;  
+    }  
+    div.cvStyle
+    {
+        width: 7.0in;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    ul
+    {
+        margin: 0;
+    }
+    li
+    {
+        margin: 0 0 5px 0;
+    }
+    table 
+    {
+        width: 7.0in;
+    }
+    hr
+    {
+        border: 0;
+        color: #0000CC;
+        background-color: #0000CC;
+        height: 1px;
+        padding: 0;
+    }
+    hr.section
+    {
+        height: 2px;
+    }
+    #updated {
+        background-color: #33CC00;
+        border-radius: 20px ;
+        text-align: center;
+        vertical-align:middle;
+        padding: 5px 0px 5px 0px;   
+    }
+    #loading {
+        background-color: #FFFF00;
+        border-radius: 20px ;
+        text-align: center;
+        vertical-align:middle;
+        padding: 5px 0px 5px 0px;   
+    }
+    </style>
+
+    <style type="text/css" media="print">
+    body
+    {
+        font-family: 'Trebuchet MS', Helvetica, sans-serif;
+        font-size:100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #menu {  
+        display: none;
+    }
+    #cv {  
+    }  
+    div.cvStyle
+    {
+        width: 6.5in;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    ul
+    {
+        margin: 0;
+    }
+    li
+    {
+        margin: 0 0 5px 0;
+    }
+    table 
+    {
+        width: 6.5in;
+    }
+    hr
+    {
+        border: 0;
+        color: #0000CC;
+        background-color: #0000CC;
+        height: 1px;
+        padding: 0; 
+    }
+    hr.section
+    {
+        height: 2px;
+    }
+    </style>
+
+    <title>Kevin Lalumi&egrave;re</title>
+
+</head>
+
+<body>
+
+    <div id="menu">
+        <br>
+        <form align>
+        <input type="radio" name="language" onclick="switchLanguage('Fr')" checked>Fran&ccedil;ais<br>
+        <input type="radio" name="language" onclick="switchLanguage('En')">English
+        </form>
+        <br>
+        <br>
+
+         <strong><div id="skillTitle" style="display: inline">Comp&eacute;tences</div> </strong><br>
+        <input type="checkbox" onclick="updateCv('research')"><div id="research" style="display: inline">Recherche</div><br>
+        <input type="checkbox" onclick="updateCv('computerScience')"><div id="computerScience" style="display: inline">Informatique</div><br>
+        <input type="checkbox" onclick="updateCv('teaching')"><div id="teaching" style="display: inline">Enseignement</div><br>
+        <input type="checkbox" onclick="updateCv('other')"><div id="other" style="display: inline">Autres</div><br>
+        <br>
+        <div style="text-align: center"><a id="printPage" href="#" onClick=" window.print(); return false">Imprimer</a></div>
+        <br>
+        <div style="text-align: center"><a id="download" href="cvMakerGem">T&eacute;l&eacute;charger la source (Gem Ruby)</a></div>
+
+        <br>
+        <div style="height: 30px;"><div id="loading">Chargement...</div></div>
+        <br>
+        <div style="height: 30px;"><div id="updated">Mis &agrave; jour</div></div>
+    </div>
+    <div id="cv">  </div> 
+</body>
+</html>

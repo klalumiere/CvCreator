@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+<link rel="shortcut icon" type="image/png" href="thirdParty/jasmine/lib/jasmine-core/jasmine_favicon.png">
+<link rel="stylesheet" type="text/css" href="thirdParty/jasmine/lib/jasmine-core/jasmine.css">
+
+<script type="text/javascript" src="thirdParty/jasmine/lib/jasmine-core/jasmine.js"></script>
+<script type="text/javascript" src="thirdParty/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+<script type="text/javascript" src="thirdParty/jasmine/lib/jasmine-core/boot.js"></script>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript">
+
+describe("CvManager, at construction,", function() {
+    beforeEach(function() {
+        spyOn(document, "getElementById");
+        spyOn(jQuery.fn,"hide");
+
+        manager = new CvManager;
+    });
+
+    it("has available languages", function() {
+        expect(Object.keys(manager.availableLanguages).length).not.toBe(0);
+    });
+    it("has labels for every available languages", function() {
+        for (let language of manager.availableLanguages) {
+            expect(Object.keys(manager.labels[language]).length).not.toBe(0);
+        }
+    });
+    it("has available languages", function() {
+        expect(manager.availableLanguages).not.toBe(undefined);
+    });
+    it("has current language", function() {
+        expect(manager._currentLanguage).not.toBe(undefined);
+    });
+    it("has zero element loading", function() {
+        expect(manager._elementsLoadingCount).toBe(0);
+    });
+    it("has classes states set to false", function() {
+        expect(Object.keys(manager._classesState).length).not.toBe(0);
+        for(var key in manager._classesState) {
+            expect(manager._classesState[key]).toBe(false);
+        }
+    });
+    it("hides labels", function() {
+        expect(document.getElementById).toHaveBeenCalledWith("updated");
+        expect(document.getElementById).toHaveBeenCalledWith("loading");
+        expect(jQuery.fn.hide).toHaveBeenCalledTimes(2);
+    });
+});
+
+</script>
+
+</body>
+</html>
