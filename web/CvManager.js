@@ -58,39 +58,39 @@ class CvManager {
         return this._elementsLoadingCount;
     }
 
-    setClassState(key,rhs) {
-        var requiresUpdate = this._classesState[key] != rhs; // TODO: use this variable
-        this._classesState[key] = rhs;
-    }
     setCurrentLanguage(rhs) {
-        var requiresUpdate = this._currentLanguage != rhs; // TODO: use this variable
+        // var requiresUpdate = this._currentLanguage != rhs;
         this._currentLanguage = rhs;
+        // if(requiresUpdate) updateLanguage();
     }
+    toggleClassState(key) {
+        this._classesState[key] = !this._classesState[key];
+        // updateCv();
+    }
+    
+    // updateCv() {
+    //     this._elementsLoadingCount++;
+    //     if(this._elementsLoadingCount == 1) $("#loading").show();
+    //     $("#cv").load(createUrl(),function() {
+    //         this._elementsLoadingCount--;
+    //         if(this._elementsLoadingCount == 0) $( "#loading" ).hide();
+    //         if( !$("#updated").is(":visible") ) $( "#updated" ).fadeIn().delay(1000).fadeOut();
+    //     });
+    // }
+    // updateLanguage(language) {
+    //     updateLabels(language);
+    //     updateCv();
+    // }
+
+    // updateLabels(language) {
+    //     var currentLabels = this.labels[this._currentLanguage];
+    //     for(var key in currentLabels) document.getElementById(key).innerHTML = currentLabels[key];
+    // }
 }
 
 // $( document ).ready(initialize);
 
 // function initialize() {
     // window.cvManager = new CvManager;
-    // updateCv("");
-// }
-
-// function updateCv() {
-//     window.elementLoading++;
-//     if(window.elementLoading==1) $( "#loading" ).show();
-//     $('#cv').load(createUrl(),function() {
-//         window.elementLoading--;
-//         if(window.elementLoading==0) $( "#loading" ).hide();
-//         if( !$("#updated").is(":visible") ) $( "#updated" ).fadeIn().delay(1000).fadeOut();
-//     });
-// }
-// function updateLabels(language)
-// {
-//         document.getElementById('skillTitle').innerHTML=label[1];
-//         $('#skillTitle').innerHTML=label[1];
-//     ...
-// }
-// function updateLanguage(language) {
-//     updateLabels(language);
-//     updateCv("");
+    // updateCv(); // The constructor of CvManager should call this
 // }
