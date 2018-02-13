@@ -15,10 +15,10 @@
 <script type="text/javascript">
 
 describe("CvManager, at construction,", function() {
-    beforeEach(function() {
-        spyOn(document, "getElementById");
-        spyOn(jQuery.fn,"hide");
+    var idsToAdd = ["updated", "loading"]
 
+    beforeEach(function() {
+        for(let id of idsToAdd) $('<div id="' + id + '"></div>').appendTo("body");
         manager = new CvManager;
     });
 
@@ -26,26 +26,52 @@ describe("CvManager, at construction,", function() {
         expect(Object.keys(manager.availableLanguages).length).not.toBe(0);
     });
     it("has labels for every available languages", function() {
-        for (let language of manager.availableLanguages) {
+        for(let language of manager.availableLanguages) {
             expect(Object.keys(manager.labels[language]).length).not.toBe(0);
         }
     });
-    it("hides labels", function() {
-        expect(document.getElementById).toHaveBeenCalledWith("updated");
-        expect(document.getElementById).toHaveBeenCalledWith("loading");
-        expect(jQuery.fn.hide).toHaveBeenCalledTimes(2);
+
+    it("hides label", function() {
+        expect($("#updated").is(":visible")).toBe(false);
+        expect($("#loading").is(":visible")).toBe(false);
+    });
+
+    afterEach(function(){
+        for(let id of idsToAdd) $("#" + id).remove();
     });
 });
 
 describe("CvManager's method", function() {
+    var idsToAdd = ["skillTitle", "research", "computerScience", "teaching", "other", "printPage",
+        "download", "loading", "updated"];
+
     beforeEach(function() {
+        for(let id of idsToAdd) $('<div id="' + id + '"></div>').appendTo("body");
         manager = new CvManager;
     });
 
-    it("setCurrentLanguage", function() {
-        manager.setCurrentLanguage("En");
-        expect(manager.getCurrentLanguage()).toBe("En");
+    describe("setCurrentLanguage", function() {
+
+        beforeEach(function() {
+            manager.setCurrentLanguage("En");
+        });
+
+        it("changes language", function() {
+            expect(manager.getCurrentLanguage()).toBe("En");
+        });
+
+        it("update labels", function() {
+            expectedLabels = manager.labels["En"];
+            for (var key in expectedLabels) expect($("#" + key).html()).toBe(expectedLabels[key]);
+        });
+
+        it("_updateLanguage is not called when setCurrentLanguage does not change language", function() {
+            spyOn(manager,'_updateLanguage')
+            manager.setCurrentLanguage("En");
+            expect(manager._updateLanguage).not.toHaveBeenCalled()
+        });
     });
+    
     it("getElementsLoadingCount", function() {
         expect(manager.getElementsLoadingCount()).toBe(0);
     });
@@ -53,7 +79,7 @@ describe("CvManager's method", function() {
         expect(Object.keys(manager.getAvailableClasses()).length).not.toBe(0);
     });
     it("getClassState", function() {
-        for (let className of manager.getAvailableClasses()) {
+        for(let className of manager.getAvailableClasses()) {
             expect(manager.getClassState(className)).toBe(false);
         }
     });
@@ -75,6 +101,10 @@ describe("CvManager's method", function() {
             manager.toggleClassState("research");
             expect(manager.createUrl()).toBe("CvCreator/En&research");
         });
+    });
+
+    afterEach(function(){
+        for(let id of idsToAdd) $("#" + id).remove();
     });
 });
 

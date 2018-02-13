@@ -59,38 +59,39 @@ class CvManager {
     }
 
     setCurrentLanguage(rhs) {
-        // var requiresUpdate = this._currentLanguage != rhs;
+        var requiresUpdate = this._currentLanguage != rhs;
         this._currentLanguage = rhs;
-        // if(requiresUpdate) updateLanguage();
+        if(requiresUpdate) this._updateLanguage();
     }
     toggleClassState(key) {
         this._classesState[key] = !this._classesState[key];
-        // updateCv();
+        // this._updateCv();
     }
-    
-    // updateCv() {
+
+    // _updateCv() {
     //     this._elementsLoadingCount++;
     //     if(this._elementsLoadingCount == 1) $("#loading").show();
-    //     $("#cv").load(createUrl(),function() {
-    //         this._elementsLoadingCount--;
-    //         if(this._elementsLoadingCount == 0) $( "#loading" ).hide();
-    //         if( !$("#updated").is(":visible") ) $( "#updated" ).fadeIn().delay(1000).fadeOut();
-    //     });
+    //     $("#cv").load(createUrl(),function() { this._onLoadingFinished(); });
     // }
-    // updateLanguage(language) {
-    //     updateLabels(language);
-    //     updateCv();
-    // }
+    _updateLanguage() {
+        this._updateLabels();
+        // this._updateCv();
+    }
 
-    // updateLabels(language) {
-    //     var currentLabels = this.labels[this._currentLanguage];
-    //     for(var key in currentLabels) document.getElementById(key).innerHTML = currentLabels[key];
+    // _onLoadingFinished() {
+    //     this._elementsLoadingCount--;
+    //     if(this._elementsLoadingCount == 0) $( "#loading" ).hide();
+    //     if( !$("#updated").is(":visible") ) $( "#updated" ).fadeIn().delay(1000).fadeOut();
     // }
+    _updateLabels() {
+        var currentLabels = this.labels[this._currentLanguage];
+        for(var key in currentLabels) $("#" + key).html(currentLabels[key]);
+    }
 }
 
 // $( document ).ready(initialize);
 
 // function initialize() {
     // window.cvManager = new CvManager;
-    // updateCv(); // The constructor of CvManager should call this
+    // _updateCv(); // The constructor of CvManager should call this
 // }
