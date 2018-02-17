@@ -3,6 +3,11 @@
 <head>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="CvManager.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            window.cvManager = new CvManager;
+        });
+    </script>
     <style type="text/css" media="screen">
     body
     {
@@ -121,17 +126,17 @@
     <div id="menu">
         <br>
         <form align>
-        <input type="radio" name="language" onclick="switchLanguage('Fr')" checked>Fran&ccedil;ais<br>
-        <input type="radio" name="language" onclick="switchLanguage('En')">English
+        <input type="radio" name="language" onclick="window.cvManager.setCurrentLanguage('Fr')" checked>Fran&ccedil;ais<br>
+        <input type="radio" name="language" onclick="window.cvManager.setCurrentLanguage('En')">English
         </form>
         <br>
         <br>
 
-         <strong><div id="skillTitle" style="display: inline">Comp&eacute;tences</div> </strong><br>
-        <input type="checkbox" onclick="updateCv('research')"><div id="research" style="display: inline">Recherche</div><br>
-        <input type="checkbox" onclick="updateCv('computerScience')"><div id="computerScience" style="display: inline">Informatique</div><br>
-        <input type="checkbox" onclick="updateCv('teaching')"><div id="teaching" style="display: inline">Enseignement</div><br>
-        <input type="checkbox" onclick="updateCv('other')"><div id="other" style="display: inline">Autres</div><br>
+        <strong><div id="skillTitle" style="display: inline">Comp&eacute;tences</div> </strong><br>
+        <input type="checkbox" onclick="window.cvManager.toggleClassState('research')"><div id="research" style="display: inline">Recherche</div><br>
+        <input type="checkbox" onclick="window.cvManager.toggleClassState('computerScience')"><div id="computerScience" style="display: inline">Informatique</div><br>
+        <input type="checkbox" onclick="window.cvManager.toggleClassState('teaching')"><div id="teaching" style="display: inline">Enseignement</div><br>
+        <input type="checkbox" onclick="window.cvManager.toggleClassState('other')"><div id="other" style="display: inline">Autres</div><br>
         <br>
         <div style="text-align: center"><a id="printPage" href="#" onClick=" window.print(); return false">Imprimer</a></div>
         <br>

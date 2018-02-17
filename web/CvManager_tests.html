@@ -15,11 +15,16 @@
 <script type="text/javascript">
 
 describe("CvManager, at construction,", function() {
-    var idsToAdd = ["updated", "loading"]
+    var idsToAdd = ["updated", "loading", "cv"]
 
     beforeEach(function() {
         for(let id of idsToAdd) $('<div id="' + id + '"></div>').appendTo("body");
+        spyOn(jQuery.fn,"load");
         manager = new CvManager;
+    });
+
+    afterEach(function(){
+        for(let id of idsToAdd) $("#" + id).remove();
     });
 
     it("has available languages", function() {
@@ -31,13 +36,53 @@ describe("CvManager, at construction,", function() {
         }
     });
 
-    it("hides label", function() {
-        expect($("#updated").is(":visible")).toBe(false);
-        expect($("#loading").is(":visible")).toBe(false);
+    it("increments elements loading count", function() {
+        expect(manager.getElementsLoadingCount()).toBe(1);
+    });
+    it("shows 'loading'", function() {
+        expect($("#loading").is(":visible")).toBe(true);
+    });
+    it("doesn't call show 'loading' if it is already visible", function() {
+        spyOn(jQuery.fn,"show");
+        manager.updateCv();
+        expect(jQuery.fn.show).not.toHaveBeenCalled();
+    });
+    it("calls jQuery load with 'createUrl'", function() {
+        expect(jQuery.fn.load).toHaveBeenCalledWith(manager.createUrl(), jasmine.anything());
     });
 
-    afterEach(function(){
-        for(let id of idsToAdd) $("#" + id).remove();
+    describe("calls onLoadingFinished that", function() {
+        beforeEach(function() {
+            spyOn(document,"getElementById").and.callThrough();
+            spyOn(jQuery.fn,"fadeIn").and.callThrough();
+            spyOn(jQuery.fn,"delay").and.callThrough();
+            spyOn(jQuery.fn,"fadeOut").and.callThrough();
+            manager.onLoadingFinished();
+        });
+
+        it("decrements loading count", function() {
+            expect(manager.getElementsLoadingCount()).toBe(0);
+        });
+        it("hides loading", function() {
+            expect($("#loading").is(":visible")).toBe(false);
+        });
+        it("doesn't hide loading if there is many elements loading", function() {
+            manager.setElementsLoadingCount(2);
+            $("#loading").show();
+            manager.onLoadingFinished();
+            expect($("#loading").is(":visible")).toBe(true);
+        });
+        it("shows and hides 'updated'", function() {
+            expect(document.getElementById).toHaveBeenCalledWith("updated");
+            expect(jQuery.fn.fadeIn).toHaveBeenCalledTimes(1);
+            expect(jQuery.fn.delay).toHaveBeenCalledTimes(1);
+            expect(jQuery.fn.fadeOut).toHaveBeenCalledTimes(1);
+        });
+        it("doesn't try to show 'updated' again if it is already visible", function() {
+            $("#updated").show();
+            manager.onLoadingFinished();
+            expect(jQuery.fn.fadeIn).toHaveBeenCalledTimes(1);
+        });
     });
 });
 
@@ -47,7 +92,17 @@ describe("CvManager's method", function() {
 
     beforeEach(function() {
         for(let id of idsToAdd) $('<div id="' + id + '"></div>').appendTo("body");
+        spyOn(CvManager.prototype,"updateCv");
         manager = new CvManager;
+    });
+
+    afterEach(function(){
+        for(let id of idsToAdd) $("#" + id).remove();
+    });
+
+    it("labels are hidden by default", function() {
+        expect($("#updated").is(":visible")).toBe(false);
+        expect($("#loading").is(":visible")).toBe(false);
     });
 
     describe("setCurrentLanguage", function() {
@@ -65,15 +120,23 @@ describe("CvManager's method", function() {
             for (var key in expectedLabels) expect($("#" + key).html()).toBe(expectedLabels[key]);
         });
 
-        it("_updateLanguage is not called when setCurrentLanguage does not change language", function() {
-            spyOn(manager,'_updateLanguage')
+        it("updateLanguage is not called when setCurrentLanguage does not change language", function() {
+            spyOn(manager,'updateLanguage')
             manager.setCurrentLanguage("En");
-            expect(manager._updateLanguage).not.toHaveBeenCalled()
+            expect(manager.updateLanguage).not.toHaveBeenCalled()
         });
     });
     
+    it("updateLanguage calls updateCv", function() {
+        manager.updateLanguage();
+        expect(manager.updateCv).toHaveBeenCalledTimes(2);
+    });
     it("getElementsLoadingCount", function() {
         expect(manager.getElementsLoadingCount()).toBe(0);
+    });
+    it("setElementsLoadingCount", function() {
+        manager.setElementsLoadingCount(7)
+        expect(manager.getElementsLoadingCount()).toBe(7);
     });
     it("getAvailableClasses", function() {
         expect(Object.keys(manager.getAvailableClasses()).length).not.toBe(0);
@@ -85,7 +148,7 @@ describe("CvManager's method", function() {
     });
     it("toggleClassState", function() {
         manager.toggleClassState("research");
-        expect(manager.getClassState("research")).toBe(true);
+        expect(manager.updateCv).toHaveBeenCalledTimes(2);
     });
 
     describe("createUrl", function() {
@@ -101,10 +164,6 @@ describe("CvManager's method", function() {
             manager.toggleClassState("research");
             expect(manager.createUrl()).toBe("CvCreator/En&research");
         });
-    });
-
-    afterEach(function(){
-        for(let id of idsToAdd) $("#" + id).remove();
     });
 });
 
