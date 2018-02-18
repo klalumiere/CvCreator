@@ -80,7 +80,8 @@ class CvManager {
     updateCv() {
         this._elementsLoadingCount = this._elementsLoadingCount + 1;
         if(this._elementsLoadingCount == 1) $("#loading").show();
-        $("#cv").load(this.createUrl(),function() { this.onLoadingFinished(); });
+        var fixedThis = this;
+        $("#cv").load(this.createUrl(),function() { fixedThis.onLoadingFinished(); });
     }
     updateLanguage() {
         this._updateLabels();
