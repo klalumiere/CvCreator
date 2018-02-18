@@ -39,7 +39,7 @@ class CvManager {
 
     createUrl() {
         var result = "CvCreator/" + this.getCurrentLanguage();
-        for (var key in this._classesState) if(this._classesState[key]) result += "&" + key;
+        for (var key in this._classesState) if(this._classesState[key]) result += "__" + key;
         return result;
     }
     getAvailableClasses() {
