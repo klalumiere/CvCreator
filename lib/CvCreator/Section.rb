@@ -13,6 +13,7 @@ module CvCreator
             return "" if itemsCount() == 0 or !dataInClasses?()
             titleTag = CvCreator::findTagContentByName(@tagList, "title" + @language)
             result = @view.itemsName.reduce(@view.sectionHeader(titleTag), &method(:addItemsWithName))
+            return "" if result == @view.sectionHeader(titleTag);
             @view.removeUnwantedChars(result)
         end
 

@@ -70,7 +70,7 @@ module CvCreator
 
         def test_sectionContent
             sectionView = SectionViewStub.new(@options[:language])
-            assert_equal("ab",@view.sectionContent(@dataHash["sectionViewStub"],sectionView))
+            assert_equal("",@view.sectionContent(@dataHash["sectionViewStub"],sectionView))
         end
 
         def test_header_is_called_by_content
@@ -79,8 +79,7 @@ module CvCreator
             assert_equal(@options[:language],@view.language)
         end
         def test_content
-            assert_equal(@view.header("","") + @view.convertSpecialChar("ab") + @view.sectionFooter() + @view.footer(),
-                @view.content)
+            assert_equal(@view.header("","") + @view.footer(), @view.content)
         end
 
     end

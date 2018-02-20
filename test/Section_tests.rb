@@ -89,8 +89,8 @@ module CvCreator
             actual = getSectionContent(%q[\itemsNameOne{}])
             assert_equal("",actual)
         end
-        def testItemWithClassAndGlobalTitle
-            assert_equal("ab", getSectionContent(%q[\itemsNameOne{}\class{test}\titleEn{ab}]))
+        def testItemWithClassAndGlobalTitlePrintsNothingBecauseContentIsEmpty
+            assert_equal("", getSectionContent(%q[\itemsNameOne{}\class{test}\titleEn{ab}]))
         end
         def testItemWithGlobalTitleWrongLanguage
             actual = getSectionContent(%q[\itemsNameOne{}\titleWrongLanguage{ab}])
