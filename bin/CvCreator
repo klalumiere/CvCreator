@@ -2,4 +2,4 @@
 require "CvCreator/Runner"
 
 runner = CvCreator::Runner.new(ARGV)
-runner.run
+puts runner.run

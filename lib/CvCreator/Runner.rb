@@ -22,7 +22,7 @@ module CvCreator
             printUsageAndExit if !areArgumentsValid()
             headerTags = Tag::parse(fileContentToString(filePath(@headerFile)))
             dataHash = Hash[sectionNames().collect { |name| [name, fileContentToString(filePath(name))] }]
-            puts @viewClass.new(headerTags,dataHash,@options).content
+            @viewClass.new(headerTags,dataHash,@options).content
         end
 
         def areArgumentsValid()
