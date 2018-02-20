@@ -1,0 +1,5 @@
+#! /usr/bin/ruby 
+require "CvCreator/Runner"
+
+runner = CvCreator::Runner.new(ARGV)
+puts runner.run
