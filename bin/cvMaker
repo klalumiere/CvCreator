@@ -1,6 +1,0 @@
-#!/usr/bin/ruby 
-require_relative "../lib/cvMaker/runner.rb"
-
-require_relative "../lib/cvMaker/texView"
-runner=CvMaker::Runner.new(CvMaker::TexView,ARGV)
-puts runner.run
