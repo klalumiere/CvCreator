@@ -16,6 +16,18 @@ module CvServer
         def testCreateArgumentsListForHtml
             assert_equal(["HtmlView","data","En","research"],CvServer::createArgumentsListForHtml("En__research"))
         end
+        def testCreateArgumentsListForTexEmptyArguments
+            assert_equal(["TexView","data"],CvServer::createArgumentsListForTex(""))
+        end
+        def testCreateArgumentsListForTex
+            assert_equal(["TexView","data","En","research"],CvServer::createArgumentsListForTex("En__research"))
+        end
+        def testCreateStringFromFirstElementEmpty
+            assert_equal("",CvServer::createStringFromFirstElement([]))
+        end
+        def testCreateStringFromFirstElement
+            assert_equal("a",CvServer::createStringFromFirstElement(["a","b"]))
+        end
     end
 
 end # CvServer

@@ -18,7 +18,7 @@
 
 describe("CvManager", function() {
     var idsToAdd = ["skillTitle", "research", "computerScience", "teaching", "other", "printPage",
-        "download", "loading", "updated", "cv"];
+        "download", "loading", "updated", "cv", "openInLatex"];
 
     beforeEach(function() {
         for(let id of idsToAdd) $('<div id="' + id + '"></div>').appendTo("body");
@@ -133,6 +133,15 @@ describe("CvManager", function() {
         it("with one class", function() {
             manager.toggleClassState("research");
             expect(manager.createUrl()).toBe("CvCreator/En__research");
+        });
+
+        it("with no classes in Tex", function() {
+            expect(manager.createTexUrl()).toBe("CvCreatorTex/En");
+        });
+
+        it("with one class in Tex", function() {
+            manager.toggleClassState("research");
+            expect(manager.createTexUrl()).toBe("CvCreatorTex/En__research");
         });
     });
 }); // CvManager

@@ -23,10 +23,17 @@ get '/CvManager.js' do
 end
 
 get '/CvCreator/*' do
-    programInput = ""
-    programInput += params[:splat][0] if !params[:splat].empty?()
-    runner = CvCreator::Runner.new(CvServer::createArgumentsListForHtml(programInput))
+    input = CvServer::createStringFromFirstElement(params[:splat])
+    runner = CvCreator::Runner.new(CvServer::createArgumentsListForHtml(input))
     runner.run
+end
+
+get '/CvCreatorTex/*' do
+    input = CvServer::createStringFromFirstElement(params[:splat])
+    runner = CvCreator::Runner.new(CvServer::createArgumentsListForTex(input))
+    header = "<html><head><title>LaTeX CV</title></head><body><pre>\n"
+    footer = "\n</pre></body></html>"
+    header + runner.run + footer
 end
 
 get '/CvCreatorGem' do

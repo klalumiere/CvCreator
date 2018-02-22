@@ -25,7 +25,9 @@ module CvCreator
             "\\end{document}"
         end 
         def header(data,language)
-            result = %q[\documentclass[letterpaper,11pt]{resume2}
+            result = %q[%The file 'resume2.cls' is required to compile this LaTeX source
+            %Le fichier 'resume2.cls' est requis pour compiler cette source LaTeX
+            \documentclass[letterpaper,11pt]{resume2}
 
             \newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
 

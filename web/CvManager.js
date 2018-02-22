@@ -5,25 +5,27 @@ class CvManager {
         this.availableLanguages = ["Fr", "En"];
         this.labels = {
             Fr: {
-                skillTitle:"Comp&eacute;tences",
-                research:"Recherche",
                 computerScience:"Informatique",
-                teaching:"Enseignement",
-                other:"Autres",
-                printPage:"Imprimer",
                 download:"T&eacute;l&eacute;charger la source (Gem Ruby)",
                 loading:"Chargement...",
+                openInLatex:"Ouvrir en LaTeX",
+                other:"Autres",
+                printPage:"Imprimer",
+                research:"Recherche",
+                skillTitle:"Comp&eacute;tences",
+                teaching:"Enseignement",
                 updated:"Mis &agrave; jour",
             },
             En: {
-                skillTitle:"Skills",
-                research:"Research",
                 computerScience:"Computer Science",
-                teaching:"Teaching",
-                other:"Other",
-                printPage:"Print",
                 download:"Download source (Ruby Gem)",
                 loading:"Loading...",
+                openInLatex:"Open in LaTeX",
+                other:"Other",
+                printPage:"Print",
+                research:"Research",
+                skillTitle:"Skills",
+                teaching:"Teaching",
                 updated:"Updated",
             },
         };
@@ -41,6 +43,9 @@ class CvManager {
         var result = "CvCreator/" + this.getCurrentLanguage();
         for (var key in this._classesState) if(this._classesState[key]) result += "__" + key;
         return result;
+    }
+    createTexUrl() {
+        return this.createUrl().replace("CvCreator","CvCreatorTex");
     }
     getAvailableClasses() {
         var result = [];

@@ -138,7 +138,9 @@
         <input type="checkbox" onclick="window.cvManager.toggleClassState('teaching')"><div id="teaching" style="display: inline">Enseignement</div><br>
         <input type="checkbox" onclick="window.cvManager.toggleClassState('other')"><div id="other" style="display: inline">Autres</div><br>
         <br>
-        <div style="text-align: center"><a id="printPage" href="#" onClick=" window.print(); return false">Imprimer</a></div>
+        <div style="text-align: center"><a id="openInLatex" href="#" onClick="window.open(window.cvManager.createTexUrl(),'_blank'); return false;">Ouvrir en LaTeX</a></div>
+        <br>
+        <div style="text-align: center"><a id="printPage" href="#" onClick="window.print(); return false;">Imprimer</a></div>
         <br>
         <div style="text-align: center"><a id="download" href="CvCreatorGem">T&eacute;l&eacute;charger la source (Gem Ruby)</a></div>
 

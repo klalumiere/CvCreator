@@ -1,7 +1,19 @@
 module CvServer
 
+    def CvServer.createStringFromFirstElement(array)
+        if array.empty?() then "" else array[0] end
+    end
+
     def CvServer.createArgumentsListForHtml(arguments)
-        argumentList = ["HtmlView","data"]
+        createArgumentsListFor("HtmlView",arguments)
+    end
+
+    def CvServer.createArgumentsListForTex(arguments)
+        createArgumentsListFor("TexView",arguments)
+    end
+
+    def CvServer.createArgumentsListFor(view,arguments)
+        argumentList = [view,"data"]
         argumentList += CvServer::sanitize(arguments,['_']).split("__")
     end
 
