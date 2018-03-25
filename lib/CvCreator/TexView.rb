@@ -7,8 +7,8 @@ module CvCreator
         def self.sectionToClass()
             @sectionClasses = {
                 "skillSummary" => CvCreator::SkillSummaryTex,
-                "education" => CvCreator::EducationTex,
                 "experience" => CvCreator::ExperienceTex,
+                "education" => CvCreator::EducationTex,
                 "autodidactTraining" => CvCreator::AutodidactTrainingTex,
                 "honor" => CvCreator::HonorTex,
                 "socialImplication" => CvCreator::SocialImplicationTex,

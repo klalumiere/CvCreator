@@ -7,8 +7,8 @@ module CvCreator
         def self.sectionToClass()
             {
                 "skillSummary" => CvCreator::SkillSummaryHtml,
-                "education" => CvCreator::EducationHtml,
                 "experience" => CvCreator::ExperienceHtml,
+                "education" => CvCreator::EducationHtml,
                 "autodidactTraining" => CvCreator::AutodidactTrainingHtml,
                 "honor" => CvCreator::HonorHtml,
                 "socialImplication" => CvCreator::SocialImplicationHtml,
