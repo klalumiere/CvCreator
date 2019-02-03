@@ -2,14 +2,13 @@ require_relative "Section"
 require_relative "Tag"
 
 module CvCreator
-    # TODO This class should be tested
     class View
         HeaderDataKeys = ["name" , "email" , "address" , "phone" , "town" , "webPage"]
-        
+
         Of = {"Fr"=>"de", "En"=>"of" }
         Phone = { "Fr" => "Cellulaire", "En" => "Mobile" }
         WebPage = { "Fr" => "Page web", "En" => "Web page" }
-        
+
         def initialize(headerTags,dataHash,options)
 
             @headerTags = headerTags
