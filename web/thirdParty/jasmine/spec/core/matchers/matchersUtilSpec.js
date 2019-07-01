@@ -145,7 +145,7 @@ describe("matchersUtil", function() {
         actual = { b: 1 };
 
       expect(jasmineUnderTest.matchersUtil.equals(actual, expected)).toBe(false);
-    })
+    });
 
     it("fails when comparing an empty object to an empty array (issue #114)", function() {
       var emptyObject = {},
@@ -156,8 +156,6 @@ describe("matchersUtil", function() {
     });
 
     it("passes for equivalent frozen objects (GitHub issue #266)", function() {
-      if (jasmine.getEnv().ieVersion < 9) { return; }
-
       var a = { foo: 1 },
         b = {foo: 1 };
 
@@ -201,10 +199,6 @@ describe("matchersUtil", function() {
         if (isNotRunningInBrowser()) {
           return;
         }
-        // iframe.contentWindow.eval isn't supported in ie8
-        if (jasmine.getEnv().ieVersion < 9) {
-          return;
-        }
         var iframe = document.createElement('iframe');
         document.body.appendChild(iframe);
         iframe.contentWindow.eval('window.testObject = {}');
@@ -217,11 +211,11 @@ describe("matchersUtil", function() {
           return;
         }
         var a = document.createElement("div");
-        a.setAttribute("test-attr", "attr-value")
+        a.setAttribute("test-attr", "attr-value");
         a.appendChild(document.createTextNode('test'));
 
         var b = document.createElement("div");
-        b.setAttribute("test-attr", "attr-value2")
+        b.setAttribute("test-attr", "attr-value2");
         b.appendChild(document.createTextNode('test'));
 
         expect(jasmineUnderTest.matchersUtil.equals(a,b)).toBe(false);
@@ -366,8 +360,6 @@ describe("matchersUtil", function() {
     });
 
     it("passes for null prototype objects with same properties", function () {
-      if (jasmine.getEnv().ieVersion < 9) { return; }
-
       var objA = Object.create(null),
         objB = Object.create(null);
 
@@ -378,8 +370,6 @@ describe("matchersUtil", function() {
     });
 
     it("fails for null prototype objects with different properties", function () {
-      if (jasmine.getEnv().ieVersion < 9) { return; }
-
       var objA = Object.create(null),
         objB = Object.create(null);
 
@@ -535,9 +525,6 @@ describe("matchersUtil", function() {
     });
 
     describe("when running in an environment with array polyfills", function() {
-      // IE 8 doesn't support `definePropery` on non-DOM nodes
-      if (jasmine.getEnv().ieVersion < 9) { return; }
-
       var findIndexDescriptor = Object.getOwnPropertyDescriptor(Array.prototype, 'findIndex');
       if (!findIndexDescriptor) {
         return;

@@ -1,6 +1,7 @@
 getJasmineRequireObj().Spec = function(j$) {
   function Spec(attrs) {
     this.expectationFactory = attrs.expectationFactory;
+    this.asyncExpectationFactory = attrs.asyncExpectationFactory;
     this.resultCallback = attrs.resultCallback || function() {};
     this.id = attrs.id;
     this.description = attrs.description || '';
@@ -13,6 +14,7 @@ getJasmineRequireObj().Spec = function(j$) {
     this.queueRunnerFactory = attrs.queueRunnerFactory || function() {};
     this.catchingExceptions = attrs.catchingExceptions || function() { return true; };
     this.throwOnExpectationFailure = !!attrs.throwOnExpectationFailure;
+    this.timer = attrs.timer || j$.noopTimer;
 
     if (!this.queueableFn.fn) {
       this.pend();
@@ -28,6 +30,7 @@ getJasmineRequireObj().Spec = function(j$) {
      * @property {Expectation[]} deprecationWarnings - The list of deprecation warnings that occurred during execution this spec.
      * @property {String} pendingReason - If the spec is {@link pending}, this will be the reason.
      * @property {String} status - Once the spec has completed, this string represents the pass/fail status of this spec.
+     * @property {number} duration - The time in ms used by the spec execution, including any before/afterEach.
      */
     this.result = {
       id: this.id,
@@ -36,7 +39,8 @@ getJasmineRequireObj().Spec = function(j$) {
       failedExpectations: [],
       passedExpectations: [],
       deprecationWarnings: [],
-      pendingReason: ''
+      pendingReason: '',
+      duration: null,
     };
   }
 
@@ -57,10 +61,27 @@ getJasmineRequireObj().Spec = function(j$) {
     return this.expectationFactory(actual, this);
   };
 
-  Spec.prototype.execute = function(onComplete, enabled) {
+  Spec.prototype.expectAsync = function(actual) {
+    return this.asyncExpectationFactory(actual, this);
+  };
+
+  Spec.prototype.execute = function(onComplete, excluded) {
     var self = this;
 
-    this.onStart(this);
+    var onStart = {
+      fn: function(done) {
+        self.timer.start();
+        self.onStart(self, done);
+      }
+    };
+
+    var complete = {
+      fn: function(done) {
+        self.queueableFn.fn = null;
+        self.result.status = self.status(excluded);
+        self.resultCallback(self.result, done);
+      }
+    };
 
     var fns = this.beforeAndAfterFns();
     var regularFns = fns.befores.concat(this.queueableFn);
@@ -69,27 +90,25 @@ getJasmineRequireObj().Spec = function(j$) {
       isLeaf: true,
       queueableFns: regularFns,
       cleanupFns: fns.afters,
-      onException: function() { self.onException.apply(self, arguments); },
-      onComplete: complete,
+      onException: function () {
+        self.onException.apply(self, arguments);
+      },
+      onComplete: function() {
+        self.result.duration = self.timer.elapsed();
+        onComplete(self.result.status === 'failed' && new j$.StopExecutionError('spec failed'));
+      },
       userContext: this.userContext()
     };
 
-    if (!this.isExecutable() || this.markedPending || enabled === false) {
+    if (this.markedPending || excluded === true) {
       runnerConfig.queueableFns = [];
       runnerConfig.cleanupFns = [];
-      runnerConfig.onComplete = function() { complete(enabled); };
     }
+
+    runnerConfig.queueableFns.unshift(onStart);
+    runnerConfig.cleanupFns.push(complete);
 
     this.queueRunnerFactory(runnerConfig);
-
-    function complete(enabledAgain) {
-      self.result.status = self.status(enabledAgain);
-      self.resultCallback(self.result);
-
-      if (onComplete) {
-        onComplete();
-      }
-    }
   };
 
   Spec.prototype.onException = function onException(e) {
@@ -111,10 +130,6 @@ getJasmineRequireObj().Spec = function(j$) {
     }, true);
   };
 
-  Spec.prototype.disable = function() {
-    this.disabled = true;
-  };
-
   Spec.prototype.pend = function(message) {
     this.markedPending = true;
     if (message) {
@@ -127,9 +142,9 @@ getJasmineRequireObj().Spec = function(j$) {
     return this.result;
   };
 
-  Spec.prototype.status = function(enabled) {
-    if (this.disabled || enabled === false) {
-      return 'disabled';
+  Spec.prototype.status = function(excluded) {
+    if (excluded === true) {
+      return 'excluded';
     }
 
     if (this.markedPending) {
@@ -143,16 +158,15 @@ getJasmineRequireObj().Spec = function(j$) {
     }
   };
 
-  Spec.prototype.isExecutable = function() {
-    return !this.disabled;
-  };
-
   Spec.prototype.getFullName = function() {
     return this.getSpecName(this);
   };
 
-  Spec.prototype.addDeprecationWarning = function(msg) {
-    this.result.deprecationWarnings.push(this.expectationResultFactory({ message: msg }));
+  Spec.prototype.addDeprecationWarning = function(deprecation) {
+    if (typeof deprecation === 'string') {
+      deprecation = { message: deprecation };
+    }
+    this.result.deprecationWarnings.push(this.expectationResultFactory(deprecation));
   };
 
   var extractCustomPendingMessage = function(e) {
@@ -173,5 +187,6 @@ getJasmineRequireObj().Spec = function(j$) {
 };
 
 if (typeof window == void 0 && typeof exports == 'object') {
+  /* globals exports */
   exports.Spec = jasmineRequire.Spec;
 }

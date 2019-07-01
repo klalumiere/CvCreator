@@ -182,28 +182,7 @@ getJasmineRequireObj().matchersUtil = function(j$) {
     var bIsDomNode = j$.isDomNode(b);
     if (aIsDomNode && bIsDomNode) {
       // At first try to use DOM3 method isEqualNode
-      if (a.isEqualNode) {
-        result = a.isEqualNode(b);
-        if (!result) {
-          diffBuilder.record(a, b);
-        }
-        return result;
-      }
-      // IE8 doesn't support isEqualNode, try to use outerHTML && innerText
-      var aIsElement = a instanceof Element;
-      var bIsElement = b instanceof Element;
-      if (aIsElement && bIsElement) {
-        result = a.outerHTML == b.outerHTML;
-        if (!result) {
-          diffBuilder.record(a, b);
-        }
-        return result;
-      }
-      if (aIsElement || bIsElement) {
-        diffBuilder.record(a, b);
-        return false;
-      }
-      result = a.innerText == b.innerText && a.textContent == b.textContent;
+      result = a.isEqualNode(b);
       if (!result) {
         diffBuilder.record(a, b);
       }
@@ -246,8 +225,14 @@ getJasmineRequireObj().matchersUtil = function(j$) {
       });
 
       for (i = 0; i < aLength || i < bLength; i++) {
+        var formatter = false;
         diffBuilder.withPath(i, function() {
-          result = eq(i < aLength ? a[i] : void 0, i < bLength ? b[i] : void 0, aStack, bStack, customTesters, diffBuilder) && result;
+          if (i >= bLength) {
+            diffBuilder.record(a[i], void 0, actualArrayIsLongerFormatter);
+            result = false;
+          } else {
+            result = eq(i < aLength ? a[i] : void 0, i < bLength ? b[i] : void 0, aStack, bStack, customTesters, diffBuilder) && result;
+          }
         });
       }
       if (!result) {
@@ -471,6 +456,13 @@ getJasmineRequireObj().matchersUtil = function(j$) {
       path + ' to be a kind of ' +
       j$.fnNameFor(expected.constructor) +
       ', but was ' + j$.pp(actual) + '.';
+  }
+
+  function actualArrayIsLongerFormatter(actual, expected, path) {
+    return 'Unexpected ' +
+      path + (path.depth() ? ' = ' : '') +
+      j$.pp(actual) +
+      ' in array.';
   }
 
   function formatKeyValuePairs(obj) {

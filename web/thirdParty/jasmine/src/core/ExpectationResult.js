@@ -45,10 +45,16 @@ getJasmineRequireObj().buildExpectationResult = function() {
 
       var error = options.error;
       if (!error) {
-        try {
-          throw new Error(message());
-        } catch (e) {
-          error = e;
+        if (options.errorForStack) {
+          error = options.errorForStack;
+        } else if (options.stack) {
+          error = options;
+        } else {
+          try {
+            throw new Error(message());
+          } catch (e) {
+            error = e;
+          }
         }
       }
       return stackFormatter(error);

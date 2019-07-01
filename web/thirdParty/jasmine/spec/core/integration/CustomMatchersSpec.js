@@ -4,6 +4,7 @@ describe("Custom Matchers (Integration)", function() {
 
   beforeEach(function() {
     env = new jasmineUnderTest.Env();
+    env.configure({random: false});
   });
 
   it("allows adding more matchers local to a spec", function(done) {
@@ -120,7 +121,7 @@ describe("Custom Matchers (Integration)", function() {
 
     var specExpectations = function(result) {
       expect(result.status).toEqual('passed');
-    }
+    };
 
     env.addReporter({ specDone: specExpectations, jasmineDone: done });
     env.execute();

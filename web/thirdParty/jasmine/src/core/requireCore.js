@@ -1,4 +1,5 @@
 var getJasmineRequireObj = (function (jasmineGlobal) {
+  /* globals exports, global, module, window */
   var jasmineRequire;
 
   if (typeof module !== 'undefined' && module.exports && typeof exports !== 'undefined') {
@@ -34,10 +35,14 @@ var getJasmineRequireObj = (function (jasmineGlobal) {
     j$.Clock = jRequire.Clock();
     j$.DelayedFunctionScheduler = jRequire.DelayedFunctionScheduler(j$);
     j$.Env = jRequire.Env(j$);
-    j$.ExceptionFormatter = jRequire.ExceptionFormatter();
-    j$.Expectation = jRequire.Expectation();
+    j$.StackTrace = jRequire.StackTrace(j$);
+    j$.ExceptionFormatter = jRequire.ExceptionFormatter(j$);
+    j$.ExpectationFilterChain = jRequire.ExpectationFilterChain();
+    j$.Expector = jRequire.Expector(j$);
+    j$.Expectation = jRequire.Expectation(j$);
     j$.buildExpectationResult = jRequire.buildExpectationResult();
-    j$.JsApiReporter = jRequire.JsApiReporter();
+    j$.noopTimer = jRequire.noopTimer();
+    j$.JsApiReporter = jRequire.JsApiReporter(j$);
     j$.matchersUtil = jRequire.matchersUtil(j$);
     j$.ObjectContaining = jRequire.ObjectContaining(j$);
     j$.ArrayContaining = jRequire.ArrayContaining(j$);
@@ -47,6 +52,7 @@ var getJasmineRequireObj = (function (jasmineGlobal) {
     j$.ReportDispatcher = jRequire.ReportDispatcher(j$);
     j$.Spec = jRequire.Spec(j$);
     j$.Spy = jRequire.Spy(j$);
+    j$.SpyFactory = jRequire.SpyFactory(j$);
     j$.SpyRegistry = jRequire.SpyRegistry(j$);
     j$.SpyStrategy = jRequire.SpyStrategy(j$);
     j$.StringMatching = jRequire.StringMatching(j$);
@@ -61,7 +67,13 @@ var getJasmineRequireObj = (function (jasmineGlobal) {
     j$.ObjectPath = jRequire.ObjectPath(j$);
     j$.GlobalErrors = jRequire.GlobalErrors(j$);
 
+    j$.Truthy = jRequire.Truthy(j$);
+    j$.Falsy = jRequire.Falsy(j$);
+    j$.Empty = jRequire.Empty(j$);
+    j$.NotEmpty = jRequire.NotEmpty(j$);
+
     j$.matchers = jRequire.requireMatchers(jRequire, j$);
+    j$.asyncMatchers = jRequire.requireAsyncMatchers(jRequire, j$);
 
     return j$;
   };

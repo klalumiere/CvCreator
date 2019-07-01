@@ -1,5 +1,6 @@
 getJasmineRequireObj().Clock = function() {
 
+  /* global process */
   var NODE_JS = typeof process !== 'undefined' && process.versions && typeof process.versions.node === 'string';
 
   /**
@@ -65,7 +66,7 @@ getJasmineRequireObj().Clock = function() {
      * The clock will be {@link Clock#install|install}ed before the function is called and {@link Clock#uninstall|uninstall}ed in a `finally` after the function completes.
      * @name Clock#withMock
      * @function
-     * @param {closure} Function The function to be called.
+     * @param {Function} closure The function to be called.
      */
     self.withMock = function(closure) {
       this.install();
@@ -87,22 +88,10 @@ getJasmineRequireObj().Clock = function() {
     };
 
     self.setTimeout = function(fn, delay, params) {
-      if (legacyIE()) {
-        if (arguments.length > 2) {
-          throw new Error('IE < 9 cannot support extra params to setTimeout without a polyfill');
-        }
-        return timer.setTimeout(fn, delay);
-      }
       return Function.prototype.apply.apply(timer.setTimeout, [global, arguments]);
     };
 
     self.setInterval = function(fn, delay, params) {
-      if (legacyIE()) {
-        if (arguments.length > 2) {
-          throw new Error('IE < 9 cannot support extra params to setInterval without a polyfill');
-        }
-        return timer.setInterval(fn, delay);
-      }
       return Function.prototype.apply.apply(timer.setInterval, [global, arguments]);
     };
 
@@ -135,11 +124,6 @@ getJasmineRequireObj().Clock = function() {
         global.clearTimeout === realTimingFunctions.clearTimeout &&
         global.setInterval === realTimingFunctions.setInterval &&
         global.clearInterval === realTimingFunctions.clearInterval;
-    }
-
-    function legacyIE() {
-      //if these methods are polyfilled, apply will be present
-      return !(realTimingFunctions.setTimeout || realTimingFunctions.setInterval).apply;
     }
 
     function replace(dest, source) {

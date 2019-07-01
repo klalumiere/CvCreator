@@ -29,13 +29,17 @@ getJasmineRequireObj().pp = function(j$) {
       } else if (typeof value === 'string') {
         this.emitString(value);
       } else if (j$.isSpy(value)) {
-        this.emitScalar('spy on ' + value.and.identity());
+        this.emitScalar('spy on ' + value.and.identity);
       } else if (value instanceof RegExp) {
         this.emitScalar(value.toString());
       } else if (typeof value === 'function') {
         this.emitScalar('Function');
-      } else if (typeof value.nodeType === 'number') {
-        this.emitScalar('HTMLNode');
+      } else if (j$.isDomNode(value)) {
+        if (value.tagName) {
+          this.emitDomElement(value);
+        } else {
+          this.emitScalar('HTMLNode');
+        }
       } else if (value instanceof Date) {
         this.emitScalar('Date(' + value + ')');
       } else if (j$.isSet(value)) {
@@ -223,6 +227,32 @@ getJasmineRequireObj().pp = function(j$) {
     }
 
     this.append(constructorName + ' [ ' + itemsString + ' ]');
+  };
+
+  PrettyPrinter.prototype.emitDomElement = function(el) {
+    var tagName = el.tagName.toLowerCase(),
+      attrs = el.attributes,
+      i,
+      len = attrs.length,
+      out = '<' + tagName,
+      attr;
+
+    for (i = 0; i < len; i++) {
+      attr = attrs[i];
+      out += ' ' + attr.name;
+
+      if (attr.value !== '') {
+        out += '="' + attr.value + '"';
+      }
+    }
+
+    out += '>';
+
+    if (el.childElementCount !== 0 || el.textContent !== '') {
+      out += '...</' + tagName + '>';
+    }
+
+    this.append(out);
   };
 
   PrettyPrinter.prototype.formatProperty = function(obj, property, isGetter) {

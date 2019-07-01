@@ -63,6 +63,7 @@ getJasmineRequireObj().interface = function(jasmine, env) {
      * @param {String} description Textual description of what this spec is checking
      * @param {implementationCallback} [testFunction] Function that contains the code of your test. If not provided the test will be `pending`.
      * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async spec.
+     * @see async
      */
     it: function() {
       return env.it.apply(env, arguments);
@@ -92,6 +93,7 @@ getJasmineRequireObj().interface = function(jasmine, env) {
      * @param {String} description Textual description of what this spec is checking.
      * @param {implementationCallback} testFunction Function that contains the code of your test.
      * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async spec.
+     * @see async
      */
     fit: function() {
       return env.fit.apply(env, arguments);
@@ -104,6 +106,7 @@ getJasmineRequireObj().interface = function(jasmine, env) {
      * @global
      * @param {implementationCallback} [function] Function that contains the code to setup your specs.
      * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async beforeEach.
+     * @see async
      */
     beforeEach: function() {
       return env.beforeEach.apply(env, arguments);
@@ -116,6 +119,7 @@ getJasmineRequireObj().interface = function(jasmine, env) {
      * @global
      * @param {implementationCallback} [function] Function that contains the code to teardown your specs.
      * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async afterEach.
+     * @see async
      */
     afterEach: function() {
       return env.afterEach.apply(env, arguments);
@@ -130,6 +134,7 @@ getJasmineRequireObj().interface = function(jasmine, env) {
      * @global
      * @param {implementationCallback} [function] Function that contains the code to setup your specs.
      * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async beforeAll.
+     * @see async
      */
     beforeAll: function() {
       return env.beforeAll.apply(env, arguments);
@@ -144,6 +149,7 @@ getJasmineRequireObj().interface = function(jasmine, env) {
      * @global
      * @param {implementationCallback} [function] Function that contains the code to teardown your specs.
      * @param {Int} [timeout={@link jasmine.DEFAULT_TIMEOUT_INTERVAL}] Custom timeout for an async afterAll.
+     * @see async
      */
     afterAll: function() {
       return env.afterAll.apply(env, arguments);
@@ -159,6 +165,25 @@ getJasmineRequireObj().interface = function(jasmine, env) {
      */
     expect: function(actual) {
       return env.expect(actual);
+    },
+
+    /**
+     * Create an asynchronous expectation for a spec. Note that the matchers
+     * that are provided by an asynchronous expectation all return promises
+     * which must be either returned from the spec or waited for using `await`
+     * in order for Jasmine to associate them with the correct spec.
+     * @name expectAsync
+     * @function
+     * @global
+     * @param {Object} actual - Actual computed value to test expectations against.
+     * @return {async-matchers}
+     * @example
+     * await expectAsync(somePromise).toBeResolved();
+     * @example
+     * return expectAsync(somePromise).toBeResolved();
+     */
+    expectAsync: function(actual) {
+      return env.expectAsync(actual);
     },
 
     /**
@@ -210,6 +235,18 @@ getJasmineRequireObj().interface = function(jasmine, env) {
       return env.spyOnProperty(obj, methodName, accessType);
     },
 
+    /**
+     * Installs spies on all writable and configurable properties of an object.
+     * @name spyOnAllFunctions
+     * @function
+     * @global
+     * @param {Object} obj - The object upon which to install the {@link Spy}s
+     * @returns {Object} the spied object
+     */
+    spyOnAllFunctions: function(obj) {
+      return env.spyOnAllFunctions(obj);
+    },
+
     jsApiReporter: new jasmine.JsApiReporter({
       timer: new jasmine.Timer()
     }),
@@ -254,6 +291,43 @@ getJasmineRequireObj().interface = function(jasmine, env) {
    */
   jasmine.clock = function() {
     return env.clock;
+  };
+
+  /**
+   * Create a bare {@link Spy} object. This won't be installed anywhere and will not have any implementation behind it.
+   * @name jasmine.createSpy
+   * @function
+   * @param {String} [name] - Name to give the spy. This will be displayed in failure messages.
+   * @param {Function} [originalFn] - Function to act as the real implementation.
+   * @return {Spy}
+   */
+  jasmine.createSpy = function(name, originalFn) {
+    return env.createSpy(name, originalFn);
+  };
+
+  /**
+   * Create an object with multiple {@link Spy}s as its members.
+   * @name jasmine.createSpyObj
+   * @function
+   * @param {String} [baseName] - Base name for the spies in the object.
+   * @param {String[]|Object} methodNames - Array of method names to create spies for, or Object whose keys will be method names and values the {@link Spy#and#returnValue|returnValue}.
+   * @return {Object}
+   */
+  jasmine.createSpyObj = function(baseName, methodNames) {
+    return env.createSpyObj(baseName, methodNames);
+  };
+
+  /**
+   * Add a custom spy strategy for the current scope of specs.
+   *
+   * _Note:_ This is only callable from within a {@link beforeEach}, {@link it}, or {@link beforeAll}.
+   * @name jasmine.addSpyStrategy
+   * @function
+   * @param {String} name - The name of the strategy (i.e. what you call from `and`)
+   * @param {Function} factory - Factory function that returns the plan to be executed.
+   */
+  jasmine.addSpyStrategy = function(name, factory) {
+    return env.addSpyStrategy(name, factory);
   };
 
   return jasmineInterface;

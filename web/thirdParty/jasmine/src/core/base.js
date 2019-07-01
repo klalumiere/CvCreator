@@ -17,7 +17,7 @@ getJasmineRequireObj().base = function(j$, jasmineGlobal) {
    */
   j$.MAX_PRETTY_PRINT_ARRAY_LENGTH = 50;
   /**
-   * Maximum number of charasters to display when pretty printing objects.
+   * Maximum number of characters to display when pretty printing objects.
    * Characters past this number will be ellipised.
    * @name jasmine.MAX_PRETTY_PRINT_CHARS
    */
@@ -85,12 +85,36 @@ getJasmineRequireObj().base = function(j$, jasmineGlobal) {
     return j$.getType_(value) === '[object ' + typeName + ']';
   };
 
+  j$.isError_ = function(value) {
+    if (value instanceof Error) {
+      return true;
+    }
+    if (value && value.constructor && value.constructor.constructor) {
+      var valueGlobal = value.constructor.constructor('return this');
+      if (j$.isFunction_(valueGlobal)) {
+        valueGlobal = valueGlobal();
+      }
+
+      if (valueGlobal.Error && value instanceof valueGlobal.Error) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   j$.getType_ = function(value) {
     return Object.prototype.toString.apply(value);
   };
 
   j$.isDomNode = function(obj) {
-    return obj.nodeType > 0;
+    // Node is a function, because constructors
+    return typeof jasmineGlobal.Node !== 'undefined' ?
+      obj instanceof jasmineGlobal.Node :
+          obj !== null &&
+          typeof obj === 'object' &&
+          typeof obj.nodeType === 'number' &&
+          typeof obj.nodeName === 'string';
+    // return obj.nodeType > 0;
   };
 
   j$.isMap = function(obj) {
@@ -102,7 +126,11 @@ getJasmineRequireObj().base = function(j$, jasmineGlobal) {
   };
 
   j$.isPromise = function(obj) {
-    return typeof jasmineGlobal.Promise !== 'undefined' && obj.constructor === jasmineGlobal.Promise;
+    return typeof jasmineGlobal.Promise !== 'undefined' && !!obj && obj.constructor === jasmineGlobal.Promise;
+  };
+
+  j$.isPromiseLike = function(obj) {
+    return !!obj && j$.isFunction_(obj.then);
   };
 
   j$.fnNameFor = function(func) {
@@ -110,8 +138,8 @@ getJasmineRequireObj().base = function(j$, jasmineGlobal) {
       return func.name;
     }
 
-    var matches = func.toString().match(/^\s*function\s*(\w*)\s*\(/) ||
-      func.toString().match(/^\s*\[object\s*(\w*)Constructor\]/);
+    var matches = func.toString().match(/^\s*function\s*(\w+)\s*\(/) ||
+      func.toString().match(/^\s*\[object\s*(\w+)Constructor\]/);
 
     return matches ? matches[1] : '<anonymous>';
   };
@@ -136,6 +164,38 @@ getJasmineRequireObj().base = function(j$, jasmineGlobal) {
   j$.anything = function() {
     return new j$.Anything();
   };
+
+  /**
+   * Get a matcher, usable in any {@link matchers|matcher} that uses Jasmine's equality (e.g. {@link matchers#toEqual|toEqual}, {@link matchers#toContain|toContain}, or {@link matchers#toHaveBeenCalledWith|toHaveBeenCalledWith}),
+   * that will succeed if the actual value being compared is `true` or anything truthy.
+   * @name jasmine.truthy
+   * @function
+   */
+  j$.truthy = function() {return new j$.Truthy();};
+
+  /**
+   * Get a matcher, usable in any {@link matchers|matcher} that uses Jasmine's equality (e.g. {@link matchers#toEqual|toEqual}, {@link matchers#toContain|toContain}, or {@link matchers#toHaveBeenCalledWith|toHaveBeenCalledWith}),
+   * that will succeed if the actual value being compared is  `null`, `undefined`, `0`, `false` or anything falsey.
+   * @name jasmine.falsy
+   * @function
+   */
+  j$.falsy = function() {return new j$.Falsy();};
+
+  /**
+   * Get a matcher, usable in any {@link matchers|matcher} that uses Jasmine's equality (e.g. {@link matchers#toEqual|toEqual}, {@link matchers#toContain|toContain}, or {@link matchers#toHaveBeenCalledWith|toHaveBeenCalledWith}),
+   * that will succeed if the actual value being compared is empty.
+   * @name jasmine.empty
+   * @function
+   */
+  j$.empty = function() {return new j$.Empty();};
+
+  /**
+   * Get a matcher, usable in any {@link matchers|matcher} that uses Jasmine's equality (e.g. {@link matchers#toEqual|toEqual}, {@link matchers#toContain|toContain}, or {@link matchers#toHaveBeenCalledWith|toHaveBeenCalledWith}),
+   * that will succeed if the actual value being compared is not empty.
+   * @name jasmine.notEmpty
+   * @function
+   */
+  j$.notEmpty = function() {return new j$.NotEmpty();};
 
   /**
    * Get a matcher, usable in any {@link matchers|matcher} that uses Jasmine's equality (e.g. {@link matchers#toEqual|toEqual}, {@link matchers#toContain|toContain}, or {@link matchers#toHaveBeenCalledWith|toHaveBeenCalledWith}),
@@ -181,64 +241,11 @@ getJasmineRequireObj().base = function(j$, jasmineGlobal) {
     return new j$.ArrayWithExactContents(sample);
   };
 
-  /**
-   * Create a bare {@link Spy} object. This won't be installed anywhere and will not have any implementation behind it.
-   * @name jasmine.createSpy
-   * @function
-   * @param {String} [name] - Name to give the spy. This will be displayed in failure messages.
-   * @param {Function} [originalFn] - Function to act as the real implementation.
-   * @return {Spy}
-   */
-  j$.createSpy = function(name, originalFn) {
-    return j$.Spy(name, originalFn);
-  };
-
   j$.isSpy = function(putativeSpy) {
     if (!putativeSpy) {
       return false;
     }
     return putativeSpy.and instanceof j$.SpyStrategy &&
       putativeSpy.calls instanceof j$.CallTracker;
-  };
-
-  /**
-   * Create an object with multiple {@link Spy}s as its members.
-   * @name jasmine.createSpyObj
-   * @function
-   * @param {String} [baseName] - Base name for the spies in the object.
-   * @param {String[]|Object} methodNames - Array of method names to create spies for, or Object whose keys will be method names and values the {@link Spy#and#returnValue|returnValue}.
-   * @return {Object}
-   */
-  j$.createSpyObj = function(baseName, methodNames) {
-    var baseNameIsCollection = j$.isObject_(baseName) || j$.isArray_(baseName);
-
-    if (baseNameIsCollection && j$.util.isUndefined(methodNames)) {
-      methodNames = baseName;
-      baseName = 'unknown';
-    }
-
-    var obj = {};
-    var spiesWereSet = false;
-
-    if (j$.isArray_(methodNames)) {
-      for (var i = 0; i < methodNames.length; i++) {
-        obj[methodNames[i]] = j$.createSpy(baseName + '.' + methodNames[i]);
-        spiesWereSet = true;
-      }
-    } else if (j$.isObject_(methodNames)) {
-      for (var key in methodNames) {
-        if (methodNames.hasOwnProperty(key)) {
-          obj[key] = j$.createSpy(baseName + '.' + key);
-          obj[key].and.returnValue(methodNames[key]);
-          spiesWereSet = true;
-        }
-      }
-    }
-
-    if (!spiesWereSet) {
-      throw 'createSpyObj requires a non-empty array or object of method names to create spies for';
-    }
-
-    return obj;
   };
 };

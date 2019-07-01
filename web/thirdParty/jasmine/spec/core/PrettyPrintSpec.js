@@ -23,7 +23,7 @@ describe("jasmineUnderTest.pp", function () {
       expect(jasmineUnderTest.pp(set)).toEqual("Set( 1, 2 )");
     });
 
-    it("should truncate sets with more elments than jasmineUnderTest.MAX_PRETTY_PRINT_ARRAY_LENGTH", function() {
+    it("should truncate sets with more elements than jasmineUnderTest.MAX_PRETTY_PRINT_ARRAY_LENGTH", function() {
       jasmine.getEnv().requireFunctioningSets();
       var originalMaxSize = jasmineUnderTest.MAX_PRETTY_PRINT_ARRAY_LENGTH;
 
@@ -48,7 +48,7 @@ describe("jasmineUnderTest.pp", function () {
       expect(jasmineUnderTest.pp(map)).toEqual("Map( [ 1, 2 ] )");
     });
 
-    it("should truncate maps with more elments than jasmineUnderTest.MAX_PRETTY_PRINT_ARRAY_LENGTH", function() {
+    it("should truncate maps with more elements than jasmineUnderTest.MAX_PRETTY_PRINT_ARRAY_LENGTH", function() {
       jasmine.getEnv().requireFunctioningMaps();
       var originalMaxSize = jasmineUnderTest.MAX_PRETTY_PRINT_ARRAY_LENGTH;
 
@@ -130,6 +130,10 @@ describe("jasmineUnderTest.pp", function () {
     expect(jasmineUnderTest.pp({foo:'bar', baz:3, nullValue: null, undefinedValue: jasmine.undefined})).toEqual("Object({ foo: 'bar', baz: 3, nullValue: null, undefinedValue: undefined })");
     expect(jasmineUnderTest.pp({foo: function () {
     }, bar: [1, 2, 3]})).toEqual("Object({ foo: Function, bar: [ 1, 2, 3 ] })");
+  });
+
+  it("should stringify objects that almost look like DOM nodes", function() {
+    expect(jasmineUnderTest.pp({nodeType: 1})).toEqual("Object({ nodeType: 1 })");
   });
 
   it("should truncate objects with too many keys", function () {
@@ -268,12 +272,17 @@ describe("jasmineUnderTest.pp", function () {
     },
     env = new jasmineUnderTest.Env();
 
-    var spyRegistry = new jasmineUnderTest.SpyRegistry({currentSpies: function() {return [];}});
+    var spyRegistry = new jasmineUnderTest.SpyRegistry({
+      currentSpies: function() {return [];},
+      createSpy: function(name, originalFn) {
+        return jasmineUnderTest.Spy(name, originalFn);
+      }
+    });
 
     spyRegistry.spyOn(TestObject, 'someFunction');
     expect(jasmineUnderTest.pp(TestObject.someFunction)).toEqual("spy on someFunction");
 
-    expect(jasmineUnderTest.pp(jasmineUnderTest.createSpy("something"))).toEqual("spy on something");
+    expect(jasmineUnderTest.pp(env.createSpy("something"))).toEqual("spy on something");
   });
 
   it("should stringify objects that implement jasmineToString", function () {
@@ -298,11 +307,7 @@ describe("jasmineUnderTest.pp", function () {
       toString: function () { return Object.prototype.toString.call(this); }
     };
 
-    if (jasmine.getEnv().ieVersion < 9) {
-      expect(jasmineUnderTest.pp(objFromOtherContext)).toEqual("Object({ foo: 'bar' })");
-    } else {
-      expect(jasmineUnderTest.pp(objFromOtherContext)).toEqual("Object({ foo: 'bar', toString: Function })");
-    }
+    expect(jasmineUnderTest.pp(objFromOtherContext)).toEqual("Object({ foo: 'bar', toString: Function })");
   });
 
   it("should stringify objects have have a toString that isn't a function", function() {
@@ -310,11 +315,7 @@ describe("jasmineUnderTest.pp", function () {
       toString: "foo"
     };
 
-    if (jasmine.getEnv().ieVersion < 9) {
-      expect(jasmineUnderTest.pp(obj)).toEqual("Object({  })");
-    } else {
-      expect(jasmineUnderTest.pp(obj)).toEqual("Object({ toString: 'foo' })");
-    }
+    expect(jasmineUnderTest.pp(obj)).toEqual("Object({ toString: 'foo' })");
   });
 
   it("should stringify objects from anonymous constructors with custom toString", function () {
@@ -327,8 +328,6 @@ describe("jasmineUnderTest.pp", function () {
   });
 
   it("should handle objects with null prototype", function() {
-    if (jasmine.getEnv().ieVersion < 9) { return; }
-
     var obj = Object.create(null);
     obj.foo = 'bar';
 

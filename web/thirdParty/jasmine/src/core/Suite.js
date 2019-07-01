@@ -5,6 +5,7 @@ getJasmineRequireObj().Suite = function(j$) {
     this.parentSuite = attrs.parentSuite;
     this.description = attrs.description;
     this.expectationFactory = attrs.expectationFactory;
+    this.asyncExpectationFactory = attrs.asyncExpectationFactory;
     this.expectationResultFactory = attrs.expectationResultFactory;
     this.throwOnExpectationFailure = !!attrs.throwOnExpectationFailure;
 
@@ -12,6 +13,8 @@ getJasmineRequireObj().Suite = function(j$) {
     this.afterFns = [];
     this.beforeAllFns = [];
     this.afterAllFns = [];
+
+    this.timer = attrs.timer || j$.noopTimer;
 
     this.children = [];
 
@@ -23,18 +26,24 @@ getJasmineRequireObj().Suite = function(j$) {
      * @property {Expectation[]} failedExpectations - The list of expectations that failed in an {@link afterAll} for this suite.
      * @property {Expectation[]} deprecationWarnings - The list of deprecation warnings that occurred on this suite.
      * @property {String} status - Once the suite has completed, this string represents the pass/fail status of this suite.
+     * @property {number} duration - The time in ms for Suite execution, including any before/afterAll, before/afterEach.
      */
     this.result = {
       id: this.id,
       description: this.description,
       fullName: this.getFullName(),
       failedExpectations: [],
-      deprecationWarnings: []
+      deprecationWarnings: [],
+      duration: null,
     };
   }
 
   Suite.prototype.expect = function(actual) {
     return this.expectationFactory(actual, this);
+  };
+
+  Suite.prototype.expectAsync = function(actual) {
+    return this.asyncExpectationFactory(actual, this);
   };
 
   Suite.prototype.getFullName = function() {
@@ -67,6 +76,27 @@ getJasmineRequireObj().Suite = function(j$) {
     this.afterAllFns.unshift(fn);
   };
 
+  Suite.prototype.startTimer = function() {
+    this.timer.start();
+  };
+
+  Suite.prototype.endTimer = function() {
+    this.result.duration = this.timer.elapsed();
+  };
+
+  function removeFns(queueableFns) {
+    for(var i = 0; i < queueableFns.length; i++) {
+      queueableFns[i].fn = null;
+    }
+  }
+
+  Suite.prototype.cleanupBeforeAfter = function() {
+    removeFns(this.beforeAllFns);
+    removeFns(this.afterAllFns);
+    removeFns(this.beforeFns);
+    removeFns(this.afterFns);
+  };
+
   Suite.prototype.addChild = function(child) {
     this.children.push(child);
   };
@@ -79,12 +109,8 @@ getJasmineRequireObj().Suite = function(j$) {
     if (this.result.failedExpectations.length > 0) {
       return 'failed';
     } else {
-      return 'finished';
+      return 'passed';
     }
-  };
-
-  Suite.prototype.isExecutable = function() {
-    return !this.markedPending;
   };
 
   Suite.prototype.canBeReentered = function() {
@@ -113,49 +139,38 @@ getJasmineRequireObj().Suite = function(j$) {
       return;
     }
 
-    if(isAfterAll(this.children)) {
-      var data = {
-        matcherName: '',
-        passed: false,
-        expected: '',
-        actual: '',
-        error: arguments[0]
-      };
-      this.result.failedExpectations.push(this.expectationResultFactory(data));
-    } else {
-      for (var i = 0; i < this.children.length; i++) {
-        var child = this.children[i];
-        child.onException.apply(child, arguments);
-      }
+    var data = {
+      matcherName: '',
+      passed: false,
+      expected: '',
+      actual: '',
+      error: arguments[0]
+    };
+    var failedExpectation = this.expectationResultFactory(data);
+
+    if (!this.parentSuite) {
+      failedExpectation.globalErrorType = 'afterAll';
     }
+
+    this.result.failedExpectations.push(failedExpectation);
   };
 
   Suite.prototype.addExpectationResult = function () {
-    if(isAfterAll(this.children) && isFailure(arguments)){
+    if(isFailure(arguments)) {
       var data = arguments[1];
       this.result.failedExpectations.push(this.expectationResultFactory(data));
       if(this.throwOnExpectationFailure) {
         throw new j$.errors.ExpectationFailed();
       }
-    } else {
-      for (var i = 0; i < this.children.length; i++) {
-        var child = this.children[i];
-        try {
-          child.addExpectationResult.apply(child, arguments);
-        } catch(e) {
-          // keep going
-        }
-      }
     }
   };
 
-  Suite.prototype.addDeprecationWarning = function(msg) {
-    this.result.deprecationWarnings.push(this.expectationResultFactory({ message: msg }));
+  Suite.prototype.addDeprecationWarning = function(deprecation) {
+    if (typeof deprecation === 'string') {
+      deprecation = { message: deprecation };
+    }
+    this.result.deprecationWarnings.push(this.expectationResultFactory(deprecation));
   };
-
-  function isAfterAll(children) {
-    return children && children[0].result.status;
-  }
 
   function isFailure(args) {
     return !args[0];
@@ -165,5 +180,6 @@ getJasmineRequireObj().Suite = function(j$) {
 };
 
 if (typeof window == void 0 && typeof exports == 'object') {
+  /* globals exports */
   exports.Suite = jasmineRequire.Suite;
 }

@@ -31,6 +31,105 @@ describe("jasmineUnderTest.util", function() {
     });
   });
 
+  describe("promise utils", function () {
+
+    var mockNativePromise,
+      mockPromiseLikeObject;
+
+    var mockPromiseLike = function () {this.then = function () {};};
+
+    beforeEach(function () {
+      jasmine.getEnv().requirePromises();
+      mockNativePromise = new Promise(function (res, rej) {});
+      mockPromiseLikeObject = new mockPromiseLike();
+    });
+
+    describe("isPromise", function () {
+
+      it("should return true when passed a native promise", function () {
+        expect(jasmineUnderTest.isPromise(mockNativePromise)).toBe(true);
+      });
+
+      it("should return false for promise like objects", function () {
+        expect(jasmineUnderTest.isPromise(mockPromiseLikeObject)).toBe(false);
+      });
+
+      it("should return false for strings", function () {
+        expect(jasmineUnderTest.isPromise("hello")).toBe(false);
+      });
+
+      it("should return false for numbers", function () {
+        expect(jasmineUnderTest.isPromise(3)).toBe(false);
+      });
+
+      it("should return false for null", function () {
+        expect(jasmineUnderTest.isPromise(null)).toBe(false);
+      });
+
+      it("should return false for undefined", function () {
+        expect(jasmineUnderTest.isPromise(undefined)).toBe(false);
+      });
+
+      it("should return false for arrays", function () {
+        expect(jasmineUnderTest.isPromise([])).toBe(false);
+      });
+
+      it("should return false for objects", function () {
+        expect(jasmineUnderTest.isPromise({})).toBe(false);
+      });
+
+      it("should return false for boolean values", function () {
+        expect(jasmineUnderTest.isPromise(true)).toBe(false);
+      });
+
+    });
+
+    describe("isPromiseLike", function () {
+
+      it("should return true when passed a native promise", function () {
+        expect(jasmineUnderTest.isPromiseLike(mockNativePromise)).toBe(true);
+      });
+
+      it("should return  true for promise like objects", function () {
+        expect(jasmineUnderTest.isPromiseLike(mockPromiseLikeObject)).toBe(true);
+      });
+
+      it("should return false if then is not a function", function () {
+        expect(jasmineUnderTest.isPromiseLike({then:{its:"Not a function :O"}})).toBe(false);
+      });
+
+      it("should return false for strings", function () {
+        expect(jasmineUnderTest.isPromiseLike("hello")).toBe(false);
+      });
+
+      it("should return false for numbers", function () {
+        expect(jasmineUnderTest.isPromiseLike(3)).toBe(false);
+      });
+
+      it("should return false for null", function () {
+        expect(jasmineUnderTest.isPromiseLike(null)).toBe(false);
+      });
+
+      it("should return false for undefined", function () {
+        expect(jasmineUnderTest.isPromiseLike(undefined)).toBe(false);
+      });
+
+      it("should return false for arrays", function () {
+        expect(jasmineUnderTest.isPromiseLike([])).toBe(false);
+      });
+
+      it("should return false for objects", function () {
+        expect(jasmineUnderTest.isPromiseLike({})).toBe(false);
+      });
+
+      it("should return false for boolean values", function () {
+        expect(jasmineUnderTest.isPromiseLike(true)).toBe(false);
+      });
+
+    });
+
+  });
+
   describe("isUndefined", function() {
     it("reports if a variable is defined", function() {
       var a;
@@ -43,9 +142,6 @@ describe("jasmineUnderTest.util", function() {
   });
 
   describe("getPropertyDescriptor", function() {
-    // IE 8 doesn't support `definePropery` on non-DOM nodes
-    if (jasmine.getEnv().ieVersion < 9) { return; }
-
     it("get property descriptor from object", function() {
       var obj = {prop: 1},
         actual = jasmineUnderTest.util.getPropertyDescriptor(obj, 'prop'),
@@ -94,6 +190,15 @@ describe("jasmineUnderTest.util", function() {
 
       expect(jasmineUnderTest.util.objectDifference(a, b)).toEqual({x: 1});
       expect(jasmineUnderTest.util.objectDifference(b, a)).toEqual({y: 2});
-    })
-  })
+    });
+  });
+
+  describe("jasmineFile", function() {
+    it("returns the file containing jasmine.util", function() {
+      // Chrome sometimes reports foo.js as foo.js/, so tolerate
+      // a trailing slash if present.
+      expect(jasmineUnderTest.util.jasmineFile()).toMatch(/util.js\/?$/);
+      expect(jasmine.util.jasmineFile()).toMatch(/jasmine.js\/?$/);
+    });
+  });
 });

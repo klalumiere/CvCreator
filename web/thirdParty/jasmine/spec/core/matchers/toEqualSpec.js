@@ -95,7 +95,7 @@ describe("toEqual", function() {
       expected = {x: {}},
       message =
         "Expected $.x not to have properties\n" +
-        "    y: 'foo bar'"
+        "    y: 'foo bar'";
 
     expect(compareEquals(actual, expected).message).toEqual(message);
   });
@@ -299,22 +299,7 @@ describe("toEqual", function() {
     expect(compareEquals(actual, expected).message).toEqual(message);
   });
 
-  function constructorIsNotEnumerable() {
-    // in IE8, the constructor property is not enumerable, even if it is an
-    // own property of the object.
-    // Objects that differ only by an own `constructor` property are thus
-    // considered equal in IE8.
-    for (var key in {constructor: 1}) {
-      return false;
-    }
-    return true;
-  }
-
   it("reports mismatches between objects with their own constructor property", function () {
-    if (constructorIsNotEnumerable()) {
-      return;
-    }
-
     function Foo() {}
     function Bar() {}
 
@@ -326,10 +311,6 @@ describe("toEqual", function() {
   });
 
   it("reports mismatches between an object with a real constructor and one with its own constructor property", function () {
-    if (constructorIsNotEnumerable()) {
-      return;
-    }
-
     function Foo() {}
     function Bar() {}
 
@@ -589,50 +570,152 @@ describe("toEqual", function() {
     expect(compareEquals(actual, expected).pass).toBe(true);
   });
 
-  function isNotRunningInBrowser() {
-    return typeof document === 'undefined'
-  }
-
-  it("reports mismatches between DOM nodes with different tags", function() {
-    if(isNotRunningInBrowser()) {
-      return;
+  describe('DOM nodes', function() {
+    function isNotRunningInBrowser() {
+      return typeof document === 'undefined'
     }
 
-    var actual = {a: document.createElement('div')},
-      expected = {a: document.createElement('p')},
-      message = 'Expected $.a = HTMLNode to equal HTMLNode.';
+    beforeEach(function() {
+      this.nonBrowser = isNotRunningInBrowser();
+      if (this.nonBrowser) {
+        var JSDOM = require('jsdom').JSDOM;
+        var dom = new JSDOM();
+        jasmineUnderTest.getGlobal().Node = dom.window.Node;
+        this.doc = dom.window.document;
+      } else {
+        this.doc = document;
+      }
+    });
 
-    expect(compareEquals(actual, expected).message).toEqual(message);
-  });
+    afterEach(function() {
+      if (this.nonBrowser) {
+        delete jasmineUnderTest.getGlobal().Node;
+      }
+    });
 
-  it('reports mismatches between DOM nodes with different content', function() {
-    if(isNotRunningInBrowser()) {
-      return;
-    }
+    it("reports mismatches between DOM nodes with different tags", function() {
+      var actual = {a: this.doc.createElement('div')},
+      expected = {a: this.doc.createElement('p')},
+      message = 'Expected $.a = <div> to equal <p>.';
 
-    var nodeA = document.createElement('div'),
-      nodeB = document.createElement('div');
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
 
-    nodeA.innerText = 'foo'
-    nodeB.innerText = 'bar'
+    it('reports mismatches between DOM nodes with different content', function() {
+      var nodeA = this.doc.createElement('div'),
+      nodeB = this.doc.createElement('div');
 
-    var actual = {a: nodeA},
+      nodeA.setAttribute('thing', 'foo');
+      nodeB.setAttribute('thing', 'bar');
+
+      expect(nodeA.isEqualNode(nodeB)).toBe(false);
+      var actual = {a: nodeA},
       expected = {a: nodeB},
-      message = 'Expected $.a = HTMLNode to equal HTMLNode.';
+      message = 'Expected $.a = <div thing="foo"> to equal <div thing="bar">.';
 
-    expect(compareEquals(actual, expected).message).toEqual(message);
-  })
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
 
-  it("reports mismatches between a DOM node and a bare Object", function() {
-    if(isNotRunningInBrowser()) {
-      return;
-    }
+    it("reports mismatches between SVG nodes", function () {
+      var nodeA = this.doc.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+        nodeB = this.doc.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
-    var actual = {a: document.createElement('div')},
+      nodeA.setAttribute('height', '50');
+      nodeB.setAttribute('height', '30');
+
+      var rect = this.doc.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('width', '50');
+      nodeA.appendChild(rect);
+
+      expect(nodeA.isEqualNode(nodeB)).toBe(false);
+      var actual = {a: nodeA},
+        expected = {a: nodeB},
+        message = 'Expected $.a = <svg height="50">...</svg> to equal <svg height="30">.';
+
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it("reports whole DOM node when attribute contains > character", function () {
+      var nodeA = this.doc.createElement('div'),
+        nodeB = this.doc.createElement('div');
+
+      nodeA.setAttribute('thing', '>>>');
+      nodeB.setAttribute('thing', 'bar');
+
+      expect(nodeA.isEqualNode(nodeB)).toBe(false);
+      var actual = {a: nodeA},
+        expected = {a: nodeB},
+        message = 'Expected $.a = <div thing=">>>"> to equal <div thing="bar">.';
+
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it('reports no content when DOM node has multiple empty text nodes', function () {
+      var nodeA = this.doc.createElement('div'),
+        nodeB = this.doc.createElement('div');
+
+      nodeA.appendChild(this.doc.createTextNode(''));
+      nodeA.appendChild(this.doc.createTextNode(''));
+      nodeA.appendChild(this.doc.createTextNode(''));
+      nodeA.appendChild(this.doc.createTextNode(''));
+
+      expect(nodeA.isEqualNode(nodeB)).toBe(false);
+      var actual = {a: nodeA},
+        expected = {a: nodeB},
+        message = 'Expected $.a = <div> to equal <div>.';
+
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it('reports content when DOM node has non empty text node', function () {
+      var nodeA = this.doc.createElement('div'),
+        nodeB = this.doc.createElement('div');
+
+      nodeA.appendChild(this.doc.createTextNode('Hello Jasmine!'));
+
+      expect(nodeA.isEqualNode(nodeB)).toBe(false);
+      var actual = {a: nodeA},
+        expected = {a: nodeB},
+        message = 'Expected $.a = <div>...</div> to equal <div>.';
+
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it('reports empty DOM attributes', function () {
+      var nodeA = this.doc.createElement('div'),
+        nodeB = this.doc.createElement('div');
+
+      nodeA.setAttribute('contenteditable', '');
+
+      expect(nodeA.isEqualNode(nodeB)).toBe(false);
+      var actual = {a: nodeA},
+        expected = {a: nodeB},
+        message = 'Expected $.a = <div contenteditable> to equal <div>.';
+
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it('reports 0 attr value as non empty DOM attribute', function () {
+      var nodeA = this.doc.createElement('div'),
+        nodeB = this.doc.createElement('div');
+
+      nodeA.setAttribute('contenteditable', 0);
+
+      expect(nodeA.isEqualNode(nodeB)).toBe(false);
+      var actual = {a: nodeA},
+        expected = {a: nodeB},
+        message = 'Expected $.a = <div contenteditable="0"> to equal <div>.';
+
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it("reports mismatches between a DOM node and a bare Object", function() {
+      var actual = {a: this.doc.createElement('div')},
       expected = {a: {}},
-      message = 'Expected $.a = HTMLNode to equal Object({  }).';
+      message = 'Expected $.a = <div> to equal Object({  }).';
 
-    expect(compareEquals(actual, expected).message).toEqual(message);
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
   });
 
   it("reports asymmetric mismatches", function() {
@@ -677,7 +760,7 @@ describe("toEqual", function() {
       boolean: false,
       notDefined: 0,
       aNull: void 0
-    }
+    };
 
     var expected = {
       foo: [
@@ -694,7 +777,7 @@ describe("toEqual", function() {
       boolean: true,
       notDefined: void 0,
       aNull: null
-    }
+    };
 
     var message =
       'Expected $.foo[0].bar = 1 to equal 2.\n' +
@@ -709,19 +792,19 @@ describe("toEqual", function() {
       'Expected $.inf = -Infinity to equal Infinity.\n' +
       'Expected $.boolean = false to equal true.\n' +
       'Expected $.notDefined = 0 to equal undefined.\n' +
-      'Expected $.aNull = undefined to equal null.'
+      'Expected $.aNull = undefined to equal null.';
 
     expect(compareEquals(actual, expected).message).toEqual(message);
-  })
+  });
 
   describe("different length arrays", function() {
     it("actual array is longer", function() {
       var actual = [1, 1, 2, 3, 5],
         expected = [1, 1, 2, 3],
         message = 'Expected $.length = 5 to equal 4.\n' +
-          'Expected $[4] = 5 to equal undefined.';
+          'Unexpected $[4] = 5 in array.';
 
-      expect(compareEquals(actual, expected).pass).toBe(false)
+      expect(compareEquals(actual, expected).pass).toBe(false);
       expect(compareEquals(actual, expected).message).toEqual(message);
     });
 
@@ -731,7 +814,38 @@ describe("toEqual", function() {
         message = 'Expected $.length = 4 to equal 5.\n' +
           'Expected $[4] = undefined to equal 5.';
 
-      expect(compareEquals(actual, expected).pass).toBe(false)
+      expect(compareEquals(actual, expected).pass).toBe(false);
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it("undefined in middle of actual array", function() {
+      var actual = [1, void 0, 3],
+        expected = [1, 2, 3],
+        message = 'Expected $[1] = undefined to equal 2.';
+
+      expect(compareEquals(actual, expected).pass).toBe(false);
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it("undefined in middle of expected array", function() {
+      var actual = [1, 2, 3],
+        expected = [1, void 0, 3],
+        message = 'Expected $[1] = 2 to equal undefined.';
+
+      expect(compareEquals(actual, expected).pass).toBe(false);
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it("actual array is longer by 4 elements", function() {
+      var actual = [1, 1, 2, 3, 5, 8, 13],
+        expected = [1, 1, 2],
+        message = 'Expected $.length = 7 to equal 3.\n' +
+          'Unexpected $[3] = 3 in array.\n' +
+          'Unexpected $[4] = 5 in array.\n' +
+          'Unexpected $[5] = 8 in array.\n' +
+          'Unexpected $[6] = 13 in array.';
+
+      expect(compareEquals(actual, expected).pass).toBe(false);
       expect(compareEquals(actual, expected).message).toEqual(message);
     });
 
@@ -744,7 +858,7 @@ describe("toEqual", function() {
           'Expected $[5] = undefined to equal 8.\n' +
           'Expected $[6] = undefined to equal 13.';
 
-      expect(compareEquals(actual, expected).pass).toBe(false)
+      expect(compareEquals(actual, expected).pass).toBe(false);
       expect(compareEquals(actual, expected).message).toEqual(message);
     });
 
@@ -755,27 +869,47 @@ describe("toEqual", function() {
           'Expected $[0] = 1 to equal 2.\n' +
           'Expected $[1] = undefined to equal 3.';
 
-      expect(compareEquals(actual, expected).pass).toBe(false)
+      expect(compareEquals(actual, expected).pass).toBe(false);
       expect(compareEquals(actual, expected).message).toEqual(message);
     });
 
-    it("object with nested array", function() {
+    it("object with nested array (actual longer than expected)", function() {
       var actual = { values: [1, 1, 2, 3] },
         expected = { values: [1, 1, 2] },
         message = 'Expected $.values.length = 4 to equal 3.\n' +
-          'Expected $.values[3] = 3 to equal undefined.';
+          'Unexpected $.values[3] = 3 in array.';
 
-      expect(compareEquals(actual, expected).pass).toBe(false)
+      expect(compareEquals(actual, expected).pass).toBe(false);
       expect(compareEquals(actual, expected).message).toEqual(message);
     });
 
-    it("array with nested object", function() {
+    it("object with nested array (expected longer than actual)", function() {
+      var actual = { values: [1, 1, 2] },
+        expected = { values: [1, 1, 2, 3] },
+        message = 'Expected $.values.length = 3 to equal 4.\n' +
+          'Expected $.values[3] = undefined to equal 3.';
+
+      expect(compareEquals(actual, expected).pass).toBe(false);
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it("array with unexpected nested object", function() {
       var actual = [1, 1, 2, { value: 3 }],
         expected = [1, 1, 2],
         message = 'Expected $.length = 4 to equal 3.\n' +
-          'Expected $[3] = Object({ value: 3 }) to equal undefined.';
+          'Unexpected $[3] = Object({ value: 3 }) in array.';
 
-      expect(compareEquals(actual, expected).pass).toBe(false)
+      expect(compareEquals(actual, expected).pass).toBe(false);
+      expect(compareEquals(actual, expected).message).toEqual(message);
+    });
+
+    it("array with missing nested object", function() {
+      var actual = [1, 1, 2],
+        expected = [1, 1, 2, { value: 3 }],
+        message = 'Expected $.length = 3 to equal 4.\n' +
+          'Expected $[3] = undefined to equal Object({ value: 3 }).';
+
+      expect(compareEquals(actual, expected).pass).toBe(false);
       expect(compareEquals(actual, expected).message).toEqual(message);
     });
 
@@ -786,9 +920,9 @@ describe("toEqual", function() {
           'Expected $[0][1] = undefined to equal 1.\n' +
           'Expected $[1].length = 2 to equal 1.\n' +
           'Expected $[1][0] = 1 to equal 2.\n' +
-          'Expected $[1][1] = 2 to equal undefined.';
+          'Unexpected $[1][1] = 2 in array.';
 
-      expect(compareEquals(actual, expected).pass).toBe(false)
+      expect(compareEquals(actual, expected).pass).toBe(false);
       expect(compareEquals(actual, expected).message).toEqual(message);
     });
 
@@ -797,7 +931,7 @@ describe("toEqual", function() {
         expected = [1, 2, void 0],
         message = 'Expected $.length = 2 to equal 3.';
 
-      expect(compareEquals(actual, expected).pass).toBe(false)
+      expect(compareEquals(actual, expected).pass).toBe(false);
       expect(compareEquals(actual, expected).message).toEqual(message);
     });
   })

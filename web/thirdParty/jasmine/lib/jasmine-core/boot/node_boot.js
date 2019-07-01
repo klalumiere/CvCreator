@@ -1,10 +1,7 @@
 module.exports = function(jasmineRequire) {
   var jasmine = jasmineRequire.core(jasmineRequire);
 
-  var consoleFns = require('../console/console.js');
-  consoleFns.console(consoleFns, jasmine);
-
-  var env = jasmine.getEnv();
+  var env = jasmine.getEnv({suppressLoadErrors: true});
 
   var jasmineInterface = jasmineRequire.interface(jasmine, env);
 
