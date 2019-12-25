@@ -23,7 +23,7 @@ module CvCreator
 
     private
         def self.parseSubtags(content,recursionDepth)
-            toTag = lambda { |name,content,innerBraket| Tag.new(name,content,recursionDepth+1) }
+            toTag = Proc.new { |name,content,innerBraket| Tag.new(name,content,recursionDepth+1) }
             content.scan(Tag.subtagPattern()).map(&toTag)
         end
 
@@ -31,11 +31,11 @@ module CvCreator
             / \\(?<name> \w+) {
                 (?<content>
                     (
-                        [^{}] | 
-                        (?<innerBraket> 
+                        [^{}] |
+                        (?<innerBraket>
                             { ([^{}] | \g<innerBraket>)* }
                         )
-                    )* 
+                    )*
                 )
             }
             /x
