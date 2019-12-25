@@ -6,6 +6,9 @@ jobs:
     name: Test and Publish
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.3.1'
       - uses: actions/checkout@v2
-      - name: List the repository
-        run: ls -A
+      - run: bundle --version
+      - run: ls -A
