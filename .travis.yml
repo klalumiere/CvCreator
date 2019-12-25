@@ -1,5 +1,5 @@
 language: ruby
 rvm:
-  - 2.3.1
+  - 2.6
 
 script: ruby -I lib test/runAllTests.rb
