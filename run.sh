@@ -1,2 +1,2 @@
 #!/bin/bash
-ruby -I lib bin/CvCreator "$@"
+ruby -I lib bin/CvCreator $@
