@@ -6,8 +6,6 @@ jobs:
     name: Test and Publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: what is the directory
-        run: pwd
+      - uses: actions/checkout@v2
       - name: List the repository
-        run: ls
+        run: ls -A
