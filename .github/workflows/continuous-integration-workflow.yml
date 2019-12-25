@@ -10,5 +10,5 @@ jobs:
         with:
           ruby-version: '2.6'
       - uses: actions/checkout@v2
-      - run: bundle --version
-      - run: ls -A
+      - run: bundle install --path .bundle
+      - run: bundle exec ruby -I lib test/runAllTests.rb
