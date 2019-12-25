@@ -6,11 +6,8 @@ jobs:
     name: Test and Publish
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
+      - name: what is the directory
+        run: pwd
       - name: List the repository
         run: ls
-      - name: Check Ruby's version
-        run: ruby --version
-      - name: Create an error
-        run: ls something_that_doesnt_exist
-      - name: Will this action run?
-        run: echo It ran
