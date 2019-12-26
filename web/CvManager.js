@@ -6,7 +6,6 @@ class CvManager {
         this.labels = {
             Fr: {
                 computerScience:"Informatique",
-                download:"T&eacute;l&eacute;charger la source (Gem Ruby)",
                 loading:"Chargement...",
                 openInLatex:"Ouvrir en LaTeX",
                 other:"Autres",
@@ -18,7 +17,6 @@ class CvManager {
             },
             En: {
                 computerScience:"Computer Science",
-                download:"Download source (Ruby Gem)",
                 loading:"Loading...",
                 openInLatex:"Open in LaTeX",
                 other:"Other",

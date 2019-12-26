@@ -36,8 +36,4 @@ get '/CvCreatorTex/*' do
     header + runner.run + footer
 end
 
-get '/CvCreatorGem' do
-  send_file "web/CvCreator-1.0.0.gem", :filename => "CvCreator-1.0.0.gem", :type => 'Application/octet-stream'
-end
-
 get '*' do halt HTTP_NOT_FOUND end
