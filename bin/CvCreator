@@ -1,5 +1,14 @@
-#! /usr/bin/ruby 
+#! /usr/bin/ruby
+
 require "CvCreator/Runner"
 
-runner = CvCreator::Runner.new(ARGV)
-puts runner.run
+def main()
+    runner = CvCreator::Runner.new(ARGV)
+    puts runner.run
+end
+
+
+
+if __FILE__ == $PROGRAM_NAME
+    main()
+end
