@@ -26,7 +26,8 @@ module CvCreator
         end
 
         def areArgumentsValid()
-            @dataDirectory != nil
+            @dataDirectory != nil \
+                and @viewClass != nil
         end
         def fileName(name)
             name + @fileExtension
