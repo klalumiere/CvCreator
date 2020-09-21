@@ -23,7 +23,7 @@ module CvCreator
         end
         def footer
             "\\end{document}"
-        end 
+        end
         def header(data,language)
             result = %q[%The file 'resume2.cls' is required to compile this LaTeX source
             %Le fichier 'resume2.cls' est requis pour compiler cette source LaTeX
@@ -49,14 +49,18 @@ module CvCreator
             \begin{tabular}{c}
             \Large{\textbf{]
 
+            phoneLabel = ""
+            if not (data["phone"].nil? or data["phone"].empty?)
+                phoneLabel = "#{View::Phone[@options[:language]]}: "
+            end
             result += "#{data["name"]}"
             result += %q[}}\\\\]
             result += "#{data["email"]}"
-            result += %q[\end{tabular} ]
-            result += "\\begin{tabular}{lr}
-            #{data["address"]} & #{View::Phone[@options[:language]]}: #{data["phone"]}\\\\
+            result += %q[\end{tabular}]
+            result += "\n\n\\begin{tabular}{lr}
+            #{data["address"]}~ & ~#{phoneLabel}#{data["phone"]}\\\\
             #{data["town"]} & ~ \\\\
-            #{View::WebPage[@options[:language]]}: {\\color{rulestartcolor}{\\shorthandoff{:} #{data["webPage"]}}} & 
+            #{View::WebPage[@options[:language]]}: {\\color{rulestartcolor}{\\shorthandoff{:} #{data["webPage"]}}} &
             \\end{tabular}
             \\end{center}\n\n"
 

@@ -28,8 +28,12 @@ module CvCreator
         end
         def footer
             "</div>"
-        end 
+        end
         def header(data,language)
+            phoneLabel = ""
+            if not (data["phone"].nil? or data["phone"].empty?)
+                phoneLabel = "#{View::Phone[language]}: "
+            end
             result = %Q[<div class="cvStyle">\n]
             result += %Q[<table align="center">\n]
             result += %Q[<tr> <td colspan="2"> <p style="text-align: center">]
@@ -38,7 +42,7 @@ module CvCreator
             result += %Q[</p> </td> </tr>\n]
             result += %Q[<tr>\n]
             result += %Q[<td style="text-align: left">#{data["address"]}</td>\n]
-            result += %Q[<td style="text-align: right">#{View::Phone[language]}: #{data["phone"]}</td>\n]
+            result += %Q[<td style="text-align: right">#{phoneLabel}#{data["phone"]}</td>\n]
             result += %Q[</tr>\n]
             result += %Q[<tr>\n]
             result += %Q[<td style="text-align: left">#{data["town"]}</td>\n]
