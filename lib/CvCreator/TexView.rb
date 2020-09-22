@@ -19,7 +19,7 @@ module CvCreator
 
     private
         def convertSpecialChar(data)
-            data
+            data = data.gsub(/#/,"\\#")
         end
         def footer
             "\\end{document}"
