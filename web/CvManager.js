@@ -43,7 +43,7 @@ class CvManager {
 
         $("#updated").hide();
         $("#loading").hide();
-        this.updateCv();
+        this.updateLanguage();
     }
 
     createUrl() {

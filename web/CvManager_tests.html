@@ -41,6 +41,11 @@ describe("CvManager", function() {
         var anotherManager = new CvManager({ initialLanguage: "En" });
         expect(anotherManager.getCurrentLanguage()).toBe("En");
     });
+    it("update labels on construction for non default language", function() {
+        var anotherManager = new CvManager({ initialLanguage: "En" });
+        expectedLabels = anotherManager.labels["En"];
+        for (var key in expectedLabels) expect($("#" + key).html()).toBe(expectedLabels[key]);
+    });
     it("can be constructed with different classes state", function() {
         var classesState = { research:false, computerScience:true, teaching:true, other:false };
         var anotherManager = new CvManager({ initialClassesState: classesState });
@@ -161,7 +166,7 @@ describe("CvManager", function() {
 }); // CvManager
 
 
-describe("CvManager, at construction, calls updateCv which", function() {
+describe("CvManager, at constructionh", function() {
     var idsToAdd = ["updated", "loading", "cv"]
 
     beforeEach(function() {
