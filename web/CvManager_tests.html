@@ -29,6 +29,30 @@ describe("CvManager", function() {
         for(let id of idsToAdd) $("#" + id).remove();
     });
 
+    it("is constructed with the french language by default", function() {
+        expect(manager.getCurrentLanguage()).toBe("Fr");
+    });
+    it("has no classes checked by default", function() {
+        for(let className of manager.getAvailableClasses()) {
+            expect(manager.getClassState(className)).toBe(false);
+        }
+    });
+    it("can be constructed with English language", function() {
+        var anotherManager = new CvManager({ initialLanguage: "En" });
+        expect(anotherManager.getCurrentLanguage()).toBe("En");
+    });
+    it("update labels on construction for non default language", function() {
+        var anotherManager = new CvManager({ initialLanguage: "En" });
+        expectedLabels = anotherManager.labels["En"];
+        for (var key in expectedLabels) expect($("#" + key).html()).toBe(expectedLabels[key]);
+    });
+    it("can be constructed with different classes state", function() {
+        var classesState = { research:false, computerScience:true, teaching:true, other:false };
+        var anotherManager = new CvManager({ initialClassesState: classesState });
+        jQuery.each(classesState, function(className, value) {
+            expect(anotherManager.getClassState(className)).toBe(value);
+        });
+    });
     it("has available languages", function() {
         expect(Object.keys(manager.availableLanguages).length).not.toBe(0);
     });
@@ -51,11 +75,6 @@ describe("CvManager", function() {
     });
     it("getAvailableClasses", function() {
         expect(Object.keys(manager.getAvailableClasses()).length).not.toBe(0);
-    });
-    it("getClassState", function() {
-        for(let className of manager.getAvailableClasses()) {
-            expect(manager.getClassState(className)).toBe(false);
-        }
     });
     it("toggleClassState calls updateCv", function() {
         manager.toggleClassState("research");
@@ -147,7 +166,7 @@ describe("CvManager", function() {
 }); // CvManager
 
 
-describe("CvManager, at construction, calls updateCv which", function() {
+describe("CvManager, at constructionh", function() {
     var idsToAdd = ["updated", "loading", "cv"]
 
     beforeEach(function() {
