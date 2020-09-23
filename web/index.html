@@ -5,7 +5,7 @@
     <script type="text/javascript" src="CvManager.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            window.cvManager = new CvManager;
+            window.cvManager = new CvManager({ initialLanguage: $("input[name=language]:checked").val() });
         });
     </script>
     <style type="text/css" media="screen">
@@ -126,8 +126,8 @@
     <div id="menu">
         <br>
         <form align>
-        <input type="radio" name="language" onclick="window.cvManager.setCurrentLanguage('Fr')" checked>Fran&ccedil;ais<br>
-        <input type="radio" name="language" onclick="window.cvManager.setCurrentLanguage('En')">English
+        <input type="radio" name="language" value="Fr" onclick="window.cvManager.setCurrentLanguage('Fr')" checked>Fran&ccedil;ais<br>
+        <input type="radio" name="language" value="En" onclick="window.cvManager.setCurrentLanguage('En')">English
         </form>
         <br>
         <br>

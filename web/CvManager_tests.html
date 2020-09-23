@@ -29,6 +29,13 @@ describe("CvManager", function() {
         for(let id of idsToAdd) $("#" + id).remove();
     });
 
+    it("is constructed with the french language by default ", function() {
+        expect(manager.getCurrentLanguage()).toBe("Fr");
+    });
+    it("can be constructed with English language", function() {
+        anotherManager = new CvManager({ initialLanguage: "En" });
+        expect(anotherManager.getCurrentLanguage()).toBe("En");
+    });
     it("has available languages", function() {
         expect(Object.keys(manager.availableLanguages).length).not.toBe(0);
     });

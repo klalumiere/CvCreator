@@ -1,7 +1,8 @@
 // Requires jquery.js
 
 class CvManager {
-    constructor() {
+    constructor({ initialLanguage = 'Fr' } = {})
+    {
         this.availableLanguages = ["Fr", "En"];
         this.labels = {
             Fr: {
@@ -29,7 +30,7 @@ class CvManager {
         };
 
         this._classesState = { research:false, computerScience:false, teaching:false, other:false };
-        this._currentLanguage = this.availableLanguages[0];
+        this._currentLanguage = initialLanguage;
         this._elementsLoadingCount = 0;
 
         $("#updated").hide();
