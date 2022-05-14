@@ -3,7 +3,7 @@ GEM
   specs:
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    power_assert (1.1.5)
+    power_assert (2.0.1)
     rack (2.2.3)
     rack-protection (2.2.0)
       rack
@@ -13,19 +13,19 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.2.0)
       tilt (~> 2.0)
-    test-unit (3.3.4)
+    test-unit (3.5.3)
       power_assert
     tilt (2.0.10)
 
 PLATFORMS
-  ruby
+  x86_64-darwin-21
 
 DEPENDENCIES
-  sinatra (>= 2.0.3)
+  sinatra (>= 2.2.0)
   test-unit
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 3.1.2p20
 
 BUNDLED WITH
-   1.17.3
+   2.3.11
