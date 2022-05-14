@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~> 2.6'
+ruby '~> 3.1'
 
-gem 'sinatra', '>=2.0.3'
+gem 'sinatra', '>=2.2.0'
 gem 'test-unit'
