@@ -1,5 +1,6 @@
 (ns cv-creator.core
-  (:require [ring.adapter.jetty :as jetty]))
+  (:require [ring.adapter.jetty :as jetty])
+  (:gen-class))
 
 (defn handler [request]
   {:status 200
@@ -7,4 +8,4 @@
    :body "Hello, World! :-)"})
 
 (defn -main []
-  (jetty/run-jetty handler {:port 3000}))
+  (jetty/run-jetty handler {:port 8080}))

@@ -7,4 +7,6 @@
                  [ring/ring-core "1.9.6"]
                  [ring/ring-jetty-adapter "1.9.6"]]
   :repl-options {:init-ns cv-creator.core}
-  :main cv-creator.core)
+  :main ^:skip-aot cv-creator.core
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all :uberjar-name "cv-creator.jar"}})
