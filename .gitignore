@@ -1,1 +1,11 @@
-.bundle
+*.class
+*.jar
+/.lein-*
+/.nrepl-port
+/.prepl-port
+/checkouts
+/classes
+/target
+pom.xml
+pom.xml.asc
+profiles.clj
