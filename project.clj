@@ -8,7 +8,7 @@
                  [ring/ring-core "1.9.6"]
                  [ring/ring-jetty-adapter "1.9.6"]]
   :plugins [[lein-ring "0.12.6"]]
-  :ring {:handler cv-creator.core/app :port 8080}
-  :repl-options {:init-ns cv-creator.core}
+  :ring {:handler cv-creator.server/app :port 8080}
+  :repl-options {:init-ns cv-creator.server}
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all :uberjar-name "cv-creator.jar"}})

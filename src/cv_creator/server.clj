@@ -1,4 +1,4 @@
-(ns cv-creator.core
+(ns cv-creator.server
   (:require [compojure.core :refer :all]
             [compojure.route :as route])
   (:gen-class))
