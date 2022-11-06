@@ -1,0 +1,34 @@
+{
+    "autodidact_training": {
+        "label": {
+            "english": "Autodidact training",
+            "french": "Formations autodidactes"
+        },
+        "readings": {
+            "label": {
+                "english": "Relevant readings",
+                "french": "Lectures pertinentes"
+            },
+            "values": [
+                {
+                    "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
+                    "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
+                    "tags": [ "computerScience" ]
+                }
+            ]
+        },
+        "classes": {
+            "label": {
+                "english": "Optional courses",
+                "french": "Cours optionnels"
+            },
+            "values": [
+                {
+                    "place": "Udacity",
+                    "title": "Developing Android Apps (Java)",
+                    "tags": [ "computerScience" ]
+                }
+            ]
+        }
+    }
+}
