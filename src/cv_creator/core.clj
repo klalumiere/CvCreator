@@ -1,8 +1,8 @@
 (ns cv-creator.core
-  (:require [ring.adapter.jetty :as jetty])
+  (:require [compojure.core :refer :all]
+            [compojure.route :as route])
   (:gen-class))
 
-(defn handler [request]
-  {:status 200
-   :headers {"Content-Type" "text/plain"}
-   :body "Hello, World! :-)"})
+(defroutes app
+  (GET "/" [] "<h1>Hello World</h1>")
+  (route/not-found ""))
