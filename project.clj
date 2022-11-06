@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [ring/ring-core "1.9.6"]
                  [ring/ring-jetty-adapter "1.9.6"]]
+  :plugins [[lein-ring "0.12.6"]]
+  :ring {:handler cv-creator.core/handler :port 8080}
   :repl-options {:init-ns cv-creator.core}
-  :main ^:skip-aot cv-creator.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all :uberjar-name "cv-creator.jar"}})

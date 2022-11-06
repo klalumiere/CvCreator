@@ -6,6 +6,3 @@
   {:status 200
    :headers {"Content-Type" "text/plain"}
    :body "Hello, World! :-)"})
-
-(defn -main []
-  (jetty/run-jetty handler {:port 8080}))
