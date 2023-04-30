@@ -1,0 +1,24 @@
+{
+    "metadata": {
+        "language": "Français"
+    },
+
+    "head": {
+        "name": "Alain Térieur",
+        "eMail": "alain.térieur@gmaille.com",
+        "addressDoor": "123 Street",
+        "addressTown": "Montréal (Qc), Canada, H2T 2F6",
+        "webpage": {
+            "label": "Page web",
+            "item": "https://alain.terieur.com"
+        },
+        "mobile": {
+            "label": "Cellulaire",
+            "item": "(123) 456-7890"
+        },
+        "phone": {
+            "label": "Téléphone",
+            "item": "(023) 456-7891"
+        }
+    }
+}
