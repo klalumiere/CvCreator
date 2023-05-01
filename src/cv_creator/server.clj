@@ -4,6 +4,6 @@
    [compojure.route :as croute])
   (:gen-class))
 
-(ccore/defroutes
+(ccore/defroutes app
   (ccore/GET "/" [] "<h1>Hello World</h1>")
   (croute/not-found ""))
