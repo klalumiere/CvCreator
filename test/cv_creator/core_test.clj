@@ -9,5 +9,5 @@
 (ctest/deftest html-renderer
   (ctest/testing "render-html HeadSection is not empty"
     (ctest/is (not (cstring/blank?
-              (cv-creator.html-renderer/render-html
-               (cv-creator.section/->HeadSection "1" "2" "3" "4" "5" "6" "7")))))))
+                    (cv-creator.html-renderer/render-html
+                     (cv-creator.section/->HeadSection "1" "2" "3" "4" "5" "6" "7")))))))
