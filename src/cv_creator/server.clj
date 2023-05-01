@@ -1,8 +1,9 @@
 (ns cv-creator.server
-  (:require [compojure.core :refer :all]
-            [compojure.route :as route])
+  (:require
+   [compojure.core :as ccore]
+   [compojure.route :as croute])
   (:gen-class))
 
-(defroutes app
-  (GET "/" [] "<h1>Hello World</h1>")
-  (route/not-found ""))
+(ccore/defroutes
+  (ccore/GET "/" [] "<h1>Hello World</h1>")
+  (croute/not-found ""))
