@@ -1,18 +1,17 @@
-name: Test
-
 on:
   push:
-    branches:
-      - '!master'
+    branches-ignore:
+      - master
 
 jobs:
-  deploy:
-      name: Test app
+  main:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
         - name: Install dependencies
           run: |
-            sudo apt install --assume-yes --no-install-recommend leiningen
-        - name: Unit tests
+            sudo apt-get install --assume-yes --no-install-recommends leiningen
+        - name: Unit Tests
           run: lein test
+        - name: End to End Tests
+          run: lein run -m cv-creator.core/-main
