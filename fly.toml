@@ -11,7 +11,12 @@ kill_timeout = "5s"
 [experimental]
   auto_rollback = true
 
+[deploy]
+  strategy = "immediate"
+
 [[services]]
+  auto_stop_machines = false
+  auto_start_machines = false
   protocol = "tcp"
   internal_port = 8080
   processes = ["app"]
@@ -24,6 +29,7 @@ kill_timeout = "5s"
   [[services.ports]]
     port = 443
     handlers = ["tls", "http"]
+
   [services.concurrency]
     type = "connections"
     hard_limit = 1000000
