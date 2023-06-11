@@ -10,10 +10,10 @@ jobs:
         - uses: actions/checkout@v3
         - name: Install dependencies
           run: |
+            sudo apt-get update
             sudo apt-get install \
               --assume-yes \
               --no-install-recommends \
-              --option Acquire::Retries=3 \
                 leiningen
         - name: Unit Tests
           run: lein test
