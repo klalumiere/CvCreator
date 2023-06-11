@@ -1,9 +1,10 @@
 (ns cv-creator.server
   (:require
-   [compojure.core :as ccore]
-   [compojure.route :as croute])
+   [compojure.core :as compojure]
+   [compojure.route :as route])
   (:gen-class))
 
-(ccore/defroutes app
-  (ccore/GET "/" [] "<h1>Hello World</h1>")
-  (croute/not-found ""))
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(compojure/defroutes app
+  (compojure/GET "/" [] "<h1>Hello World</h1>")
+  (route/not-found ""))
