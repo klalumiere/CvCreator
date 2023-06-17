@@ -1,9 +1,11 @@
 (ns cv-creator.section-html-renderer
   (:require
-   [cv-creator.section]
-   [cv-creator.html-renderer]
    [clojure.string :as string]
-   [selmer.parser :as selmer])
+
+   [selmer.parser :as selmer]
+
+   [cv-creator.html-renderer]
+   [cv-creator.section])
   (:import [cv_creator.section HeadSection PhoneItem WebPageItem]))
 
 (extend-type PhoneItem cv-creator.html-renderer/HtmlRenderer

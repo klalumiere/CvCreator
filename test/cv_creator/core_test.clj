@@ -1,10 +1,11 @@
 (ns cv-creator.core-test
   (:require
-   [cv-creator.section]
+   [clojure.string :as string]
+   [clojure.test :as test]
+
    [cv-creator.html-renderer]
    [cv-creator.section-html-renderer]
-   [clojure.string :as string]
-   [clojure.test :as test]))
+   [cv-creator.section]))
 
 (defn create-arbitrary-phone-item []
   (cv-creator.section/map->PhoneItem {:label "Phone"
@@ -38,11 +39,11 @@
                    (cv-creator.html-renderer/render-html
                     (create-arbitrary-web-page-item))))))
 
-(test/testing "render-html WebPageItem is empty when no web page is provided"
-  (test/is (string/blank?
-            (cv-creator.html-renderer/render-html
-             (cv-creator.section/map->WebPageItem {:label "Web page"
-                                                 :item ""})))))
+  (test/testing "render-html WebPageItem is empty when no web page is provided"
+    (test/is (string/blank?
+              (cv-creator.html-renderer/render-html
+               (cv-creator.section/map->WebPageItem {:label "Web page"
+                                                     :item ""})))))
 
   (test/testing "render-html HeadSection is not empty"
     (test/is (not (string/blank?
