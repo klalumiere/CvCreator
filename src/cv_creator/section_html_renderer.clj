@@ -2,8 +2,15 @@
   (:require
    [cv-creator.section]
    [cv-creator.html-renderer]
+   [clojure.string :as string]
    [selmer.parser :as selmer])
-  (:import [cv_creator.section HeadSection]))
+  (:import [cv_creator.section HeadSection PhoneItem]))
+
+(extend-type PhoneItem cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (if (string/blank? (:item this))
+                                   ""
+                                   (selmer/render "<td style=\"text-align: right\">{{label}}: {{item}}</td>"
+                                                  this))))
 
 (extend-type HeadSection cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (selmer/render "<div class=\"cvStyle\">
@@ -14,7 +21,7 @@
 </p> </td> </tr>
 <tr>
 <td style=\"text-align: left\">{{address-door}}</td>
-<td style=\"text-align: right\">#{phoneLabel}{{phone}}</td>
+{{rendered-phone|safe}}
 </tr>
 <tr>
 <td style=\"text-align: left\">{{address-town}}</td>
@@ -24,7 +31,9 @@
 <td colspan=\"2\">#{View::WebPage[language]}:  
 <a href=\"{{web-page}}\">{{web-page}}</a> </td>
 </tr> </table>
-" this)))
+" (assoc this
+         :rendered-phone (cv-creator.html-renderer/render-html (:phone this))
+         :rendered-webpage "web"))))
 
 
 
