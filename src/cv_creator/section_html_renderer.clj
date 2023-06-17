@@ -22,10 +22,7 @@
 </tr>" this))))
 
 (extend-type HeadSection cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (selmer/render "
-<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
-<div class=\"cvStyle\">
-<table align=\"center\">
+             (render-html [this] (selmer/render "<table align=\"center\">
 <tr> <td colspan=\"2\"> <p style=\"text-align: center\">
 <strong style=\"font-size: 150%; text-align: center\">{{name}}</strong>
 <br>{{e-mail}}
@@ -38,7 +35,7 @@
 <td style=\"text-align: left\">{{address-town}}</td>
 <td style=\"text-align: right\"></td>
 </tr>
-{{rendered-webpage|safe}} </table>
-" (assoc this
+{{rendered-webpage|safe}}
+</table>" (assoc this
          :rendered-phone (cv-creator.html-renderer/render-html (:phone this))
          :rendered-webpage (cv-creator.html-renderer/render-html (:web-page this))))))

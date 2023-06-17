@@ -48,5 +48,12 @@
   (test/testing "render-html HeadSection is not empty"
     (test/is (not (string/blank?
                    (cv-creator.html-renderer/render-html
-                    (create-arbitrary-head-section)))))))
-
+                    (create-arbitrary-head-section))))))
+  
+  (test/testing "create-html is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/create-html "")))))
+  
+  (test/testing "create-html contains content"
+    (test/is (string/includes?
+                   (cv-creator.html-renderer/create-html "arbitrary") "arbitrary"))))

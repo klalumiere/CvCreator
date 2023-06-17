@@ -21,4 +21,5 @@
                                         :phone (create-arbitrary-phone-item)}))
 
 (defn -main []
-  (println (cv-creator.html-renderer/render-html (create-arbitrary-head-section))))
+  (println (cv-creator.html-renderer/create-html
+            (cv-creator.html-renderer/render-html (create-arbitrary-head-section)))))
