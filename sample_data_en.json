@@ -12,10 +12,6 @@
             "label": "Web page",
             "item": "https://alain.terieur.com"
         },
-        "mobile": {
-            "label": "Mobile",
-            "item": "(123) 456-7890"
-        },
         "phone": {
             "label": "Phone",
             "item": "(023) 456-7891"
