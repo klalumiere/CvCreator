@@ -22,6 +22,10 @@
                                                                       :school "UdeS"
                                                                       :date "2015"
                                                                       :subitems [a-subitem-education]}))
+(def an-experience-item (cv-creator.section/map->ExperienceItem {:title "Master"
+                                                               :business "Jedi School"
+                                                               :date "2017"
+                                                               :subitems [an-item]}))
 (def an-head-section (cv-creator.section/map->HeadSection {:name "Alain Térieur"
                                                                   :e-mail "alain.térieur@gmaille.com"
                                                                   :address-door "123 Street"
@@ -37,6 +41,12 @@
 
 
 (test/deftest html-renderer
+
+  (test/testing "render-html ExperienceItem is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html
+                    an-experience-item)))))
+
 
   (test/testing "render-html EducationItem is not empty"
     (test/is (not (string/blank?

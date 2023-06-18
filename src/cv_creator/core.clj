@@ -18,6 +18,10 @@
                                                                :school "UdeS"
                                                                :date "2015"
                                                                :subitems [a-subitem-education]}))
+(def an-experience-item (cv-creator.section/map->ExperienceItem {:title "Master"
+                                                                 :business "Jedi School"
+                                                                 :date "2017"
+                                                                 :subitems [an-item]}))
 (def an-head-section (cv-creator.section/map->HeadSection {:name "Alain Térieur"
                                                            :e-mail "alain.térieur@gmaille.com"
                                                            :address-door "123 Street"
@@ -29,10 +33,12 @@
 
 
 (def an-education-section (cv-creator.section/map->Section {:label "Education" :items [an-education-item]}))
+(def an-experience-section (cv-creator.section/map->Section {:label "Experience" :items [an-experience-item]}))
 (def a-section (cv-creator.section/map->Section {:label "arbitrary"
                                                  :items [an-item-with-subitems]}))
 
 
 (defn -main [] (println (cv-creator.html-renderer/create-html [an-head-section
                                                                a-section
-                                                               an-education-section])))
+                                                               an-education-section
+                                                               an-experience-section])))
