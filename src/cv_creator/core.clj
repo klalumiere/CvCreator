@@ -34,11 +34,11 @@
 
 (def an-education-section (cv-creator.section/map->Section {:label "Education" :items [an-education-item]}))
 (def an-experience-section (cv-creator.section/map->Section {:label "Experience" :items [an-experience-item]}))
-(def a-section (cv-creator.section/map->Section {:label "arbitrary"
+(def a-section (cv-creator.section/map->Section {:label "Arbitrary"
                                                  :items [an-item-with-subitems]}))
 
 
 (defn -main [] (println (cv-creator.html-renderer/create-html [an-head-section
                                                                a-section
-                                                               an-education-section
-                                                               an-experience-section])))
+                                                               an-experience-section
+                                                               an-education-section])))

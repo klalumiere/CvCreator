@@ -2,7 +2,6 @@
     "metadata": {
         "language": "English"
     },
-
     "head": {
         "name": "Alain Térieur",
         "eMail": "alain.térieur@gmaille.com",
@@ -17,7 +16,6 @@
             "item": "(023) 456-7891"
         }
     },
-
     "skillSummary": {
         "label": "Skill Summary",
         "items": [
@@ -31,7 +29,6 @@
             "Another skill"
         ]
     },
-
     "educations": {
         "label": "Education",
         "items": [
@@ -48,7 +45,6 @@
             }
         ]
     },
-
     "experiences": {
         "label": "Experience",
         "items": [
@@ -58,60 +54,63 @@
                 "date": "2008-",
                 "subitems": [
                     "A PhD"
-                ] 
+                ]
             }
         ]
     },
-
     "autodidactTraining": {
         "label": "Autodidact training",
-        "readings": {
-            "label": "Relevant readings",
-            "subitems": [
-                {
-                    "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
-                    "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
-                    "tags": [ "computerScience" ]
-                }
-            ]
-        },
-        "courses": {
-            "label": "Optional courses",
-            "subitems": [
-                {
-                    "place": "Restaurant",
-                    "title": "Cooking for dummies",
-                    "tags": [ "food" ]
-                }
-            ]
-        }
+        "items": [
+            {
+                "label": "Relevant readings",
+                "subitems": [
+                    {
+                        "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
+                        "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
+                        "tags": [
+                            "computerScience"
+                        ]
+                    }
+                ]
+            },
+            {
+                "label": "Optional courses",
+                "subitems": [
+                    {
+                        "place": "Restaurant",
+                        "title": "Cooking for dummies",
+                        "tags": [
+                            "food"
+                        ]
+                    }
+                ]
+            }
+        ]
     },
-
     "honors": {
         "label": "Honors and Awards",
         "items": [
             "Most clean code ever, 2023",
             {
-                "item": "Golden hot dog, 2010", 
-                "tags": [ "food" ]
+                "item": "Golden hot dog, 2010",
+                "tags": [
+                    "food"
+                ]
             }
         ]
     },
-
     "socialImplications": {
         "label": "Social Implication",
         "items": [
             "Dancing in the street"
         ]
     },
-
     "publications": {
         "label": "Publications",
         "items": [
             "Entangle this!"
         ]
     },
-
     "contributedTalks": {
         "label": "Contributed talks",
         "items": [

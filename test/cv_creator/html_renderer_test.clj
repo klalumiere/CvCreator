@@ -1,4 +1,4 @@
-(ns cv-creator.core-test
+(ns cv-creator.html-renderer-test
   (:require
    [clojure.string :as string]
    [clojure.test :as test]
