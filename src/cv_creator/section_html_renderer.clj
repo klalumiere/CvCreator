@@ -6,7 +6,22 @@
 
    [cv-creator.html-renderer]
    [cv-creator.section])
-  (:import [cv_creator.section HeadSection PhoneItem WebPageItem]))
+  (:import [cv_creator.section HeadSection Item PhoneItem Section WebPageItem]))
+
+(extend-type Section cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (if (empty? (:items this))
+                                   ""
+                                   (selmer/render "<br><strong style=\"font-size: 125%;\">{{label}}</strong>
+<hr class=\"section\">
+{{rendered-items}}" (assoc this :rendered-items
+                           (string/join (map cv-creator.html-renderer/HtmlRenderer (:items this))))))))
+
+(extend-type Item cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (if (string/blank? (:item this))
+                                   ""
+                                   (selmer/render "<ul>{{item}}{{rendered-subitems}}
+</ul>" (assoc this :rendered-subitems
+              (string/join (map cv-creator.html-renderer/HtmlRenderer (:subitems this))))))))
 
 (extend-type PhoneItem cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (if (string/blank? (:item this))
@@ -37,5 +52,5 @@
 </tr>
 {{rendered-webpage|safe}}
 </table>" (assoc this
-         :rendered-phone (cv-creator.html-renderer/render-html (:phone this))
-         :rendered-webpage (cv-creator.html-renderer/render-html (:web-page this))))))
+                 :rendered-phone (cv-creator.html-renderer/render-html (:phone this))
+                 :rendered-webpage (cv-creator.html-renderer/render-html (:web-page this))))))
