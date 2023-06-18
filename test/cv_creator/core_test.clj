@@ -7,6 +7,18 @@
    [cv-creator.section-html-renderer]
    [cv-creator.section]))
 
+(def section-label "arbitrary")
+
+(defn create-arbitrary-item []
+  (cv-creator.section/map->Item {:item "An item"}))
+
+(defn create-arbitrary-item-with-subitems []
+  (cv-creator.section/map->Item {:item "An item with subitems"
+                                 :subitems [(create-arbitrary-item) (create-arbitrary-item)]}))
+
+(defn create-arbitrary-section []
+  (cv-creator.section/map->Section {:label section-label :items [(create-arbitrary-item-with-subitems)]}))
+
 (defn create-arbitrary-phone-item []
   (cv-creator.section/map->PhoneItem {:label "Phone"
                                       :item "(023) 456-7891"}))
@@ -24,6 +36,35 @@
                                         :phone (create-arbitrary-phone-item)}))
 
 (test/deftest html-renderer
+
+  (test/testing "render-html-all is not empty when collection is not"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html-all [(create-arbitrary-item)])))))
+
+  (test/testing "render-html-all is empty for empty collection"
+    (test/is (string/blank?
+              (cv-creator.html-renderer/render-html-all []))))
+
+  (test/testing "render-html Section is not empty when items are not"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html
+                    (create-arbitrary-section))))))
+
+  (test/testing "render-html Section is empty when items are empty"
+    (test/is (string/blank?
+              (cv-creator.html-renderer/render-html
+               (cv-creator.section/map->Section {:items []})))))
+
+  (test/testing "render-html Item is empty if item is"
+    (test/is (string/blank?
+              (cv-creator.html-renderer/render-html
+               (cv-creator.section/map->Item {:item ""})))))
+
+  (test/testing "render-html Item is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html
+                    (create-arbitrary-item-with-subitems))))))
+
   (test/testing "render-html PhoneItem is not empty when a phone number is provided"
     (test/is (not (string/blank?
                    (cv-creator.html-renderer/render-html
@@ -34,6 +75,7 @@
               (cv-creator.html-renderer/render-html
                (cv-creator.section/map->PhoneItem {:label "Phone"
                                                    :item ""})))))
+
   (test/testing "render-html WebPageItem is not empty when a web page is provided"
     (test/is (not (string/blank?
                    (cv-creator.html-renderer/render-html
@@ -48,5 +90,12 @@
   (test/testing "render-html HeadSection is not empty"
     (test/is (not (string/blank?
                    (cv-creator.html-renderer/render-html
-                    (create-arbitrary-head-section)))))))
+                    (create-arbitrary-head-section))))))
 
+  (test/testing "create-html is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/create-html "")))))
+
+  (test/testing "create-html contains content passed in argument"
+    (test/is (string/includes?
+              (cv-creator.html-renderer/create-html [(create-arbitrary-section)]) section-label))))
