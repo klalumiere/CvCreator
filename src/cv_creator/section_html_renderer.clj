@@ -18,8 +18,8 @@
 (extend-type Item cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (if (string/blank? (:item this))
                                    ""
-                                   (selmer/render "<ul>{{item}}{{rendered-subitems|safe}}
-</ul>" (assoc this :rendered-subitems (cv-creator.html-renderer/render-html-all (:subitems this)))))))
+                                   (selmer/render "<ul><li>{{item}}</li>{{rendered-subitems|safe}}
+</ul><br>" (assoc this :rendered-subitems (cv-creator.html-renderer/render-html-all (:subitems this)))))))
 
 (extend-type PhoneItem cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (if (string/blank? (:item this))
