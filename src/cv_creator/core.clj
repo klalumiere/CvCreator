@@ -4,6 +4,16 @@
    [cv-creator.section-html-renderer]
    [cv-creator.section]))
 
+(defn create-arbitrary-item []
+  (cv-creator.section/map->Item {:item "An item"}))
+
+(defn create-arbitrary-item-with-subitems []
+  (cv-creator.section/map->Item {:item "An item with subitems"
+                                 :subitems [(create-arbitrary-item) (create-arbitrary-item)]}))
+
+(defn create-arbitrary-section []
+  (cv-creator.section/map->Section {:label "arbitrary" :items [(create-arbitrary-item-with-subitems)]}))
+
 (defn create-arbitrary-phone-item []
   (cv-creator.section/map->PhoneItem {:label "Phone"
                                       :item "(023) 456-7891"}))
@@ -22,4 +32,5 @@
 
 (defn -main []
   (println (cv-creator.html-renderer/create-html
-            (cv-creator.html-renderer/render-html (create-arbitrary-head-section)))))
+            [(create-arbitrary-head-section)
+             (create-arbitrary-section)])))

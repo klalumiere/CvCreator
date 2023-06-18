@@ -13,15 +13,13 @@
                                    ""
                                    (selmer/render "<br><strong style=\"font-size: 125%;\">{{label}}</strong>
 <hr class=\"section\">
-{{rendered-items}}" (assoc this :rendered-items
-                           (string/join (map cv-creator.html-renderer/HtmlRenderer (:items this))))))))
+{{rendered-items|safe}}" (assoc this :rendered-items (cv-creator.html-renderer/render-html-all (:items this)))))))
 
 (extend-type Item cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (if (string/blank? (:item this))
                                    ""
-                                   (selmer/render "<ul>{{item}}{{rendered-subitems}}
-</ul>" (assoc this :rendered-subitems
-              (string/join (map cv-creator.html-renderer/HtmlRenderer (:subitems this))))))))
+                                   (selmer/render "<ul>{{item}}{{rendered-subitems|safe}}
+</ul>" (assoc this :rendered-subitems (cv-creator.html-renderer/render-html-all (:subitems this)))))))
 
 (extend-type PhoneItem cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (if (string/blank? (:item this))

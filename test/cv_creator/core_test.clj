@@ -7,6 +7,8 @@
    [cv-creator.section-html-renderer]
    [cv-creator.section]))
 
+(def section-label "arbitrary")
+
 (defn create-arbitrary-item []
   (cv-creator.section/map->Item {:item "An item"}))
 
@@ -15,7 +17,7 @@
                                  :subitems [(create-arbitrary-item) (create-arbitrary-item)]}))
 
 (defn create-arbitrary-section []
-  (cv-creator.section/map->Section {:items [(create-arbitrary-item-with-subitems)]}))
+  (cv-creator.section/map->Section {:label section-label :items [(create-arbitrary-item-with-subitems)]}))
 
 (defn create-arbitrary-phone-item []
   (cv-creator.section/map->PhoneItem {:label "Phone"
@@ -34,6 +36,14 @@
                                         :phone (create-arbitrary-phone-item)}))
 
 (test/deftest html-renderer
+
+  (test/testing "render-html-all is not empty when collection is not"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html-all [(create-arbitrary-item)])))))
+
+  (test/testing "render-html-all is empty for empty collection"
+    (test/is (string/blank?
+              (cv-creator.html-renderer/render-html-all []))))
 
   (test/testing "render-html Section is not empty when items are not"
     (test/is (not (string/blank?
@@ -86,6 +96,6 @@
     (test/is (not (string/blank?
                    (cv-creator.html-renderer/create-html "")))))
 
-  (test/testing "create-html contains content"
+  (test/testing "create-html contains content passed in argument"
     (test/is (string/includes?
-              (cv-creator.html-renderer/create-html "arbitrary") "arbitrary"))))
+              (cv-creator.html-renderer/create-html [(create-arbitrary-section)]) section-label))))
