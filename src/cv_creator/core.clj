@@ -4,6 +4,18 @@
    [cv-creator.section-html-renderer]
    [cv-creator.section]))
 
+(defn create-arbitrary-subitem-education []
+  (cv-creator.section/map->SubitemEducation {:label "Thesis" :subitem "How to have fun"}))
+
+(defn create-arbitrary-education-item []
+  (cv-creator.section/map->EducationItem {:degree "PhD"
+                                          :school "UdeS"
+                                          :date "2015"
+                                          :subitems [(create-arbitrary-subitem-education)]}))
+
+(defn create-education-section []
+  (cv-creator.section/map->Section {:label "Education" :items [(create-arbitrary-education-item)]}))
+
 (defn create-arbitrary-item []
   (cv-creator.section/map->Item {:item "An item"}))
 
@@ -33,4 +45,5 @@
 (defn -main []
   (println (cv-creator.html-renderer/create-html
             [(create-arbitrary-head-section)
-             (create-arbitrary-section)])))
+             (create-arbitrary-section)
+             (create-education-section)])))

@@ -9,6 +9,15 @@
 
 (def section-label "arbitrary")
 
+(defn create-arbitrary-subitem-education []
+  (cv-creator.section/map->SubitemEducation {:label "Thesis" :subitem "How to have fun"}))
+
+(defn create-arbitrary-education-item []
+  (cv-creator.section/map->EducationItem {:degree "PhD"
+                                             :school "UdeS"
+                                             :date "2015"
+                                             :subitems [(create-arbitrary-subitem-education)]}))
+
 (defn create-arbitrary-item []
   (cv-creator.section/map->Item {:item "An item"}))
 
@@ -36,6 +45,16 @@
                                         :phone (create-arbitrary-phone-item)}))
 
 (test/deftest html-renderer
+
+  (test/testing "render-html EducationItem is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html
+                    (create-arbitrary-education-item))))))
+
+  (test/testing "render-html SubitemEducation is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html
+                    (create-arbitrary-subitem-education))))))
 
   (test/testing "render-html-all is not empty when collection is not"
     (test/is (not (string/blank?
