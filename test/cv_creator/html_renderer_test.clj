@@ -13,11 +13,17 @@
 (def a-section-label "arbitrary")
 (def a-subitem-education (cv-creator.section/map->SubitemEducation {:label "Thesis"
                                                                     :subitem "How to have fun"}))
+(def a-subitem-optional-courses (cv-creator.section/map->SubitemOptionalCourses {:title "Cooking for dummies"
+                                                                                 :place "Restaurant"}))
+(def a-subitem-relevant-readings (cv-creator.section/map->SubitemRelevantReadings {:authors "TW et al."
+                                                                                   :title "SE at Google"}))
 (def a-web-page-item (cv-creator.section/map->WebPageItem {:label "Web page"
                                                            :item "https://alain.terieur.com"}))
 (def an-item (cv-creator.section/map->Item {:item "An item"}))
 
 
+(def an-autodidact-training-item (cv-creator.section/map->AutodidactTrainingItem {:label "Relevant readings"
+                                                                                  :subitems [a-subitem-relevant-readings]}))
 (def an-education-item (cv-creator.section/map->EducationItem {:degree "PhD"
                                                                :school "UdeS"
                                                                :date "2015"
@@ -42,9 +48,21 @@
 
 (test/deftest html-renderer
 
+  (test/testing "render-html AutodidactTrainingItem is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html an-autodidact-training-item)))))
+
+  (test/testing "render-html SubitemOptionalCourses is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html a-subitem-optional-courses)))))
+
+  (test/testing "render-html SubitemRelevantReadings is not empty"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html a-subitem-relevant-readings)))))
+
   (test/testing "render-html ExperienceItem is not empty"
     (test/is (not (string/blank?
-                   (cv-creator.html-renderer/render-html  an-experience-item)))))
+                   (cv-creator.html-renderer/render-html an-experience-item)))))
 
   (test/testing "render-html EducationItem is not empty"
     (test/is (not (string/blank?

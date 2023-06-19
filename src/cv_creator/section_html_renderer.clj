@@ -7,6 +7,7 @@
    [cv-creator.html-renderer]
    [cv-creator.section])
   (:import [cv_creator.section
+            AutodidactTrainingItem
             EducationItem
             ExperienceItem
             HeadSection
@@ -14,7 +15,15 @@
             PhoneItem
             Section
             SubitemEducation
+            SubitemOptionalCourses
+            SubitemRelevantReadings
             WebPageItem]))
+
+
+(extend-type AutodidactTrainingItem cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (selmer/render "<strong style=\"font-size: 112%;\">{{label}}</strong><br>
+<ul>{{rendered-subitems|safe}}</ul><br>" (assoc this :rendered-subitems
+                                                (cv-creator.html-renderer/render-html-all (:subitems this))))))
 
 
 (extend-type EducationItem cv-creator.html-renderer/HtmlRenderer
@@ -90,6 +99,14 @@
 
 (extend-type SubitemEducation cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (selmer/render "<li><strong>{{label}}: </strong>{{subitem}}</li>" this)))
+
+
+(extend-type SubitemOptionalCourses cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (selmer/render "<li><strong>{{title}}</strong>, {{place}}</li>" this)))
+
+
+(extend-type SubitemRelevantReadings cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (selmer/render "<li>{{authors}}, <strong>{{title}}</strong></li>" this)))
 
 
 (extend-type WebPageItem cv-creator.html-renderer/HtmlRenderer
