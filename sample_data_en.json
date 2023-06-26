@@ -19,17 +19,21 @@
     "skillSummary": {
         "label": "Skill Summary",
         "items": [
-            "One skill",
+            {
+                "value": "One skill"
+            },
             {
                 "value": "A skill with",
                 "subitems": [
                     "A subskill"
                 ]
             },
-            "Another skill"
+            {
+                "value": "Another skill"
+            }
         ]
     },
-    "educations": {
+    "education": {
         "label": "Education",
         "items": [
             {
@@ -46,7 +50,7 @@
         ]
     },
     "experiences": {
-        "label": "Experience",
+        "label": "Experiences",
         "items": [
             {
                 "title": "Graduate student",
@@ -60,37 +64,37 @@
     },
     "autodidactTraining": {
         "label": "Autodidact training",
-        "items": [
-            {
-                "label": "Relevant readings",
-                "subitems": [
-                    {
-                        "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
-                        "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
-                        "tags": [
-                            "computerScience"
-                        ]
-                    }
-                ]
-            },
-            {
-                "label": "Optional courses",
-                "subitems": [
-                    {
-                        "place": "Restaurant",
-                        "title": "Cooking for dummies",
-                        "tags": [
-                            "food"
-                        ]
-                    }
-                ]
-            }
-        ]
+        "relevantReadings": {
+            "label": "Relevant readings",
+            "subitems": [
+                {
+                    "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
+                    "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
+                    "tags": [
+                        "computerScience"
+                    ]
+                }
+            ]
+        },
+        "optionalCourses": {
+            "label": "Optional courses",
+            "subitems": [
+                {
+                    "place": "Restaurant",
+                    "title": "Cooking for dummies",
+                    "tags": [
+                        "food"
+                    ]
+                }
+            ]
+        }
     },
     "honors": {
         "label": "Honors and Awards",
         "items": [
-            "Most clean code ever, 2023",
+            {
+                "value": "Most clean code ever, 2023"
+            },
             {
                 "value": "Golden hot dog, 2010",
                 "tags": [
@@ -100,21 +104,27 @@
         ]
     },
     "socialImplications": {
-        "label": "Social Implication",
+        "label": "Social Implications",
         "items": [
-            "Dancing in the street"
+            {
+                "value": "Dancing in the street"
+            }
         ]
     },
     "publications": {
         "label": "Publications",
         "items": [
-            "Entangle this!"
+            {
+                "value": "Entangle this!"
+            }
         ]
     },
     "contributedTalks": {
         "label": "Contributed talks",
         "items": [
-            "Why Zelda rocks"
+            {
+                "value": "Why Zelda rocks"
+            }
         ]
     }
 }

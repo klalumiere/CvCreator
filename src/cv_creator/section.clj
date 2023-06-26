@@ -9,10 +9,11 @@
                         web-page
                         phone])
 
+(defrecord AutodidactTrainingItem [label subitems])
+
 
 (defrecord Item [value subitems tags])
 
-(defrecord AutodidactTrainingItem [label subitems])
 (defrecord EducationItem [degree school date subitems])
 (defrecord ExperienceItem [title business date subitems])
 (defrecord PhoneItem [label value])
