@@ -3,21 +3,23 @@
 (defrecord Section [label items tags])
 
 (defrecord HeadSection [name
-                        e-mail
-                        address-door
-                        address-town
-                        web-page
+                        eMail
+                        addressDoor
+                        addressTown
+                        webPage
                         phone])
-
-(defrecord AutodidactTrainingItem [label subitems])
 
 
 (defrecord Item [value subitems tags])
 
+(defrecord AutodidactTrainingItem [label subitems])  ; should be two things: RelevantReadingsItem and OptionalCoursesItem 
+
 (defrecord EducationItem [degree school date subitems])
 (defrecord ExperienceItem [title business date subitems])
 (defrecord PhoneItem [label value])
+(defrecord WebPageItem [label value])
+
+
 (defrecord SubitemEducation [label value])
 (defrecord SubitemOptionalCourses [title place])
 (defrecord SubitemRelevantReadings [authors title])
-(defrecord WebPageItem [label value])

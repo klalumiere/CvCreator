@@ -25,7 +25,9 @@
             {
                 "value": "A skill with",
                 "subitems": [
-                    "A subskill"
+                    {
+                        "value": "A subskill"
+                    }
                 ]
             },
             {

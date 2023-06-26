@@ -31,10 +31,10 @@
                                                                  :date "2017"
                                                                  :subitems [an-item]}))
 (def an-head-section (cv-creator.section/map->HeadSection {:name "Alain Térieur"
-                                                           :e-mail "alain.térieur@gmaille.com"
-                                                           :address-door "123 Street"
-                                                           :address-town "Montréal (Qc), Canada, H2T 2F6"
-                                                           :web-page a-web-page-item
+                                                           :eMail "alain.térieur@gmaille.com"
+                                                           :addressDoor "123 Street"
+                                                           :addressTown "Montréal (Qc), Canada, H2T 2F6"
+                                                           :webPage a-web-page-item
                                                            :phone a-phone-item}))
 (def an-item-with-subitems (cv-creator.section/map->Item {:value "An item with subitems"
                                                           :subitems [an-item an-item]}))
