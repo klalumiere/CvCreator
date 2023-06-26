@@ -9,17 +9,17 @@
 
 
 (def a-phone-item (cv-creator.section/map->PhoneItem {:label "Phone"
-                                                      :item "(023) 456-7891"}))
+                                                      :value "(023) 456-7891"}))
 (def a-section-label "arbitrary")
 (def a-subitem-education (cv-creator.section/map->SubitemEducation {:label "Thesis"
-                                                                    :subitem "How to have fun"}))
+                                                                    :value "How to have fun"}))
 (def a-subitem-optional-courses (cv-creator.section/map->SubitemOptionalCourses {:title "Cooking for dummies"
                                                                                  :place "Restaurant"}))
 (def a-subitem-relevant-readings (cv-creator.section/map->SubitemRelevantReadings {:authors "TW et al."
                                                                                    :title "SE at Google"}))
 (def a-web-page-item (cv-creator.section/map->WebPageItem {:label "Web page"
-                                                           :item "https://alain.terieur.com"}))
-(def an-item (cv-creator.section/map->Item {:item "An item"}))
+                                                           :value "https://alain.terieur.com"}))
+(def an-item (cv-creator.section/map->Item {:value "An item"}))
 
 
 (def an-autodidact-training-item (cv-creator.section/map->AutodidactTrainingItem {:label "Relevant readings"
@@ -38,7 +38,7 @@
                                                            :address-town "Montréal (Qc), Canada, H2T 2F6"
                                                            :web-page a-web-page-item
                                                            :phone a-phone-item}))
-(def an-item-with-subitems (cv-creator.section/map->Item {:item "An item with subitems"
+(def an-item-with-subitems (cv-creator.section/map->Item {:value "An item with subitems"
                                                           :subitems [an-item an-item]}))
 
 
@@ -90,7 +90,7 @@
 
   (test/testing "render-html Item is empty if item is"
     (test/is (string/blank?
-              (cv-creator.html-renderer/render-html (cv-creator.section/map->Item {:item ""})))))
+              (cv-creator.html-renderer/render-html (cv-creator.section/map->Item {:value ""})))))
 
   (test/testing "render-html Item is not empty"
     (test/is (not (string/blank?
@@ -103,7 +103,7 @@
   (test/testing "render-html PhoneItem is empty when no phone number is provided"
     (test/is (string/blank?
               (cv-creator.html-renderer/render-html (cv-creator.section/map->PhoneItem {:label "Phone"
-                                                                                        :item ""})))))
+                                                                                        :value ""})))))
 
   (test/testing "render-html WebPageItem is not empty when a web page is provided"
     (test/is (not (string/blank?
@@ -112,7 +112,7 @@
   (test/testing "render-html WebPageItem is empty when no web page is provided"
     (test/is (string/blank?
               (cv-creator.html-renderer/render-html (cv-creator.section/map->WebPageItem {:label "Web page"
-                                                                                          :item ""})))))
+                                                                                          :value ""})))))
 
   (test/testing "render-html HeadSection is not empty"
     (test/is (not (string/blank?

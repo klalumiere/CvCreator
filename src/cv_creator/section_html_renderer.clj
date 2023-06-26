@@ -76,16 +76,16 @@
 
 
 (extend-type Item cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (if (string/blank? (:item this))
+             (render-html [this] (if (string/blank? (:value this))
                                    ""
-                                   (selmer/render "<li>{{item}}</li><ul>{{rendered-subitems|safe}}</ul>
+                                   (selmer/render "<li>{{value}}</li><ul>{{rendered-subitems|safe}}</ul>
 " (assoc this :rendered-subitems (cv-creator.html-renderer/render-html-all (:subitems this)))))))
 
 
 (extend-type PhoneItem cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (if (string/blank? (:item this))
+             (render-html [this] (if (string/blank? (:value this))
                                    ""
-                                   (selmer/render "<td style=\"text-align: right\">{{label}}: {{item}}</td>" this))))
+                                   (selmer/render "<td style=\"text-align: right\">{{label}}: {{value}}</td>" this))))
 
 
 (extend-type Section cv-creator.html-renderer/HtmlRenderer
@@ -98,7 +98,7 @@
 
 
 (extend-type SubitemEducation cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (selmer/render "<li><strong>{{label}}: </strong>{{subitem}}</li>" this)))
+             (render-html [this] (selmer/render "<li><strong>{{label}}: </strong>{{value}}</li>" this)))
 
 
 (extend-type SubitemOptionalCourses cv-creator.html-renderer/HtmlRenderer
@@ -110,7 +110,7 @@
 
 
 (extend-type WebPageItem cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (if (string/blank? (:item this))
+             (render-html [this] (if (string/blank? (:value this))
                                    ""
                                    (selmer/render "<tr>
-<td colspan=\"2\">{{label}}: <a href=\"{{item}}\">{{item}}</a> </td></tr>" this))))
+<td colspan=\"2\">{{label}}: <a href=\"{{value}}\">{{value}}</a> </td></tr>" this))))

@@ -9,11 +9,11 @@
         "addressTown": "Montréal (Qc), Canada, H2T 2F6",
         "webPage": {
             "label": "Web page",
-            "item": "https://alain.terieur.com"
+            "value": "https://alain.terieur.com"
         },
         "phone": {
             "label": "Phone",
-            "item": "(023) 456-7891"
+            "value": "(023) 456-7891"
         }
     },
     "skillSummary": {
@@ -21,7 +21,7 @@
         "items": [
             "One skill",
             {
-                "item": "A skill with",
+                "value": "A skill with",
                 "subitems": [
                     "A subskill"
                 ]
@@ -39,7 +39,7 @@
                 "subitems": [
                     {
                         "label": "Thesis",
-                        "subitem": "How to have fun"
+                        "value": "How to have fun"
                     }
                 ]
             }
@@ -92,7 +92,7 @@
         "items": [
             "Most clean code ever, 2023",
             {
-                "item": "Golden hot dog, 2010",
+                "value": "Golden hot dog, 2010",
                 "tags": [
                     "food"
                 ]

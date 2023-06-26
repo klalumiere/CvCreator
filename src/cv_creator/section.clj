@@ -10,13 +10,13 @@
                         phone])
 
 
-(defrecord Item [item subitems tags])
+(defrecord Item [value subitems tags])
 
 (defrecord AutodidactTrainingItem [label subitems])
 (defrecord EducationItem [degree school date subitems])
 (defrecord ExperienceItem [title business date subitems])
-(defrecord PhoneItem [label item])
-(defrecord SubitemEducation [label subitem])
+(defrecord PhoneItem [label value])
+(defrecord SubitemEducation [label value])
 (defrecord SubitemOptionalCourses [title place])
 (defrecord SubitemRelevantReadings [authors title])
-(defrecord WebPageItem [label item])
+(defrecord WebPageItem [label value])

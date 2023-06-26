@@ -6,16 +6,16 @@
 
 
 (def a-phone-item (cv-creator.section/map->PhoneItem {:label "Phone"
-                                                      :item "(023) 456-7891"}))
+                                                      :value "(023) 456-7891"}))
 (def a-subitem-education (cv-creator.section/map->SubitemEducation {:label "Thesis"
-                                                                    :subitem "How to have fun"}))
+                                                                    :value "How to have fun"}))
 (def a-subitem-optional-courses (cv-creator.section/map->SubitemOptionalCourses {:title "Cooking for dummies"
                                                                                  :place "Restaurant"}))
 (def a-subitem-relevant-readings (cv-creator.section/map->SubitemRelevantReadings {:authors "TW et al."
                                                                                    :title "SE at Google"}))
 (def a-web-page-item (cv-creator.section/map->WebPageItem {:label "Web page"
-                                                           :item "https://alain.terieur.com"}))
-(def an-item (cv-creator.section/map->Item {:item "An item"}))
+                                                           :value "https://alain.terieur.com"}))
+(def an-item (cv-creator.section/map->Item {:value "An item"}))
 
 
 (def an-autodidact-training-item (cv-creator.section/map->AutodidactTrainingItem {:label "Relevant readings"
@@ -36,7 +36,7 @@
                                                            :address-town "Montréal (Qc), Canada, H2T 2F6"
                                                            :web-page a-web-page-item
                                                            :phone a-phone-item}))
-(def an-item-with-subitems (cv-creator.section/map->Item {:item "An item with subitems"
+(def an-item-with-subitems (cv-creator.section/map->Item {:value "An item with subitems"
                                                           :subitems [an-item an-item]}))
 
 
