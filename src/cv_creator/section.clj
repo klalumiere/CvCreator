@@ -14,9 +14,9 @@
 
 (defrecord AutodidactTrainingItem [label subitems])
 (defrecord EducationItem [degree school date subitems])
-(defrecord ExperienceItem [title business date subitems tags])
+(defrecord ExperienceItem [title business date subitems])
 (defrecord PhoneItem [label item])
 (defrecord SubitemEducation [label subitem])
-(defrecord SubitemOptionalCourses [title place tags])
-(defrecord SubitemRelevantReadings [authors title tags])
+(defrecord SubitemOptionalCourses [title place])
+(defrecord SubitemRelevantReadings [authors title])
 (defrecord WebPageItem [label item])
