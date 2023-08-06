@@ -7,11 +7,11 @@
 
 (def a-phone-item (cv-creator.section/map->PhoneItem {:label "Phone"
                                                       :value "(023) 456-7891"}))
-(def a-subitem-education (cv-creator.section/map->SubitemEducation {:label "Thesis"
+(def a-subitem-education (cv-creator.section/map->EducationSubitem {:label "Thesis"
                                                                     :value "How to have fun"}))
-(def a-subitem-optional-courses (cv-creator.section/map->SubitemOptionalCourses {:title "Cooking for dummies"
+(def a-subitem-optional-courses (cv-creator.section/map->OptionalCoursesSubitem {:title "Cooking for dummies"
                                                                                  :place "Restaurant"}))
-(def a-subitem-relevant-readings (cv-creator.section/map->SubitemRelevantReadings {:authors "TW et al."
+(def a-subitem-relevant-readings (cv-creator.section/map->RelevantReadingsSubitem {:authors "TW et al."
                                                                                    :title "SE at Google"}))
 (def a-web-page-item (cv-creator.section/map->WebPageItem {:label "Web page"
                                                            :value "https://alain.terieur.com"}))

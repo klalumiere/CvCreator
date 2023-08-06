@@ -14,9 +14,9 @@
             Item
             PhoneItem
             Section
-            SubitemEducation
-            SubitemOptionalCourses
-            SubitemRelevantReadings
+            EducationSubitem
+            OptionalCoursesSubitem
+            RelevantReadingsSubitem
             WebPageItem]))
 
 
@@ -97,15 +97,15 @@
 <br>" (assoc this :rendered-items (cv-creator.html-renderer/render-html-all (:items this)))))))
 
 
-(extend-type SubitemEducation cv-creator.html-renderer/HtmlRenderer
+(extend-type EducationSubitem cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (selmer/render "<li><strong>{{label}}: </strong>{{value}}</li>" this)))
 
 
-(extend-type SubitemOptionalCourses cv-creator.html-renderer/HtmlRenderer
+(extend-type OptionalCoursesSubitem cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (selmer/render "<li><strong>{{title}}</strong>, {{place}}</li>" this)))
 
 
-(extend-type SubitemRelevantReadings cv-creator.html-renderer/HtmlRenderer
+(extend-type RelevantReadingsSubitem cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (selmer/render "<li>{{authors}}, <strong>{{title}}</strong></li>" this)))
 
 

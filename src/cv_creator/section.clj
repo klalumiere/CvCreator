@@ -20,6 +20,6 @@
 (defrecord WebPageItem [label value])
 
 
-(defrecord SubitemEducation [label value])
-(defrecord SubitemOptionalCourses [title place])
-(defrecord SubitemRelevantReadings [authors title])
+(defrecord EducationSubitem [label value])
+(defrecord OptionalCoursesSubitem [title place])
+(defrecord RelevantReadingsSubitem [authors title])
