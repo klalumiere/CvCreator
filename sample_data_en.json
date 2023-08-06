@@ -59,7 +59,9 @@
                 "business": "Alex Térieur, Montreal(Qc), Canada",
                 "date": "2008-",
                 "subitems": [
-                    "A PhD"
+                    {
+                        "value": "A PhD"
+                    }
                 ]
             }
         ]
