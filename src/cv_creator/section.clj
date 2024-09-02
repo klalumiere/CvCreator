@@ -28,8 +28,12 @@
 (defrecord OptionalCoursesSubitem [title place])
 (defrecord RelevantReadingsSubitem [authors title])
 
-; TODO: handle empty keys
+
+(defn- update-if-exist [aMap key f]
+  (if (nil? (key aMap)) aMap (update aMap key f)))
+
+
 (defn create-head-section-from-map [aMap] (cv-creator.section/map->HeadSection
                                            (-> aMap
-                                               (update :phone #(cv-creator.section/map->PhoneItem %))
-                                               (update :webPage #(cv-creator.section/map->WebPageItem %)))))
+                                               (update-if-exist :phone #(cv-creator.section/map->PhoneItem %))
+                                               (update-if-exist :webPage #(cv-creator.section/map->WebPageItem %)))))
