@@ -1,6 +1,17 @@
 {
     "metadata": {
-        "language": "English"
+        "language": "English",
+        "order": [
+            "head",
+            "skillSummary",
+            "experiences",
+            "education",
+            "autodidactTraining",
+            "honors",
+            "socialImplications",
+            "publications",
+            "contributedTalks"
+        ]
     },
     "head": {
         "name": "Alain Térieur",

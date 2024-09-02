@@ -57,4 +57,5 @@
 ;;                                                                an-education-section
 ;;                                                                ])))
 
-(defn -main [] (run! println cv-creator.deserializer/deserialize))
+; TODO: don't hardcode data file path
+(defn -main [] (println (cv-creator.deserializer/deserialize "sample_data_en.json")))
