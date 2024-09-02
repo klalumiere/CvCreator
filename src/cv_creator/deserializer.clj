@@ -12,9 +12,12 @@
                                   :experiences cv-creator.section/map->Section
                                   :education cv-creator.section/map->Section})
 
+(defn- dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
+                                              (if (nil? constructor) value (constructor value))))
+
 (defn- deserialize-sections [filePath] (json/read-str (slurp filePath)
                                              :key-fn keyword
-                                             :value-fn deserializer-dispatcher-map))
+                                             :value-fn dispatch-deserialization))
 
 (defn- get-language-key [metadata] (keyword (:value (:language metadata))))
 

@@ -60,3 +60,4 @@
 ; TODO: don't hardcode data file path
 ; TODO: don't hardcode language
 (defn -main [] (println (:english (cv-creator.deserializer/deserialize "sample_data_en.json"))))
+;; (defn -main [] (println (cv-creator.html-renderer/create-html (:english (cv-creator.deserializer/deserialize "sample_data_en.json")))))
