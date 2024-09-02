@@ -27,3 +27,9 @@
 (defrecord EducationSubitem [label value])
 (defrecord OptionalCoursesSubitem [title place])
 (defrecord RelevantReadingsSubitem [authors title])
+
+; TODO: handle empty keys
+(defn create-head-section-from-map [aMap] (cv-creator.section/map->HeadSection
+                                           (-> aMap
+                                               (update :phone #(cv-creator.section/map->PhoneItem %))
+                                               (update :webPage #(cv-creator.section/map->WebPageItem %)))))

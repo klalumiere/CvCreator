@@ -8,7 +8,7 @@
                                   :publications cv-creator.section/map->Section
                                   :socialImplications cv-creator.section/map->Section
                                   :contributedTalks cv-creator.section/map->Section
-                                  :head cv-creator.section/map->HeadSection
+                                  :head cv-creator.section/create-head-section-from-map
                                   :experiences cv-creator.section/map->Section
                                   :education cv-creator.section/map->Section})
 
