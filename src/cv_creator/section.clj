@@ -9,10 +9,14 @@
                         webPage
                         phone])
 
+(defrecord AutodidactTrainingSection [label
+                                      relevantReadings
+                                      optionalCourses])
+
 
 (defrecord Item [value subitems tags])
 
-(defrecord AutodidactTrainingItem [label subitems])  ; should be two things: RelevantReadingsItem and OptionalCoursesItem 
+(defrecord AutodidactTrainingItem [label subitems])
 
 (defrecord EducationItem [degree school date subitems])
 (defrecord ExperienceItem [title business date subitems])

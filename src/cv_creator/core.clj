@@ -18,10 +18,10 @@
 (def an-item (cv-creator.section/map->Item {:value "An item"}))
 
 
-(def an-autodidact-training-item (cv-creator.section/map->AutodidactTrainingItem {:label "Relevant readings"
-                                                                                  :subitems [a-subitem-relevant-readings]}))
-(def another-autodidact-training-item (cv-creator.section/map->AutodidactTrainingItem {:label "Optional courses"
-                                                                                       :subitems [a-subitem-optional-courses]}))
+(def a-relevant-readings-item (cv-creator.section/map->AutodidactTrainingItem {:label "Relevant readings"
+                                                                             :subitems [a-subitem-relevant-readings]}))
+(def an-optional-courses-item (cv-creator.section/map->AutodidactTrainingItem {:label "Optional courses"
+                                                                            :subitems [a-subitem-optional-courses]}))
 (def an-education-item (cv-creator.section/map->EducationItem {:degree "PhD"
                                                                :school "UdeS"
                                                                :date "2015"
@@ -40,11 +40,8 @@
                                                           :subitems [an-item an-item]}))
 
 
-(def an-autodidact-training-section (cv-creator.section/map->Section {:label "Autodidact training"
-                                                                      :items [
-                                                                              an-autodidact-training-item
-                                                                              another-autodidact-training-item
-                                                                              ]}))
+(def an-autodidact-training-section (cv-creator.section/map->AutodidactTrainingSection {:label "Autodidact training"
+                                                                                        :optionalCourses [an-optional-courses-item]}))
 (def an-education-section (cv-creator.section/map->Section {:label "Education" :items [an-education-item]}))
 (def an-experience-section (cv-creator.section/map->Section {:label "Experience" :items [an-experience-item]}))
 (def a-section (cv-creator.section/map->Section {:label "Arbitrary"
@@ -54,5 +51,6 @@
 (defn -main [] (println (cv-creator.html-renderer/create-html [an-head-section
                                                                a-section
                                                                an-experience-section
+                                                               an-autodidact-training-section
                                                                an-education-section
-                                                               an-autodidact-training-section])))
+                                                               ])))
