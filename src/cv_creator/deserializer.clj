@@ -12,8 +12,15 @@
                                   :experiences cv-creator.section/map->Section
                                   :education cv-creator.section/map->Section})
 
-(defn deserialize-sections [filePath] (json/read-str (slurp filePath)
+(defn- deserialize-sections [filePath] (json/read-str (slurp filePath)
                                              :key-fn keyword
                                              :value-fn deserializer-dispatcher-map))
 
-(defn deserialize [filePath] (deserialize-sections filePath))
+(defn- get-language-key [metadata] (keyword (:value (:language metadata))))
+
+(defn- get-ordered-section-keys [metadata] (map keyword (:order metadata)))
+
+(defn- get-ordered-sections [metadata content] (mapv #(get content %) (get-ordered-section-keys metadata)))
+
+(defn deserialize [filePath] (let [{metadata :metadata :as content} (deserialize-sections filePath)]
+                               { (get-language-key metadata) (get-ordered-sections metadata content)}))
