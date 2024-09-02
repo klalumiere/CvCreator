@@ -1,5 +1,6 @@
 (ns cv-creator.core
   (:require
+   [cv-creator.deserializer]
    [cv-creator.html-renderer]
    [cv-creator.section-html-renderer]
    [cv-creator.section]))
@@ -49,9 +50,11 @@
                                                  :items [an-item-with-subitems]}))
 
 
-(defn -main [] (println (cv-creator.html-renderer/create-html [an-head-section
-                                                               a-section
-                                                               an-experience-section
-                                                               an-autodidact-training-section
-                                                               an-education-section
-                                                               ])))
+;; (defn -main [] (println (cv-creator.html-renderer/create-html [an-head-section
+;;                                                                a-section
+;;                                                                an-experience-section
+;;                                                                an-autodidact-training-section
+;;                                                                an-education-section
+;;                                                                ])))
+
+(defn -main [] (run! println cv-creator.deserializer/deserialize))
