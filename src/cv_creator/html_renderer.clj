@@ -7,8 +7,9 @@
 
 (defprotocol HtmlRenderer (render-html [this]))
 
+(defn- not-nil? [x] (not (nil? x)))
 
-(defn render-html-all [collection] (string/join (map cv-creator.html-renderer/render-html collection)))
+(defn render-html-all [collection] (string/join (map cv-creator.html-renderer/render-html (filter not-nil? collection))))
 
 
 (defn create-html [sections] (selmer/render "<div class=\"cvStyle\">{{content|safe}}</div>"

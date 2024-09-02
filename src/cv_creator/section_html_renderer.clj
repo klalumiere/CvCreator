@@ -84,8 +84,8 @@
 </tr>
 {{rendered-webpage|safe}}
 </table>" (assoc this
-                 :rendered-phone (cv-creator.html-renderer/render-html (:phone this))
-                 :rendered-webpage (cv-creator.html-renderer/render-html (:webPage this))))))
+                 :rendered-phone (cv-creator.html-renderer/render-html-all [(:phone this)])
+                 :rendered-webpage (cv-creator.html-renderer/render-html-all [(:webPage this)])))))
 
 
 (extend-type Item cv-creator.html-renderer/HtmlRenderer

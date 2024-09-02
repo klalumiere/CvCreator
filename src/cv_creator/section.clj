@@ -33,6 +33,15 @@
   (if (nil? (key aMap)) aMap (update aMap key f)))
 
 
+(defn create-item-from-map [aMap] (cv-creator.section/map->Item
+                                      (-> aMap
+                                          (update-if-exist :subitems #(mapv cv-creator.section/map->Item %)))))
+
+
+(defn create-section-from-map [aMap] (cv-creator.section/map->Section
+                                           (-> aMap
+                                               (update-if-exist :items #(mapv create-item-from-map %)))))
+
 (defn create-head-section-from-map [aMap] (cv-creator.section/map->HeadSection
                                            (-> aMap
                                                (update-if-exist :phone #(cv-creator.section/map->PhoneItem %))

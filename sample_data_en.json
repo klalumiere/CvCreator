@@ -6,14 +6,7 @@
         },
         "order": [
             "head",
-            "skillSummary",
-            "experiences",
-            "education",
-            "autodidactTraining",
-            "honors",
-            "socialImplications",
-            "publications",
-            "contributedTalks"
+            "skillSummary"
         ]
     },
     "head": {
