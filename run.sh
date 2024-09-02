@@ -1,2 +1,2 @@
 #!/bin/bash
-ruby -I lib bin/CvCreator $@
+bundle exec ruby -I lib bin/CvCreator $@
