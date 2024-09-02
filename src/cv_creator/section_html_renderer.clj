@@ -31,8 +31,8 @@
                                    ""
                                    (selmer/render "<br><strong style=\"font-size: 125%;\">{{label}}</strong>
 <hr class=\"section\">
-<ul>{{rendered-relevantReadings|safe}}</ul>
-<ul>{{rendered-optionalCourses|safe}}</ul>
+{{rendered-relevantReadings|safe}}
+{{rendered-optionalCourses|safe}}
 <br>" (assoc
        (assoc this :rendered-relevantReadings (cv-creator.html-renderer/render-html-all (:relevantReadings this)))
        :rendered-optionalCourses (cv-creator.html-renderer/render-html-all (:optionalCourses this)))))))
@@ -48,8 +48,9 @@
 <tr>
 <td colspan=\"2\" align=\"left\">{{school}}</td>
 </tr>
-</table><ul>{{rendered-subitems|safe}}</ul><br>" (assoc this :rendered-subitems
-                                                        (cv-creator.html-renderer/render-html-all (:subitems this))))))
+</table><hr><ul>{{rendered-subitems|safe}}</ul>
+<br>" (assoc this :rendered-subitems
+             (cv-creator.html-renderer/render-html-all (:subitems this))))))
 
 
 (extend-type ExperienceItem cv-creator.html-renderer/HtmlRenderer
