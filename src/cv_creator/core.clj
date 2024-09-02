@@ -6,6 +6,7 @@
    [cv-creator.section]))
 
 
+; TODO: remove all these variables
 (def a-phone-item (cv-creator.section/map->PhoneItem {:label "Phone"
                                                       :value "(023) 456-7891"}))
 (def a-subitem-education (cv-creator.section/map->EducationSubitem {:label "Thesis"
