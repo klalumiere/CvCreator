@@ -41,6 +41,7 @@
 
 
 (def an-autodidact-training-section (cv-creator.section/map->AutodidactTrainingSection {:label "Autodidact training"
+                                                                                        :relevantReadings [a-relevant-readings-item]
                                                                                         :optionalCourses [an-optional-courses-item]}))
 (def an-education-section (cv-creator.section/map->Section {:label "Education" :items [an-education-item]}))
 (def an-experience-section (cv-creator.section/map->Section {:label "Experience" :items [an-experience-item]}))

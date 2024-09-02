@@ -40,10 +40,17 @@
                                                            :phone a-phone-item}))
 (def an-item-with-subitems (cv-creator.section/map->Item {:value "An item with subitems"
                                                           :subitems [an-item an-item]}))
+(def an-optional-courses-item (cv-creator.section/map->AutodidactTrainingItem {:label "Optional courses"
+                                                                               :subitems [a-subitem-optional-courses]}))
+(def a-relevant-readings-item (cv-creator.section/map->AutodidactTrainingItem {:label "Relevant readings"
+                                                                               :subitems [a-subitem-relevant-readings]}))
 
 
 (def a-section (cv-creator.section/map->Section {:label a-section-label
                                                  :items [an-item-with-subitems]}))
+(def an-autodidact-training-section (cv-creator.section/map->AutodidactTrainingSection {:label "Autodidact training"
+                                                                                        :relevantReadings [a-relevant-readings-item]
+                                                                                        :optionalCourses [an-optional-courses-item]}))
 
 
 (test/deftest html-renderer
@@ -87,6 +94,28 @@
   (test/testing "render-html Section is empty when items are empty"
     (test/is (string/blank?
               (cv-creator.html-renderer/render-html (cv-creator.section/map->Section {:items []})))))
+
+  (test/testing "render-html AutodidactTrainingSection is not empty when items are not"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html an-autodidact-training-section)))))
+
+  (test/testing "render-html AutodidactTrainingSection is not empty when relevantReadings are not"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html (cv-creator.section/map->AutodidactTrainingSection {:label "Autodidact training"
+                                                                                                             :relevantReadings [a-relevant-readings-item]
+                                                                                                             :optionalCourses []}))))))
+
+  (test/testing "render-html AutodidactTrainingSection is not empty when optionalCourses are not"
+    (test/is (not (string/blank?
+                   (cv-creator.html-renderer/render-html (cv-creator.section/map->AutodidactTrainingSection {:label "Autodidact training"
+                                                                                                             :relevantReadings []
+                                                                                                             :optionalCourses [an-optional-courses-item]}))))))
+
+  (test/testing "render-html AutodidactTrainingSection is empty when items are empty"
+    (test/is (string/blank?
+              (cv-creator.html-renderer/render-html (cv-creator.section/map->AutodidactTrainingSection {:label "Autodidact training"
+                                                                                                        :relevantReadings []
+                                                                                                        :optionalCourses []})))))
 
   (test/testing "render-html Item is empty if item is"
     (test/is (string/blank?
