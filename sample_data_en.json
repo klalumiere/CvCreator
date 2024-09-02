@@ -9,27 +9,33 @@
         "addressTown": "Montréal (Qc), Canada, H2T 2F6",
         "webPage": {
             "label": "Web page",
-            "item": "https://alain.terieur.com"
+            "value": "https://alain.terieur.com"
         },
         "phone": {
             "label": "Phone",
-            "item": "(023) 456-7891"
+            "value": "(023) 456-7891"
         }
     },
     "skillSummary": {
         "label": "Skill Summary",
         "items": [
-            "One skill",
             {
-                "item": "A skill with",
+                "value": "One skill"
+            },
+            {
+                "value": "A skill with",
                 "subitems": [
-                    "A subskill"
+                    {
+                        "value": "A subskill"
+                    }
                 ]
             },
-            "Another skill"
+            {
+                "value": "Another skill"
+            }
         ]
     },
-    "educations": {
+    "education": {
         "label": "Education",
         "items": [
             {
@@ -39,28 +45,30 @@
                 "subitems": [
                     {
                         "label": "Thesis",
-                        "subitem": "How to have fun"
+                        "value": "How to have fun"
                     }
                 ]
             }
         ]
     },
     "experiences": {
-        "label": "Experience",
+        "label": "Experiences",
         "items": [
             {
                 "title": "Graduate student",
                 "business": "Alex Térieur, Montreal(Qc), Canada",
                 "date": "2008-",
                 "subitems": [
-                    "A PhD"
+                    {
+                        "value": "A PhD"
+                    }
                 ]
             }
         ]
     },
     "autodidactTraining": {
         "label": "Autodidact training",
-        "items": [
+        "relevantReadings": [
             {
                 "label": "Relevant readings",
                 "subitems": [
@@ -72,7 +80,9 @@
                         ]
                     }
                 ]
-            },
+            }
+        ],
+        "optionalCourses": [
             {
                 "label": "Optional courses",
                 "subitems": [
@@ -90,9 +100,11 @@
     "honors": {
         "label": "Honors and Awards",
         "items": [
-            "Most clean code ever, 2023",
             {
-                "item": "Golden hot dog, 2010",
+                "value": "Most clean code ever, 2023"
+            },
+            {
+                "value": "Golden hot dog, 2010",
                 "tags": [
                     "food"
                 ]
@@ -100,21 +112,27 @@
         ]
     },
     "socialImplications": {
-        "label": "Social Implication",
+        "label": "Social Implications",
         "items": [
-            "Dancing in the street"
+            {
+                "value": "Dancing in the street"
+            }
         ]
     },
     "publications": {
         "label": "Publications",
         "items": [
-            "Entangle this!"
+            {
+                "value": "Entangle this!"
+            }
         ]
     },
     "contributedTalks": {
         "label": "Contributed talks",
         "items": [
-            "Why Zelda rocks"
+            {
+                "value": "Why Zelda rocks"
+            }
         ]
     }
 }
