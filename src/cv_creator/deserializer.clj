@@ -2,7 +2,7 @@
   (:require [clojure.data.json :as json]
             [cv-creator.section]))
 
-(def deserializer-dispatcher-map {:autodidactTraining cv-creator.section/map->AutodidactTrainingSection
+(def deserializer-dispatcher-map {:autodidactTraining cv-creator.section/create-autodidact-training-section-from-map
                                   :skillSummary cv-creator.section/create-section-from-map
                                   :honors cv-creator.section/create-section-from-map
                                   :publications cv-creator.section/create-section-from-map

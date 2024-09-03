@@ -37,10 +37,23 @@
                                       (-> aMap
                                           (update-if-exist :subitems #(mapv cv-creator.section/map->Item %)))))
 
+(defn create-optional-courses-item-from-map [aMap] (cv-creator.section/map->AutodidactTrainingItem
+                                   (-> aMap
+                                       (update-if-exist :subitems #(mapv cv-creator.section/map->OptionalCoursesSubitem %)))))
+
+(defn create-relevant-readings-item-from-map [aMap] (cv-creator.section/map->AutodidactTrainingItem
+                                                    (-> aMap
+                                                        (update-if-exist :subitems #(mapv cv-creator.section/map->RelevantReadingsSubitem %)))))
+
 
 (defn create-section-from-map [aMap] (cv-creator.section/map->Section
                                            (-> aMap
                                                (update-if-exist :items #(mapv create-item-from-map %)))))
+
+(defn create-autodidact-training-section-from-map [aMap] (cv-creator.section/map->AutodidactTrainingSection
+                                           (-> aMap
+                                               (update-if-exist :relevantReadings #(create-relevant-readings-item-from-map %))
+                                               (update-if-exist :optionalCourses #(create-optional-courses-item-from-map %)))))
 
 (defn create-head-section-from-map [aMap] (cv-creator.section/map->HeadSection
                                            (-> aMap
