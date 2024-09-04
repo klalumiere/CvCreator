@@ -10,7 +10,7 @@
                                   :contributedTalks cv-creator.section/create-section-from-map
                                   :head cv-creator.section/create-head-section-from-map
                                   :experiences cv-creator.section/create-section-from-map
-                                  :education cv-creator.section/create-section-from-map})
+                                  :education cv-creator.section/create-education-section-from-map})
 
 (defn- dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
                                               (if (nil? constructor) value (constructor value))))

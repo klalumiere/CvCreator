@@ -3,6 +3,9 @@
 ## Backend
 
 - [ ] Implement deserialization
+    - [ ] Test everything
+    - [ ] Make a utility file?
+- [ ] Pass arguments to the program
 - [ ] Implement tag filtering
 
 ## Update data
