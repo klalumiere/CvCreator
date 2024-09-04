@@ -3,14 +3,14 @@
             [cv-creator.section]))
 
 (def deserializer-dispatcher-map {:autodidactTraining cv-creator.section/create-autodidact-training-section-from-map
-                                  :skillSummary cv-creator.section/create-section-from-map
+                                  :contributedTalks cv-creator.section/create-section-from-map
+                                  :education cv-creator.section/create-education-section-from-map
+                                  :experiences cv-creator.section/create-experience-section-from-map
+                                  :head cv-creator.section/create-head-section-from-map
                                   :honors cv-creator.section/create-section-from-map
                                   :publications cv-creator.section/create-section-from-map
-                                  :socialImplications cv-creator.section/create-section-from-map
-                                  :contributedTalks cv-creator.section/create-section-from-map
-                                  :head cv-creator.section/create-head-section-from-map
-                                  :experiences cv-creator.section/create-section-from-map
-                                  :education cv-creator.section/create-education-section-from-map})
+                                  :skillSummary cv-creator.section/create-section-from-map
+                                  :socialImplications cv-creator.section/create-section-from-map})
 
 (defn- dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
                                               (if (nil? constructor) value (constructor value))))
