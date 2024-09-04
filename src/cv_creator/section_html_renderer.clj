@@ -33,9 +33,9 @@
 <hr class=\"section\">
 {{rendered-relevantReadings|safe}}
 {{rendered-optionalCourses|safe}}
-<br>" (assoc
-       (assoc this :rendered-relevantReadings (cv-creator.html-renderer/render-html-all (:relevantReadings this)))
-       :rendered-optionalCourses (cv-creator.html-renderer/render-html-all (:optionalCourses this)))))))
+<br>" (assoc this
+             :rendered-relevantReadings (cv-creator.html-renderer/render-html-all [(:relevantReadings this)])
+             :rendered-optionalCourses (cv-creator.html-renderer/render-html-all [(:optionalCourses this)]))))))
 
 
 (extend-type EducationItem cv-creator.html-renderer/HtmlRenderer
