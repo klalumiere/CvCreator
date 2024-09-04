@@ -82,34 +82,30 @@
     },
     "autodidactTraining": {
         "label": "Autodidact training",
-        "relevantReadings": [
-            {
-                "label": "Relevant readings",
-                "subitems": [
-                    {
-                        "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
-                        "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
-                        "tags": [
-                            "computerScience"
-                        ]
-                    }
-                ]
-            }
-        ],
-        "optionalCourses": [
-            {
-                "label": "Optional courses",
-                "subitems": [
-                    {
-                        "place": "Restaurant",
-                        "title": "Cooking for dummies",
-                        "tags": [
-                            "food"
-                        ]
-                    }
-                ]
-            }
-        ]
+        "relevantReadings": {
+            "label": "Relevant readings",
+            "subitems": [
+                {
+                    "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
+                    "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
+                    "tags": [
+                        "computerScience"
+                    ]
+                }
+            ]
+        },
+        "optionalCourses": {
+            "label": "Optional courses",
+            "subitems": [
+                {
+                    "place": "Restaurant",
+                    "title": "Cooking for dummies",
+                    "tags": [
+                        "food"
+                    ]
+                }
+            ]
+        }
     },
     "honors": {
         "label": "Honors and Awards",
