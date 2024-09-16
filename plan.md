@@ -4,6 +4,7 @@
 
 - [ ] Implement deserialization
     - [ ] Test everything
+        - src/cv_creator/section_html_renderer.clj is tested
     - [ ] Make a utility file.clj with utility functions in it?
     - [ ] Review the pull request code
 - [ ] Vérifier l'intégrité (spec?) de mes données et afficher un message d'erreur genre "Offline" si jamais elles ne sont pas OK.
