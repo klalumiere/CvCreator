@@ -2,6 +2,8 @@
 
 (defn get-language-key [metadata] (keyword (:value (:language metadata))))
 
+(defn get-language-label [metadata] (:label (:language metadata)))
+
 (defn- get-ordered-section-keys [metadata] (map keyword (:order metadata)))
 
 (defn get-ordered-sections [metadata content] (mapv #(get content %) (get-ordered-section-keys metadata)))

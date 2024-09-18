@@ -10,6 +10,9 @@
     (test/is (= ["info" "summary"]
                 (utility/get-ordered-sections {:order ["head" "skillSummary"]} {:skillSummary "summary" :head "info"}))))
 
+  (test/testing "get-language-label returns language label"
+    (test/is (= "English" (utility/get-language-label {:language {:label "English"}}))))
+
   (test/testing "get-language-key returns language key"
     (test/is (= :en (utility/get-language-key {:language {:value "en"}}))))
 
