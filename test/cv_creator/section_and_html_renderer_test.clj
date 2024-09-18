@@ -1,4 +1,4 @@
-(ns cv-creator.html-renderer-test
+(ns cv-creator.section-and-html-renderer-test
   (:require
    [clojure.string :as string]
    [clojure.test :as test]
@@ -101,14 +101,17 @@
 
   (test/testing "render-html AutodidactTrainingSection is not empty when relevantReadings are not"
     (test/is (not (string/blank?
-                   (cv-creator.html-renderer/render-html (cv-creator.section/map->AutodidactTrainingSection {:label "Autodidact training"
-                                                                                                             :relevantReadings a-relevant-readings-item
-                                                                                                             }))))))
+                   (cv-creator.html-renderer/render-html (cv-creator.section/map->AutodidactTrainingSection
+                                                          {:label "Autodidact training"
+                                                           :relevantReadings a-relevant-readings-item
+                                                           }))))))
 
   (test/testing "render-html AutodidactTrainingSection is not empty when optionalCourses are not"
     (test/is (not (string/blank?
-                   (cv-creator.html-renderer/render-html (cv-creator.section/map->AutodidactTrainingSection {:label "Autodidact training"
-                                                                                                             :optionalCourses an-optional-courses-item}))))))
+                   (cv-creator.html-renderer/render-html (cv-creator.section/map->AutodidactTrainingSection
+                                                          {:label "Autodidact training"
+                                                           :optionalCourses an-optional-courses-item
+                                                           }))))))
 
   (test/testing "render-html AutodidactTrainingSection is empty when items are empty"
     (test/is (string/blank?
