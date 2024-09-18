@@ -21,4 +21,6 @@
                                              :value-fn dispatch-deserialization))
 
 (defn deserialize [filePath] (let [{metadata :metadata :as content} (deserialize-sections filePath)]
-                               { (utility/get-language-key metadata) (utility/get-ordered-sections metadata content)}))
+                               {
+                                (utility/get-language-key metadata) (utility/get-ordered-sections metadata content)
+                                }))
