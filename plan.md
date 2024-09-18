@@ -3,12 +3,12 @@
 ## Backend
 
 - [ ] Implement deserialization
+    - [x] Make a utility file.clj with utility functions in it?
     - [ ] Test everything
         - [x] test utility
-        - [ ] test dispatch-deserialization in deserializer.clj
+        - [x] test dispatch-deserialization in deserializer.clj
         - [ ] test create-* in section.clj
         - [ ] test create-cv in core.clj
-    - [ ] Make a utility file.clj with utility functions in it?
     - [ ] Review the pull request code
 - [ ] Vérifier l'intégrité (spec?) de mes données et afficher un message d'erreur genre "Offline" si jamais elles ne sont pas OK.
     Comme ça, mes tests end to end vont "pogner" si mes données sont mauvaises.
