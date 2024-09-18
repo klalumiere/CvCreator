@@ -1,6 +1,7 @@
 (ns cv-creator.deserializer
   (:require [clojure.data.json :as json]
-            [cv-creator.section]))
+            [cv-creator.section]
+            [cv-creator.utility :as utility]))
 
 (def deserializer-dispatcher-map {:autodidactTraining cv-creator.section/create-autodidact-training-section-from-map
                                   :contributedTalks cv-creator.section/create-section-from-map
@@ -12,18 +13,12 @@
                                   :skillSummary cv-creator.section/create-section-from-map
                                   :socialImplications cv-creator.section/create-section-from-map})
 
-(defn- dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
+(defn dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
                                               (if (nil? constructor) value (constructor value))))
 
 (defn- deserialize-sections [filePath] (json/read-str (slurp filePath)
                                              :key-fn keyword
                                              :value-fn dispatch-deserialization))
 
-(defn- get-language-key [metadata] (keyword (:value (:language metadata))))
-
-(defn- get-ordered-section-keys [metadata] (map keyword (:order metadata)))
-
-(defn- get-ordered-sections [metadata content] (mapv #(get content %) (get-ordered-section-keys metadata)))
-
 (defn deserialize [filePath] (let [{metadata :metadata :as content} (deserialize-sections filePath)]
-                               { (get-language-key metadata) (get-ordered-sections metadata content)}))
+                               { (utility/get-language-key metadata) (utility/get-ordered-sections metadata content)}))

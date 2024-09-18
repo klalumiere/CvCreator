@@ -1,4 +1,6 @@
-(ns cv-creator.section)
+(ns cv-creator.section
+  (:require
+   [cv-creator.utility :as utility]))
 
 (defrecord Section [label items tags])
 
@@ -29,49 +31,45 @@
 (defrecord RelevantReadingsSubitem [authors title])
 
 
-(defn- update-if-exist [aMap key f]
-  (if (nil? (key aMap)) aMap (update aMap key f)))
-
-
-(defn create-item-from-map [aMap] (cv-creator.section/map->Item
+(defn create-item-from-map [aMap] (map->Item
                                       (-> aMap
-                                          (update-if-exist :subitems #(mapv cv-creator.section/map->Item %)))))
+                                          (utility/update-if-exist :subitems #(mapv map->Item %)))))
 
-(defn create-education-item-from-map [aMap] (cv-creator.section/map->EducationItem
+(defn create-education-item-from-map [aMap] (map->EducationItem
                                    (-> aMap
-                                       (update-if-exist :subitems #(mapv cv-creator.section/map->EducationSubitem %)))))
+                                       (utility/update-if-exist :subitems #(mapv map->EducationSubitem %)))))
 
-(defn create-experience-item-from-map [aMap] (cv-creator.section/map->ExperienceItem
+(defn create-experience-item-from-map [aMap] (map->ExperienceItem
                                              (-> aMap
-                                                 (update-if-exist :subitems #(mapv cv-creator.section/map->Item %)))))
+                                                 (utility/update-if-exist :subitems #(mapv map->Item %)))))
 
-(defn create-optional-courses-item-from-map [aMap] (cv-creator.section/map->AutodidactTrainingItem
+(defn create-optional-courses-item-from-map [aMap] (map->AutodidactTrainingItem
                                    (-> aMap
-                                       (update-if-exist :subitems #(mapv cv-creator.section/map->OptionalCoursesSubitem %)))))
+                                       (utility/update-if-exist :subitems #(mapv map->OptionalCoursesSubitem %)))))
 
-(defn create-relevant-readings-item-from-map [aMap] (cv-creator.section/map->AutodidactTrainingItem
-                                                    (-> aMap
-                                                        (update-if-exist :subitems #(mapv cv-creator.section/map->RelevantReadingsSubitem %)))))
+(defn create-relevant-readings-item-from-map [aMap] (map->AutodidactTrainingItem
+                                                    (-> aMap 
+                                                        (utility/update-if-exist :subitems #(mapv map->RelevantReadingsSubitem %)))))
 
 
-(defn create-section-from-map [aMap] (cv-creator.section/map->Section
+(defn create-section-from-map [aMap] (map->Section
                                            (-> aMap
-                                               (update-if-exist :items #(mapv create-item-from-map %)))))
+                                               (utility/update-if-exist :items #(mapv create-item-from-map %)))))
 
-(defn create-autodidact-training-section-from-map [aMap] (cv-creator.section/map->AutodidactTrainingSection
+(defn create-autodidact-training-section-from-map [aMap] (map->AutodidactTrainingSection
                                            (-> aMap
-                                               (update-if-exist :relevantReadings #(create-relevant-readings-item-from-map %))
-                                               (update-if-exist :optionalCourses #(create-optional-courses-item-from-map %)))))
+                                               (utility/update-if-exist :relevantReadings #(create-relevant-readings-item-from-map %))
+                                               (utility/update-if-exist :optionalCourses #(create-optional-courses-item-from-map %)))))
 
-(defn create-education-section-from-map [aMap] (cv-creator.section/map->Section
+(defn create-education-section-from-map [aMap] (map->Section
                                       (-> aMap
-                                          (update-if-exist :items #(mapv create-education-item-from-map %)))))
+                                          (utility/update-if-exist :items #(mapv create-education-item-from-map %)))))
 
-(defn create-experience-section-from-map [aMap] (cv-creator.section/map->Section
+(defn create-experience-section-from-map [aMap] (map->Section
                                                 (-> aMap
-                                                    (update-if-exist :items #(mapv create-experience-item-from-map %)))))
+                                                    (utility/update-if-exist :items #(mapv create-experience-item-from-map %)))))
 
-(defn create-head-section-from-map [aMap] (cv-creator.section/map->HeadSection
+(defn create-head-section-from-map [aMap] (map->HeadSection
                                            (-> aMap
-                                               (update-if-exist :phone #(cv-creator.section/map->PhoneItem %))
-                                               (update-if-exist :webPage #(cv-creator.section/map->WebPageItem %)))))
+                                               (utility/update-if-exist :phone #(map->PhoneItem %))
+                                               (utility/update-if-exist :webPage #(map->WebPageItem %)))))
