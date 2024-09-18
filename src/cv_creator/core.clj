@@ -5,7 +5,7 @@
    [cv-creator.section-html-renderer]
    [cv-creator.section]))
 
-(defn create-cv [languageKey tags data] (cv-creator.html-renderer/create-html (languageKey data)))
+(defn create-cv [languageKey tags data] (cv-creator.html-renderer/create-html (:sections (languageKey data))))
 
 ; TODO: don't hardcode data file path
 ; TODO: don't hardcode language

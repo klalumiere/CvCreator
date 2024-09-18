@@ -9,9 +9,10 @@
   (test/testing "create-cv is not empty"
     (test/is (not (= "<div class=\"cvStyle\"></div>"
                    (core/create-cv :english [] {
-                                                :english [
-                                                          (section/create-section-from-map
-                                                           {:label "aLabel" :items [{:value "aValue"}]}
-                                                           )
-                                                          ]
+                                                :english
+                                                {
+                                                 :label "English"
+                                                 :sections [(section/create-section-from-map
+                                                             {:label "aLabel" :items [{:value "aValue"}]})]
+                                                }
                                                 } ))))))
