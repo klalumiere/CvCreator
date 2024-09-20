@@ -20,4 +20,4 @@ jobs:
         - name: Packaging Test
           run: lein ring uberjar
         - name: End to End Tests
-          run: lein run -m cv-creator.core/-main
+          run: lein run -m cv-creator.core/-main | grep "Alain Térieur"

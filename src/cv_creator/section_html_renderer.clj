@@ -33,9 +33,9 @@
 <hr class=\"section\">
 {{rendered-relevantReadings|safe}}
 {{rendered-optionalCourses|safe}}
-<br>" (assoc
-       (assoc this :rendered-relevantReadings (cv-creator.html-renderer/render-html-all (:relevantReadings this)))
-       :rendered-optionalCourses (cv-creator.html-renderer/render-html-all (:optionalCourses this)))))))
+<br>" (assoc this
+             :rendered-relevantReadings (cv-creator.html-renderer/render-html-all [(:relevantReadings this)])
+             :rendered-optionalCourses (cv-creator.html-renderer/render-html-all [(:optionalCourses this)]))))))
 
 
 (extend-type EducationItem cv-creator.html-renderer/HtmlRenderer
@@ -84,8 +84,8 @@
 </tr>
 {{rendered-webpage|safe}}
 </table>" (assoc this
-                 :rendered-phone (cv-creator.html-renderer/render-html (:phone this))
-                 :rendered-webpage (cv-creator.html-renderer/render-html (:webPage this))))))
+                 :rendered-phone (cv-creator.html-renderer/render-html-all [(:phone this)])
+                 :rendered-webpage (cv-creator.html-renderer/render-html-all [(:webPage this)])))))
 
 
 (extend-type Item cv-creator.html-renderer/HtmlRenderer
