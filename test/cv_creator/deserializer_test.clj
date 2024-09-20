@@ -9,4 +9,4 @@
 
   (test/testing "dispatch-deserialization dipatches to correct 'constructor'"
     (test/is (= (section/create-section-from-map {:label "aLabel" :items [{:value "aValue"}]})
-                (deserializer/dispatch-deserialization :contributedTalks {:label "aLabel" :items [ {:value "aValue"} ]})))))
+                (deserializer/dispatch-deserialization :contributedTalks {:label "aLabel" :items [{:value "aValue"}]})))))

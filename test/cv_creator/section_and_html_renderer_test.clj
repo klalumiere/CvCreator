@@ -140,6 +140,10 @@
     (test/is (string/blank?
               (renderer/render-html-all []))))
 
+  (test/testing "render-html-all handles nil collection"
+    (test/is (string/blank?
+              (renderer/render-html-all nil))))
+
   (test/testing "render-html Section is not empty when items are not"
     (test/is (not (string/blank?
                    (renderer/render-html a-section)))))

@@ -14,17 +14,13 @@
                                   :socialImplications cv-creator.section/create-section-from-map})
 
 (defn dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
-                                              (if (nil? constructor) value (constructor value))))
+                                             (if (nil? constructor) value (constructor value))))
 
 (defn- deserialize-sections [filePath] (json/read-str (slurp filePath)
-                                             :key-fn keyword
-                                             :value-fn dispatch-deserialization))
+                                                      :key-fn keyword
+                                                      :value-fn dispatch-deserialization))
 
 (defn deserialize [filePath] (let [{metadata :metadata :as content} (deserialize-sections filePath)]
-                               {
-                                (utility/get-language-key metadata)
-                                {
-                                 :label (utility/get-language-label metadata)
-                                 :sections (utility/get-ordered-sections metadata content)
-                                }
-                                }))
+                               {(utility/get-language-key metadata)
+                                {:label (utility/get-language-label metadata)
+                                 :sections (utility/get-ordered-sections metadata content)}}))

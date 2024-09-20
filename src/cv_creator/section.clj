@@ -32,42 +32,42 @@
 
 
 (defn create-item-from-map [aMap] (map->Item
-                                      (-> aMap
-                                          (utility/update-if-exist :subitems #(mapv map->Item %)))))
+                                   (-> aMap
+                                       (utility/update-if-exist :subitems #(mapv map->Item %)))))
 
 (defn create-education-item-from-map [aMap] (map->EducationItem
-                                   (-> aMap
-                                       (utility/update-if-exist :subitems #(mapv map->EducationSubitem %)))))
+                                             (-> aMap
+                                                 (utility/update-if-exist :subitems #(mapv map->EducationSubitem %)))))
 
 (defn create-experience-item-from-map [aMap] (map->ExperienceItem
-                                             (-> aMap
-                                                 (utility/update-if-exist :subitems #(mapv map->Item %)))))
+                                              (-> aMap
+                                                  (utility/update-if-exist :subitems #(mapv map->Item %)))))
 
 (defn create-optional-courses-item-from-map [aMap] (map->AutodidactTrainingItem
-                                   (-> aMap
-                                       (utility/update-if-exist :subitems #(mapv map->OptionalCoursesSubitem %)))))
+                                                    (-> aMap
+                                                        (utility/update-if-exist :subitems #(mapv map->OptionalCoursesSubitem %)))))
 
 (defn create-relevant-readings-item-from-map [aMap] (map->AutodidactTrainingItem
-                                                    (-> aMap 
-                                                        (utility/update-if-exist :subitems #(mapv map->RelevantReadingsSubitem %)))))
+                                                     (-> aMap
+                                                         (utility/update-if-exist :subitems #(mapv map->RelevantReadingsSubitem %)))))
 
 
 (defn create-section-from-map [aMap] (map->Section
-                                           (-> aMap
-                                               (utility/update-if-exist :items #(mapv create-item-from-map %)))))
+                                      (-> aMap
+                                          (utility/update-if-exist :items #(mapv create-item-from-map %)))))
 
 (defn create-autodidact-training-section-from-map [aMap] (map->AutodidactTrainingSection
-                                           (-> aMap
-                                               (utility/update-if-exist :relevantReadings #(create-relevant-readings-item-from-map %))
-                                               (utility/update-if-exist :optionalCourses #(create-optional-courses-item-from-map %)))))
+                                                          (-> aMap
+                                                              (utility/update-if-exist :relevantReadings #(create-relevant-readings-item-from-map %))
+                                                              (utility/update-if-exist :optionalCourses #(create-optional-courses-item-from-map %)))))
 
 (defn create-education-section-from-map [aMap] (map->Section
-                                      (-> aMap
-                                          (utility/update-if-exist :items #(mapv create-education-item-from-map %)))))
+                                                (-> aMap
+                                                    (utility/update-if-exist :items #(mapv create-education-item-from-map %)))))
 
 (defn create-experience-section-from-map [aMap] (map->Section
-                                                (-> aMap
-                                                    (utility/update-if-exist :items #(mapv create-experience-item-from-map %)))))
+                                                 (-> aMap
+                                                     (utility/update-if-exist :items #(mapv create-experience-item-from-map %)))))
 
 (defn create-head-section-from-map [aMap] (map->HeadSection
                                            (-> aMap

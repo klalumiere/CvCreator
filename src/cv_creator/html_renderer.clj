@@ -3,7 +3,7 @@
    [clojure.string :as string]
 
    [selmer.parser :as selmer]
-   
+
    [cv-creator.utility :as utility]))
 
 
