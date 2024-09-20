@@ -4,10 +4,10 @@
 
 - [ ] Implement deserialization
     - [x] Make a utility file.clj with utility functions in it?
-    - [ ] Test everything
+    - [x] Test everything
         - [x] test utility
         - [x] test dispatch-deserialization in deserializer.clj
-        - [ ] test create-* in section.clj
+        - [x] test create-* in section.clj
         - [x] test create-cv in core.clj
     - [ ] Review the pull request code
 - [ ] Vérifier l'intégrité (spec?) de mes données et afficher un message d'erreur genre "Offline" si jamais elles ne sont pas OK.
