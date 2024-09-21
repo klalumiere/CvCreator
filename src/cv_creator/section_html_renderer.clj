@@ -50,7 +50,7 @@
 </tr>
 </table><hr><ul>{{rendered-subitems|safe}}</ul>
 <br>" (assoc this :rendered-subitems
-             (cv-creator.html-renderer/render-html-all (:subitems this))))))
+             (cv-creator.html-renderer/render-html-all (:educationSubitems this))))))
 
 
 (extend-type ExperienceItem cv-creator.html-renderer/HtmlRenderer

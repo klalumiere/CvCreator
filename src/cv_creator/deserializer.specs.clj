@@ -1,47 +1,50 @@
 (ns cv-creator.deserializer.specs
   (:require
    [clojure.spec.alpha :as spec]
-   [cv-creator.deserializer]))
+   [cv-creator.deserializer :as deserializer]))
 
-(spec/def ::cv-creator.deserializer/addressDoor string?)
-(spec/def ::cv-creator.deserializer/addressTown string?)
-(spec/def ::cv-creator.deserializer/eMail string?)
-(spec/def ::cv-creator.deserializer/label string?)
-(spec/def ::cv-creator.deserializer/name string?)
-(spec/def ::cv-creator.deserializer/tags (spec/coll-of string? :kind vector?))
-(spec/def ::cv-creator.deserializer/value string?)
+(spec/def ::deserializer/addressDoor string?)
+(spec/def ::deserializer/addressTown string?)
+(spec/def ::deserializer/date string?)
+(spec/def ::deserializer/degree string?)
+(spec/def ::deserializer/eMail string?)
+(spec/def ::deserializer/label string?)
+(spec/def ::deserializer/name string?)
+(spec/def ::deserializer/school string?)
+(spec/def ::deserializer/tags (spec/coll-of string? :kind vector?))
+(spec/def ::deserializer/value string?)
 
-(spec/def ::cv-creator.deserializer/phone (spec/keys
-                                           :req-un [::cv-creator.deserializer/label ::cv-creator.deserializer/value]))
-(spec/def ::cv-creator.deserializer/subitem (spec/keys
-                                             :req-un [::cv-creator.deserializer/value]
-                                             :opt-un [::cv-creator.deserializer/tags]))
-(spec/def ::cv-creator.deserializer/subitems (spec/coll-of ::cv-creator.deserializer/subitem :kind vector?))
-(spec/def ::cv-creator.deserializer/webPage (spec/keys
-                                             :req-un [::cv-creator.deserializer/label ::cv-creator.deserializer/value]))
-
-
-(spec/def ::cv-creator.deserializer/item (spec/keys
-                                          :req-un [::cv-creator.deserializer/value]
-                                          :opt-un [::cv-creator.deserializer/tags ::cv-creator.deserializer/subitems]))
-(spec/def ::cv-creator.deserializer/items (spec/coll-of ::cv-creator.deserializer/item :kind vector?))
-(spec/def ::cv-creator.deserializer/language (spec/keys
-                                              :req-un [::cv-creator.deserializer/label ::cv-creator.deserializer/value]))
-(spec/def ::cv-creator.deserializer/order (spec/coll-of string? :kind vector?))
+(spec/def ::deserializer/phone (spec/keys
+                                           :req-un [::deserializer/label ::deserializer/value]))
+(spec/def ::deserializer/subitem (spec/keys
+                                             :req-un [::deserializer/value]
+                                             :opt-un [::deserializer/tags]))
+(spec/def ::deserializer/subitems (spec/coll-of ::deserializer/subitem :kind vector?))
+(spec/def ::deserializer/webPage (spec/keys
+                                             :req-un [::deserializer/label ::deserializer/value]))
 
 
-(spec/def ::cv-creator.deserializer/head (spec/keys
-                                          :req-un [::cv-creator.deserializer/name
-                                                   ::cv-creator.deserializer/eMail
-                                                   ::cv-creator.deserializer/addressTown]
-                                          :opt-un [::cv-creator.deserializer/addressDoor
-                                                   ::cv-creator.deserializer/phone
-                                                   ::cv-creator.deserializer/webPage]))
-(spec/def ::cv-creator.deserializer/metadata (spec/keys
-                                              :req-un [::cv-creator.deserializer/language ::cv-creator.deserializer/order]))
-(spec/def ::cv-creator.deserializer/section (spec/keys
-                                             :req-un [::cv-creator.deserializer/label ::cv-creator.deserializer/items]
-                                             :opt-un [::cv-creator.deserializer/tags]))
+(spec/def ::deserializer/item (spec/keys
+                                          :req-un [::deserializer/value]
+                                          :opt-un [::deserializer/tags ::deserializer/subitems]))
+(spec/def ::deserializer/items (spec/coll-of ::deserializer/item :kind vector?))
+(spec/def ::deserializer/language (spec/keys
+                                              :req-un [::deserializer/label ::deserializer/value]))
+(spec/def ::deserializer/order (spec/coll-of string? :kind vector?))
+
+
+(spec/def ::deserializer/head (spec/keys
+                                          :req-un [::deserializer/name
+                                                   ::deserializer/eMail
+                                                   ::deserializer/addressTown]
+                                          :opt-un [::deserializer/addressDoor
+                                                   ::deserializer/phone
+                                                   ::deserializer/webPage]))
+(spec/def ::deserializer/metadata (spec/keys
+                                              :req-un [::deserializer/language ::deserializer/order]))
+(spec/def ::deserializer/section (spec/keys
+                                             :req-un [::deserializer/label ::deserializer/items]
+                                             :opt-un [::deserializer/tags]))
 
 
 ;; {

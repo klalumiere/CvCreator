@@ -56,7 +56,7 @@
                 "degree": "PhD",
                 "school": "Université",
                 "date": "2010",
-                "subitems": [
+                "educationSubitems": [
                     {
                         "label": "Thesis",
                         "value": "How to have fun"

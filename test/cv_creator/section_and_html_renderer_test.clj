@@ -26,7 +26,7 @@
 (def an-education-item (section/map->EducationItem {:degree "PhD"
                                                     :school "UdeS"
                                                     :date "2015"
-                                                    :subitems [a-subitem-education]}))
+                                                    :educationSubitems [a-subitem-education]}))
 (def an-experience-item (section/map->ExperienceItem {:title "Master"
                                                       :business "Jedi School"
                                                       :date "2017"
@@ -81,7 +81,7 @@
                   :items [{:degree "PhD"
                            :school "UdeS"
                            :date "2015"
-                           :subitems [{:label "Thesis"
+                           :educationSubitems [{:label "Thesis"
                                        :value "How to have fun"}]}]}))))
 
   (test/testing "create-experience-section-from-map creates a section from a map"

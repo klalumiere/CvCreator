@@ -20,7 +20,7 @@
 
 (defrecord AutodidactTrainingItem [label subitems])
 
-(defrecord EducationItem [degree school date subitems])
+(defrecord EducationItem [degree school date educationSubitems])
 (defrecord ExperienceItem [title business date subitems])
 (defrecord PhoneItem [label value])
 (defrecord WebPageItem [label value])
@@ -37,7 +37,7 @@
 
 (defn create-education-item-from-map [aMap] (map->EducationItem
                                              (-> aMap
-                                                 (utility/update-if-exist :subitems #(mapv map->EducationSubitem %)))))
+                                                 (utility/update-if-exist :educationSubitems #(mapv map->EducationSubitem %)))))
 
 (defn create-experience-item-from-map [aMap] (map->ExperienceItem
                                               (-> aMap
