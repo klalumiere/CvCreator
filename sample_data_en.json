@@ -56,7 +56,7 @@
                 "degree": "PhD",
                 "school": "Université",
                 "date": "2010",
-                "educationSubitems": [
+                "subitems": [
                     {
                         "label": "Thesis",
                         "value": "How to have fun"
@@ -67,7 +67,7 @@
     },
     "experiences": {
         "label": "Experiences",
-        "experienceItems": [
+        "items": [
             {
                 "title": "Graduate student",
                 "business": "Alex Térieur, Montreal(Qc), Canada",

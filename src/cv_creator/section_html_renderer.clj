@@ -11,7 +11,6 @@
             AutodidactTrainingSection
             EducationItem
             ExperienceItem
-            ExperienceSection
             HeadSection
             Item
             PhoneItem
@@ -51,7 +50,7 @@
 </tr>
 </table><hr><ul>{{rendered-subitems|safe}}</ul>
 <br>" (assoc this :rendered-subitems
-             (cv-creator.html-renderer/render-html-all (:educationSubitems this))))))
+             (cv-creator.html-renderer/render-html-all (:subitems this))))))
 
 
 (extend-type ExperienceItem cv-creator.html-renderer/HtmlRenderer
@@ -101,14 +100,6 @@
                                    ""
                                    (selmer/render "<td style=\"text-align: right\">{{label}}: {{value}}</td>" this))))
 
-
-(extend-type ExperienceSection cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (if (empty? (:experienceItems this))
-                                   ""
-                                   (selmer/render "<br><strong style=\"font-size: 125%;\">{{label}}</strong>
-<hr class=\"section\">
-<ul>{{rendered-items|safe}}</ul>
-<br>" (assoc this :rendered-items (cv-creator.html-renderer/render-html-all (:experienceItems this)))))))
 
 (extend-type Section cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (if (empty? (:items this))

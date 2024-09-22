@@ -26,7 +26,7 @@
 (def an-education-item (section/map->EducationItem {:degree "PhD"
                                                     :school "UdeS"
                                                     :date "2015"
-                                                    :educationSubitems [a-subitem-education]}))
+                                                    :subitems [a-subitem-education]}))
 (def an-experience-item (section/map->ExperienceItem {:title "Master"
                                                       :business "Jedi School"
                                                       :date "2017"
@@ -52,8 +52,8 @@
                                                                              :optionalCourses an-optional-courses-item}))
 (def an-education-section (section/map->Section {:label "Education"
                                                  :items [an-education-item]}))
-(def an-experience-section (section/map->ExperienceSection {:label "Experience"
-                                                  :experienceItems [an-experience-item]}))
+(def an-experience-section (section/map->Section {:label "Experience"
+                                                  :items [an-experience-item]}))
 
 
 (test/deftest section
@@ -81,14 +81,14 @@
                   :items [{:degree "PhD"
                            :school "UdeS"
                            :date "2015"
-                           :educationSubitems [{:label "Thesis"
+                           :subitems [{:label "Thesis"
                                        :value "How to have fun"}]}]}))))
 
   (test/testing "create-experience-section-from-map creates a section from a map"
     (test/is (= an-experience-section
                 (section/create-experience-section-from-map
                  {:label "Experience"
-                  :experienceItems [{:title "Master"
+                  :items [{:title "Master"
                            :business "Jedi School"
                            :date "2017"
                            :subitems [{:value "An item"}]}]}))))

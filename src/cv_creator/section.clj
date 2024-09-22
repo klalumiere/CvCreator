@@ -4,11 +4,6 @@
 
 (defrecord Section [label items tags])
 
-
-(defrecord AutodidactTrainingSection [label
-                                      relevantReadings
-                                      optionalCourses])
-(defrecord ExperienceSection [label experienceItems tags])
 (defrecord HeadSection [name
                         eMail
                         addressDoor
@@ -16,12 +11,16 @@
                         webPage
                         phone])
 
+(defrecord AutodidactTrainingSection [label
+                                      relevantReadings
+                                      optionalCourses])
+
 
 (defrecord Item [value subitems tags])
 
 (defrecord AutodidactTrainingItem [label subitems])
 
-(defrecord EducationItem [degree school date educationSubitems])
+(defrecord EducationItem [degree school date subitems])
 (defrecord ExperienceItem [title business date subitems])
 (defrecord PhoneItem [label value])
 (defrecord WebPageItem [label value])
@@ -38,7 +37,7 @@
 
 (defn create-education-item-from-map [aMap] (map->EducationItem
                                              (-> aMap
-                                                 (utility/update-if-exist :educationSubitems #(mapv map->EducationSubitem %)))))
+                                                 (utility/update-if-exist :subitems #(mapv map->EducationSubitem %)))))
 
 (defn create-experience-item-from-map [aMap] (map->ExperienceItem
                                               (-> aMap
@@ -66,9 +65,9 @@
                                                 (-> aMap
                                                     (utility/update-if-exist :items #(mapv create-education-item-from-map %)))))
 
-(defn create-experience-section-from-map [aMap] (map->ExperienceSection
+(defn create-experience-section-from-map [aMap] (map->Section
                                                  (-> aMap
-                                                     (utility/update-if-exist :experienceItems #(mapv create-experience-item-from-map %)))))
+                                                     (utility/update-if-exist :items #(mapv create-experience-item-from-map %)))))
 
 (defn create-head-section-from-map [aMap] (map->HeadSection
                                            (-> aMap
