@@ -22,60 +22,54 @@
 (spec/def ::deserializer/educationSubitem (spec/keys
                                            :req-un [::deserializer/label ::deserializer/value]
                                            :opt-un [::deserializer/tags]))
-(spec/def ::deserializer/educationSubitems (spec/coll-of ::deserializer/educationSubitem :kind vector?))
+(spec/def :cv-creator.deserializer.education/subitems (spec/coll-of ::deserializer/educationSubitem :kind vector?))
 (spec/def ::deserializer/language (spec/keys
                                    :req-un [::deserializer/label ::deserializer/value]))
 (spec/def ::deserializer/optionalCoursesSubitem (spec/keys
                                                  :req-un [::deserializer/place ::deserializer/title]
                                                  :opt-un [::deserializer/tags]))
-(spec/def ::deserializer/optionalCoursesSubitems (spec/coll-of ::deserializer/optionalCoursesSubitem :kind vector?))
+(spec/def :cv-creator.deserializer.optional-courses/subitems (spec/coll-of ::deserializer/optionalCoursesSubitem :kind vector?))
 (spec/def ::deserializer/order (spec/coll-of string? :kind vector?))
 (spec/def ::deserializer/phone (spec/keys
                                 :req-un [::deserializer/label ::deserializer/value]))
 (spec/def ::deserializer/relevantReadingsSubitem (spec/keys
                                                   :req-un [::deserializer/authors ::deserializer/title]
                                                   :opt-un [::deserializer/tags]))
-(spec/def ::deserializer/relevantReadingsSubitems (spec/coll-of ::deserializer/relevantReadingsSubitem :kind vector?))
+(spec/def :cv-creator.deserializer.relevant-readings/subitems (spec/coll-of ::deserializer/relevantReadingsSubitem :kind vector?))
 (spec/def ::deserializer/simpleSubitem (spec/keys
                                         :req-un [::deserializer/value]
                                         :opt-un [::deserializer/tags]))
-(spec/def ::deserializer/simpleSubitems (spec/coll-of ::deserializer/simpleSubitem :kind vector?))
 (spec/def ::deserializer/webPage (spec/keys
                                   :req-un [::deserializer/label ::deserializer/value]))
 
 
-(spec/def ::deserializer/subitems (spec/or
-                                   :educationSubitems ::deserializer/educationSubitems
-                                   :optionalCoursesSubitems ::deserializer/optionalCoursesSubitems
-                                   :relevantReadingsSubitems ::deserializer/relevantReadingsSubitems
-                                   :simpleSubitems ::deserializer/simpleSubitems))
+(spec/def ::deserializer/subitems (spec/coll-of ::deserializer/simpleSubitem :kind vector?))
 
 
-(spec/def ::deserializer/autodidactTrainingItem (spec/keys
-                                                 :req-un [::deserializer/label ::deserializer/subitems]
-                                                 :opt-un [::deserializer/tags]))
 (spec/def ::deserializer/educationItem (spec/keys
                                         :req-un [::deserializer/degree ::deserializer/school ::deserializer/date
-                                                 ::deserializer/subitems]
+                                                 :cv-creator.deserializer.education/subitems]
                                         :opt-un [::deserializer/tags]))
-(spec/def ::deserializer/educationItems (spec/coll-of ::deserializer/educationItem :kind vector?))
+(spec/def :cv-creator.deserializer.education/items (spec/coll-of ::deserializer/educationItem :kind vector?))
 (spec/def ::deserializer/experienceItem (spec/keys
                                          :req-un [::deserializer/title ::deserializer/business ::deserializer/date
                                                   ::deserializer/subitems]
                                          :opt-un [::deserializer/tags]))
-(spec/def ::deserializer/experienceItems (spec/coll-of ::deserializer/experienceItem :kind vector?))
+(spec/def :cv-creator.deserializer.experience/items (spec/coll-of ::deserializer/experienceItem :kind vector?))
 (spec/def ::deserializer/simpleItem (spec/keys
                                      :req-un [::deserializer/value]
                                      :opt-un [::deserializer/tags ::deserializer/subitems]))
-(spec/def ::deserializer/simpleItems (spec/coll-of ::deserializer/simpleItem :kind vector?))
+(spec/def ::deserializer/optionalCourses (spec/keys
+                                          :req-un [::deserializer/label
+                                                   :cv-creator.deserializer.optional-courses/subitems]
+                                          :opt-un [::deserializer/tags]))
+(spec/def ::deserializer/relevantReadings (spec/keys
+                                                 :req-un [::deserializer/label
+                                                          :cv-creator.deserializer.relevant-readings/subitems]
+                                                 :opt-un [::deserializer/tags]))
 
 
-(spec/def ::deserializer/items (spec/or
-                                :educationItems ::deserializer/educationItems
-                                :experienceItems ::deserializer/experienceItems
-                                :simpleItems ::deserializer/simpleItems))
-(spec/def ::deserializer/relevantReadings ::deserializer/autodidactTrainingItem)
-(spec/def ::deserializer/optionalCourses ::deserializer/autodidactTrainingItem)
+(spec/def ::deserializer/items (spec/coll-of ::deserializer/simpleItem :kind vector?))
 
 
 (spec/def ::deserializer/section (spec/keys
@@ -88,8 +82,12 @@
                                              :opt-un [::deserializer/relevantReadings
                                                       ::deserializer/optionalCourses ::deserializer/tags]))
 (spec/def ::deserializer/contributedTalks ::deserializer/section)
-(spec/def ::deserializer/education ::deserializer/section)
-(spec/def ::deserializer/experiences ::deserializer/section)
+(spec/def ::deserializer/education (spec/keys
+                                    :req-un [::deserializer/label :cv-creator.deserializer.education/items]
+                                    :opt-un [::deserializer/tags]))
+(spec/def ::deserializer/experiences (spec/keys
+                                      :req-un [::deserializer/label :cv-creator.deserializer.experience/items]
+                                      :opt-un [::deserializer/tags]))
 (spec/def ::deserializer/head (spec/keys
                                :req-un [::deserializer/name
                                         ::deserializer/eMail
