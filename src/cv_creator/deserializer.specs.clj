@@ -5,15 +5,21 @@
 
 (spec/def ::deserializer/addressDoor string?)
 (spec/def ::deserializer/addressTown string?)
+(spec/def ::deserializer/business string?)
 (spec/def ::deserializer/date string?)
 (spec/def ::deserializer/degree string?)
 (spec/def ::deserializer/eMail string?)
 (spec/def ::deserializer/label string?)
 (spec/def ::deserializer/name string?)
 (spec/def ::deserializer/school string?)
+(spec/def ::deserializer/title string?)
 (spec/def ::deserializer/tags (spec/coll-of string? :kind vector?))
 (spec/def ::deserializer/value string?)
 
+(spec/def ::deserializer/educationSubitem (spec/keys
+                                           :req-un [::deserializer/label ::deserializer/value]
+                                           :opt-un [::deserializer/tags]))
+(spec/def ::deserializer/educationSubitems (spec/coll-of ::deserializer/educationSubitem :kind vector?))
 (spec/def ::deserializer/phone (spec/keys
                                            :req-un [::deserializer/label ::deserializer/value]))
 (spec/def ::deserializer/subitem (spec/keys
@@ -24,6 +30,16 @@
                                              :req-un [::deserializer/label ::deserializer/value]))
 
 
+(spec/def ::deserializer/educationItem (spec/keys
+                                        :req-un [::deserializer/degree ::deserializer/school ::deserializer/date
+                                                 ::deserializer/educationSubitems]
+                                        :opt-un [::deserializer/tags]))
+(spec/def ::deserializer/educationItems (spec/coll-of ::deserializer/educationItem :kind vector?))
+(spec/def ::deserializer/experienceItem (spec/keys
+                                         :req-un [::deserializer/title ::deserializer/business ::deserializer/date
+                                                  ::deserializer/subitems]
+                                         :opt-un [::deserializer/tags]))
+(spec/def ::deserializer/experienceItems (spec/coll-of ::deserializer/experienceItem :kind vector?))
 (spec/def ::deserializer/item (spec/keys
                                           :req-un [::deserializer/value]
                                           :opt-un [::deserializer/tags ::deserializer/subitems]))
@@ -33,6 +49,14 @@
 (spec/def ::deserializer/order (spec/coll-of string? :kind vector?))
 
 
+(spec/def ::deserializer/section (spec/keys
+                                  :req-un [::deserializer/label ::deserializer/items]
+                                  :opt-un [::deserializer/tags]))
+
+
+(spec/def ::deserializer/education (spec/keys
+                                           :req-un [::deserializer/label ::deserializer/educationItems]
+                                           :opt-un [::deserializer/tags]))
 (spec/def ::deserializer/head (spec/keys
                                           :req-un [::deserializer/name
                                                    ::deserializer/eMail
@@ -42,43 +66,18 @@
                                                    ::deserializer/webPage]))
 (spec/def ::deserializer/metadata (spec/keys
                                               :req-un [::deserializer/language ::deserializer/order]))
-(spec/def ::deserializer/section (spec/keys
-                                             :req-un [::deserializer/label ::deserializer/items]
-                                             :opt-un [::deserializer/tags]))
+
+
+
+(spec/def ::deserializer/experiences (spec/keys
+                                           :req-un [::deserializer/label ::deserializer/educationItems]
+                                           :opt-un [::deserializer/tags]))
+
 
 
 ;; {
-;;     "education": {
-;;         "label": "Education",
-;;         "items": [
-;;             {
-;;                 "degree": "PhD",
-;;                 "school": "Université",
-;;                 "date": "2010",
-;;                 "subitems": [
-;;                     {
-;;                         "label": "Thesis",
-;;                         "value": "How to have fun"
-;;                     }
-;;                 ]
-;;             }
-;;         ]
-;;     },
-;;     "experiences": {
-;;         "label": "Experiences",
-;;         "items": [
-;;             {
-;;                 "title": "Graduate student",
-;;                 "business": "Alex Térieur, Montreal(Qc), Canada",
-;;                 "date": "2008-",
-;;                 "subitems": [
-;;                     {
-;;                         "value": "A PhD"
-;;                     }
-;;                 ]
-;;             }
-;;         ]
-;;     },
+
+
 ;;     "autodidactTraining": {
 ;;         "label": "Autodidact training",
 ;;         "relevantReadings": {

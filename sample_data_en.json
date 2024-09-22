@@ -67,7 +67,7 @@
     },
     "experiences": {
         "label": "Experiences",
-        "items": [
+        "experienceItems": [
             {
                 "title": "Graduate student",
                 "business": "Alex Térieur, Montreal(Qc), Canada",

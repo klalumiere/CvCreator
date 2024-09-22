@@ -4,16 +4,17 @@
 
 (defrecord Section [label items tags])
 
+
+(defrecord AutodidactTrainingSection [label
+                                      relevantReadings
+                                      optionalCourses])
+(defrecord ExperienceSection [label experienceItems tags])
 (defrecord HeadSection [name
                         eMail
                         addressDoor
                         addressTown
                         webPage
                         phone])
-
-(defrecord AutodidactTrainingSection [label
-                                      relevantReadings
-                                      optionalCourses])
 
 
 (defrecord Item [value subitems tags])
@@ -65,9 +66,9 @@
                                                 (-> aMap
                                                     (utility/update-if-exist :items #(mapv create-education-item-from-map %)))))
 
-(defn create-experience-section-from-map [aMap] (map->Section
+(defn create-experience-section-from-map [aMap] (map->ExperienceSection
                                                  (-> aMap
-                                                     (utility/update-if-exist :items #(mapv create-experience-item-from-map %)))))
+                                                     (utility/update-if-exist :experienceItems #(mapv create-experience-item-from-map %)))))
 
 (defn create-head-section-from-map [aMap] (map->HeadSection
                                            (-> aMap

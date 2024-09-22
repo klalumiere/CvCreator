@@ -52,8 +52,8 @@
                                                                              :optionalCourses an-optional-courses-item}))
 (def an-education-section (section/map->Section {:label "Education"
                                                  :items [an-education-item]}))
-(def an-experience-section (section/map->Section {:label "Experience"
-                                                  :items [an-experience-item]}))
+(def an-experience-section (section/map->ExperienceSection {:label "Experience"
+                                                  :experienceItems [an-experience-item]}))
 
 
 (test/deftest section
@@ -88,7 +88,7 @@
     (test/is (= an-experience-section
                 (section/create-experience-section-from-map
                  {:label "Experience"
-                  :items [{:title "Master"
+                  :experienceItems [{:title "Master"
                            :business "Jedi School"
                            :date "2017"
                            :subitems [{:value "An item"}]}]}))))
