@@ -115,4 +115,4 @@
                              ::socialImplications]))
 
 
-(spec/fdef cv-creator.deserializer/deserialize-cv :args ::cvJson)
+(spec/fdef cv-creator.deserializer/deserialize-cv :args (spec/cat :cvJson ::cvJson))
