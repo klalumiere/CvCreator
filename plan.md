@@ -11,7 +11,7 @@
         - [x] test create-cv in core.clj
     - [x] Review the pull request code
 - [ ] Use Specifications to verify data in end to end tests with `sample_data_*.json` and my real data.
-    - [ ] Instrument the function `deserialize-cv` in end to end tests.
+    - [x] Instrument the function `deserialize-cv` in end to end tests.
     - [ ] Test (with generative function testing?) `deserialize-cv`.
 - [ ] Pass arguments to the main program
 - [ ] Implement tag filtering

@@ -1,5 +1,9 @@
 {
     "metadata": {
+        "language": {
+            "label": "English",
+            "value": "english"
+        },
         "order": [
             "head",
             "skillSummary",
