@@ -45,10 +45,10 @@
 
 
 (spec/def ::deserializer/subitems (spec/or
-                                   ::deserializer/educationSubitems
-                                   ::deserializer/optionalCoursesSubitems
-                                   ::deserializer/relevantReadingsSubitems
-                                   ::deserializer/simpleSubitems))
+                                   :educationSubitems ::deserializer/educationSubitems
+                                   :optionalCoursesSubitems ::deserializer/optionalCoursesSubitems
+                                   :relevantReadingsSubitems ::deserializer/relevantReadingsSubitems
+                                   :simpleSubitems ::deserializer/simpleSubitems))
 
 
 (spec/def ::deserializer/autodidactTrainingItem (spec/keys
@@ -70,8 +70,10 @@
 (spec/def ::deserializer/simpleItems (spec/coll-of ::deserializer/simpleItem :kind vector?))
 
 
-(spec/def ::deserializer/items (spec/or ::deserializer/educationItems ::deserializer/experienceItems
-                                        ::deserializer/simpleItems))
+(spec/def ::deserializer/items (spec/or
+                                :educationItems ::deserializer/educationItems
+                                :experienceItems ::deserializer/experienceItems
+                                :simpleItems ::deserializer/simpleItems))
 (spec/def ::deserializer/relevantReadings ::deserializer/autodidactTrainingItem)
 (spec/def ::deserializer/optionalCourses ::deserializer/autodidactTrainingItem)
 
