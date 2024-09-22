@@ -16,27 +16,30 @@
 (spec/def ::place string?)
 (spec/def ::school string?)
 (spec/def ::title string?)
-(spec/def ::tags (spec/coll-of string? :kind vector?))
+(spec/def ::tags (spec/nilable (spec/coll-of string? :kind vector?)))
 (spec/def ::value string?)
 
 
 (spec/def ::educationSubitem (spec/keys
                               :req-un [::label ::value]
                               :opt-un [::tags]))
-(spec/def :cv-creator.deserializer.specs.education/subitems (spec/coll-of ::educationSubitem :kind vector?))
+(spec/def :cv-creator.deserializer.specs.education/subitems
+  (spec/nilable (spec/coll-of ::educationSubitem :kind vector?)))
 (spec/def ::language (spec/keys
                       :req-un [::label ::value]))
 (spec/def ::optionalCoursesSubitem (spec/keys
                                     :req-un [::place ::title]
                                     :opt-un [::tags]))
-(spec/def :cv-creator.deserializer.specs.optional-courses/subitems (spec/coll-of ::optionalCoursesSubitem :kind vector?))
+(spec/def :cv-creator.deserializer.specs.optional-courses/subitems
+  (spec/coll-of ::optionalCoursesSubitem :kind vector?))
 (spec/def ::order (spec/coll-of string? :kind vector?))
 (spec/def ::phone (spec/keys
                    :req-un [::label ::value]))
 (spec/def ::relevantReadingsSubitem (spec/keys
                                      :req-un [::authors ::title]
                                      :opt-un [::tags]))
-(spec/def :cv-creator.deserializer.specs.relevant-readings/subitems (spec/coll-of ::relevantReadingsSubitem :kind vector?))
+(spec/def :cv-creator.deserializer.specs.relevant-readings/subitems
+  (spec/coll-of ::relevantReadingsSubitem :kind vector?))
 (spec/def ::simpleSubitem (spec/keys
                            :req-un [::value]
                            :opt-un [::tags]))
@@ -44,7 +47,7 @@
                      :req-un [::label ::value]))
 
 
-(spec/def ::subitems (spec/coll-of ::simpleSubitem :kind vector?))
+(spec/def ::subitems (spec/nilable (spec/coll-of ::simpleSubitem :kind vector?)))
 
 
 (spec/def ::educationItem (spec/keys

@@ -18,4 +18,6 @@ jobs:
         - name: Packaging Test
           run: lein ring uberjar
         - name: End to End Tests
+          env:
+            CV_CREATOR_SPECS_INSTRUMENTED: "true"
           run: lein run -m cv-creator.core/-main | grep "Alain Térieur"
