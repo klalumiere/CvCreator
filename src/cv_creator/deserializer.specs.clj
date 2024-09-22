@@ -23,10 +23,13 @@
                                            :req-un [::deserializer/label ::deserializer/value]
                                            :opt-un [::deserializer/tags]))
 (spec/def ::deserializer/educationSubitems (spec/coll-of ::deserializer/educationSubitem :kind vector?))
+(spec/def ::deserializer/language (spec/keys
+                                   :req-un [::deserializer/label ::deserializer/value]))
 (spec/def ::deserializer/optionalCoursesSubitem (spec/keys
                                                  :req-un [::deserializer/place ::deserializer/title]
                                                  :opt-un [::deserializer/tags]))
 (spec/def ::deserializer/optionalCoursesSubitems (spec/coll-of ::deserializer/optionalCoursesSubitem :kind vector?))
+(spec/def ::deserializer/order (spec/coll-of string? :kind vector?))
 (spec/def ::deserializer/phone (spec/keys
                                 :req-un [::deserializer/label ::deserializer/value]))
 (spec/def ::deserializer/relevantReadingsSubitem (spec/keys
@@ -65,9 +68,6 @@
                                      :req-un [::deserializer/value]
                                      :opt-un [::deserializer/tags ::deserializer/subitems]))
 (spec/def ::deserializer/simpleItems (spec/coll-of ::deserializer/simpleItem :kind vector?))
-(spec/def ::deserializer/language (spec/keys
-                                   :req-un [::deserializer/label ::deserializer/value]))
-(spec/def ::deserializer/order (spec/coll-of string? :kind vector?))
 
 
 (spec/def ::deserializer/items (spec/or ::deserializer/educationItems ::deserializer/experienceItems
@@ -86,9 +86,7 @@
                                              :opt-un [::deserializer/relevantReadings
                                                       ::deserializer/optionalCourses ::deserializer/tags]))
 (spec/def ::deserializer/contributedTalks ::deserializer/section)
-(spec/def ::deserializer/education (spec/keys
-                                    :req-un [::deserializer/label ::deserializer/items]
-                                    :opt-un [::deserializer/tags]))
+(spec/def ::deserializer/education ::deserializer/section)
 (spec/def ::deserializer/experiences ::deserializer/section)
 (spec/def ::deserializer/head (spec/keys
                                :req-un [::deserializer/name
