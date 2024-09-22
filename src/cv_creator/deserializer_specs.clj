@@ -1,4 +1,4 @@
-(ns cv-creator.deserializer.specs
+(ns cv-creator.deserializer-specs
   (:require
    [clojure.spec.alpha :as spec]
 
