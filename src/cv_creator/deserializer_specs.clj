@@ -119,4 +119,13 @@
                              ::socialImplications]))
 
 
-(spec/fdef cv-creator.deserializer/deserialize-cv :args (spec/cat :cvJson ::cvJson))
+(spec/def ::sections (spec/coll-of any? :kind vector?))
+
+
+(spec/def ::cv-localized (spec/keys :req-un [::label ::sections]))
+
+
+(spec/def ::cv (spec/map-of :keyword? ::cv-localized))
+
+
+(spec/fdef cv-creator.deserializer/deserialize-cv :args (spec/cat :cvJson ::cvJson) :ret ::cv)
