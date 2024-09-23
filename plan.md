@@ -12,7 +12,7 @@
     - [x] Review the pull request code
 - [ ] Use Specifications to verify data in end to end tests with `sample_data_*.json` and my real data.
     - [x] Instrument the function `deserialize-cv` in end to end tests.
-    - [ ] Test (with generative function testing?) `deserialize-cv`.
+    - [ ] Test (with generative function testing) `deserialize-cv`.
 - [ ] Pass arguments to the main program
 - [ ] Implement tag filtering
 - [ ] Verify if there's things I should know about Clojure before deploying all of this in production

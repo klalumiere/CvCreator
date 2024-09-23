@@ -13,4 +13,5 @@
   :ring {:handler cv-creator.server/app :port 8080}
   :repl-options {:init-ns cv-creator.server}
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all :uberjar-name "cv-creator.jar"}})
+  :profiles {:uberjar {:aot :all :uberjar-name "cv-creator.jar"}
+             :test     {:dependencies [[org.clojure/test.check "1.1.1"]]}})
