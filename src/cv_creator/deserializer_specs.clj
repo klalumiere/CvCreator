@@ -14,6 +14,7 @@
 (spec/def ::label string?)
 (spec/def ::name string?)
 (spec/def ::place string?)
+(spec/def ::sectionName cv-creator.deserializer/possible-section-names)
 (spec/def ::school string?)
 (spec/def ::title string?)
 (spec/def ::tags (spec/nilable (spec/coll-of string? :kind vector?)))
@@ -32,7 +33,7 @@
                                     :opt-un [::tags]))
 (spec/def :cv-creator.deserializer.specs.optional-courses/subitems
   (spec/coll-of ::optionalCoursesSubitem :kind vector?))
-(spec/def ::order (spec/coll-of string? :kind vector?))
+(spec/def ::order (spec/coll-of ::sectionName :kind vector?))
 (spec/def ::phone (spec/keys
                    :req-un [::label ::value]))
 (spec/def ::relevantReadingsSubitem (spec/keys
