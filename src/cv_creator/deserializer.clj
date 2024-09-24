@@ -13,6 +13,16 @@
                                   :skillSummary cv-creator.section/create-section-from-map
                                   :socialImplications cv-creator.section/create-section-from-map})
 
+(def possible-section-names #{"autodidactTraining"
+                              "contributedTalks"
+                              "education"
+                              "experiences"
+                              "head"
+                              "honors"
+                              "publications"
+                              "skillSummary"
+                              "socialImplications"})
+
 (defn dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
                                              (if (nil? constructor) value (constructor value))))
 
