@@ -15,6 +15,6 @@
 
 (test/deftest ^:integration deserializer-gentest
   (let [{returnedValue :clojure.spec.test.check/ret :as result} (spectest/check 'cv-creator.deserializer/deserialize-cv
-                               {:clojure.spec.test.check/opts {:num-tests 1}})]
+                                                                                {:clojure.spec.test.check/opts {:num-tests 100}})]
     (test/do-report result)
     (test/is (returnedValue :pass?))))

@@ -126,6 +126,17 @@
 
 
 (spec/def ::cv (spec/map-of keyword? ::cv-localized))
+(spec/def ::cvJsonArgs (spec/cat :cvJson ::cvJson))
+(spec/def ::deserializeCvFn (fn [{:keys [args ret]}]
+                              (let [orderCount (count (((args :cvJson) :metadata) :order))]
+                                (->>
+                                 (map (fn [[_ value]] value) ret)
+                                 (map :sections)
+                                 (map count)
+                                 (every? (fn [x] (= x orderCount)))))))
 
 
-(spec/fdef cv-creator.deserializer/deserialize-cv :args (spec/cat :cvJson ::cvJson) :ret ::cv)
+(spec/fdef cv-creator.deserializer/deserialize-cv
+  :args ::cvJsonArgs
+  :ret ::cv
+  :fn ::deserializeCvFn)
