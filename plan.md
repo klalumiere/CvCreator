@@ -10,7 +10,7 @@
         - [x] test create-* in section.clj
         - [x] test create-cv in core.clj
     - [x] Review the pull request code
-- [ ] Use Specifications to verify data in end to end tests with `sample_data_*.json` and my real data.
+- [x] Use Specifications to verify data in end to end tests with `sample_data_*.json` and my real data.
     - [x] Instrument the function `deserialize-cv` in end to end tests.
     - [x] Test (with generative function testing) `deserialize-cv`.
 - [ ] Pass arguments to the main program
