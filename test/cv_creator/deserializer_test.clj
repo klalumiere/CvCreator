@@ -3,6 +3,7 @@
    [clojure.spec.test.alpha :as spectest]
    [clojure.test :as test]
 
+   [cv-creator.deserializer-specs]
    [cv-creator.deserializer :as deserializer]
    [cv-creator.section :as section]))
 
