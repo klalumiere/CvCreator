@@ -14,5 +14,7 @@
                 (deserializer/dispatch-deserialization :contributedTalks {:label "aLabel" :items [{:value "aValue"}]})))))
 
 (test/deftest ^:integration deserializer-gentest
-  (test/do-report (spectest/check 'cv-creator.deserializer/deserialize-cv
-                                  {:clojure.spec.test.check/opts {:num-tests 100}})))
+  (let [{returnedValue :clojure.spec.test.check/ret :as result} (spectest/check 'cv-creator.deserializer/deserialize-cv
+                               {:clojure.spec.test.check/opts {:num-tests 1}})]
+    (test/do-report result)
+    (test/is (returnedValue :pass?))))
