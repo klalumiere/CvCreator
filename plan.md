@@ -27,3 +27,8 @@
 
 - [ ] Translate my CV in json
 - [ ] Update my CV
+
+## Cleanup
+
+- [ ] Remove Ruby and other unused files
+- [ ] Update README.md
