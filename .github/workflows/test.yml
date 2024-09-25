@@ -22,4 +22,4 @@ jobs:
         - name: End to End Tests
           env:
             CV_CREATOR_SPECS_INSTRUMENTED: "true"
-          run: lein run -m cv-creator.core/-main | grep "Alain Térieur"
+          run: lein run -m cv-creator.core/-main data/sample english | grep "Alain Térieur"
