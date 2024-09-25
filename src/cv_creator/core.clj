@@ -17,8 +17,8 @@
 
 (defn create-cv [language tags data] (cv-creator.html-renderer/create-html (:sections (language data))))
 
-; TODO: don't hardcode data file name
-; TODO: use tags
-(defn -main [dataFolder language & tags]
-  (println
-   (create-cv (keyword language) [] (cv-creator.deserializer/deserialize (str dataFolder "/sample_en.json")))))
+; TODO: don't hardcode data's file name
+(defn -main [dataFolder language & rawTags]
+  (let [tags (or rawTags [])]
+    (println
+     (create-cv (keyword language) tags (cv-creator.deserializer/deserialize (str dataFolder "/sample_en.json"))))))
