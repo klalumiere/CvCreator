@@ -16,7 +16,7 @@
 - [x] Pass arguments to the main program
     - [x] Test we can select the language (between english and french with the sample)
     - [x] Update sample data in french
-- [ ] Implement tag filtering
+- [x] Implement tag filtering
     - [x] for sections
     - [x] for items
     - [x] for subitems
