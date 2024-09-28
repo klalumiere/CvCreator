@@ -21,7 +21,7 @@
 (defn tags-in-common? [object tags]
   (let [objectTags (get object :tags)]
     (or (empty? objectTags) 
-        (seq? (clojure.set/intersection (set tags) (set objectTags))))))
+        (seq (clojure.set/intersection (set tags) (set objectTags))))))
 
 (defn filter-tags [data tags]
   (cond
