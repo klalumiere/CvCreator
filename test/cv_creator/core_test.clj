@@ -15,6 +15,9 @@
 (def a-section-without-tagged-subitems (section/create-section-from-map {:label "sectionLabel"
                                                                          :items [{:value "An item with subitems"
                                                                                   :subitems [{:value "An item"}]}]}))
+(def a-section-without-tagged-subitems-in-relevant-readings (section/create-section-from-map {:label "sectionLabel"
+                                                                         :relevantReadings {:label "relevant readings"
+                                                                                  :subitems [{:value "An item"}]}}))
 
 (def a-section-with-tags (section/create-section-from-map {:label "sectionLabel"
                                                            :tags [a-tag]
@@ -28,8 +31,20 @@
                                                                         :items [{:value "An item with subitems"
                                                                                  :subitems [{:value "An item" :tags [a-tag]}
                                                                                             {:value "An item"}]}]}))
+(def a-section-with-subitem-with-tags-in-relevant-readings (section/create-section-from-map {:label "sectionLabel"
+                                                                        :relevantReadings {:label "relevant readings"
+                                                                                 :subitems [{:value "An item" :tags [a-tag]}
+                                                                                            {:value "An item"}]}}))
 
 (test/deftest filter-tags
+  (test/testing "filter-tags filters subitems with different tags"
+    (test/is (= [a-section-without-tagged-subitems-in-relevant-readings]
+                (core/filter-tags [a-section-with-subitem-with-tags-in-relevant-readings] #{another-tag}))))
+  
+  (test/testing "filter-tags keep subitems with same tags in relevantReadings"
+    (test/is (= [a-section-with-subitem-with-tags-in-relevant-readings]
+                (core/filter-tags [a-section-with-subitem-with-tags-in-relevant-readings] #{a-tag}))))
+
   (test/testing "filter-tags filters subitems with different tags"
     (test/is (= [a-section-without-tagged-subitems] (core/filter-tags [a-section-with-subitem-with-tags] #{another-tag}))))
 
