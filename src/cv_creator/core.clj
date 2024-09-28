@@ -32,7 +32,7 @@
     data))
 
 (defn create-cv [languageKey tags data] (cv-creator.html-renderer/create-html
-                                      (filter-tags (:sections (languageKey data)) tags)))
+                                         (filter-tags (:sections (languageKey data)) tags)))
 
 (defn -main [dataFolder language & rawTags]
   (let [tags (or (set rawTags) #{})]
