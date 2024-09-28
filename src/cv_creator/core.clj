@@ -31,8 +31,8 @@
          (map (fn [x] (utility/update-if-exist x :subitems #(filter-tags % tags)))))
     data))
 
-(defn create-cv [language tags data] (cv-creator.html-renderer/create-html
-                                      (filter-tags (:sections (language data)) tags)))
+(defn create-cv [languageKey tags data] (cv-creator.html-renderer/create-html
+                                      (filter-tags (:sections (languageKey data)) tags)))
 
 (defn -main [dataFolder language & rawTags]
   (let [tags (or (set rawTags) #{})]
