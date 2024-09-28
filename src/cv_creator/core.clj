@@ -21,17 +21,17 @@
 (defn tags-in-common? [object tags]
   (let [objectTags (get object :tags)]
     (or (empty? objectTags)
-        (seq (clojure.set/intersection (set tags) (set objectTags))))))
+        (seq (clojure.set/intersection tags (set objectTags))))))
 
 (defn filter-tags [data tags]
   (if (vector? data)
     (->> data
          (filter #(tags-in-common? % tags))
          (map (fn [element] (utility/update-if-exist element :items #(filter-tags % tags))))
-      )
+         )
     data))
 
 (defn -main [dataFolder language & rawTags]
-  (let [tags (or rawTags [])]
+  (let [tags (or (set rawTags) #{})]
     (println
      (create-cv (keyword language) tags (cv-creator.deserializer/deserialize-folder dataFolder)))))
