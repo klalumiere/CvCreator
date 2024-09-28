@@ -17,7 +17,7 @@
   (spectest/instrument (spectest/enumerate-namespace 'cv-creator.deserializer)))
 
 (defn- tags-in-common? [object tags]
-  (let [objectTags (get object :tags)]
+  (let [objectTags (:tags object)]
     (or (empty? objectTags)
         (seq (clojure.set/intersection tags (set objectTags))))))
 

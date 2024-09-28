@@ -11,4 +11,4 @@
 (defn not-nil? [x] (not (nil? x)))
 
 (defn update-if-exist [aMap key f]
-  (if (nil? (get aMap key)) aMap (update aMap key f)))
+  (if (nil? (key aMap)) aMap (update aMap key f)))
