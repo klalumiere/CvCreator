@@ -26,6 +26,8 @@
     (->> data
          (filter #(tags-in-common? % tags))
          (map (fn [x] (utility/update-if-exist x :items #(filter-tags % tags))))
+         (map (fn [x] (utility/update-if-exist x :optionalCourses #(first (filter-tags [%] tags)))))
+         (map (fn [x] (utility/update-if-exist x :relevantReadings #(first (filter-tags [%] tags)))))
          (map (fn [x] (utility/update-if-exist x :subitems #(filter-tags % tags)))))
     data))
 
