@@ -12,6 +12,9 @@
 (def a-section-without-tags (section/create-section-from-map {:label "sectionLabel"
                                                               :items [{:value "An item with subitems"
                                                                        :subitems [{:value "An item"} {:value "An item"}]}]}))
+(def a-section-without-tagged-subitems (section/create-section-from-map {:label "sectionLabel"
+                                                              :items [{:value "An item with subitems"
+                                                                       :subitems [{:value "An item"} ]}]}))
 
 (def a-section-with-tags (section/create-section-from-map {:label "sectionLabel"
                                                            :tags [a-tag]
@@ -22,8 +25,18 @@
                                                                     :subitems [{:value "An item"} {:value "An item"}]
                                                                     :tags [a-tag]
                                                                     }]}))
+(def a-section-with-subitem-with-tags (section/create-section-from-map {:label "sectionLabel"
+                                                                     :items [{:value "An item with subitems"
+                                                                              :subitems [{:value "An item" :tags [a-tag]}
+                                                                                         {:value "An item"}]}]}))
 
 (test/deftest filter-tags
+  (test/testing "filter-tags filters subitems with different tags"
+    (test/is (= [a-section-without-tagged-subitems] (core/filter-tags [a-section-with-subitem-with-tags] #{another-tag}))))
+
+  (test/testing "filter-tags keep subitems with same tags"
+    (test/is (= [a-section-with-subitem-with-tags] (core/filter-tags [a-section-with-subitem-with-tags] #{a-tag}))))
+
   (test/testing "filter-tags filters items with different tags"
     (test/is (= [a-section-without-items] (core/filter-tags [a-section-with-item-with-tags] #{another-tag}))))
 

@@ -18,7 +18,7 @@
 
 (defn create-cv [language tags data] (cv-creator.html-renderer/create-html (:sections (language data))))
 
-(defn tags-in-common? [object tags]
+(defn- tags-in-common? [object tags]
   (let [objectTags (get object :tags)]
     (or (empty? objectTags)
         (seq (clojure.set/intersection tags (set objectTags))))))
@@ -27,8 +27,8 @@
   (if (vector? data)
     (->> data
          (filter #(tags-in-common? % tags))
-         (map (fn [element] (utility/update-if-exist element :items #(filter-tags % tags))))
-         )
+         (map (fn [x] (utility/update-if-exist x :items #(filter-tags % tags))))
+         (map (fn [x] (utility/update-if-exist x :subitems #(filter-tags % tags)))))
     data))
 
 (defn -main [dataFolder language & rawTags]
