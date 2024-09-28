@@ -15,9 +15,9 @@
              (= (string/lower-case instrumented) "true")))
   (spectest/instrument (spectest/enumerate-namespace 'cv-creator.deserializer)))
 
-(defn create-cv [languageKey tags data] (cv-creator.html-renderer/create-html (:sections (languageKey data))))
+(defn create-cv [language tags data] (cv-creator.html-renderer/create-html (:sections (language data))))
 
-; TODO: don't hardcode data file path
-; TODO: don't hardcode language
-(defn -main [] (println
-                (create-cv :english [] (cv-creator.deserializer/deserialize "sample_data_en.json"))))
+(defn -main [dataFolder language & rawTags]
+  (let [tags (or rawTags [])]
+    (println
+     (create-cv (keyword language) tags (cv-creator.deserializer/deserialize-folder dataFolder)))))

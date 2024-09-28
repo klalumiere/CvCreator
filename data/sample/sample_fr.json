@@ -1,0 +1,148 @@
+{
+    "metadata": {
+        "language": {
+            "label": "Français",
+            "value": "french"
+        },
+        "order": [
+            "head",
+            "skillSummary",
+            "experiences",
+            "education",
+            "autodidactTraining",
+            "honors",
+            "socialImplications",
+            "publications",
+            "contributedTalks"
+        ]
+    },
+    "head": {
+        "name": "Alex Térieur",
+        "eMail": "alex.térieur@gmaille.com",
+        "addressDoor": "123 Street",
+        "addressTown": "Montréal (Qc), Canada, H2T 2F6",
+        "webPage": {
+            "label": "Page web",
+            "value": "https://alain.terieur.com"
+        },
+        "phone": {
+            "label": "Téléphone",
+            "value": "(023) 456-7891"
+        }
+    },
+    "skillSummary": {
+        "label": "Résumé des habiletés",
+        "items": [
+            {
+                "value": "Une habileté"
+            },
+            {
+                "value": "Une habileté avec",
+                "subitems": [
+                    {
+                        "value": "une sous-habileté"
+                    }
+                ]
+            },
+            {
+                "value": "Une autre habileté"
+            }
+        ]
+    },
+    "education": {
+        "label": "Éducation",
+        "items": [
+            {
+                "degree": "PhD",
+                "school": "Université",
+                "date": "2010",
+                "subitems": [
+                    {
+                        "label": "Thesis",
+                        "value": "How to have fun"
+                    }
+                ]
+            }
+        ]
+    },
+    "experiences": {
+        "label": "Expériences",
+        "items": [
+            {
+                "title": "Graduate student",
+                "business": "Alex Térieur, Montreal(Qc), Canada",
+                "date": "2008-",
+                "subitems": [
+                    {
+                        "value": "A PhD"
+                    }
+                ]
+            }
+        ]
+    },
+    "autodidactTraining": {
+        "label": "Formations autodidactes",
+        "relevantReadings": {
+            "label": "Lectures pertinentes",
+            "subitems": [
+                {
+                    "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
+                    "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
+                    "tags": [
+                        "computerScience"
+                    ]
+                }
+            ]
+        },
+        "optionalCourses": {
+            "label": "Cours optionel",
+            "subitems": [
+                {
+                    "place": "Restaurant",
+                    "title": "Cooking for dummies",
+                    "tags": [
+                        "food"
+                    ]
+                }
+            ]
+        }
+    },
+    "honors": {
+        "label": "Honneurs",
+        "items": [
+            {
+                "value": "Most clean code ever, 2023"
+            },
+            {
+                "value": "Golden hot dog, 2010",
+                "tags": [
+                    "food"
+                ]
+            }
+        ]
+    },
+    "socialImplications": {
+        "label": "Implications sociales",
+        "items": [
+            {
+                "value": "Dancing in the street"
+            }
+        ]
+    },
+    "publications": {
+        "label": "Publications",
+        "items": [
+            {
+                "value": "Entangle this!"
+            }
+        ]
+    },
+    "contributedTalks": {
+        "label": "Présentations",
+        "items": [
+            {
+                "value": "Why Zelda rocks"
+            }
+        ]
+    }
+}
