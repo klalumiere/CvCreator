@@ -16,8 +16,6 @@
              (= (string/lower-case instrumented) "true")))
   (spectest/instrument (spectest/enumerate-namespace 'cv-creator.deserializer)))
 
-(defn create-cv [language tags data] (cv-creator.html-renderer/create-html (:sections (language data))))
-
 (defn- tags-in-common? [object tags]
   (let [objectTags (get object :tags)]
     (or (empty? objectTags)
@@ -30,6 +28,9 @@
          (map (fn [x] (utility/update-if-exist x :items #(filter-tags % tags))))
          (map (fn [x] (utility/update-if-exist x :subitems #(filter-tags % tags)))))
     data))
+
+(defn create-cv [language tags data] (cv-creator.html-renderer/create-html
+                                      (filter-tags (:sections (language data)) tags)))
 
 (defn -main [dataFolder language & rawTags]
   (let [tags (or (set rawTags) #{})]
