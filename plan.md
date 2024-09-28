@@ -13,9 +13,9 @@
 - [x] Use Specifications to verify data in end to end tests with `sample_data_*.json` and my real data.
     - [x] Instrument the function `deserialize-cv` in end to end tests.
     - [x] Test (with generative function testing) `deserialize-cv`.
-- [ ] Pass arguments to the main program
-    - [ ] Test we can select the language (between english and french with the sample)
-    - [ ] Update sample data in french
+- [x] Pass arguments to the main program
+    - [x] Test we can select the language (between english and french with the sample)
+    - [x] Update sample data in french
 - [ ] Implement tag filtering
 - [ ] Verify if there's things I should know about Clojure before deploying all of this in production
     - Like putting environment var to some value to prevent stack trace
