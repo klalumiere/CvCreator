@@ -1,24 +1,148 @@
 {
     "metadata": {
-        "language": "Français"
+        "language": {
+            "label": "Français",
+            "value": "french"
+        },
+        "order": [
+            "head",
+            "skillSummary",
+            "experiences",
+            "education",
+            "autodidactTraining",
+            "honors",
+            "socialImplications",
+            "publications",
+            "contributedTalks"
+        ]
     },
-
     "head": {
-        "name": "Alain Térieur",
+        "name": "Alex Térieur",
         "eMail": "alain.térieur@gmaille.com",
         "addressDoor": "123 Street",
         "addressTown": "Montréal (Qc), Canada, H2T 2F6",
         "webPage": {
-            "label": "Page web",
-            "item": "https://alain.terieur.com"
-        },
-        "mobile": {
-            "label": "Cellulaire",
-            "item": "(123) 456-7890"
+            "label": "Web page",
+            "value": "https://alain.terieur.com"
         },
         "phone": {
-            "label": "Téléphone",
-            "item": "(023) 456-7891"
+            "label": "Phone",
+            "value": "(023) 456-7891"
         }
+    },
+    "skillSummary": {
+        "label": "Skill Summary",
+        "items": [
+            {
+                "value": "One skill"
+            },
+            {
+                "value": "A skill with",
+                "subitems": [
+                    {
+                        "value": "A subskill"
+                    }
+                ]
+            },
+            {
+                "value": "Another skill"
+            }
+        ]
+    },
+    "education": {
+        "label": "Education",
+        "items": [
+            {
+                "degree": "PhD",
+                "school": "Université",
+                "date": "2010",
+                "subitems": [
+                    {
+                        "label": "Thesis",
+                        "value": "How to have fun"
+                    }
+                ]
+            }
+        ]
+    },
+    "experiences": {
+        "label": "Experiences",
+        "items": [
+            {
+                "title": "Graduate student",
+                "business": "Alex Térieur, Montreal(Qc), Canada",
+                "date": "2008-",
+                "subitems": [
+                    {
+                        "value": "A PhD"
+                    }
+                ]
+            }
+        ]
+    },
+    "autodidactTraining": {
+        "label": "Autodidact training",
+        "relevantReadings": {
+            "label": "Relevant readings",
+            "subitems": [
+                {
+                    "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
+                    "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
+                    "tags": [
+                        "computerScience"
+                    ]
+                }
+            ]
+        },
+        "optionalCourses": {
+            "label": "Optional courses",
+            "subitems": [
+                {
+                    "place": "Restaurant",
+                    "title": "Cooking for dummies",
+                    "tags": [
+                        "food"
+                    ]
+                }
+            ]
+        }
+    },
+    "honors": {
+        "label": "Honors and Awards",
+        "items": [
+            {
+                "value": "Most clean code ever, 2023"
+            },
+            {
+                "value": "Golden hot dog, 2010",
+                "tags": [
+                    "food"
+                ]
+            }
+        ]
+    },
+    "socialImplications": {
+        "label": "Social Implications",
+        "items": [
+            {
+                "value": "Dancing in the street"
+            }
+        ]
+    },
+    "publications": {
+        "label": "Publications",
+        "items": [
+            {
+                "value": "Entangle this!"
+            }
+        ]
+    },
+    "contributedTalks": {
+        "label": "Contributed talks",
+        "items": [
+            {
+                "value": "Why Zelda rocks"
+            }
+        ]
     }
 }

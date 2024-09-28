@@ -1,5 +1,8 @@
 (ns cv-creator.deserializer
   (:require [clojure.data.json :as json]
+            [clojure.java.io]
+            [clojure.string]
+
             [cv-creator.section]
             [cv-creator.utility :as utility]))
 
@@ -36,3 +39,12 @@
                                 :sections (utility/get-ordered-sections metadata content)}}))
 
 (defn deserialize [filePath] (deserialize-cv (deserialize-json (slurp filePath))))
+
+(defn list-jsons-in-folder [folder] (filter #(clojure.string/includes? % "json")
+                                            (.list (clojure.java.io/file folder))))
+
+(defn deserialize-folder [folder] (->>
+                                   (list-jsons-in-folder folder)
+                                   (map #(str folder "/" %))
+                                   (map deserialize)
+                                   (reduce merge)))
