@@ -18,7 +18,7 @@
     - [x] Update sample data in french
 - [ ] Implement tag filtering
     - [x] for sections
-    - [ ] for items
+    - [x] for items
     - [ ] for subitems
 - [ ] Verify if there's things I should know about Clojure before deploying all of this in production
     - Like putting environment var to some value to prevent stack trace

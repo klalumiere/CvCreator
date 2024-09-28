@@ -7,6 +7,8 @@
 
 (def a-tag "arbitrary")
 (def another-tag "anotherArbitrary")
+(def a-section-without-items (section/create-section-from-map {:label "sectionLabel"
+                                                              :items []}))
 (def a-section-without-tags (section/create-section-from-map {:label "sectionLabel"
                                                               :items [{:value "An item with subitems"
                                                                        :subitems [{:value "An item"} {:value "An item"}]}]}))
@@ -15,8 +17,19 @@
                                                            :tags [a-tag]
                                                            :items [{:value "An item with subitems"
                                                                     :subitems [{:value "An item"} {:value "An item"}]}]}))
+(def a-section-with-item-with-tags (section/create-section-from-map {:label "sectionLabel"
+                                                           :items [{:value "An item with subitems"
+                                                                    :subitems [{:value "An item"} {:value "An item"}]
+                                                                    :tags [a-tag]
+                                                                    }]}))
 
 (test/deftest filter-tags
+  (test/testing "filter-tags filters items with different tags"
+    (test/is (= [a-section-without-items] (core/filter-tags [a-section-with-item-with-tags] [another-tag]))))
+
+  (test/testing "filter-tags keep items with same tags"
+    (test/is (= [a-section-with-item-with-tags] (core/filter-tags [a-section-with-item-with-tags] [a-tag]))))
+
   (test/testing "filter-tags keep sections with same tags"
     (test/is (= [a-section-with-tags] (core/filter-tags [a-section-with-tags] [a-tag]))))
 

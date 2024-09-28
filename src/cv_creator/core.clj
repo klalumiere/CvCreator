@@ -9,10 +9,10 @@
    [cv-creator.html-renderer]
    [cv-creator.section-html-renderer]
    [cv-creator.section]
-   [cv-creator.utility]))
+   [cv-creator.utility :as utility]))
 
 (when (let [instrumented (System/getenv "CV_CREATOR_SPECS_INSTRUMENTED")]
-        (and (cv-creator.utility/not-nil? instrumented)
+        (and (utility/not-nil? instrumented)
              (= (string/lower-case instrumented) "true")))
   (spectest/instrument (spectest/enumerate-namespace 'cv-creator.deserializer)))
 
@@ -25,8 +25,10 @@
 
 (defn filter-tags [data tags]
   (if (vector? data)
-    (let [updatedData (filter #(tags-in-common? % tags) data)]
-      updatedData)
+    (->> data
+         (filter #(tags-in-common? % tags))
+         (map (fn [element] (utility/update-if-exist element :items #(filter-tags % tags))))
+      )
     data))
 
 (defn -main [dataFolder language & rawTags]
