@@ -25,3 +25,5 @@ jobs:
           run: |
             lein run -m cv-creator.core/-main data/sample english | grep "Alain Térieur"
             lein run -m cv-creator.core/-main data/sample french | grep "Alex Térieur"
+            lein run -m cv-creator.core/-main data/sample english computerScience | grep "Titus"
+            ! lein run -m cv-creator.core/-main data/sample english | grep "Titus"
