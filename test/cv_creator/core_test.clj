@@ -1,14 +1,13 @@
 (ns cv-creator.core-test
   (:require
+   [clojure.string :as string]
    [clojure.test :as test]
 
    [cv-creator.core :as core]
    [cv-creator.section :as section]))
 
-(def a-cv {:english
-           {:label "English"
-            :sections [(section/create-section-from-map
-                        {:label "aLabel" :items [{:value "aValue"}]})]}})
+(def a-language "english")
+(def an-error-message "invalid")
 (def a-tag "arbitrary")
 (def another-tag "anotherArbitrary")
 (def a-section-without-items (section/create-section-from-map {:label "sectionLabel"
@@ -28,6 +27,10 @@
                                                              :optionalCourses {:label "relevant readings"
                                                                                :subitems [{:value "An item"}]}}))
 
+(def a-cv {(keyword a-language)
+           {:label "English"
+            :sections [(section/create-section-from-map
+                        {:label "aLabel" :items [{:value "aValue"}]})]}})
 (def a-section-with-tags (section/create-section-from-map {:label "sectionLabel"
                                                            :tags [a-tag]
                                                            :items [{:value "An item with subitems"
@@ -53,13 +56,23 @@
 
 
 (test/deftest validate-args-and-create-cv
-  ;; (test/testing "validate-args-and-create-cv is not empty"
-  ;;   (test/is (not (= "<div class=\"cvStyle\"></div>"
-  ;;                    (core/validate-args-and-create-cv :language "english" :tags "" :data a-cv)))))
+  (test/testing "validate-args-and-create-cv handles nil tag"
+    (test/is (string/includes? (core/validate-args-and-create-cv :language a-language :data a-cv) "</div>")))
 
-  (test/testing "validate-args-and-create-cv is not empty"
+  (test/testing "validate-args-and-create-cv returns empty error message for invalid language when error message argument is empty"
+    (test/is (empty?
+              (core/validate-args-and-create-cv :language "anInvalidLanguage" :tags "" :data a-cv))))
+
+  (test/testing "validate-args-and-create-cv returns error message for invalid language"
+    (test/is (= (str an-error-message " language")
+                (core/validate-args-and-create-cv :language "anInvalidLanguage" :tags "" :data a-cv :errorMessage an-error-message))))
+
+  (test/testing "validate-args-and-create-cv is not empty div"
     (test/is (not (= "<div class=\"cvStyle\"></div>"
-                     (core/validate-args-and-create-cv :language "english" :tags "" :data a-cv))))))
+                     (core/validate-args-and-create-cv :language a-language :tags "" :data a-cv)))))
+
+  (test/testing "validate-args-and-create-cv contains div"
+    (test/is (string/includes? (core/validate-args-and-create-cv :language a-language :tags "" :data a-cv) "</div>"))))
 
 
 (test/deftest filter-tags
@@ -105,5 +118,8 @@
 
 
 (test/deftest create-cv
-  (test/testing "create-cv is not empty"
-    (test/is (not (= "<div class=\"cvStyle\"></div>" (core/create-cv :english #{} a-cv))))))
+  (test/testing "create-cv is not empty div"
+    (test/is (not (= "<div class=\"cvStyle\"></div>" (core/create-cv :english #{} a-cv)))))
+
+  (test/testing "create-cv contains div"
+    (test/is (string/includes? (core/create-cv :english #{} a-cv) "</div>"))))

@@ -34,11 +34,23 @@
 (defn create-cv [languageKey tags data] (cv-creator.html-renderer/create-html
                                          (filter-tags (:sections (languageKey data)) tags)))
 
+(defn- generate-error-message [errorMessage problematicParameter]
+  (if (empty? errorMessage) "" (str errorMessage " " problematicParameter)))
+
+(defn- invalid-language? [language data] (or
+                                          (empty? language)
+                                          ; This is a bit complicated, but safer than using `keyword` on the user-supplied language
+                                          (not (contains? (set (map name (keys data))) language))))
+
 (defn validate-args-and-create-cv [& {:keys [language tags data errorMessage]}]
-  (create-cv (keyword language) (set (string/split tags #",")) data))
+  (let [notEmptyTags (or tags "")]
+    (cond
+      (invalid-language? language data) (generate-error-message errorMessage "language")
+      :else (create-cv (keyword language) (set (string/split notEmptyTags #",")) data))))
+
 
 (defn -main [dataFolder language & rawTags]
   (let [tags (or (string/join "," rawTags) "")]
     (println
-     (validate-args-and-create-cv :language language
-                                  :tags tags :data (cv-creator.deserializer/deserialize-folder dataFolder)))))
+     (validate-args-and-create-cv :language language :errorMessage "invalid" :tags tags
+                                  :data (cv-creator.deserializer/deserialize-folder dataFolder)))))
