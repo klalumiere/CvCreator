@@ -11,9 +11,9 @@
    [cv-creator.section]
    [cv-creator.utility :as utility]))
 
-(when (let [instrumented (System/getenv "CV_CREATOR_SPECS_INSTRUMENTED")]
-        (and (utility/not-nil? instrumented)
-             (= (string/lower-case instrumented) "true")))
+(def instrumented (= "true" (string/lower-case (or (System/getenv "CV_CREATOR_SPECS_INSTRUMENTED") "false"))))
+
+(when instrumented
   (spectest/instrument (spectest/enumerate-namespace 'cv-creator.deserializer)))
 
 (def error-keyword :cvCreatorError)
@@ -48,8 +48,14 @@
          (map (fn [x] (utility/update-if-exist x :subitems #(filter-tags % tags)))))
     data))
 
-(defn create-cv [languageKey tags data] (cv-creator.html-renderer/create-html
-                                         (filter-tags (:sections (languageKey data)) tags)))
+(defn get-tags [localizedCv] (set (map :value (:tags localizedCv))))
+
+(defn create-cv [languageKey tags data]
+  (let [localizedCv (languageKey data)
+        sections (:sections localizedCv)]
+    (when instrumented (assert (every? (get-tags localizedCv) (collect-tags sections))
+                               (str "Expected " (collect-tags sections) " to be in " (get-tags localizedCv))))
+    (cv-creator.html-renderer/create-html (filter-tags sections tags))))
 
 (defn- generate-error-message [errorMessage problematicParameter]
   (if (empty? errorMessage) error-keyword (str errorMessage " " problematicParameter)))
@@ -63,7 +69,7 @@
   (let [notEmptyTags (or tags "")]
     (cond
       (invalid-language? language data) (generate-error-message errorMessage "language")
-      :else (create-cv (keyword language) (set (string/split notEmptyTags #",")) data))))
+      :else (create-cv (keyword language)  (set (string/split notEmptyTags #",")) data))))
 
 
 (defn -main [dataFolder language & rawTags]
