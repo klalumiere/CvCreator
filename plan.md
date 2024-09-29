@@ -32,7 +32,7 @@
 
 ## Frontend
 
-- [ ] Reimplement frontend with modern/simple web framework
+- [ ] Update jquery and fix/run frontend unit tests in CI
 
 ## Update data
 
