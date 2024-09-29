@@ -30,4 +30,4 @@
 ; `ring-clojure/ring-defaults` with a version < 1 (with no new commit since 8 months)
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (def app #_{:clj-kondo/ignore [:deprecated-var]}
-  (-> app-impl compojure.handler/api))
+  (-> trivial-impl compojure.handler/api))
