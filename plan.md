@@ -28,6 +28,7 @@
     - [x] Validate tags
     - [ ] Code review & refactoring
 - [ ] Reorganize order of function using `::` operator
+- [ ] Update server part 2
 
 ## Frontend
 
