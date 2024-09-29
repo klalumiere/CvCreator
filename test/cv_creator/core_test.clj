@@ -60,8 +60,8 @@
     (test/is (string/includes? (core/validate-args-and-create-cv :language a-language :data a-cv) "</div>")))
 
   (test/testing "validate-args-and-create-cv returns empty error message for invalid language when error message argument is empty"
-    (test/is (empty?
-              (core/validate-args-and-create-cv :language "anInvalidLanguage" :tags "" :data a-cv))))
+    (test/is (= core/error-keyword
+                (core/validate-args-and-create-cv :language "anInvalidLanguage" :tags "" :data a-cv))))
 
   (test/testing "validate-args-and-create-cv returns error message for invalid language"
     (test/is (= (str an-error-message " language")

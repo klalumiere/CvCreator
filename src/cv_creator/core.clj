@@ -16,6 +16,8 @@
              (= (string/lower-case instrumented) "true")))
   (spectest/instrument (spectest/enumerate-namespace 'cv-creator.deserializer)))
 
+(def error-keyword :cvCreatorError)
+
 (defn- tags-in-common? [object tags]
   (let [objectTags (:tags object)]
     (or (empty? objectTags)
@@ -35,7 +37,7 @@
                                          (filter-tags (:sections (languageKey data)) tags)))
 
 (defn- generate-error-message [errorMessage problematicParameter]
-  (if (empty? errorMessage) "" (str errorMessage " " problematicParameter)))
+  (if (empty? errorMessage) error-keyword (str errorMessage " " problematicParameter)))
 
 (defn- invalid-language? [language data] (or
                                           (empty? language)
