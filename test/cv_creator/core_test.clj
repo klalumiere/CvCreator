@@ -60,7 +60,7 @@
   (test/testing "validate-args-and-create-cv handles nil tag"
     (test/is (string/includes? (core/validate-args-and-create-cv :language a-language :data a-cv) "</div>")))
 
-  (test/testing "validate-args-and-create-cv returns empty error message for invalid language when error message argument is empty"
+  (test/testing "validate-args-and-create-cv returns error keyword for invalid language when error message argument is empty"
     (test/is (= core/error-keyword
                 (core/validate-args-and-create-cv :language "anInvalidLanguage" :tags "" :data a-cv))))
 
@@ -81,22 +81,24 @@
                      (core/validate-args-and-create-cv :language a-language :tags "" :data a-cv)))))
 
   (test/testing "validate-args-and-create-cv contains div"
-    (test/is (string/includes? (core/validate-args-and-create-cv :language a-language :tags "" :data a-cv) "</div>"))))
+    (test/is (string/includes?
+              (core/validate-args-and-create-cv :language a-language :tags "" :data {(keyword a-language) {:sections []}})
+              "</div>"))))
 
 
 (test/deftest collect-tags
-  (test/testing "collect-tags collects subitems with tags in optionalCourses"
+  (test/testing "collect-tags collects tags from subitems with tags in optionalCourses"
     (test/is (= #{a-tag}
                 (core/collect-tags [a-section-with-subitem-with-tags-in-optional-courses]))))
 
-  (test/testing "collect-tags collects subitems with tags in relevantReadings"
+  (test/testing "collect-tags collects tags from subitems with tags in relevantReadings"
     (test/is (= #{a-tag}
                 (core/collect-tags [a-section-with-subitem-with-tags-in-relevant-readings]))))
 
-  (test/testing "collect-tags collects subitems with tags"
+  (test/testing "collect-tags collects tags from subitems with tags"
     (test/is (= #{a-tag} (core/collect-tags [a-section-with-subitem-with-tags]))))
 
-  (test/testing "collect-tags collects items with tags"
+  (test/testing "collect-tags collects tags from items with tags"
     (test/is (= #{a-tag} (core/collect-tags [a-section-with-item-with-tags]))))
 
   (test/testing "collect-tags collects tags from section"
@@ -156,4 +158,4 @@
     (test/is (not (= "<div class=\"cvStyle\"></div>" (core/create-cv :english #{} a-cv)))))
 
   (test/testing "create-cv contains div"
-    (test/is (string/includes? (core/create-cv :english #{} a-cv) "</div>"))))
+    (test/is (string/includes? (core/create-cv :english #{} {(keyword a-language) {:sections []}}) "</div>"))))

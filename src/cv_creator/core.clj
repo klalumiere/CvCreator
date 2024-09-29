@@ -18,7 +18,7 @@
 
 (def error-keyword :cvCreatorError)
 
-(defn- collect-tags-from-data-collection [data] (reduce clojure.set/union (map set (map :tags data))))
+(defn- collect-tags-from-collection [collection] (reduce clojure.set/union (map set (map :tags collection))))
 
 (defn- tags-in-common? [object tags]
   (let [objectTags (:tags object)]
@@ -29,7 +29,7 @@
   (if (vector? data)
     (clojure.set/union
      accumulator
-     (collect-tags-from-data-collection data)
+     (collect-tags-from-collection data)
      (reduce clojure.set/union (map (fn [x] (collect-tags-accumulating (:items x) #{})) data))
      (reduce clojure.set/union (map (fn [x] (collect-tags-accumulating (:subitems (:optionalCourses x)) #{})) data))
      (reduce clojure.set/union (map (fn [x] (collect-tags-accumulating (:subitems (:relevantReadings x)) #{})) data))
@@ -53,8 +53,9 @@
 (defn create-cv [languageKey tags data]
   (let [localizedCv (languageKey data)
         sections (:sections localizedCv)]
-    (when instrumented (assert (every? (get-metadata-tags localizedCv) (collect-tags sections))
-                               (str "Expected " (collect-tags sections) " to be in " (get-metadata-tags localizedCv))))
+    (let [metadataTags (get-metadata-tags localizedCv)
+          usedTags (collect-tags sections)]
+      (when instrumented (assert (every? metadataTags usedTags) (str "Expected " usedTags " to be in " metadataTags))))
     (cv-creator.html-renderer/create-html (filter-tags sections tags))))
 
 (defn- generate-error-message [errorMessage problematicParameter]
@@ -69,8 +70,7 @@
   (not (every? (get-metadata-tags localizedCv) tags)))
 
 (defn validate-args-and-create-cv [& {:keys [language tags data errorMessage]}]
-  (let [notEmptyTags (or tags "")
-        tagsAsSet (set (remove empty? (string/split notEmptyTags #",")))]
+  (let [tagsAsSet (set (remove empty? (string/split (or tags "") #",")))]
     (cond
       (invalid-language? language data) (generate-error-message errorMessage "language")
       (invalid-tags? tagsAsSet ((keyword language) data)) (generate-error-message errorMessage "tags")
