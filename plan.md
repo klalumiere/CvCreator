@@ -21,7 +21,8 @@
     - [x] for items
     - [x] for subitems
 - [ ] Verify if there's things I should know about Clojure before deploying all of this in production
-    - Like putting environment var to some value to prevent stack trace
+    - [x] Like putting environment var to some value to prevent stack trace
+    - [ ] Read https://github.com/weavejester/lein-ring
 - [ ] Update server
     - [ ] Validate every arguments (including language and tags)
 

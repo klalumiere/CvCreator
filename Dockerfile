@@ -8,6 +8,7 @@ FROM clojure:temurin-19-lein-2.9.10-alpine AS builder
 WORKDIR /builder
 COPY project.clj project.clj
 COPY src src
+ENV LEIN_NO_DEV=TRUE
 RUN lein ring uberjar
 
 
