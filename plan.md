@@ -24,7 +24,8 @@
     - [x] Like putting environment var to some value to prevent stack trace
     - [x] Read https://github.com/weavejester/lein-ring
 - [ ] Update server
-    - [ ] Validate every arguments (including language and tags)
+    - [x] Validate language
+    - [ ] Validate tags
 
 ## Frontend
 
