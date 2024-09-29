@@ -18,10 +18,25 @@
 
 (def error-keyword :cvCreatorError)
 
+(defn- collect-tags-from-data-collection [data] (reduce clojure.set/union (map set (map :tags data))))
+
 (defn- tags-in-common? [object tags]
   (let [objectTags (:tags object)]
     (or (empty? objectTags)
         (seq (clojure.set/intersection tags (set objectTags))))))
+
+(defn collect-tags-accumulating [data accumulator]
+  (if (vector? data)
+    (clojure.set/union
+     accumulator
+     (collect-tags-from-data-collection data)
+     (reduce clojure.set/union (map (fn [x] (collect-tags-accumulating (:items x) #{})) data))
+     (reduce clojure.set/union (map (fn [x] (collect-tags-accumulating (:subitems (:optionalCourses x)) #{})) data))
+     (reduce clojure.set/union (map (fn [x] (collect-tags-accumulating (:subitems (:relevantReadings x)) #{})) data))
+     (reduce clojure.set/union (map (fn [x] (collect-tags-accumulating (:subitems x) #{})) data)))
+    accumulator))
+
+(defn collect-tags [data] (collect-tags-accumulating data #{}))
 
 (defn filter-tags [data tags]
   (if (vector? data)

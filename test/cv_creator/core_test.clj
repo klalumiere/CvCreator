@@ -75,6 +75,31 @@
     (test/is (string/includes? (core/validate-args-and-create-cv :language a-language :tags "" :data a-cv) "</div>"))))
 
 
+(test/deftest collect-tags
+  (test/testing "collect-tags collects subitems with tags in optionalCourses"
+    (test/is (= #{a-tag}
+                (core/collect-tags [a-section-with-subitem-with-tags-in-optional-courses]))))
+
+  (test/testing "collect-tags collects subitems with tags in relevantReadings"
+    (test/is (= #{a-tag}
+                (core/collect-tags [a-section-with-subitem-with-tags-in-relevant-readings]))))
+
+  (test/testing "collect-tags collects subitems with tags"
+    (test/is (= #{a-tag} (core/collect-tags [a-section-with-subitem-with-tags]))))
+
+  (test/testing "collect-tags collects items with tags"
+    (test/is (= #{a-tag} (core/collect-tags [a-section-with-item-with-tags]))))
+
+  (test/testing "collect-tags collects tags from section"
+    (test/is (= #{a-tag} (core/collect-tags [a-section-with-tags]))))
+
+  (test/testing "collect-tags handles section with no tags"
+    (test/is (= #{} (core/collect-tags [a-section-without-tags]))))
+
+  (test/testing "collect-tags handles nill"
+    (test/is (= #{} (core/collect-tags nil)))))
+
+
 (test/deftest filter-tags
   (test/testing "filter-tags filters subitems with different tags in optionalCourses"
     (test/is (= [a-section-without-tagged-subitems-in-optional-courses]
