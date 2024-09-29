@@ -5,6 +5,10 @@
    [cv-creator.core :as core]
    [cv-creator.section :as section]))
 
+(def a-cv {:english
+           {:label "English"
+            :sections [(section/create-section-from-map
+                        {:label "aLabel" :items [{:value "aValue"}]})]}})
 (def a-tag "arbitrary")
 (def another-tag "anotherArbitrary")
 (def a-section-without-items (section/create-section-from-map {:label "sectionLabel"
@@ -47,6 +51,17 @@
                                                                               :subitems [{:value "An item" :tags [a-tag]}
                                                                                          {:value "An item"}]}}))
 
+
+(test/deftest validate-args-and-create-cv
+  ;; (test/testing "validate-args-and-create-cv is not empty"
+  ;;   (test/is (not (= "<div class=\"cvStyle\"></div>"
+  ;;                    (core/validate-args-and-create-cv :language "english" :tags "" :data a-cv)))))
+
+  (test/testing "validate-args-and-create-cv is not empty"
+    (test/is (not (= "<div class=\"cvStyle\"></div>"
+                     (core/validate-args-and-create-cv :language "english" :tags "" :data a-cv))))))
+
+
 (test/deftest filter-tags
   (test/testing "filter-tags filters subitems with different tags in optionalCourses"
     (test/is (= [a-section-without-tagged-subitems-in-optional-courses]
@@ -88,10 +103,7 @@
   (test/testing "filter-tags handles nill"
     (test/is (= nil (core/filter-tags nil #{})))))
 
+
 (test/deftest create-cv
   (test/testing "create-cv is not empty"
-    (test/is (not (= "<div class=\"cvStyle\"></div>"
-                     (core/create-cv :english [] {:english
-                                                  {:label "English"
-                                                   :sections [(section/create-section-from-map
-                                                               {:label "aLabel" :items [{:value "aValue"}]})]}}))))))
+    (test/is (not (= "<div class=\"cvStyle\"></div>" (core/create-cv :english #{} a-cv))))))

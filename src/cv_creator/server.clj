@@ -1,8 +1,6 @@
 (ns cv-creator.server
   #_{:clj-kondo/ignore [:deprecated-namespace]}
   (:require
-   [clojure.string :as string]
-   
    [compojure.core :as compojure]
    [compojure.handler]
    [compojure.route :as route]
@@ -22,7 +20,7 @@
 
 (compojure/defroutes app-impl
   (compojure/GET "/cvcreator" [language tags]
-    (cv-creator.core/create-cv (keyword language) (set (string/split tags #",")) cv-creator-data))
+    (cv-creator.core/validate-args-and-create-cv :language language :tags tags :data cv-creator-data))
   (route/not-found ""))
 
 ; I prefer using deprecated API than adding the new dependency

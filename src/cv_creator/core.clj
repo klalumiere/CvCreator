@@ -34,7 +34,11 @@
 (defn create-cv [languageKey tags data] (cv-creator.html-renderer/create-html
                                          (filter-tags (:sections (languageKey data)) tags)))
 
+(defn validate-args-and-create-cv [& {:keys [language tags data errorMessage]}]
+  (create-cv (keyword language) (set (string/split tags #",")) data))
+
 (defn -main [dataFolder language & rawTags]
-  (let [tags (or (set rawTags) #{})]
+  (let [tags (or (string/join "," rawTags) "")]
     (println
-     (create-cv (keyword language) tags (cv-creator.deserializer/deserialize-folder dataFolder)))))
+     (validate-args-and-create-cv :language language
+                                  :tags tags :data (cv-creator.deserializer/deserialize-folder dataFolder)))))
