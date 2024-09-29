@@ -36,6 +36,7 @@
 (defn deserialize-cv [json] (let [{metadata :metadata :as content} json]
                               {(utility/get-language-key metadata)
                                {:label (utility/get-language-label metadata)
+                                :tags (:tags metadata)
                                 :sections (utility/get-ordered-sections metadata content)}}))
 
 (defn deserialize [filePath] (deserialize-cv (deserialize-json (slurp filePath))))

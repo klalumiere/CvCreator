@@ -125,7 +125,7 @@
 (spec/def ::sections (spec/coll-of any? :kind vector?))
 
 
-(spec/def ::cv-localized (spec/keys :req-un [::label ::sections]))
+(spec/def ::cv-localized (spec/keys :req-un [::label ::sections :cv-creator.deserializer.specs.metadata/tags]))
 
 
 (spec/def ::cv (spec/map-of keyword? ::cv-localized))
