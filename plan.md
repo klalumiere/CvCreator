@@ -25,7 +25,8 @@
     - [x] Read https://github.com/weavejester/lein-ring
 - [ ] Update server
     - [x] Validate language
-    - [ ] Validate tags
+    - [x] Validate tags
+    - [ ] Code review & refactoring
 
 ## Frontend
 

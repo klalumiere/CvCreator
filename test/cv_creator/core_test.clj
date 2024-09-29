@@ -30,7 +30,8 @@
 (def a-cv {(keyword a-language)
            {:label "English"
             :sections [(section/create-section-from-map
-                        {:label "aLabel" :items [{:value "aValue"}]})]}})
+                        {:label "aLabel" :items [{:value "aValue"}]})]
+            :tags [{:value a-tag :label "A tag"}]}})
 (def a-section-with-tags (section/create-section-from-map {:label "sectionLabel"
                                                            :tags [a-tag]
                                                            :items [{:value "An item with subitems"
@@ -63,9 +64,17 @@
     (test/is (= core/error-keyword
                 (core/validate-args-and-create-cv :language "anInvalidLanguage" :tags "" :data a-cv))))
 
+  (test/testing "validate-args-and-create-cv returns error message for invalid tags"
+    (test/is (= (str an-error-message " tags")
+                (core/validate-args-and-create-cv :language a-language :tags "invalid" :data a-cv :errorMessage an-error-message))))
+
   (test/testing "validate-args-and-create-cv returns error message for invalid language"
     (test/is (= (str an-error-message " language")
                 (core/validate-args-and-create-cv :language "anInvalidLanguage" :tags "" :data a-cv :errorMessage an-error-message))))
+
+  (test/testing "validate-args-and-create-cv is not empty div with tag"
+    (test/is (not (= "<div class=\"cvStyle\"></div>"
+                     (core/validate-args-and-create-cv :language a-language :tags a-tag :data a-cv)))))
 
   (test/testing "validate-args-and-create-cv is not empty div"
     (test/is (not (= "<div class=\"cvStyle\"></div>"

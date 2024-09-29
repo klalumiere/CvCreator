@@ -48,13 +48,13 @@
          (map (fn [x] (utility/update-if-exist x :subitems #(filter-tags % tags)))))
     data))
 
-(defn get-tags [localizedCv] (set (map :value (:tags localizedCv))))
+(defn get-metadata-tags [localizedCv] (set (map :value (:tags localizedCv))))
 
 (defn create-cv [languageKey tags data]
   (let [localizedCv (languageKey data)
         sections (:sections localizedCv)]
-    (when instrumented (assert (every? (get-tags localizedCv) (collect-tags sections))
-                               (str "Expected " (collect-tags sections) " to be in " (get-tags localizedCv))))
+    (when instrumented (assert (every? (get-metadata-tags localizedCv) (collect-tags sections))
+                               (str "Expected " (collect-tags sections) " to be in " (get-metadata-tags localizedCv))))
     (cv-creator.html-renderer/create-html (filter-tags sections tags))))
 
 (defn- generate-error-message [errorMessage problematicParameter]
@@ -65,11 +65,16 @@
                                           ; This is a bit complicated, but safer than using `keyword` on the user-supplied language
                                           (not (contains? (set (map name (keys data))) language))))
 
+(defn- invalid-tags? [tags localizedCv]
+  (not (every? (get-metadata-tags localizedCv) tags)))
+
 (defn validate-args-and-create-cv [& {:keys [language tags data errorMessage]}]
-  (let [notEmptyTags (or tags "")]
+  (let [notEmptyTags (or tags "")
+        tagsAsSet (set (remove empty? (string/split notEmptyTags #",")))]
     (cond
       (invalid-language? language data) (generate-error-message errorMessage "language")
-      :else (create-cv (keyword language)  (set (string/split notEmptyTags #",")) data))))
+      (invalid-tags? tagsAsSet ((keyword language) data)) (generate-error-message errorMessage "tags")
+      :else (create-cv (keyword language) tagsAsSet data))))
 
 
 (defn -main [dataFolder language & rawTags]
