@@ -28,7 +28,6 @@
     - [x] Validate tags
     - [x] Code review & refactoring
 - [x] Reorganize order of function using `declare`
-- [ ] Update server (part 2) basing myself on the Ruby `server.rb`.
 
 ## Frontend
 
