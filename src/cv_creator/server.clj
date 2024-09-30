@@ -1,10 +1,33 @@
 (ns cv-creator.server
+  #_{:clj-kondo/ignore [:deprecated-namespace]}
   (:require
    [compojure.core :as compojure]
-   [compojure.route :as route])
+   [compojure.handler]
+   [compojure.route :as route]
+
+   [cv-creator.core]
+   [cv-creator.deserializer])
   (:gen-class))
 
-#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
-(compojure/defroutes app
+(def cv-creator-data-dir-path (or (System/getenv "CV_CREATOR_DATA_PATH") "data/sample"))
+
+(def cv-creator-data (cv-creator.deserializer/deserialize-folder cv-creator-data-dir-path))
+
+(def result-bad-request {:status 400})
+
+; TODO: remove this when we're ready to deploy in production
+(compojure/defroutes trivial-impl
   (compojure/GET "/" [] "<h1>Hello World</h1>")
   (route/not-found ""))
+
+(compojure/defroutes app-impl
+  (compojure/GET "/cvcreator" [language tags]
+    (let [result (cv-creator.core/validate-args-and-create-cv :language language :tags tags :data cv-creator-data)]
+      (if (= result cv-creator.core/error-keyword) result-bad-request result)))
+  (route/not-found ""))
+
+; I prefer using deprecated API than adding the new dependency
+; `ring-clojure/ring-defaults` with a version < 1 (with no new commit since 8 months)
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(def app #_{:clj-kondo/ignore [:deprecated-var]}
+  (-> trivial-impl compojure.handler/api))

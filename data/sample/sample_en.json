@@ -14,6 +14,16 @@
             "socialImplications",
             "publications",
             "contributedTalks"
+        ],
+        "tags": [
+            {
+                "value": "computerScience",
+                "label": "Computer Science"
+            },
+            {
+                "value": "food",
+                "label": "Food"
+            }
         ]
     },
     "head": {

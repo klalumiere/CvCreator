@@ -23,8 +23,12 @@
 - [x] Verify if there's things I should know about Clojure before deploying all of this in production
     - [x] Like putting environment var to some value to prevent stack trace
     - [x] Read https://github.com/weavejester/lein-ring
-- [ ] Update server
-    - [ ] Validate every arguments (including language and tags)
+- [x] Update server
+    - [x] Validate language
+    - [x] Validate tags
+    - [x] Code review & refactoring
+- [ ] Reorganize order of function using `::` operator
+- [ ] Update server part 2
 
 ## Frontend
 
