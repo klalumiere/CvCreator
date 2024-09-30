@@ -15,15 +15,15 @@
 
 (def result-bad-request {:status 400})
 
-; TODO: remove this when we're ready to deploy in production
-(compojure/defroutes trivial-impl
-  (compojure/GET "/" [] "<h1>Hello World</h1>")
-  (route/not-found ""))
-
 (compojure/defroutes app-impl
   (compojure/GET "/cvcreator" [language tags]
     (let [result (cv-creator.core/validate-args-and-create-cv :language language :tags tags :data cv-creator-data)]
       (if (= result cv-creator.core/error-keyword) result-bad-request result)))
+  (route/not-found ""))
+
+; TODO: remove this when we're ready to deploy in production
+(compojure/defroutes trivial-impl
+  (compojure/GET "/" [] "<h1>Hello World</h1>")
   (route/not-found ""))
 
 ; I prefer using deprecated API than adding the new dependency
