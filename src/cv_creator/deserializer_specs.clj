@@ -10,45 +10,47 @@
 (spec/def ::business string?)
 (spec/def ::date string?)
 (spec/def ::degree string?)
+(spec/def ::detailedTag (spec/keys :req-un [::value ::label]))
 (spec/def ::eMail string?)
 (spec/def ::label string?)
 (spec/def ::name string?)
 (spec/def ::place string?)
-(spec/def ::sectionName cv-creator.deserializer/possible-section-names)
 (spec/def ::school string?)
-(spec/def ::title string?)
-(spec/def ::detailedTag (spec/keys :req-un [::value ::label]))
+(spec/def ::sectionName cv-creator.deserializer/possible-section-names)
 (spec/def ::tags (spec/nilable (spec/coll-of string? :kind vector?)))
+(spec/def ::title string?)
 (spec/def ::value string?)
 
 
 (spec/def ::educationSubitem (spec/keys
                               :req-un [::label ::value]
                               :opt-un [::tags]))
-(spec/def :cv-creator.deserializer.specs.education/subitems
-  (spec/nilable (spec/coll-of ::educationSubitem :kind vector?)))
+
 (spec/def ::language (spec/keys
                       :req-un [::label ::value]))
-(spec/def :cv-creator.deserializer.specs.metadata/tags
-  (spec/coll-of ::detailedTag :kind vector?))
+
 (spec/def ::optionalCoursesSubitem (spec/keys
                                     :req-un [::place ::title]
                                     :opt-un [::tags]))
-(spec/def :cv-creator.deserializer.specs.optional-courses/subitems
-  (spec/coll-of ::optionalCoursesSubitem :kind vector?))
 (spec/def ::order (spec/coll-of ::sectionName :kind vector?))
 (spec/def ::phone (spec/keys
                    :req-un [::label ::value]))
 (spec/def ::relevantReadingsSubitem (spec/keys
                                      :req-un [::authors ::title]
                                      :opt-un [::tags]))
-(spec/def :cv-creator.deserializer.specs.relevant-readings/subitems
-  (spec/coll-of ::relevantReadingsSubitem :kind vector?))
 (spec/def ::simpleSubitem (spec/keys
                            :req-un [::value]
                            :opt-un [::tags]))
 (spec/def ::webPage (spec/keys
                      :req-un [::label ::value]))
+(spec/def :cv-creator.deserializer.specs.education/subitems
+  (spec/nilable (spec/coll-of ::educationSubitem :kind vector?)))
+(spec/def :cv-creator.deserializer.specs.metadata/tags
+  (spec/coll-of ::detailedTag :kind vector?))
+(spec/def :cv-creator.deserializer.specs.optional-courses/subitems
+  (spec/coll-of ::optionalCoursesSubitem :kind vector?))
+(spec/def :cv-creator.deserializer.specs.relevant-readings/subitems
+  (spec/coll-of ::relevantReadingsSubitem :kind vector?))
 
 
 (spec/def ::subitems (spec/nilable (spec/coll-of ::simpleSubitem :kind vector?)))
@@ -58,15 +60,10 @@
                            :req-un [::degree ::school ::date
                                     :cv-creator.deserializer.specs.education/subitems]
                            :opt-un [::tags]))
-(spec/def :cv-creator.deserializer.specs.education/items (spec/coll-of ::educationItem :kind vector?))
 (spec/def ::experienceItem (spec/keys
                             :req-un [::title ::business ::date
                                      ::subitems]
                             :opt-un [::tags]))
-(spec/def :cv-creator.deserializer.specs.experience/items (spec/coll-of ::experienceItem :kind vector?))
-(spec/def ::simpleItem (spec/keys
-                        :req-un [::value]
-                        :opt-un [::tags ::subitems]))
 (spec/def ::optionalCourses (spec/keys
                              :req-un [::label
                                       :cv-creator.deserializer.specs.optional-courses/subitems]
@@ -75,6 +72,11 @@
                               :req-un [::label
                                        :cv-creator.deserializer.specs.relevant-readings/subitems]
                               :opt-un [::tags]))
+(spec/def ::simpleItem (spec/keys
+                        :req-un [::value]
+                        :opt-un [::tags ::subitems]))
+(spec/def :cv-creator.deserializer.specs.education/items (spec/coll-of ::educationItem :kind vector?))
+(spec/def :cv-creator.deserializer.specs.experience/items (spec/coll-of ::experienceItem :kind vector?))
 
 
 (spec/def ::items (spec/coll-of ::simpleItem :kind vector?))
@@ -122,6 +124,7 @@
                              ::socialImplications]))
 
 
+(spec/def ::cvJsonArgs (spec/cat :cvJson ::cvJson))
 (spec/def ::sections (spec/coll-of any? :kind vector?))
 
 
@@ -129,7 +132,6 @@
 
 
 (spec/def ::cv (spec/map-of keyword? ::cv-localized))
-(spec/def ::cvJsonArgs (spec/cat :cvJson ::cvJson))
 (spec/def ::deserializeCvFn (fn [{:keys [args ret]}]
                               (let [orderCount (count (((args :cvJson) :metadata) :order))]
                                 (->>

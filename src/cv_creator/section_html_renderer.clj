@@ -53,6 +53,10 @@
              (cv-creator.html-renderer/render-html-all (:subitems this))))))
 
 
+(extend-type EducationSubitem cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (selmer/render "<li><strong>{{label}}: </strong>{{value}}</li>" this)))
+
+
 (extend-type ExperienceItem cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (selmer/render "<table>
 <tr>
@@ -95,10 +99,18 @@
 " (assoc this :rendered-subitems (cv-creator.html-renderer/render-html-all (:subitems this)))))))
 
 
+(extend-type OptionalCoursesSubitem cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (selmer/render "<li><strong>{{title}}</strong>, {{place}}</li>" this)))
+
+
 (extend-type PhoneItem cv-creator.html-renderer/HtmlRenderer
              (render-html [this] (if (string/blank? (:value this))
                                    ""
                                    (selmer/render "<td style=\"text-align: right\">{{label}}: {{value}}</td>" this))))
+
+
+(extend-type RelevantReadingsSubitem cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (selmer/render "<li>{{authors}}, <strong>{{title}}</strong></li>" this)))
 
 
 (extend-type Section cv-creator.html-renderer/HtmlRenderer
@@ -108,18 +120,6 @@
 <hr class=\"section\">
 <ul>{{rendered-items|safe}}</ul>
 <br>" (assoc this :rendered-items (cv-creator.html-renderer/render-html-all (:items this)))))))
-
-
-(extend-type EducationSubitem cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (selmer/render "<li><strong>{{label}}: </strong>{{value}}</li>" this)))
-
-
-(extend-type OptionalCoursesSubitem cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (selmer/render "<li><strong>{{title}}</strong>, {{place}}</li>" this)))
-
-
-(extend-type RelevantReadingsSubitem cv-creator.html-renderer/HtmlRenderer
-             (render-html [this] (selmer/render "<li>{{authors}}, <strong>{{title}}</strong></li>" this)))
 
 
 (extend-type WebPageItem cv-creator.html-renderer/HtmlRenderer
