@@ -5,6 +5,13 @@
 
             [cv-creator.section]
             [cv-creator.utility :as utility]))
+(declare
+ deserialize
+ deserialize-cv
+ deserialize-folder
+ deserialize-json
+ list-jsons-in-folder
+ )
 
 (def deserializer-dispatcher-map {:autodidactTraining cv-creator.section/create-autodidact-training-section-from-map
                                   :contributedTalks cv-creator.section/create-section-from-map
@@ -26,12 +33,8 @@
                               "skillSummary"
                               "socialImplications"})
 
-(defn dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
-                                             (if (nil? constructor) value (constructor value))))
 
-(defn- deserialize-json [str] (json/read-str str
-                                             :key-fn keyword
-                                             :value-fn dispatch-deserialization))
+(defn deserialize [filePath] (deserialize-cv (deserialize-json (slurp filePath))))
 
 (defn deserialize-cv [json] (let [{metadata :metadata :as content} json]
                               {(utility/get-language-key metadata)
@@ -39,13 +42,19 @@
                                 :tags (:tags metadata)
                                 :sections (utility/get-ordered-sections metadata content)}}))
 
-(defn deserialize [filePath] (deserialize-cv (deserialize-json (slurp filePath))))
-
-(defn list-jsons-in-folder [folder] (filter #(clojure.string/includes? % "json")
-                                            (.list (clojure.java.io/file folder))))
-
 (defn deserialize-folder [folder] (->>
                                    (list-jsons-in-folder folder)
                                    (map #(str folder "/" %))
                                    (map deserialize)
                                    (reduce merge)))
+
+(defn dispatch-deserialization [key value] (let [constructor (key deserializer-dispatcher-map)]
+                                             (if (nil? constructor) value (constructor value))))
+
+
+(defn- deserialize-json [str] (json/read-str str
+                                             :key-fn keyword
+                                             :value-fn dispatch-deserialization))
+
+(defn- list-jsons-in-folder [folder] (filter #(clojure.string/includes? % "json")
+                                            (.list (clojure.java.io/file folder))))
