@@ -61,21 +61,21 @@
 
 
 (defn- create-education-item-from-map [aMap] (map->EducationItem
-                                             (-> aMap
-                                                 (utility/update-if-exist :subitems #(mapv map->EducationSubitem %)))))
+                                              (-> aMap
+                                                  (utility/update-if-exist :subitems #(mapv map->EducationSubitem %)))))
 
 (defn- create-experience-item-from-map [aMap] (map->ExperienceItem
-                                              (-> aMap
-                                                  (utility/update-if-exist :subitems #(mapv map->Item %)))))
+                                               (-> aMap
+                                                   (utility/update-if-exist :subitems #(mapv map->Item %)))))
 
 (defn- create-item-from-map [aMap] (map->Item
                                     (-> aMap
                                         (utility/update-if-exist :subitems #(mapv map->Item %)))))
 
 (defn- create-optional-courses-item-from-map [aMap] (map->AutodidactTrainingItem
-                                                    (-> aMap
-                                                        (utility/update-if-exist :subitems #(mapv map->OptionalCoursesSubitem %)))))
+                                                     (-> aMap
+                                                         (utility/update-if-exist :subitems #(mapv map->OptionalCoursesSubitem %)))))
 
 (defn- create-relevant-readings-item-from-map [aMap] (map->AutodidactTrainingItem
-                                                     (-> aMap
-                                                         (utility/update-if-exist :subitems #(mapv map->RelevantReadingsSubitem %)))))
+                                                      (-> aMap
+                                                          (utility/update-if-exist :subitems #(mapv map->RelevantReadingsSubitem %)))))
