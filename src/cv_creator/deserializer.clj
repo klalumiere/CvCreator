@@ -10,8 +10,7 @@
  deserialize-cv
  deserialize-folder
  deserialize-json
- list-jsons-in-folder
- )
+ list-jsons-in-folder)
 
 (def deserializer-dispatcher-map {:autodidactTraining cv-creator.section/create-autodidact-training-section-from-map
                                   :contributedTalks cv-creator.section/create-section-from-map
@@ -23,15 +22,7 @@
                                   :skillSummary cv-creator.section/create-section-from-map
                                   :socialImplications cv-creator.section/create-section-from-map})
 
-(def possible-section-names #{"autodidactTraining"
-                              "contributedTalks"
-                              "education"
-                              "experiences"
-                              "head"
-                              "honors"
-                              "publications"
-                              "skillSummary"
-                              "socialImplications"})
+(def possible-section-names (set (map name (keys deserializer-dispatcher-map))))
 
 
 (defn deserialize [filePath] (deserialize-cv (deserialize-json (slurp filePath))))
@@ -57,4 +48,4 @@
                                              :value-fn dispatch-deserialization))
 
 (defn- list-jsons-in-folder [folder] (filter #(clojure.string/includes? % "json")
-                                            (.list (clojure.java.io/file folder))))
+                                             (.list (clojure.java.io/file folder))))
