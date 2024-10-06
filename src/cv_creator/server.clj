@@ -11,10 +11,12 @@
    [cv-creator.utility :as utility])
   (:gen-class))
 
-(def cv-creator-data-dir-path (or (System/getenv "CV_CREATOR_DATA_PATH") "data/sample"))
+(def cv-creator-cross-origin (or (System/getenv "CV_CREATOR_CROSS_ORIGIN") "http://localhost:3000"))
+(def cv-creator-data-dir-path (or (System/getenv "CV_CREATOR_DATA_DIR_PATH") "data/sample"))
 
 (def cv-creator-data (cv-creator.deserializer/deserialize-folder cv-creator-data-dir-path))
 
+(def access-control-allow-origin {"Access-Control-Allow-Origin" cv-creator-cross-origin})
 (def json-header {"Content-Type" "application/json"})
 (def result-bad-request {:status 400})
 
@@ -23,7 +25,9 @@
     (let [result (cv-creator.core/validate-args-and-create-cv :language language :tags tags :data cv-creator-data)]
       (if (= result cv-creator.core/error-keyword) result-bad-request result)))
   (compojure/GET "/cvcreator/menu" []
-    {:status  200 :headers json-header :body (utility/drop-sections cv-creator-data)})
+    {:status  200
+     :headers (merge access-control-allow-origin json-header)
+     :body (utility/drop-sections cv-creator-data)})
   (route/not-found ""))
 
 ; TODO: remove this when we're ready to deploy in production
