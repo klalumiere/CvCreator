@@ -5,19 +5,37 @@ import './App.css';
 const backendUrl = process.env.REACT_APP_CV_CREATOR_BACKEND_URL ?? "."
 let initialized =  false
 
-async function fetchMenu(): Promise<any> {
+interface Tag {
+  label: string;
+  value: string;
+}
+
+interface LocalizedMenu {
+  label: string;
+  languageLabel: string;
+  tagsLabel: string;
+  tags: Tag[];
+}
+
+interface LanguageToLocalizedMenu {
+  [Key: string]: LocalizedMenu;
+}
+
+async function fetchMenu(): Promise<LanguageToLocalizedMenu> {
   const response = await fetch(`${backendUrl}/cvcreator/menu`);
   const data = await response.json();
   return data;
 }
 
 function App() {
-  const [menu, setMenu] = useState(null);
+  const [menu, setMenu] = useState<LanguageToLocalizedMenu>({});
 
   useEffect(() => {
     if (!initialized) {
-      setMenu(null)
-      fetchMenu().then(data => setMenu(data))
+      setMenu({})
+      fetchMenu().then(data => {
+        setMenu(data)
+      })
       initialized = true
     }
   }, []);
