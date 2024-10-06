@@ -21,6 +21,13 @@ interface LanguageToLocalizedMenu {
   [Key: string]: LocalizedMenu;
 }
 
+function createTagsSetFromLocalizedMenu(localizedMenu: LocalizedMenu): Set<string> {
+  if(!localizedMenu) {
+    return new Set()
+  }
+  return new Set(localizedMenu.tags.map(tag => tag.value))
+}
+
 async function fetchMenu(): Promise<LanguageToLocalizedMenu> {
   const response = await fetch(`${backendUrl}/cvcreator/menu`);
   const data = await response.json();
@@ -43,8 +50,9 @@ function isDefault(localizedMenu: LocalizedMenu): boolean {
 }
 
 function App() {
-  const [languageKey, setLanguageKey] = useState("")
   const [menu, setMenu] = useState<LanguageToLocalizedMenu>({})
+  const [languageKey, setLanguageKey] = useState("")
+  const [tags, setTags] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     if (!initialized) {
@@ -54,28 +62,66 @@ function App() {
     }
   }, []);
   useEffect(() => setLanguageKey(getDefaultLanguageKey(menu)), [menu]);
+  useEffect(() => setTags(createTagsSetFromLocalizedMenu(menu[languageKey])), [languageKey, menu]);
+
+  function onLanguageChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setLanguageKey(event.target.value);
+  }
+
+  function onTagChange(event: React.ChangeEvent<HTMLInputElement>) {
+    let newTags = new Set(tags)
+    if(event.target.checked) {
+      newTags.add(event.target.id)
+    } else {
+      newTags.delete(event.target.id)
+    }
+    setTags(newTags)
+  }
 
   const languageLabel = languageKey ? menu[languageKey].languageLabel : ""
   const renderedLanguage = Object.keys(menu).sort().map((key: string, index: number) =>
     <div key={key}>
       <label>
-        <input type="radio" name="language" value={key} defaultChecked={isDefault(menu[key])}/>{menu[key].label}
+        <input 
+          defaultChecked={isDefault(menu[key])}
+          name="language"
+          onChange={onLanguageChange}
+          type="radio"
+          value={key}
+          />{menu[key].label}
       </label>
     </div>
   )
 
-  const tagsLabel = languageKey ? menu[languageKey].tagsLabel : ""
+  const tagsLabel = !languageKey ? "" : menu[languageKey].tagsLabel
+  const renderedTags = !languageKey ? "" :  menu[languageKey].tags
+    .sort((lhs, rhs) => lhs.label < rhs.label ? -1 : 0)
+    .map(tag =>
+      <div key={tag.value}>
+        <label>
+          <input 
+            checked={tags.has(tag.value)}
+            id={tag.value}
+            onChange={onTagChange}
+            type="checkbox"
+            />{tag.label}
+        </label>
+      </div>
+    )
+
+  console.log(tags) // TODO: remove this
 
   return (
     <div>
-      <br/>
       <div className="Menu">
+        <br/>
         <strong><div>{languageLabel}</div></strong>
         {renderedLanguage}
         <br/>
         <strong><div>{tagsLabel}</div> </strong>
-        <p>{JSON.stringify(menu)}</p>
+        {renderedTags}
       </div>
+      <div className="Cv"></div>
     </div>
   );
 }
