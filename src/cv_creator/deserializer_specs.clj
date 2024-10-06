@@ -9,7 +9,7 @@
 (spec/def ::authors string?)
 (spec/def ::business string?)
 (spec/def ::date string?)
-(spec/def ::default boolean?)
+(spec/def ::default (spec/nilable boolean?))
 (spec/def ::degree string?)
 (spec/def ::detailedTag (spec/keys :req-un [::value ::label]))
 (spec/def ::eMail string?)
