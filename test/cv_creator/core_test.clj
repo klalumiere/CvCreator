@@ -29,8 +29,10 @@
 
 (def a-cv {(keyword a-language)
            {:label "English"
+            :languageLabel "Language"
             :sections [(section/create-section-from-map
                         {:label "aLabel" :items [{:value "aValue"}]})]
+            :tagsLabel "Skills"
             :tags [{:value a-tag :label "A tag"}]}})
 (def a-section-with-tags (section/create-section-from-map {:label "sectionLabel"
                                                            :tags [a-tag]
