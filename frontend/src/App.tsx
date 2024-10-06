@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 const backendUrl = process.env.REACT_APP_CV_CREATOR_BACKEND_URL ?? "."
@@ -28,35 +27,40 @@ async function fetchMenu(): Promise<LanguageToLocalizedMenu> {
 }
 
 function App() {
-  const [menu, setMenu] = useState<LanguageToLocalizedMenu>({});
+  const [language, setLanguage] = useState("")
+  const [menu, setMenu] = useState<LanguageToLocalizedMenu>({})
 
   useEffect(() => {
     if (!initialized) {
       setMenu({})
       fetchMenu().then(data => {
         setMenu(data)
+        //if isDefault setLanguage
       })
       initialized = true
     }
   }, []);
 
+  const renderedLanguage = Object.keys(menu).map((key: string, index: number) => {
+    let checked = false
+    if (index === 0) {
+      checked = true
+    }
+    return <div key={key}>
+      <label>
+        <input type="radio" name="language" value={key} defaultChecked={checked}/>{menu[key].label}
+      </label>
+    </div>
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-          {JSON.stringify(menu)}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <br/>
+      <div className="Menu">
+        {renderedLanguage}
+        <br/>
+        <p>{JSON.stringify(menu)}</p>
+      </div>
     </div>
   );
 }
