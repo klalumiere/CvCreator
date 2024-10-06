@@ -32,7 +32,8 @@ async function fetchCv(language: string, tags: Set<string>): Promise<string> {
   if(!language) {
     return Promise.resolve("")
   }
-  const response = await fetch(`${backendUrl}/cvcreator?language=${language}&tags=computerScience`);
+  const joinedTags = Array.from(tags).join(",")
+  const response = await fetch(`${backendUrl}/cvcreator?language=${language}&tags=${joinedTags}`);
   const data = await response.text();
   return data;
 }
