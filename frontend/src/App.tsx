@@ -28,6 +28,15 @@ function createTagsSetFromLocalizedMenu(localizedMenu: LocalizedMenu): Set<strin
   return new Set(localizedMenu.tags.map(tag => tag.value))
 }
 
+async function fetchCv(language: string, tags: Set<string>): Promise<string> {
+  if(!language) {
+    return Promise.resolve("")
+  }
+  const response = await fetch(`${backendUrl}/cvcreator?language=${language}&tags=computerScience`);
+  const data = await response.text();
+  return data;
+}
+
 async function fetchMenu(): Promise<LanguageToLocalizedMenu> {
   const response = await fetch(`${backendUrl}/cvcreator/menu`);
   const data = await response.json();
@@ -53,6 +62,7 @@ function App() {
   const [menu, setMenu] = useState<LanguageToLocalizedMenu>({})
   const [languageKey, setLanguageKey] = useState("")
   const [tags, setTags] = useState<Set<string>>(new Set())
+  const [cv, setCv] = useState("")
 
   useEffect(() => {
     if (!initialized) {
@@ -63,6 +73,7 @@ function App() {
   }, []);
   useEffect(() => setLanguageKey(getDefaultLanguageKey(menu)), [menu]);
   useEffect(() => setTags(createTagsSetFromLocalizedMenu(menu[languageKey])), [languageKey, menu]);
+  useEffect(() => { fetchCv(languageKey, tags).then(data => setCv(data)) }, [languageKey, tags]);
 
   function onLanguageChange(event: React.ChangeEvent<HTMLInputElement>) {
     setLanguageKey(event.target.value);
@@ -121,7 +132,9 @@ function App() {
         <strong><div>{tagsLabel}</div> </strong>
         {renderedTags}
       </div>
-      <div className="Cv"></div>
+      <div className="Cv">
+        { <div dangerouslySetInnerHTML={{ __html: cv }} /> }
+      </div>
     </div>
   );
 }
