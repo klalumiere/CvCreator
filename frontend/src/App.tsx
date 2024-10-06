@@ -121,8 +121,6 @@ function App() {
       </div>
     )
 
-  console.log(tags) // TODO: remove this
-
   return (
     <div>
       <div className="Menu">
