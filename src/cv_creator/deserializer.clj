@@ -30,7 +30,9 @@
 (defn deserialize-cv [json] (let [{metadata :metadata :as content} json]
                               {(utility/get-language-key metadata)
                                {:label (utility/get-language-label metadata)
+                                :languageLabel (:languageLabel metadata)
                                 :tags (:tags metadata)
+                                :tagsLabel (:tagsLabel metadata)
                                 :sections (utility/get-ordered-sections metadata content)}}))
 
 (defn deserialize-folder [folder] (->>

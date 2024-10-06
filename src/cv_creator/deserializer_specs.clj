@@ -12,12 +12,14 @@
 (spec/def ::degree string?)
 (spec/def ::detailedTag (spec/keys :req-un [::value ::label]))
 (spec/def ::eMail string?)
+(spec/def ::languageLabel string?)
 (spec/def ::label string?)
 (spec/def ::name string?)
 (spec/def ::place string?)
 (spec/def ::school string?)
 (spec/def ::sectionName cv-creator.deserializer/possible-section-names)
 (spec/def ::tags (spec/nilable (spec/coll-of string? :kind vector?)))
+(spec/def ::tagsLabel string?)
 (spec/def ::title string?)
 (spec/def ::value string?)
 
@@ -106,7 +108,11 @@
                            ::phone
                            ::webPage]))
 (spec/def ::honors ::section)
-(spec/def ::metadata (spec/keys :req-un [::language ::order :cv-creator.deserializer.specs.metadata/tags]))
+(spec/def ::metadata (spec/keys :req-un [::tagsLabel
+                                         ::language
+                                         ::languageLabel
+                                         ::order
+                                         :cv-creator.deserializer.specs.metadata/tags]))
 (spec/def ::publications ::section)
 (spec/def ::skillSummary ::section)
 (spec/def ::socialImplications ::section)
@@ -128,7 +134,11 @@
 (spec/def ::sections (spec/coll-of any? :kind vector?))
 
 
-(spec/def ::cv-localized (spec/keys :req-un [::label ::sections :cv-creator.deserializer.specs.metadata/tags]))
+(spec/def ::cv-localized (spec/keys :req-un [::languageLabel
+                                             ::label
+                                             ::sections
+                                             ::tagsLabel
+                                             :cv-creator.deserializer.specs.metadata/tags]))
 
 
 (spec/def ::cv (spec/map-of keyword? ::cv-localized))
