@@ -1,0 +1,18 @@
+@media print {
+  .Menu {
+      display: none;
+  }
+}
+
+@media screen {
+  .Menu {
+    width: 15%;
+    margin: 2px 2px 2px 20px;
+    float: left;
+  }
+  .Cv {
+    width: 80%;
+    margin: 2px 2px 2px 2px;
+    float: left;
+  }
+}

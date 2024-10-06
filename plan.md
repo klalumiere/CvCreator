@@ -28,12 +28,14 @@
     - [x] Validate tags
     - [x] Code review & refactoring
 - [x] Reorganize order of function using `declare`
+- [ ] Add a function to obtain menu content
 
 ## Frontend
 
 - [ ] Reimplement frontend with modern/simple web framework
-    - [ ] Choose frontend framework (create-react-app?) and create the app
+    - [x] Choose frontend framework (create-react-app?) and create the app
     - [ ] Reimplement index.html
+    - [ ] Reimplement frontend
 
 ## Update data
 
