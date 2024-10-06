@@ -21,16 +21,11 @@
 <body>
 
     <div className="Menu">
-
         <strong><div id="skillTitle" style="display: inline">Comp&eacute;tences</div> </strong><br>
         <input type="checkbox" id="radioResearch" onclick="window.cvManager.toggleClassState('research')"><div id="research" style="display: inline">Recherche</div><br>
         <input type="checkbox" id="radioComputerScience" onclick="window.cvManager.toggleClassState('computerScience')"><div id="computerScience" style="display: inline">Informatique</div><br>
         <input type="checkbox" id="radioTeaching" onclick="window.cvManager.toggleClassState('teaching')"><div id="teaching" style="display: inline">Enseignement</div><br>
         <input type="checkbox" id="radioOther" onclick="window.cvManager.toggleClassState('other')"><div id="other" style="display: inline">Autres</div><br>
-        <br>
-        <div style="text-align: center"><a id="openInLatex" href="#" onClick="window.open(window.cvManager.createTexUrl(),'_blank'); return false;">Ouvrir en LaTeX</a></div>
-        <br>
-        <div style="text-align: center"><a id="printPage" href="#" onClick="window.print(); return false;">Imprimer</a></div>
     </div>
     <div className="Cv">  </div>
 </body>

@@ -10,6 +10,7 @@ interface Tag {
 }
 
 interface LocalizedMenu {
+  default?: boolean;
   label: string;
   languageLabel: string;
   tagsLabel: string;
@@ -26,39 +27,53 @@ async function fetchMenu(): Promise<LanguageToLocalizedMenu> {
   return data;
 }
 
+function getDefaultLanguageKey(menu: LanguageToLocalizedMenu): string {
+  let defaultLanguageKey = ""
+  for (let [key, value] of Object.entries(menu)) {
+    if(isDefault(value)) {
+      defaultLanguageKey = key
+      break
+    }
+  }
+  return defaultLanguageKey
+}
+
+function isDefault(localizedMenu: LocalizedMenu): boolean {
+  return localizedMenu.default === true
+}
+
 function App() {
-  const [language, setLanguage] = useState("")
+  const [languageKey, setLanguageKey] = useState("")
   const [menu, setMenu] = useState<LanguageToLocalizedMenu>({})
 
   useEffect(() => {
     if (!initialized) {
       setMenu({})
-      fetchMenu().then(data => {
-        setMenu(data)
-        //if isDefault setLanguage
-      })
+      fetchMenu().then(data => setMenu(data))
       initialized = true
     }
   }, []);
+  useEffect(() => setLanguageKey(getDefaultLanguageKey(menu)), [menu]);
 
-  const renderedLanguage = Object.keys(menu).map((key: string, index: number) => {
-    let checked = false
-    if (index === 0) {
-      checked = true
-    }
-    return <div key={key}>
+  const languageLabel = languageKey ? menu[languageKey].languageLabel : ""
+  const renderedLanguage = Object.keys(menu).sort().map((key: string, index: number) =>
+    <div key={key}>
       <label>
-        <input type="radio" name="language" value={key} defaultChecked={checked}/>{menu[key].label}
+        <input type="radio" name="language" value={key} defaultChecked={isDefault(menu[key])}/>{menu[key].label}
       </label>
     </div>
-  })
+  )
+
+  const tagsLabel = languageKey ? menu[languageKey].tagsLabel : ""
 
   return (
     <div>
       <br/>
       <div className="Menu">
+        <strong><div>{languageLabel}</div></strong>
         {renderedLanguage}
         <br/>
+        <strong><div>{tagsLabel}</div> </strong>
         <p>{JSON.stringify(menu)}</p>
       </div>
     </div>
