@@ -4,7 +4,21 @@
 
    [cv-creator.utility :as utility]))
 
+(def a-cv {:english {:label "English"
+                     :languageLabel "Language"
+                     :sections [{:label "aLabel" :items [{:value "aValue"}]}]
+                     :tagsLabel "Skills"
+                     :tags [{:value "aTag" :label "A tag"}]}})
+(def menu-data {:english {:label "English"
+                          :languageLabel "Language"
+                          :sections nil
+                          :tagsLabel "Skills"
+                          :tags [{:value "aTag" :label "A tag"}]}})
+
 (test/deftest utility
+
+  (test/testing "drop-sections drops sections"
+    (test/is (= menu-data (utility/drop-sections a-cv))))
 
   (test/testing "get-ordered-sections returns sections in order"
     (test/is (= ["info" "summary"]

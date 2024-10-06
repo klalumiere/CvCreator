@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "languageLabel": "Langue",
+        "tagsLabel": "Compétences",
         "language": {
             "label": "Français",
             "value": "french"

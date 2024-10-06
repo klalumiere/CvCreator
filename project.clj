@@ -8,6 +8,7 @@
                  [org.clojure/data.json "2.5.0"]
                  [ring/ring-core "1.9.6"]
                  [ring/ring-jetty-adapter "1.9.6"]
+                 [ring/ring-json "0.5.1"]
                  [selmer "1.12.58"]]
   :plugins [[lein-ring "0.12.6"]]
   :ring {:handler cv-creator.server/app :port 8080}

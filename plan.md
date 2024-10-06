@@ -28,7 +28,7 @@
     - [x] Validate tags
     - [x] Code review & refactoring
 - [x] Reorganize order of function using `declare`
-- [ ] Add a function to obtain menu content
+- [x] Add a function to obtain menu content
 
 ## Frontend
 
@@ -36,6 +36,7 @@
     - [x] Choose frontend framework (create-react-app?) and create the app
     - [ ] Reimplement index.html
     - [ ] Reimplement frontend
+    - [ ] Handle vulnerabilities
 
 ## Update data
 

@@ -41,9 +41,10 @@
 (defn create-cv [languageKey tags data]
   (let [localizedCv (languageKey data)
         sections (:sections localizedCv)]
-    (let [metadataTags (get-metadata-tags localizedCv)
-          usedTags (collect-tags sections)]
-      (when instrumented (assert (every? metadataTags usedTags) (str "Expected " usedTags " to be in " metadataTags))))
+    (when instrumented
+      (let [metadataTags (get-metadata-tags localizedCv)
+            usedTags (collect-tags sections)]
+        (assert (every? metadataTags usedTags) (str "Expected " usedTags " to be in " metadataTags))))
     (cv-creator.html-renderer/create-html (filter-tags sections tags))))
 
 (defn validate-args-and-create-cv [& {:keys [language tags data errorMessage]}]

@@ -1,6 +1,8 @@
 (ns cv-creator.utility)
 (declare get-ordered-section-keys)
 
+(defn drop-sections [cv] (into {} (map (fn [[key value]] [key (update value :sections (constantly nil))]) cv)))
+
 (defn get-language-key [metadata] (keyword (:value (:language metadata))))
 
 (defn get-language-label [metadata] (:label (:language metadata)))
