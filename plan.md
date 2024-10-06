@@ -32,8 +32,9 @@
 ## Frontend
 
 - [ ] Reimplement frontend with modern/simple web framework
-    - [ ] Choose frontend framework (create-react-app?) and create the app
+    - [x] Choose frontend framework (create-react-app?) and create the app
     - [ ] Reimplement index.html
+    - [ ] Reimplement frontend
 
 ## Update data
 

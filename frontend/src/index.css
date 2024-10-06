@@ -8,6 +8,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+div.cvStyle {
+  margin-left: auto;
+  margin-right: auto;
+}
 hr {
   border: 0;
   color: #0000CC;
@@ -26,12 +30,18 @@ ul {
 }
 
 @media print {
+  div.cvStyle {
+    width: 6.5in;
+  }
   table {
     width: 6.5in;
   }
 }
 
 @media screen {
+  div.cvStyle {
+    width: 7.0in;
+  }
   table {
     width: 7.0in;
   }
