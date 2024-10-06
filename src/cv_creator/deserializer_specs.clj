@@ -9,6 +9,7 @@
 (spec/def ::authors string?)
 (spec/def ::business string?)
 (spec/def ::date string?)
+(spec/def ::default boolean?)
 (spec/def ::degree string?)
 (spec/def ::detailedTag (spec/keys :req-un [::value ::label]))
 (spec/def ::eMail string?)
@@ -108,11 +109,12 @@
                            ::phone
                            ::webPage]))
 (spec/def ::honors ::section)
-(spec/def ::metadata (spec/keys :req-un [::tagsLabel
-                                         ::language
+(spec/def ::metadata (spec/keys :req-un [::language
                                          ::languageLabel
                                          ::order
-                                         :cv-creator.deserializer.specs.metadata/tags]))
+                                         ::tagsLabel
+                                         :cv-creator.deserializer.specs.metadata/tags]
+                                :opt-un [::default]))
 (spec/def ::publications ::section)
 (spec/def ::skillSummary ::section)
 (spec/def ::socialImplications ::section)
@@ -138,7 +140,8 @@
                                              ::label
                                              ::sections
                                              ::tagsLabel
-                                             :cv-creator.deserializer.specs.metadata/tags]))
+                                             :cv-creator.deserializer.specs.metadata/tags]
+                                    :opt-un [::default]))
 
 
 (spec/def ::cv (spec/map-of keyword? ::cv-localized))
