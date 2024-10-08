@@ -34,9 +34,13 @@
 
 - [ ] Reimplement frontend with modern/simple web framework
     - [x] Choose frontend framework (create-react-app?) and create the app
-    - [ ] Reimplement index.html
-    - [ ] Reimplement frontend
+    - [x] Reimplement index.html
+    - [x] Reimplement frontend
+    - [ ] Add tests
+        - [ ] Run tests in CI
     - [ ] Handle vulnerabilities
+    - [ ] Package and test frontend in prod
+        - [ ] Run packaging tests in CI
 
 ## Update data
 

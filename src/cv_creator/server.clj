@@ -28,7 +28,7 @@
           {:status  200
            :headers (merge access-control-allow-origin content-type-html)
            :body result})))
-  (compojure/GET "/cvcreator/menu" []
+  (compojure/GET "/cvcreator/menus" []
     {:status  200
      :headers (merge access-control-allow-origin content-type-json)
      :body (utility/drop-sections cv-creator-data)})
