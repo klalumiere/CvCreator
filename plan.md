@@ -40,6 +40,7 @@
         - [ ] Run tests in CI
     - [ ] Handle vulnerabilities
     - [ ] Package and test frontend in prod
+        - [ ] Set `CV_CREATOR_CROSS_ORIGIN` and `CV_CREATOR_DATA_DIR_PATH`
         - [ ] Run packaging tests in CI
 
 ## Update data

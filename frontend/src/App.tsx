@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 const backendUrl = process.env.REACT_APP_CV_CREATOR_BACKEND_URL ?? "."

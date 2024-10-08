@@ -19,17 +19,18 @@
 (def access-control-allow-origin {"Access-Control-Allow-Origin" cv-creator-cross-origin})
 (def content-type-html {"Content-Type" "text/html; charset=utf-8"})
 (def content-type-json {"Content-Type" "application/json; charset=utf-8"})
-(def result-bad-request {:status 400})
+(def http-status-bad-request 400)
+(def http-status-ok 200)
 
 (compojure/defroutes app-impl
   (compojure/GET "/cvcreator" [language tags]
     (let [result (cv-creator.core/validate-args-and-create-cv :language language :tags tags :data cv-creator-data)]
-      (if (= result cv-creator.core/error-keyword) result-bad-request
-          {:status  200
+      (if (= result cv-creator.core/error-keyword) {:status http-status-bad-request}
+          {:status  http-status-ok
            :headers (merge access-control-allow-origin content-type-html)
            :body result})))
   (compojure/GET "/cvcreator/menus" []
-    {:status  200
+    {:status  http-status-ok
      :headers (merge access-control-allow-origin content-type-json)
      :body (utility/drop-sections cv-creator-data)})
   (route/not-found ""))
