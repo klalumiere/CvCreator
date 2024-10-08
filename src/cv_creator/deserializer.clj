@@ -29,7 +29,8 @@
 
 (defn deserialize-cv [json] (let [{metadata :metadata :as content} json]
                               {(utility/get-language-key metadata)
-                               {:label (utility/get-language-label metadata)
+                               {:default (:default metadata)
+                                :label (utility/get-language-label metadata)
                                 :languageLabel (:languageLabel metadata)
                                 :tags (:tags metadata)
                                 :tagsLabel (:tagsLabel metadata)

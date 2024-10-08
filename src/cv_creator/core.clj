@@ -18,6 +18,7 @@
 
  collect-tags-accumulating
  collect-tags-from-collection
+ count-default-tags
  generate-error-message
  get-metadata-tags
  invalid-language?
@@ -39,6 +40,9 @@
 
 
 (defn create-cv [languageKey tags data]
+  (when instrumented
+    (let [defaultTagsCount (count-default-tags data)]
+      (assert (<= defaultTagsCount 1) (str "Expected a single default tag, but got " defaultTagsCount))))
   (let [localizedCv (languageKey data)
         sections (:sections localizedCv)]
     (when instrumented
@@ -80,6 +84,11 @@
     accumulator))
 
 (defn- collect-tags-from-collection [collection] (reduce clojure.set/union (map set (map :tags collection))))
+
+(defn- count-default-tags [data] (->> data
+                                      (map (fn [[_ value]] (:default value)))
+                                      (map #(if % 1 0))
+                                      (reduce +)))
 
 (defn- generate-error-message [errorMessage problematicParameter]
   (if (empty? errorMessage) error-keyword (str errorMessage " " problematicParameter)))
