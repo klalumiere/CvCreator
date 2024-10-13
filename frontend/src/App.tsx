@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import * as SelfModule from './App'; // Require to fetch functions
 
 const backendUrl = process.env.REACT_APP_CV_CREATOR_BACKEND_URL ?? "."
 
 let initialized =  false
 
 
-interface Tag {
+export interface Tag {
   label: string;
   value: string;
 }
 
-interface LocalizedMenu {
+export interface LocalizedMenu {
   default?: boolean;
   label: string;
   languageLabel: string;
@@ -19,7 +20,7 @@ interface LocalizedMenu {
   tags: Tag[];
 }
 
-interface LanguageToLocalizedMenu {
+export interface LanguageToLocalizedMenu {
   [Key: string]: LocalizedMenu;
 }
 
@@ -31,7 +32,7 @@ function createTagsSetFromLocalizedMenu(menu: LocalizedMenu): Set<string> {
   return new Set(menu.tags.map(tag => tag.value))
 }
 
-async function fetchCv(language: string, tags: Set<string>): Promise<string> {
+export async function fetchCv(language: string, tags: Set<string>): Promise<string> {
   if(!language) {
     return Promise.resolve("")
   }
@@ -40,7 +41,7 @@ async function fetchCv(language: string, tags: Set<string>): Promise<string> {
   return data;
 }
 
-async function fetchMenus(): Promise<LanguageToLocalizedMenu> {
+export async function fetchMenus(): Promise<LanguageToLocalizedMenu> {
   const response = await fetch(`${backendUrl}/cvcreator/menus`);
   const data = await response.json();
   return data;
@@ -58,7 +59,7 @@ function getDefaultLanguageKey(menus: LanguageToLocalizedMenu): string {
 }
 
 
-function App() {
+export function App() {
   const [menus, setMenus] = useState<LanguageToLocalizedMenu>({})
   const [languageKey, setLanguageKey] = useState("")
   const [tags, setTags] = useState<Set<string>>(new Set())
@@ -67,13 +68,13 @@ function App() {
   useEffect(() => {
     if (!initialized) {
       setMenus({})
-      fetchMenus().then(data => setMenus(data))
+      SelfModule.fetchMenus().then(data => setMenus(data))
       initialized = true
     }
   }, []);
   useEffect(() => setLanguageKey(getDefaultLanguageKey(menus)), [menus]);
   useEffect(() => setTags(createTagsSetFromLocalizedMenu(menus[languageKey])), [languageKey, menus]);
-  useEffect(() => { fetchCv(languageKey, tags).then(data => setCv(data)) }, [languageKey, tags]);
+  useEffect(() => { SelfModule.fetchCv(languageKey, tags).then(data => setCv(data)) }, [languageKey, tags]);
 
 
   function onLanguageChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -139,5 +140,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

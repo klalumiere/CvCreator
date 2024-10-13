@@ -1,9 +1,25 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import renderer from 'react-test-renderer';
+import {screen} from "@testing-library/react";
+import * as AppModule from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const aLanguageToLocalizedMenu: AppModule.LanguageToLocalizedMenu = {}
+aLanguageToLocalizedMenu["english"] = {
+  default: false,
+  label: "TestEnglish",
+  languageLabel: "TestLanguage",
+  tagsLabel: "TestTags",
+  tags: [],
+}
+
+test('renders learn react link', async () => {
+  jest.spyOn(AppModule, 'fetchMenus').mockImplementation(() => {
+    return Promise.resolve(aLanguageToLocalizedMenu)
+  });
+  jest.spyOn(AppModule, 'fetchCv').mockImplementation(() => {
+    return Promise.resolve("")
+  });
+
+  renderer.create(<AppModule.App/>);
+
+  expect(await screen.findByText(aLanguageToLocalizedMenu["english"].languageLabel)).toBeInTheDocument();
 });
