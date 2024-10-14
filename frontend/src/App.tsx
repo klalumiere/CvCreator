@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import * as SelfModule from './App'; // Require to fetch functions
+import * as SelfModule from './App'; // Require to mock functions
 
 const backendUrl = process.env.REACT_APP_CV_CREATOR_BACKEND_URL ?? "."
 
-export let initialized =  false
+let initialized =  false
 
 
 export interface Tag {

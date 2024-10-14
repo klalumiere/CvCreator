@@ -12,6 +12,10 @@ let aLanguageToLocalizedMenu: AppModule.LanguageToLocalizedMenu
 let mockFetchCv: jest.SpyInstance
 let mockFetchMenus: jest.SpyInstance
 
+function getTestIdForLanguage(language: string): string {
+  return `language-input-${aLanguageToLocalizedMenu[language].label}`
+}
+
 
 beforeEach(() => {
   aLanguageToLocalizedMenu = {}
@@ -53,8 +57,8 @@ test('screen contains cv data', async () => {
 test('given many languages in menu, only one of them is checked', async () => {
   render(<AppModule.App/>)
 
-  const inputBoxEnglish = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelEnglish].label}`) as HTMLInputElement
-  const inputBoxFrench = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelFrench].label}`) as HTMLInputElement
+  const inputBoxEnglish = await screen.findByTestId(getTestIdForLanguage(languageLabelEnglish)) as HTMLInputElement
+  const inputBoxFrench = await screen.findByTestId(getTestIdForLanguage(languageLabelFrench)) as HTMLInputElement
   expect(inputBoxEnglish.checked).not.toEqual(inputBoxFrench.checked)
 })
 
@@ -63,24 +67,20 @@ test('given many languages in menu, default is checked', async () => {
 
   render(<AppModule.App/>)
 
-  const inputBoxFrench = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelFrench].label}`) as HTMLInputElement
+  const inputBoxFrench = await screen.findByTestId(getTestIdForLanguage(languageLabelFrench)) as HTMLInputElement
   expect(inputBoxFrench.checked).toEqual(true)
 })
 
 test('when changing languages, cv is fetched', async () => {
-  // const user = userEvent.setup()
-  // aLanguageToLocalizedMenu[languageLabelEnglish].default = true
+  const user = userEvent.setup()
+  aLanguageToLocalizedMenu[languageLabelEnglish].default = true
 
-  // render(<AppModule.App/>)
+  render(<AppModule.App/>)
+  const inputBoxFrench = await screen.findByTestId(getTestIdForLanguage(languageLabelFrench)) as HTMLInputElement
+  await user.click(inputBoxFrench)
 
-  // expect(inputBoxFrench.checked).toEqual(true)
-  // const inputBoxFrench = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelFrench].label}`) as HTMLInputElement
-  // await user.click(inputBoxFrench)
-  // const callCountBeforeClick = mockFetchCv.
-  // console.log(mockFetchCv)
-  // console.log(mockFetchCv)
-
-  // const inputBoxEnglish = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelEnglish].label}`) as HTMLInputElement
-  // expect(inputBoxEnglish.checked).toEqual(false)
-  // expect(inputBoxFrench.checked).toEqual(true)
+  const inputBoxEnglish = await screen.findByTestId(getTestIdForLanguage(languageLabelEnglish)) as HTMLInputElement
+  expect(inputBoxEnglish.checked).toEqual(false)
+  expect(inputBoxFrench.checked).toEqual(true)
+  expect(mockFetchCv).toHaveBeenCalledWith(languageLabelFrench, expect.any(Set))
 })
