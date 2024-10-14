@@ -36,12 +36,13 @@
     - [x] Choose frontend framework (create-react-app?) and create the app
     - [x] Reimplement index.html
     - [x] Reimplement frontend
-    - [ ] Add tests
-        - [ ] Run tests in CI
-    - [ ] Handle vulnerabilities
+    - [x] Add tests
+        - [x] Run tests in CI
     - [ ] Package and test frontend in prod
         - [ ] Set `CV_CREATOR_CROSS_ORIGIN` and `CV_CREATOR_DATA_DIR_PATH`
         - [ ] Run packaging tests in CI
+    - [ ] Handle vulnerabilities (package _before_ fixing vulnerabilities to make sure fixing vulnerabilities doesn't break packaging)
+        - [ ] Remove dependencies that are not 100% necessary to the project (see `README.md` about `npm run eject`)
 
 ## Update data
 
