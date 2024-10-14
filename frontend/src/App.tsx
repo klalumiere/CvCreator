@@ -47,7 +47,7 @@ export async function fetchMenus(): Promise<LanguageToLocalizedMenu> {
   return data;
 }
 
-function joinTags(tags: Set<string>) {
+export function joinTags(tags: Set<string>) {
   return Array.from(tags).join(",")
 }
 
@@ -120,6 +120,7 @@ export function App() {
         <label>
           <input 
             checked={tags.has(tag.value)}
+            data-testid={`tag-input-${tag.value}`}
             id={tag.value}
             onChange={onTagChange}
             type="checkbox"
