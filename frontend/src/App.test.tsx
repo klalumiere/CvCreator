@@ -1,6 +1,8 @@
 
-import {render, screen} from "@testing-library/react";
-import * as AppModule from "./App";
+
+import userEvent from '@testing-library/user-event'
+import {render, screen} from "@testing-library/react"
+import * as AppModule from "./App"
 
 const cvData = "SomeTestCvData"
 const languageLabelEnglish = "english"
@@ -48,7 +50,7 @@ test('screen contains cv data', async () => {
   expect(await screen.findByText(cvData)).toBeInTheDocument()
 })
 
-test('given many languages in menu, one of them is checked', async () => {
+test('given many languages in menu, only one of them is checked', async () => {
   render(<AppModule.App/>)
 
   const inputBoxEnglish = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelEnglish].label}`) as HTMLInputElement
@@ -65,14 +67,20 @@ test('given many languages in menu, default is checked', async () => {
   expect(inputBoxFrench.checked).toEqual(true)
 })
 
-// test('when changing languages, cv is fetched', async () => {
-//   aLanguageToLocalizedMenu[languageLabelEnglish].default = true
+test('when changing languages, cv is fetched', async () => {
+  // const user = userEvent.setup()
+  // aLanguageToLocalizedMenu[languageLabelEnglish].default = true
 
-//   render(<AppModule.App/>)
-//   const inputBoxEnglish = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelEnglish].label}`) as HTMLInputElement
-//   const inputBoxFrench = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelFrench].label}`) as HTMLInputElement
-//   fireEvent.change(inputBoxFrench, {checked: true})
+  // render(<AppModule.App/>)
 
-//   // expect(inputBoxEnglish.checked).toEqual(false)
-//   expect(inputBoxFrench.checked).toEqual(true)
-// })
+  // expect(inputBoxFrench.checked).toEqual(true)
+  // const inputBoxFrench = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelFrench].label}`) as HTMLInputElement
+  // await user.click(inputBoxFrench)
+  // const callCountBeforeClick = mockFetchCv.
+  // console.log(mockFetchCv)
+  // console.log(mockFetchCv)
+
+  // const inputBoxEnglish = await screen.findByTestId(`language-input-${aLanguageToLocalizedMenu[languageLabelEnglish].label}`) as HTMLInputElement
+  // expect(inputBoxEnglish.checked).toEqual(false)
+  // expect(inputBoxFrench.checked).toEqual(true)
+})
