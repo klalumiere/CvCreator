@@ -1,9 +1,12 @@
-FROM clojure:temurin-19-lein-2.9.10-alpine as base
+FROM clojure:temurin-23-lein-2.11.2-noble AS base
 
-RUN apk add --no-cache tini
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
+        tini \
+    && rm -rf /var/lib/apt/lists/*
 
 
-FROM clojure:temurin-19-lein-2.9.10-alpine AS builder
+FROM clojure:temurin-23-lein-2.11.2-noble AS builder
 
 WORKDIR /builder
 COPY project.clj project.clj
