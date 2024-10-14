@@ -4,7 +4,7 @@ import * as SelfModule from './App'; // Require to fetch functions
 
 const backendUrl = process.env.REACT_APP_CV_CREATOR_BACKEND_URL ?? "."
 
-let initialized =  false
+export let initialized =  false
 
 
 export interface Tag {
@@ -58,6 +58,10 @@ function getDefaultLanguageKey(menus: LanguageToLocalizedMenu): string {
     .reduce((accumulator, [key, _]) => key, firstKey) ?? ""
 }
 
+export function resetInitializedForTests() {
+  initialized = false
+}
+
 
 export function App() {
   const [menus, setMenus] = useState<LanguageToLocalizedMenu>({})
@@ -98,6 +102,7 @@ export function App() {
       <label>
         <input 
           checked={languageKey === key}
+          data-testid={`language-input-${menus[key].label}`}
           name="language"
           onChange={onLanguageChange}
           type="radio"
