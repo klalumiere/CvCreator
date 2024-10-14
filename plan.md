@@ -37,7 +37,7 @@
     - [x] Reimplement index.html
     - [x] Reimplement frontend
     - [x] Add tests
-        - [ ] Run tests in CI
+        - [x] Run tests in CI
     - [ ] Package and test frontend in prod
         - [ ] Set `CV_CREATOR_CROSS_ORIGIN` and `CV_CREATOR_DATA_DIR_PATH`
         - [ ] Run packaging tests in CI
