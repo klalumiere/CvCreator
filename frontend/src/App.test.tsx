@@ -53,8 +53,9 @@ afterEach(() => {
 })
 
 test('screen contains menu data', async () => {
+  aLanguageToLocalizedMenu[languageLabelEnglish].default = true
   render(<AppModule.App/>)
-  expect(await screen.findByText(aLanguageToLocalizedMenu[languageLabelEnglish].label)).toBeInTheDocument()
+  expect(await screen.findByText(aLanguageToLocalizedMenu[languageLabelEnglish].tagsLabel)).toBeInTheDocument()
 })
 
 test('screen contains cv data', async () => {
@@ -77,6 +78,17 @@ test('given many languages in menu, default is checked', async () => {
 
   const inputBoxFrench = await screen.findByTestId(getTestIdForLanguage(languageLabelFrench)) as HTMLInputElement
   expect(inputBoxFrench.checked).toEqual(true)
+})
+
+test('when changing languages, menu language changes', async () => {
+  const user = userEvent.setup()
+  aLanguageToLocalizedMenu[languageLabelEnglish].default = true
+
+  render(<AppModule.App/>)
+  const inputBoxFrench = await screen.findByTestId(getTestIdForLanguage(languageLabelFrench)) as HTMLInputElement
+  await user.click(inputBoxFrench)
+
+  expect(await screen.findByText(aLanguageToLocalizedMenu[languageLabelFrench].tagsLabel)).toBeInTheDocument()
 })
 
 test('when changing languages, cv is fetched with proper language', async () => {
@@ -139,4 +151,18 @@ test('when changing tags, cv is fetched with proper tags', async () => {
 
   expect(aTagCheckbox.checked).toEqual(false)
   expect(mockFetchCv).toHaveBeenCalledWith(languageLabelEnglish, new Set([anotherTagInEnglish.value]))
+})
+
+test('when changing tags twice, cv is fetched with proper tags', async () => {
+  const user = userEvent.setup()
+  aLanguageToLocalizedMenu[languageLabelEnglish].default = true
+
+  render(<AppModule.App/>)
+  const aTagCheckbox = await screen.findByTestId(getTestIdForTag(aTagInEnglish.value)) as HTMLInputElement
+  await user.click(aTagCheckbox)
+  await user.click(aTagCheckbox)
+
+  const lastCallIndex = mockFetchCv.mock.calls.length // that's not a mistake: the parameter is not a zero-based index!
+  expect(aTagCheckbox.checked).toEqual(true)
+  expect(mockFetchCv).toHaveBeenNthCalledWith(lastCallIndex, languageLabelEnglish, new Set([aTagInEnglish.value, anotherTagInEnglish.value]))
 })
