@@ -44,6 +44,6 @@
 ; `ring-clojure/ring-defaults` with a version < 1 (with no new commit since 8 months)
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (def app
-  (-> trivial-impl
+  (-> app-impl
       compojure.handler/api
       ring.middleware.json/wrap-json-response))
