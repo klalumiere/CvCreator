@@ -35,15 +35,11 @@
      :body (utility/drop-sections cv-creator-data)})
   (route/not-found ""))
 
-; TODO: remove this when we're ready to deploy in production
-(compojure/defroutes trivial-impl
-  (compojure/GET "/" [] "<h1>Hello World</h1>")
-  (route/not-found ""))
-
 ; I prefer using deprecated API than adding the new dependency
 ; `ring-clojure/ring-defaults` with a version < 1 (with no new commit since 8 months)
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (def app
-  (-> trivial-impl
+  #_{:clj-kondo/ignore [:deprecated-var]}
+  (-> app-impl
       compojure.handler/api
       ring.middleware.json/wrap-json-response))

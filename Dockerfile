@@ -16,5 +16,7 @@ RUN lein ring uberjar
 
 FROM base
 
-COPY --from=builder /builder/target/default+uberjar/cv-creator.jar /app/cv-creator.jar
-ENTRYPOINT ["/sbin/tini", "--", "java", "-jar", "/app/cv-creator.jar"]
+WORKDIR /app
+COPY --from=builder /builder/target/uberjar/cv-creator.jar /app/cv-creator.jar
+COPY data /app/data
+ENTRYPOINT ["/bin/tini", "--", "java", "-jar", "/app/cv-creator.jar"]

@@ -1,5 +1,22 @@
 # CvCreator
 
+## Quick Start
+
+To start the backend while developing
+
+```shell
+lein ring server
+```
+
+and to start the frontend
+
+```shell
+cd frontend
+REACT_APP_CV_CREATOR_BACKEND_URL=http://localhost:8080 npm start
+```
+
+## Legacy
+
 [![Build Status](https://github.com/klalumiere/CvCreator/workflows/Continuous%20Integration%20Workflow/badge.svg?branch=master)](https://github.com/klalumiere/CvCreator/actions)
 
 Use some LaTeX-like formatted data files to generate a CV in many languages with optional entries. Some sample data files about the author are provided on the branch [withLimitedData](https://github.com/klalumiere/CvCreator/tree/withLimitedData). The name of the data files searched are harcoded and to each name is associated a particular view subclass. This allow to format, for instance, the *Skill Summary* section in a different way than the *Autodidact Training* section.
