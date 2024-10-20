@@ -1,4 +1,4 @@
-FROM clojure:temurin-23-lein-2.11.2-noble AS base
+FROM eclipse-temurin:23-noble AS base
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \

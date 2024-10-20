@@ -1,19 +1,27 @@
 # CvCreator
 
+TODO: Documentation 😉
+
 ## Quick Start
 
-To start the backend while developing
+### Development
+
+To start the backend
 
 ```shell
 lein ring server
 ```
 
-and to start the frontend
+and then to start the frontend
 
 ```shell
 cd frontend
 REACT_APP_CV_CREATOR_BACKEND_URL=http://localhost:8080 npm start
 ```
+
+### Packaged
+
+Run `./launchServer.sh`.
 
 ## Legacy
 
