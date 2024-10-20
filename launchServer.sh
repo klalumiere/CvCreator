@@ -8,10 +8,11 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 
 docker build --pull --tag cvcreator .
+# The memory limit mimics fly.io 's free tier memory limit.
 docker run \
     --env CV_CREATOR_DATA_DIR_PATH="data/sample" \
     --interactive \
-    --memory 256M \
+    --memory 220M \
     --publish 8080:8080 \
     --tty \
     cvcreator
