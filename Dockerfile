@@ -10,6 +10,7 @@ FROM clojure:temurin-23-lein-2.11.2-noble AS builder
 
 WORKDIR /builder
 COPY project.clj project.clj
+COPY resources resources
 COPY src src
 RUN lein ring uberjar
 
@@ -19,4 +20,5 @@ FROM base
 WORKDIR /app
 COPY --from=builder /builder/target/uberjar/cv-creator.jar /app/cv-creator.jar
 COPY data /app/data
-ENTRYPOINT ["/bin/tini", "--", "java", "-jar", "/app/cv-creator.jar"]
+ENTRYPOINT ["/bin/tini", "--"]
+CMD ["java", "-jar", "/app/cv-creator.jar"]

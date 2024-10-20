@@ -33,6 +33,7 @@
     {:status  http-status-ok
      :headers (merge access-control-allow-origin content-type-json)
      :body (utility/drop-sections cv-creator-data)})
+  (route/resources "/")
   (route/not-found ""))
 
 ; I prefer using deprecated API than adding the new dependency
