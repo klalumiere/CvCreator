@@ -10,7 +10,8 @@ FROM node:20-bookworm AS frontend
 
 COPY frontend /builder/frontend
 WORKDIR /builder/frontend
-RUN npm run build
+RUN npm install \
+    && npm run build
 
 
 FROM clojure:temurin-23-lein-2.11.2-noble AS backend
