@@ -14,9 +14,6 @@ kill_timeout = "5s"
 [deploy]
   strategy = "immediate"
 
-[env]
-  CV_CREATOR_DATA_DIR_PATH = "data/sample"
-
 [[services]]
   auto_stop_machines = false
   auto_start_machines = false
