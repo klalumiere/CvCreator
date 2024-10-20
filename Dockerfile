@@ -1,9 +1,6 @@
-FROM eclipse-temurin:23-noble AS base
+FROM eclipse-temurin:23-alpine AS base
 
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
-        tini \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache tini
 
 
 FROM node:20-bookworm AS frontend
@@ -28,5 +25,5 @@ FROM base
 WORKDIR /app
 COPY --from=backend /builder/target/uberjar/cv-creator.jar /app/cv-creator.jar
 COPY data /app/data
-ENTRYPOINT ["/bin/tini", "--"]
+ENTRYPOINT ["/sbin/tini", "-s", "--"]
 CMD ["java", "-Xmx32M", "-jar", "/app/cv-creator.jar"]
