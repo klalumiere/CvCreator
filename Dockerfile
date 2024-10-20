@@ -26,4 +26,4 @@ WORKDIR /app
 COPY --from=backend /builder/target/uberjar/cv-creator.jar /app/cv-creator.jar
 COPY data /app/data
 ENTRYPOINT ["/sbin/tini", "-s", "--"]
-CMD ["java", "-Xmx200M", "-jar", "/app/cv-creator.jar"]
+CMD ["java", "-jar", "/app/cv-creator.jar"]
