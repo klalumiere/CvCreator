@@ -6,11 +6,18 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 
-FROM clojure:temurin-23-lein-2.11.2-noble AS builder
+FROM node:20-bookworm AS frontend
+
+COPY frontend /builder/frontend
+WORKDIR /builder/frontend
+RUN npm run build
+
+
+FROM clojure:temurin-23-lein-2.11.2-noble AS backend
 
 WORKDIR /builder
 COPY project.clj project.clj
-COPY resources resources
+COPY --from=frontend /builder/frontend/build resources/public
 COPY src src
 RUN lein ring uberjar
 
@@ -18,7 +25,7 @@ RUN lein ring uberjar
 FROM base
 
 WORKDIR /app
-COPY --from=builder /builder/target/uberjar/cv-creator.jar /app/cv-creator.jar
+COPY --from=backend /builder/target/uberjar/cv-creator.jar /app/cv-creator.jar
 COPY data /app/data
 ENTRYPOINT ["/bin/tini", "--"]
 CMD ["java", "-jar", "/app/cv-creator.jar"]
