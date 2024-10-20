@@ -17,8 +17,6 @@ jobs:
         run: lein test
       - name: Integration Tests
         run: lein test :integration
-      - name: Packaging Test
-        run: lein ring uberjar
       - name: End to End Tests
         env:
           CV_CREATOR_SPECS_INSTRUMENTED: "true"
@@ -41,3 +39,9 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+
+  ci-packaging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker build --pull .

@@ -36,6 +36,13 @@
   (route/resources "/")
   (route/not-found ""))
 
+; Inspired by https://stackoverflow.com/a/7730478/3068259
+; Thanks!
+(defn wrap-root-is-index-dot-html [handler]
+  (fn [req]
+    (handler
+     (update-in req [:uri] #(if (= "/" %) "/index.html" %)))))
+
 ; I prefer using deprecated API than adding the new dependency
 ; `ring-clojure/ring-defaults` with a version < 1 (with no new commit since 8 months)
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
@@ -43,4 +50,5 @@
   #_{:clj-kondo/ignore [:deprecated-var]}
   (-> app-impl
       compojure.handler/api
-      ring.middleware.json/wrap-json-response))
+      ring.middleware.json/wrap-json-response
+      wrap-root-is-index-dot-html))
