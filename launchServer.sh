@@ -8,4 +8,9 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 
 docker build --pull --tag cvcreator .
-docker run --interactive --publish 8080:8080 --tty cvcreator
+docker run \
+    --env CV_CREATOR_DATA_DIR_PATH="data/sample" \
+    --interactive \
+    --publish 8080:8080 \
+    --tty \
+    cvcreator

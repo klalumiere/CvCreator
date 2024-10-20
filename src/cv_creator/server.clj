@@ -11,7 +11,7 @@
    [cv-creator.utility :as utility])
   (:gen-class))
 
-(def cv-creator-cross-origin (or (System/getenv "CV_CREATOR_CROSS_ORIGIN") "http://localhost:3000"))
+(def cv-creator-cross-origin (or (System/getenv "CV_CREATOR_CROSS_ORIGIN") ""))
 (def cv-creator-data-dir-path (or (System/getenv "CV_CREATOR_DATA_DIR_PATH") "data/sample"))
 
 (def cv-creator-data (cv-creator.deserializer/deserialize-folder cv-creator-data-dir-path))

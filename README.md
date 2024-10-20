@@ -9,7 +9,7 @@ TODO: Documentation 😉
 To start the backend
 
 ```shell
-lein ring server
+CV_CREATOR_CROSS_ORIGIN=http://localhost:3000 lein ring server
 ```
 
 and then to start the frontend
