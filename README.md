@@ -1,6 +1,6 @@
 # CvCreator
 
-TODO: More documentation 😉
+TODO: More documentation
 
 ## Quick Start
 
