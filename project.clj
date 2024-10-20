@@ -16,5 +16,5 @@
   :target-path "target/%s"
   :test-selectors {:default (complement :integration)
                    :integration :integration}
-  :profiles {:uberjar {:aot :all :uberjar-name "cv-creator.jar"}
+  :profiles {:uberjar {:all :aot :uberjar-name "cv-creator.jar"}
              :test     {:dependencies [[org.clojure/test.check "1.1.1"]]}})

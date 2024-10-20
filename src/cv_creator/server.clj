@@ -11,7 +11,7 @@
    [cv-creator.utility :as utility])
   (:gen-class))
 
-(def cv-creator-cross-origin (or (System/getenv "CV_CREATOR_CROSS_ORIGIN") "http://localhost:3000"))
+(def cv-creator-cross-origin (or (System/getenv "CV_CREATOR_CROSS_ORIGIN") ""))
 (def cv-creator-data-dir-path (or (System/getenv "CV_CREATOR_DATA_DIR_PATH") "data/sample"))
 
 (def cv-creator-data (cv-creator.deserializer/deserialize-folder cv-creator-data-dir-path))
@@ -33,17 +33,22 @@
     {:status  http-status-ok
      :headers (merge access-control-allow-origin content-type-json)
      :body (utility/drop-sections cv-creator-data)})
+  (route/resources "/")
   (route/not-found ""))
 
-; TODO: remove this when we're ready to deploy in production
-(compojure/defroutes trivial-impl
-  (compojure/GET "/" [] "<h1>Hello World</h1>")
-  (route/not-found ""))
+; Inspired by https://stackoverflow.com/a/7730478/3068259
+; Thanks!
+(defn wrap-root-is-index-dot-html [handler]
+  (fn [req]
+    (handler
+     (update-in req [:uri] #(if (= "/" %) "/index.html" %)))))
 
 ; I prefer using deprecated API than adding the new dependency
 ; `ring-clojure/ring-defaults` with a version < 1 (with no new commit since 8 months)
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (def app
-  (-> trivial-impl
+  #_{:clj-kondo/ignore [:deprecated-var]}
+  (-> app-impl
       compojure.handler/api
-      ring.middleware.json/wrap-json-response))
+      ring.middleware.json/wrap-json-response
+      wrap-root-is-index-dot-html))
