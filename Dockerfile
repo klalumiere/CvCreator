@@ -18,7 +18,7 @@ RUN lein ring uberjar
 FROM gcr.io/distroless/java21-debian12
 
 WORKDIR /app
-ENV JAVA_TOOL_OPTIONS="-Xmx64M"
+ENV JAVA_TOOL_OPTIONS="-Xmx32M"
 COPY --from=backend /builder/target/uberjar/cv-creator.jar /app/cv-creator.jar
 COPY data /app/data
 CMD ["/app/cv-creator.jar"]
