@@ -41,9 +41,9 @@
     - [x] Package and test frontend in prod
         - [x] Set `CV_CREATOR_CROSS_ORIGIN` and `CV_CREATOR_DATA_DIR_PATH`
         - [x] Run packaging tests in CI
-    - [ ] Minimize java memory footprint as explained in `Dockerfile`, or...
-        - [ ] Update the misleading comment in the `Dockerfile` since we are now using 512 MB machines in `fly.toml` (also update `-Xmx32M`)
-    - [ ] Handle vulnerabilities (package _before_ fixing vulnerabilities to make sure fixing vulnerabilities doesn't break packaging)
+    - [x] Minimize java memory footprint as explained in `Dockerfile`, or...
+        - [x] Update the misleading comment in the `Dockerfile` since we are now using 512 MB machines in `fly.toml` (also update `-Xmx32M`)
+    - [ ] Handle vulnerabilities
         - [ ] Remove dependencies that are not 100% necessary to the project (see `README.md` about `npm run eject`)
 
 ## Update data
