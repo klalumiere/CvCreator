@@ -45,7 +45,7 @@
         - [x] Update the misleading comment in the `Dockerfile` since we are now using 512 MB machines in `fly.toml` (also update `-Xmx32M`)
     - [x] Handle vulnerabilities
         - [x] Remove dependencies that are not 100% necessary to the project (see `README.md` about `npm run eject`)
-- [ ] Spend time understanding the frontend "infra"
+- [x] Spend time understanding the frontend "infra"
 
 ## Update data
 
