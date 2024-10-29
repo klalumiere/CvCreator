@@ -32,7 +32,7 @@
 
 ## Frontend
 
-- [ ] Reimplement frontend with modern/simple web framework
+- [x] Reimplement frontend with modern/simple web framework
     - [x] Choose frontend framework (create-react-app?) and create the app
     - [x] Reimplement index.html
     - [x] Reimplement frontend
@@ -43,8 +43,9 @@
         - [x] Run packaging tests in CI
     - [x] Minimize java memory footprint as explained in `Dockerfile`, or...
         - [x] Update the misleading comment in the `Dockerfile` since we are now using 512 MB machines in `fly.toml` (also update `-Xmx32M`)
-    - [ ] Handle vulnerabilities
-        - [ ] Remove dependencies that are not 100% necessary to the project (see `README.md` about `npm run eject`)
+    - [x] Handle vulnerabilities
+        - [x] Remove dependencies that are not 100% necessary to the project (see `README.md` about `npm run eject`)
+- [ ] Spend time understanding the frontend "infra"
 
 ## Update data
 
