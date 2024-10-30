@@ -1,0 +1,348 @@
+{
+    "metadata": {
+        "languageLabel": "Langue",
+        "tagsLabel": "Compétences",
+        "language": {
+            "label": "Français",
+            "value": "french"
+        },
+        "order": [
+            "head",
+            "skillSummary",
+            "experiences",
+            "education",
+            "autodidactTraining",
+            "honors",
+            "socialImplications",
+            "publications",
+            "contributedTalks"
+        ],
+        "tags": [
+            {
+                "value": "computerScience",
+                "label": "Informatique"
+            },
+            {
+                "value": "food",
+                "label": "Nourriture"
+            }
+        ]
+    },
+    "head": {
+        "name": "Kevin Lalumière",
+        "eMail": "kevin.lalumiere@gmail.com",
+        "addressTown": "Montreal(Qc), Canada",
+        "webPage": {
+            "label": "Page web",
+            "value": "https://github.com/klalumiere"
+        }
+    },
+    "skillSummary": {
+        "label": "Résumé des habiletés",
+        "items": [
+            {
+                "value": "Une habileté"
+            },
+            {
+                "value": "Une habileté avec",
+                "subitems": [
+                    {
+                        "value": "une sous-habileté"
+                    }
+                ]
+            },
+            {
+                "value": "Une autre habileté"
+            }
+        ]
+    },
+    "education": {
+        "label": "Scolarité",
+        "items": [
+            {
+                "degree": "PhD en physique (Moyenne 3.9/4.3)",
+                "date": "2010-2015",
+                "school": "Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "subitems": [
+                    {
+                        "label": "Thèse",
+                        "value": "Électrodynamique quantique en guide d'onde"
+                    },
+                    {
+                        "label": "Superviseur",
+                        "value": "Alexandre Blais"
+                    }
+                ]
+            },
+            {
+                "degree": "École d'été Quantum machines",
+                "date": "Juillet 2011",
+                "school": "École de physique Les Houches, Les Houches, France"
+            },
+            {
+                "degree": "M. Sc. en Physique (Moyenne 3.9/4.3)",
+                "date": "2008-2010",
+                "school": "Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "subitems": [
+                    {
+                        "label": "Mémoire",
+                        "value": "Mesure de parité en électrodynamique quantique en circuit"
+                    },
+                    {
+                        "label": "Superviseur",
+                        "value": "Alexandre Blais"
+                    }
+                ]
+            },
+            {
+                "degree": "B. Sc. en Physique (Moyenne 3.9/4.3)",
+                "date": "2004-2007",
+                "school": "Université de Sherbrooke, Sherbrooke(Qc), Canada"
+            }            
+        ]
+    },
+    "experiences": {
+        "label": "Expériences",
+        "items": [
+            {
+                "title": "Graduate student",
+                "business": "Alex Térieur, Montreal(Qc), Canada",
+                "date": "2008-",
+                "subitems": [
+                    {
+                        "value": "A PhD"
+                    }
+                ]
+            }
+        ]
+    },
+    "autodidactTraining": {
+        "label": "Formations autodidactes",
+        "relevantReadings": {
+            "label": "Lectures pertinentes",
+            "subitems": [
+                {
+                    "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
+                    "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Adam Tornhill",
+                    "title": "Software Design X-Rays: Fix Technical Debt with Behavioral Code Analysis",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Steve Klabnik",
+                    "title": "The Rust Programming Language",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Clean Code",
+                    "authors": "Robert C. Martin",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "The Clean Coder",
+                    "authors": "Robert C. Martin",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Thinking, Fast and Slow",
+                    "authors": "Daniel Kahneman"
+                },
+                {
+                    "title": "Functional Programming in Java",
+                    "authors": "Venkat Subramaniam",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "How Linux Works, 2nd Edition: What Every Superuser Should Know",
+                    "authors": "Brian Ward",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Languages and machines : an introduction to the theory of computer science",
+                    "authors": "Thomas A. Sudkamp",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Operating System Concepts",
+                    "authors": "Silberschatz, Galvin, Gagne",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Effective Modern C++: 42 Specific Ways to Improve Your Use of C++11 and C++14",
+                    "authors": "Scott Meyers",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Miller, Halloway, Bedra",
+                    "title": "Programming Clojure",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Andrew Hunt and David Thomas",
+                    "title": "The Pragmatic Programmer: From Journeyman to Master",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Agile Software Development, Principles, Patterns, and Practices",
+                    "authors": "Robert C. Martin",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "McClure, Scambray, Kurtz",
+                    "title": "Hacking Exposed 7: Network Security Secrets and Solutions",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",
+                    "title": "Introduction to Algorithms",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Modern C++ Design",
+                    "authors": "Andrei Alexandrescu",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Working Effectively with Legacy Code",
+                    "authors": "Michael Feathers",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Design Patterns, Elements of Reusable object-oriented software",
+                    "authors": "Gamma, Helm, Johnson, Vlissides",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Structure de données, notes IFT339, Université de Sherbrooke",
+                    "authors": "Jean Goulet",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Programming Ruby",
+                    "authors": "Chad Fowler and Andy Hunt",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "The C Programming Language",
+                    "authors": "Brian Kernighan and Dennis Ritchie",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Scrum: The Art of Doing Twice the Work in Half the Time",
+                    "authors": "Jeff Sutherland, JJ Sutherland"
+                },
+                {
+                    "title": "Modern C++ Programming with test driven development",
+                    "authors": "Jeff Langr",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Brett Slatkin",
+                    "title": "Effective Python",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Perkins, Redmond, Wilson",
+                    "title": "Seven Databases in Seven Weeks",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Radovan Bast",
+                    "title": "CMake Cookbook",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Herb Sutter, Andrei Alexandrescu",
+                    "title": "C++ Coding Standards: 101 Rules, Guidelines, and Best Practices",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Brian P. Hogan",
+                    "title": "Small, Sharp Software Tools: Harness the Combinatoric Power of Command-Line Tools and Utilities",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Gerald M. Weinberg",
+                    "title": "The Psychology of Computer Programming",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Michael Keeling",
+                    "title": "Design It!: From Programmer to Software Architect",
+                    "tags": [ "computerScience" ]
+                }
+            ]
+        },
+        "optionalCourses": {
+            "label": "Cours optionnels",
+            "subitems": [
+                {
+                    "title": "Developing Android Apps (Java)",
+                    "place": "Online (Udacity)",
+                    "tags": ["computerScience"]
+                },
+                {
+                    "title": "Intel Xeon Phi Coprocessor Developer Training Event",
+                    "place": "McGill University, Montreal, QC",
+                    "tags": ["computerScience"]
+                },
+                {
+                    "title": "Computer Science 61A: Programming paradigm (Scheme)",
+                    "place": "Online (UC Berkeley via iTunesU)",
+                    "tags": ["computerScience"]
+                },
+                {
+                    "title": "IFT 209: Programmation système (ASM)",
+                    "place": "Université de Sherbrooke",
+                    "tags": ["computerScience"]
+                },
+                {
+                    "title": "IFT 159: Analyse et programmation (C++)",
+                    "place": "Université de Sherbrooke",
+                    "tags": ["computerScience"]
+                }
+            ]
+        }
+    },
+    "honors": {
+        "label": "Honneurs",
+        "items": [
+            {
+                "value": "Most clean code ever, 2023"
+            },
+            {
+                "value": "Golden hot dog, 2010",
+                "tags": [
+                    "food"
+                ]
+            }
+        ]
+    },
+    "socialImplications": {
+        "label": "Implications sociales",
+        "items": [
+            {
+                "value": "Dancing in the street"
+            }
+        ]
+    },
+    "publications": {
+        "label": "Publications",
+        "items": [
+            {
+                "value": "Entangle this!"
+            }
+        ]
+    },
+    "contributedTalks": {
+        "label": "Présentations",
+        "items": [
+            {
+                "value": "Why Zelda rocks"
+            }
+        ]
+    }
+}
