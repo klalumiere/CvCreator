@@ -102,18 +102,179 @@
         ]
     },
     "experiences": {
-        "label": "Expériences",
+        "label": "Expériences de travail",
         "items": [
             {
-                "title": "Graduate student",
-                "business": "Alex Térieur, Montreal(Qc), Canada",
-                "date": "2008-",
+                "title": "Développeur \"Backend\" dans l'équipe Index Infrastructure",
+                "business": "Coveo, Montreal(Qc), Canada",
+                "date": "Juillet 2018 -",
                 "subitems": [
                     {
-                        "value": "A PhD"
+                        "tags": [ "computerScience" ],
+                        "value": "Refactoring complet du système de construction d'environ un million de lignes de code C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception et maintenance du système d'intégration continue (CI) pour les équipes C++"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Point de contact entre mon équipe et l'équipe de sécurité"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Supervision d'un stagiaire évaluant la transition du gestionnaire de dépendances de C++"
                     }
                 ]
-            }
+            },
+            {
+                "title": "Développeur \"Full Stack\" et scientifique responsable des simulations quantiques",
+                "business": "Anyon Systems Inc., Dorval(Qc), Canada",
+                "date": "Avril 2015 - Juillet 2018",
+                "subitems": [
+                    {
+                        "value": "Chef d'équipe de la conception et de l'implantation logicielle"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception de stratégies de validation logicielle, incluant des tests unitaires et des tests sous pression"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception et implantation de bibliothèques de calcul haute performance parallèles"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception et implantation d'une interface utilisateur graphique"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception et implantation d'un serveur d'intégration continue"
+                    },
+                    {
+                        "value": "Recherche et développement dans le domaine des dispositifs supraconducteurs quantiques"
+                    },
+                    {
+                        "value": "Participation au processus de recrutement des nouveaux employés"
+                    }
+                ]
+            },
+            {
+                "title": "Étudiant chercheur en physique",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "2008-2015",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Collaboration internationale avec des expérimentateurs, Écritures d'articles, Présentation Keynote, Étude analytique de l'électrodynamique quantique en circuit"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Développement d'un logiciel pour simuler des circuits électriques quantiques en C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Participation au développement d'une librairie scientifique haute performance en C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Développement et maintiens d'un Wiki et forum privé à l'aide de la technologie Wordpress"
+                    }
+                ]
+            },
+            {
+                "title": "Auxiliaire d'enseignement",
+                "business": "Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "2008-2012",
+                "subitems": [
+                    {
+                        "tags": [ "teaching" ],
+                        "value": "Mécanique quantique II (2008), Mécanique quantique I (2009), Physique mésoscopique (2010), Physique statistique I (2011)"
+                    }
+                ]
+            },
+            {
+                "title": "Stagiaire chercheur en physique",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Été 2007",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Étude d'une architecture d'ordinateur quantique en utilisant l'électrodynamique quantique en circuit"
+                    }
+                ]
+            },
+            {
+                "title": "Stagiaire chercheur en physique",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Automne 2006",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Étude d'une marche aléatoire quantique en utilisant les trajectoires quantiques"
+                    }
+                ]
+            },
+            {
+                "title": "Stagiaire chercheur en physique",
+                "business": "Karyn LeHur, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Hiver 2006",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Étude de modèle de bruit affectant les qubits supraconducteurs"
+                    }
+                ]
+            },
+            {
+                "title": "Stagiaire",
+                "business": "Stéphane Péloquin, Infotierra, Sherbrooke(Qc), Canada",
+                "date": "Été 2005",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Conception d'un algorithme utilisé pour identifier les roches d'après les propriétés spectrales des pixels"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception et développement d'un site web de type Google Maps pour la communication internationale de données de télédétection. J'ai utilisé PHP, HTML et Javascript."
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Administrateur de système d'un réseau de cinq ordinateurs roulant sur Windows et sur Linux"
+                    }
+                ]
+            },
+            {
+                "title": "Commis",
+                "business": "Vidéoflash, Saint-Hyacinthe, Magog, Sherbrooke(Qc), Canada",
+                "date": "2003-2005",
+                "tags": "other" 
+            },
+            {
+                "title": "Ouvrier",
+                "business": "Municipalité de Sainte-Madeleine, Sainte-Madeleine(Qc), Canada",
+                "date": "Été 2004",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Ouvrier",
+                "business": "SNOC, Saint-Hyacinthe(Qc), Canada",
+                "date": "Été 2003",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Commis",
+                "business": "IGA Guy Jodoin, Saint-Hyacinthe(Qc), Canada",
+                "date": "2001-2003",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Ouvrier",
+                "business": "Vachon, Saint-Hyacinthe(Qc), Canada",
+                "date": "1997-2000",
+                "tags": [ "other" ]
+            }            
         ]
     },
     "autodidactTraining": {

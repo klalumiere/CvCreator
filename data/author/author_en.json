@@ -103,17 +103,178 @@
         ]
     },
     "experiences": {
-        "label": "Experiences",
+        "label": "Experience",
         "items": [
             {
-                "title": "Graduate student",
-                "business": "Alex Térieur, Montreal(Qc), Canada",
-                "date": "2008-",
+                "title": "Backend Developer in Index Infrastructure team",
+                "business": "Coveo, Montreal(Qc), Canada",
+                "date": "July 2018 -",
                 "subitems": [
                     {
-                        "value": "A PhD"
+                        "tags": [ "computerScience" ],
+                        "value": "Complete refactoring of the build system of about one million lines of C++ code"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Design and maintenance of the continuous integration (CI) system for the C++ teams"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Point of contact between my team and the security team"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Supervision of an intern evaluating the transition of the C++ dependency manager"
                     }
                 ]
+            },
+            {
+                "title": "Full Stack Developer and Scientist responsible for Quantum Simulations",
+                "business": "Anyon Systems Inc., Dorval(Qc), Canada",
+                "date": "April 2015 - July 2018",
+                "subitems": [
+                    {
+                        "value": "Team Leader of software conception and implementation"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Design of complete test suites, including unit and stress tests"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception and implementation of parallel high performance computing libraries"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception and implementation of a graphical user interface"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception and implementation of a continuous integration (CI) server"
+                    },
+                    {
+                        "value": "Research and development in the field of quantum superconducting machines"
+                    },
+                    {
+                        "value": "Participation in the recruitment process for new employees"
+                    }
+                ]
+            },
+            {
+                "title": "Graduate student researcher in physics",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "2008-2015",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "International collaboration with experimentalists, Paper writing, Keynote presentation, Analytic study of circuit quantum electrodynamics"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Development of software to simulate quantum electrical circuits using C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Contribution in development of a high performance scientific library using C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Development and maintenance of a private Wiki and forum using Wordpress technology"
+                    }
+                ]
+            },
+            {
+                "title": "Teaching assistant",
+                "business": "Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "2008-2012",
+                "subitems": [
+                    {
+                        "tags": [ "teaching" ],
+                        "value": "Mécanique quantique II (2008), Mécanique quantique I (2009), Physique mésoscopique (2010), Physique statistique I (2011)"
+                    }
+                ]
+            },
+            {
+                "title": "Intern researcher in physics",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Summer 2007",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Studied a quantum computer architecture using circuit quantum electrodynamics."
+                    }
+                ]
+            },
+            {
+                "title": "Intern researcher in physics",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Autumn 2006",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Studied quantum random walk using quantum trajectories"
+                    }
+                ]
+            },
+            {
+                "title": "Intern researcher in physics",
+                "business": "Karyn LeHur, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Winter 2006",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Studied noise model of superconductor qubits"
+                    }
+                ]
+            },
+            {
+                "title": "Intern",
+                "business": "Stéphane Péloquin, Infotierra, Sherbrooke(Qc), Canada",
+                "date": "Summer 2005",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Conception of an algorithm used to identify rock type based on pixel's spectral properties"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception and development of a Google Maps type web site for international communication of teledetection data. Used PHP, HTML, Javascript."
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "System administrator of a five computers network running both Linux and Windows"
+                    }
+                ]
+            },
+            {
+                "title": "Clerks",
+                "business": "Vidéoflash, Saint-Hyacinthe, Magog, Sherbrooke(Qc), Canada",
+                "date": "2003-2005",
+                "tags": "other" 
+            },
+            {
+                "title": "Laborer",
+                "business": "Municipalité de Sainte-Madeleine, Sainte-Madeleine(Qc), Canada",
+                "date": "Summer 2004",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Laborer",
+                "business": "SNOC, Saint-Hyacinthe(Qc), Canada",
+                "date": "Summer 2003",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Clerk",
+                "business": "IGA Guy Jodoin, Saint-Hyacinthe(Qc), Canada",
+                "date": "2001-2003",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Laborer",
+                "business": "Vachon, Saint-Hyacinthe(Qc), Canada",
+                "date": "1997-2000",
+                "tags": [ "other" ]
             }
         ]
     },
