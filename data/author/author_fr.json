@@ -23,8 +23,16 @@
                 "label": "Informatique"
             },
             {
-                "value": "food",
-                "label": "Nourriture"
+                "value": "research",
+                "label": "Recherche"
+            },
+            {
+                "value": "teaching",
+                "label": "Enseignement"
+            },
+            {
+                "value": "other",
+                "label": "Autres"
             }
         ]
     },
@@ -473,12 +481,6 @@
         "items": [
             {
                 "value": "Most clean code ever, 2023"
-            },
-            {
-                "value": "Golden hot dog, 2010",
-                "tags": [
-                    "food"
-                ]
             }
         ]
     },

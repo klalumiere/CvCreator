@@ -50,6 +50,9 @@
 ## Update data
 
 - [ ] Translate my CV in json
+- [ ] Validate my author data in the CI too
+- [ ] Do I have to remove empty sections or can I move my tags?
+- [ ] Sort tags in same order they appear in metadata?
 - [ ] Update my CV
 
 ## Cleanup
