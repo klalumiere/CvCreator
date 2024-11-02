@@ -60,5 +60,5 @@
 
 ## Cleanup
 
-- [ ] Remove Ruby and other unused files
-- [ ] Update README.md
+- [x] Remove Ruby and other unused files
+- [ ] Update README.md and project description in GitHub
