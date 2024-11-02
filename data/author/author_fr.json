@@ -477,10 +477,28 @@
         }
     },
     "honors": {
-        "label": "Honneurs",
+        "label": "Mentions spéciales",
         "items": [
             {
-                "value": "Most clean code ever, 2023"
+                "value": "2e prix, Compétition orale ma thèse en 180 secondes, Réunion INTRIQ d'automne, 2014"
+            },
+            {
+                "value": "Bourse de Doctorat ES D3 du CRSNG, 2010"
+            },
+            {
+                "value": "Bourse de Maîtrise du FQRNT, 2009"
+            },
+            {
+                "value": "Bourse de Maîtrise ES M du CRSNG, 2008"
+            },
+            {
+                "value": "Bourse d'étudiant non gradué du CRSNG, 2007"
+            },
+            {
+                "value": "Bourse d'étudiant non gradué du CRSNG, 2006"
+            },
+            {
+                "value": "Bourse d'admission au département de physique de l'Université de Sherbrooke, 2004"
             }
         ]
     },
