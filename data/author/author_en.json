@@ -285,7 +285,7 @@
                 "title": "Clerks",
                 "business": "Vidéoflash, Saint-Hyacinthe, Magog, Sherbrooke(Qc), Canada",
                 "date": "2003-2005",
-                "tags": "other" 
+                "tags": [ "other" ]
             },
             {
                 "title": "Laborer",
