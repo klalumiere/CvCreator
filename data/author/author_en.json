@@ -591,11 +591,57 @@
         ]
     },
     "contributedTalks": {
-        "label": "Contributed talks",
+        "label": "Contributed Talks",
         "items": [
             {
-                "value": "Why Zelda rocks"
-            }
-        ]
+                "value": "Quantization of lumped elements electrical circuits revisited, APS March Meeting, Baltimore(Maryland), USA, 2016."
+            },
+            {
+                "value": "Towards a lossless and integrable circulator for quantum superconducting microwave circuits: modelling and optimization, APS March Meeting, San Antonio(Texas), USA, 2015."
+            },
+            {
+                "value": "Circuit QED framework for quantum computing, CONFETI Meeting, Bromont(Qc), Canada, 2014."
+            },
+            {
+                "value": "Interactions between superconducting qubits mediated by travelling photons, CIFAR Meeting, Orford(Qc), Canada, 2013."
+            },
+            {
+                "value": "Interactions between superconducting qubits mediated by travelling photons, INTRIQ Meeting, Bromont(Qc), Canada, 2013."
+            },
+            {
+                "value": "Strong Interaction between 2 qubits in a Transmission Line, CONFETI Meeting, Orford(Qc), Canada, 2013."
+            },
+            {
+                "value": "Tuning from coherent interaction to super and subradiance with artificial atoms in a 1D waveguide, APS March Meeting, Baltimore(Maryland), USA, 2013."
+            },
+            {
+                "value": "Tuning from coherent interaction to super and subradiance with artificial atoms in a 1D waveguide, ACP Meeting, Montreal(Qc), Canada, 2013."
+            },
+            {
+                "value": "Waveguide QED with an ensemble of inhomogeneous atoms, CIFAR Quantum Cavities Workshop, Montreal(Qc), Canada, 2013."
+            },
+            {
+                "value": "Quantum optics in a transmission line, CONFETI Meeting, Orford(Qc), Canada, 2012."
+            },
+            {
+                "value": "Cooperative effects for Qubits in a Transmission Line: Theory, APS March Meeting, Boston(Massachusetts), USA, 2012."
+            },
+            {
+                "value": "Parity Measurement in Circuit Quantum Electrodynamics, CONFETI Meeting, Sutton(Qc), Canada, 2011."
+            },
+            {
+                "value": "Introduction à l'informatique quantique implémentée à l'aide de qubits supraconducteurs, ACFAS Meeting, Sherbrooke(Qc), Canada, 2011."
+            },
+            {
+                "value": "Tunable joint measurements in the dispersive regime of circuit QED, Quantum Machines Summer School, Les Houches, France, 2011."
+            },
+            {
+                "value": "Tunable joint measurements in the dispersive regime of cavity QED, APS March Meeting, Portland(Oregon), USA, 2010."
+            },
+            {
+                "value": "Parity Measurement of Superconducting Qubits in circuit QED, INTRIQ Meeting, Jouvence(Qc), Canada, 2010."
+            }            
+        ],
+        "tags": [ "research" ]
     }
 }

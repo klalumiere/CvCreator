@@ -55,6 +55,7 @@
 - [ ] Sort tags in same order they appear in metadata?
 - [ ] Align sections better so that the date on the right end side aligns with the blue line?
 - [ ] Update my CV
+- [ ] Switch to `CV_CREATOR_DATA_DIR_PATH = "data/author"` in `fly.toml`.
 
 ## Cleanup
 
