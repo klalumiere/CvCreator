@@ -49,8 +49,14 @@
 
 ## Update data
 
-- [ ] Translate my CV in json
-- [ ] Update my CV
+- [x] Translate my CV in json
+- [x] Validate my author data in the CI
+- [ ] Make sure I want every empty sections that remains when I remove every tags
+- [ ] Sort tags in same order they appear in metadata?
+- [ ] Align sections better so that the date on the right end side aligns with the blue line?
+- [ ] Update my CV (add and _remove_ stuff)
+- [ ] Switch to `CV_CREATOR_DATA_DIR_PATH = "data/author"` in `fly.toml`.
+- [ ] Fix menu on top of screen when we scroll?
 
 ## Cleanup
 

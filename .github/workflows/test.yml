@@ -25,6 +25,11 @@ jobs:
           lein run -m cv-creator.core/-main data/sample french | grep "Alex Térieur"
           lein run -m cv-creator.core/-main data/sample english computerScience | grep "Titus"
           ! lein run -m cv-creator.core/-main data/sample english | grep "Titus"
+
+          lein run -m cv-creator.core/-main data/author english | grep "Kevin Lalumière"
+          lein run -m cv-creator.core/-main data/author french | grep "Kevin Lalumière"
+          lein run -m cv-creator.core/-main data/author english computerScience | grep "Titus"
+          ! lein run -m cv-creator.core/-main data/author english | grep "Titus"
   
   ci-frontend:
     runs-on: ubuntu-latest

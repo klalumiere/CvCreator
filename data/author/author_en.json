@@ -1,0 +1,647 @@
+{
+    "metadata": {
+        "default": true,
+        "languageLabel": "Language",
+        "tagsLabel": "Skills",
+        "language": {
+            "label": "English",
+            "value": "english"
+        },
+        "order": [
+            "head",
+            "skillSummary",
+            "experiences",
+            "education",
+            "autodidactTraining",
+            "honors",
+            "socialImplications",
+            "publications",
+            "contributedTalks"
+        ],
+        "tags": [
+            {
+                "value": "computerScience",
+                "label": "Computer Science"
+            },
+            {
+                "value": "research",
+                "label": "Research"
+            },
+            {
+                "value": "teaching",
+                "label": "Teaching"
+            },
+            {
+                "value": "other",
+                "label": "Other"
+            }
+        ]
+    },
+    "head": {
+        "name": "Kevin Lalumière",
+        "eMail": "kevin.lalumiere@gmail.com",
+        "addressTown": "Montreal(Qc), Canada",
+        "webPage": {
+            "label": "Web page",
+            "value": "https://github.com/klalumiere"
+        }
+    },
+    "skillSummary": {
+        "label": "Skill Summary",
+        "items": [
+            {
+                "value": "Backend Developer at Coveo"
+            },
+            {
+                "value": "More than ten (10) years of experience in software development"
+            },
+            {
+                "value": "PhD degree in Physics"
+            },
+            {
+                "value": "More than seven (7) years of research experience",
+                "subitems": [
+                    {
+                        "value": "Problem modeling using mathematics and computer science"
+                    },
+                    {
+                        "value": "Conception and implementation of high performance programs"
+                    },
+                    {
+                        "value": "Team work leading to six (6) publications"
+                    },
+                    {
+                        "value": "Keynotes, with eight (8) in international conferences"
+                    }
+                ]
+            },
+            {
+                "value": "Bilingual (english and french)"
+            },
+            {
+                "value": "Expert with: C++, CMake, Linux, Python, Docker, Bash",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Experienced with: AWS, Git, Jenkins, Groovy, GitHub, Microsoft vcpkg, Eigen, Google Test, C, PowerShell, Batch (Windows' cmd.exe), Qt, Ruby, MPI, PETSc, SLEPc, OPEN CASCADE, Linux Kernel, MSBuild, Mercurial, VTK, Java, Javascript, Jasmine, jQuery, LaTeX, HTML, Doxygen, C#, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Familiar with: PHP, Clojure",
+                "tags": [ "computerScience" ]
+            }
+        ]
+    },
+    "education": {
+        "label": "Education",
+        "items": [
+            {
+                "degree": "PhD in Physics (GPA 3.9/4.3)",
+                "date": "2010-2015",
+                "school": "Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "subitems": [
+                    {
+                        "label": "Thesis",
+                        "value": "Électrodynamique quantique en guide d'onde"
+                    },
+                    {
+                        "label": "Advisor",
+                        "value": "Alexandre Blais"
+                    }
+                ]
+            },
+            {
+                "degree": "Quantum machines Summer school",
+                "date": "July 2011",
+                "school": "École de physique Les Houches, Les Houches, France"
+            },
+            {
+                "degree": "M. Sc. in Physics (GPA 3.9/4.3)",
+                "date": "2008-2010",
+                "school": "Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "subitems": [
+                    {
+                        "label": "Memoir",
+                        "value": "Mesure de parité en électrodynamique quantique en circuit"
+                    },
+                    {
+                        "label": "Advisor",
+                        "value": "Alexandre Blais"
+                    }
+                ]
+            },
+            {
+                "degree": "B. Sc. in Physics (GPA 3.9/4.3)",
+                "date": "2004-2007",
+                "school": "Université de Sherbrooke, Sherbrooke(Qc), Canada"
+            }            
+        ]
+    },
+    "experiences": {
+        "label": "Experience",
+        "items": [
+            {
+                "title": "Backend Developer in Index Infrastructure team",
+                "business": "Coveo, Montreal(Qc), Canada",
+                "date": "July 2018 -",
+                "subitems": [
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Complete refactoring of the build system of about one million lines of C++ code"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Design and maintenance of the continuous integration (CI) system for the C++ teams"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Point of contact between my team and the security team"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Supervision of an intern evaluating the transition of the C++ dependency manager"
+                    }
+                ]
+            },
+            {
+                "title": "Full Stack Developer and Scientist responsible for Quantum Simulations",
+                "business": "Anyon Systems Inc., Dorval(Qc), Canada",
+                "date": "April 2015 - July 2018",
+                "subitems": [
+                    {
+                        "value": "Team Leader of software conception and implementation"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Design of complete test suites, including unit and stress tests"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception and implementation of parallel high performance computing libraries"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception and implementation of a graphical user interface"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception and implementation of a continuous integration (CI) server"
+                    },
+                    {
+                        "value": "Research and development in the field of quantum superconducting machines"
+                    },
+                    {
+                        "value": "Participation in the recruitment process for new employees"
+                    }
+                ]
+            },
+            {
+                "title": "Graduate student researcher in physics",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "2008-2015",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "International collaboration with experimentalists, Paper writing, Keynote presentation, Analytic study of circuit quantum electrodynamics"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Development of software to simulate quantum electrical circuits using C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Contribution in development of a high performance scientific library using C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Development and maintenance of a private Wiki and forum using Wordpress technology"
+                    }
+                ]
+            },
+            {
+                "title": "Teaching assistant",
+                "business": "Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "2008-2012",
+                "subitems": [
+                    {
+                        "tags": [ "teaching" ],
+                        "value": "Mécanique quantique II (2008), Mécanique quantique I (2009), Physique mésoscopique (2010), Physique statistique I (2011)"
+                    }
+                ]
+            },
+            {
+                "title": "Intern researcher in physics",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Summer 2007",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Studied a quantum computer architecture using circuit quantum electrodynamics."
+                    }
+                ]
+            },
+            {
+                "title": "Intern researcher in physics",
+                "business": "Alexandre Blais, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Autumn 2006",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Studied quantum random walk using quantum trajectories"
+                    }
+                ]
+            },
+            {
+                "title": "Intern researcher in physics",
+                "business": "Karyn LeHur, Université de Sherbrooke, Sherbrooke(Qc), Canada",
+                "date": "Winter 2006",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Studied noise model of superconductor qubits"
+                    }
+                ]
+            },
+            {
+                "title": "Intern",
+                "business": "Stéphane Péloquin, Infotierra, Sherbrooke(Qc), Canada",
+                "date": "Summer 2005",
+                "subitems": [
+                    {
+                        "tags": [ "research" ],
+                        "value": "Conception of an algorithm used to identify rock type based on pixel's spectral properties"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Conception and development of a Google Maps type web site for international communication of teledetection data. Used PHP, HTML, Javascript."
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "System administrator of a five computers network running both Linux and Windows"
+                    }
+                ]
+            },
+            {
+                "title": "Clerks",
+                "business": "Vidéoflash, Saint-Hyacinthe, Magog, Sherbrooke(Qc), Canada",
+                "date": "2003-2005",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Laborer",
+                "business": "Municipalité de Sainte-Madeleine, Sainte-Madeleine(Qc), Canada",
+                "date": "Summer 2004",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Laborer",
+                "business": "SNOC, Saint-Hyacinthe(Qc), Canada",
+                "date": "Summer 2003",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Clerk",
+                "business": "IGA Guy Jodoin, Saint-Hyacinthe(Qc), Canada",
+                "date": "2001-2003",
+                "tags": [ "other" ]
+            },
+            {
+                "title": "Laborer",
+                "business": "Vachon, Saint-Hyacinthe(Qc), Canada",
+                "date": "1997-2000",
+                "tags": [ "other" ]
+            }
+        ]
+    },
+    "autodidactTraining": {
+        "label": "Autodidact training",
+        "relevantReadings": {
+            "label": "Relevant readings",
+            "subitems": [
+                {
+                    "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
+                    "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Adam Tornhill",
+                    "title": "Software Design X-Rays: Fix Technical Debt with Behavioral Code Analysis",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Steve Klabnik",
+                    "title": "The Rust Programming Language",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Clean Code",
+                    "authors": "Robert C. Martin",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "The Clean Coder",
+                    "authors": "Robert C. Martin",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Thinking, Fast and Slow",
+                    "authors": "Daniel Kahneman"
+                },
+                {
+                    "title": "Functional Programming in Java",
+                    "authors": "Venkat Subramaniam",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "How Linux Works, 2nd Edition: What Every Superuser Should Know",
+                    "authors": "Brian Ward",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Languages and machines : an introduction to the theory of computer science",
+                    "authors": "Thomas A. Sudkamp",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Operating System Concepts",
+                    "authors": "Silberschatz, Galvin, Gagne",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Effective Modern C++: 42 Specific Ways to Improve Your Use of C++11 and C++14",
+                    "authors": "Scott Meyers",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Miller, Halloway, Bedra",
+                    "title": "Programming Clojure",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Andrew Hunt and David Thomas",
+                    "title": "The Pragmatic Programmer: From Journeyman to Master",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Agile Software Development, Principles, Patterns, and Practices",
+                    "authors": "Robert C. Martin",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "McClure, Scambray, Kurtz",
+                    "title": "Hacking Exposed 7: Network Security Secrets and Solutions",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",
+                    "title": "Introduction to Algorithms",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Modern C++ Design",
+                    "authors": "Andrei Alexandrescu",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Working Effectively with Legacy Code",
+                    "authors": "Michael Feathers",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Design Patterns, Elements of Reusable object-oriented software",
+                    "authors": "Gamma, Helm, Johnson, Vlissides",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Structure de données, notes IFT339, Université de Sherbrooke",
+                    "authors": "Jean Goulet",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Programming Ruby",
+                    "authors": "Chad Fowler and Andy Hunt",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "The C Programming Language",
+                    "authors": "Brian Kernighan and Dennis Ritchie",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "title": "Scrum: The Art of Doing Twice the Work in Half the Time",
+                    "authors": "Jeff Sutherland, JJ Sutherland"
+                },
+                {
+                    "title": "Modern C++ Programming with test driven development",
+                    "authors": "Jeff Langr",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Brett Slatkin",
+                    "title": "Effective Python",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Perkins, Redmond, Wilson",
+                    "title": "Seven Databases in Seven Weeks",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Radovan Bast",
+                    "title": "CMake Cookbook",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Herb Sutter, Andrei Alexandrescu",
+                    "title": "C++ Coding Standards: 101 Rules, Guidelines, and Best Practices",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Brian P. Hogan",
+                    "title": "Small, Sharp Software Tools: Harness the Combinatoric Power of Command-Line Tools and Utilities",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Gerald M. Weinberg",
+                    "title": "The Psychology of Computer Programming",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Michael Keeling",
+                    "title": "Design It!: From Programmer to Software Architect",
+                    "tags": [ "computerScience" ]
+                }
+            ]
+        },
+        "optionalCourses": {
+            "label": "Optional courses",
+            "subitems": [
+                {
+                    "title": "Developing Android Apps (Java)",
+                    "place": "Online (Udacity)",
+                    "tags": ["computerScience"]
+                },
+                {
+                    "title": "Intel Xeon Phi Coprocessor Developer Training Event",
+                    "place": "McGill University, Montreal, QC",
+                    "tags": ["computerScience"]
+                },
+                {
+                    "title": "Computer Science 61A: Programming paradigm (Scheme)",
+                    "place": "Online (UC Berkeley via iTunesU)",
+                    "tags": ["computerScience"]
+                },
+                {
+                    "title": "IFT 209: Programmation système (ASM)",
+                    "place": "Université de Sherbrooke",
+                    "tags": ["computerScience"]
+                },
+                {
+                    "title": "IFT 159: Analyse et programmation (C++)",
+                    "place": "Université de Sherbrooke",
+                    "tags": ["computerScience"]
+                }
+            ]
+        }
+    },
+    "honors": {
+        "label": "Honors and Awards",
+        "items": [
+            {
+                "value": "2nd prize, My Thesis research in 180 seconds oral competition, Fall INTRIQ meeting, 2014"
+            },
+            {
+                "value": "NSERC PhD Student Scholarship ES D3, 2010"
+            },
+            {
+                "value": "FQRNT Master Student Scholarship, 2009"
+            },
+            {
+                "value": "NSERC Master Student Scholarship ES M, 2008"
+            },
+            {
+                "value": "NSERC Undergraduate Student Research Awards, 2007"
+            },
+            {
+                "value": "NSERC Undergraduate Student Research Awards, 2006"
+            },
+            {
+                "value": "Université de Sherbrooke Admission Scholarship, 2004"
+            }            
+        ]
+    },
+    "socialImplications": {
+        "label": "Social Implication",
+        "items": [
+            {
+                "value": "Keynote \"Unit testing in scientific programming\" at Université de Sherbrooke (2013)"
+            },
+            {
+                "value": "Keynote \"Clean Code in science\" at Université de Sherbrooke (2013)"
+            },
+            {
+                "value": "Organization of students versus professors hockey game (2012)"
+            },
+            {
+                "value": "Physics representative at graduate students' association RECSUS (2012)"
+            },
+            {
+                "value": "Participation in the process of recruiting a new professor at Université de Sherbrooke (2012)"
+            },
+            {
+                "value": "Referee of two papers for the American Physical Society (2012)"
+            }
+        ]
+    },
+    "publications": {
+        "label": "Publications",
+        "items": [
+            {
+                "value": "Kevin Lalumière, Interaction between Move Semantic and Copy Elision in C++, https://source.coveo.com/2018/11/07/interaction-between-move-semantic-and-copy-elision-in-c++/, (2018).",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Benjamin J. Chapman, Eric I. Rosenthal, Joseph Kerckhoff, Bradley A. Moores, Leila R. Vale, J. A. B. Mates, Gene C. Hilton, Kevin Lalumière, Alexandre Blais, and K. W. Lehnert, Widely Tunable On-Chip Microwave Circulator for Superconducting Quantum Circuits, Phys. Rev. X 7, 041043 (2017).",
+                "tags": [ "research" ]
+            },
+            {
+                "value": "J. Kerckhoff, K. Lalumière, B. J. Chapman, A. Blais and K. W. Lehnert, On-Chip Superconducting Microwave Circulator from Synthetic Rotation, Phys. Rev. Applied 4, 034002 (2015).",
+                "tags": [ "research" ]
+            },
+            {
+                "value": "K. Lalumière and A. Blais, Remote Controlled Entanglement, Physics 7, 45 (2014).",
+                "tags": [ "research" ]
+            },
+            {
+                "value": "A. F. van Loo, A. Fedorov, K. Lalumière, B. C. Sanders, A. Blais, and A. Wallraff, Photon-Mediated Interactions Between Distant Artificial Atoms, Science 342, 6165 pp. 1494 (2013).",
+                "tags": [ "research" ]
+            },
+            {
+                "value": "K. Lalumière, B. C. Sanders, A. F. van Loo, A. Fedorov, A. Wallraff, and A. Blais, Input-output theory for waveguide qed with an ensemble of inhomogeneous atoms, Phys. Rev. A 88, 043806 (2013).",
+                "tags": [ "research" ]
+            },
+            {
+                "value": "K. Lalumière, J. M. Gambetta, and A. Blais, Tunable joint measurements in the dispersive regime of cavity qed, Phys. Rev. A 81, 040301 (2010).",
+                "tags": [ "research" ]
+            },
+            {
+                "value": "P. Xue, B. C. Sanders, A. Blais, and K. Lalumière, Quantum walks on circles in phase space via superconducting circuit quantum electrodynamics, Phys. Rev. A 78, 042334 (2008).",
+                "tags": [ "research" ]
+            }
+        ]
+    },
+    "contributedTalks": {
+        "label": "Contributed Talks",
+        "items": [
+            {
+                "value": "Quantization of lumped elements electrical circuits revisited, APS March Meeting, Baltimore(Maryland), USA, 2016."
+            },
+            {
+                "value": "Towards a lossless and integrable circulator for quantum superconducting microwave circuits: modelling and optimization, APS March Meeting, San Antonio(Texas), USA, 2015."
+            },
+            {
+                "value": "Circuit QED framework for quantum computing, CONFETI Meeting, Bromont(Qc), Canada, 2014."
+            },
+            {
+                "value": "Interactions between superconducting qubits mediated by travelling photons, CIFAR Meeting, Orford(Qc), Canada, 2013."
+            },
+            {
+                "value": "Interactions between superconducting qubits mediated by travelling photons, INTRIQ Meeting, Bromont(Qc), Canada, 2013."
+            },
+            {
+                "value": "Strong Interaction between 2 qubits in a Transmission Line, CONFETI Meeting, Orford(Qc), Canada, 2013."
+            },
+            {
+                "value": "Tuning from coherent interaction to super and subradiance with artificial atoms in a 1D waveguide, APS March Meeting, Baltimore(Maryland), USA, 2013."
+            },
+            {
+                "value": "Tuning from coherent interaction to super and subradiance with artificial atoms in a 1D waveguide, ACP Meeting, Montreal(Qc), Canada, 2013."
+            },
+            {
+                "value": "Waveguide QED with an ensemble of inhomogeneous atoms, CIFAR Quantum Cavities Workshop, Montreal(Qc), Canada, 2013."
+            },
+            {
+                "value": "Quantum optics in a transmission line, CONFETI Meeting, Orford(Qc), Canada, 2012."
+            },
+            {
+                "value": "Cooperative effects for Qubits in a Transmission Line: Theory, APS March Meeting, Boston(Massachusetts), USA, 2012."
+            },
+            {
+                "value": "Parity Measurement in Circuit Quantum Electrodynamics, CONFETI Meeting, Sutton(Qc), Canada, 2011."
+            },
+            {
+                "value": "Introduction à l'informatique quantique implémentée à l'aide de qubits supraconducteurs, ACFAS Meeting, Sherbrooke(Qc), Canada, 2011."
+            },
+            {
+                "value": "Tunable joint measurements in the dispersive regime of circuit QED, Quantum Machines Summer School, Les Houches, France, 2011."
+            },
+            {
+                "value": "Tunable joint measurements in the dispersive regime of cavity QED, APS March Meeting, Portland(Oregon), USA, 2010."
+            },
+            {
+                "value": "Parity Measurement of Superconducting Qubits in circuit QED, INTRIQ Meeting, Jouvence(Qc), Canada, 2010."
+            }            
+        ],
+        "tags": [ "research" ]
+    }
+}

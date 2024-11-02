@@ -4,7 +4,7 @@
 
    [cv-creator.deserializer]))
 
-(spec/def ::addressDoor string?)
+(spec/def ::addressDoor (spec/nilable string?))
 (spec/def ::addressTown string?)
 (spec/def ::authors string?)
 (spec/def ::business string?)
@@ -36,8 +36,8 @@
                                     :req-un [::place ::title]
                                     :opt-un [::tags]))
 (spec/def ::order (spec/coll-of ::sectionName :kind vector?))
-(spec/def ::phone (spec/keys
-                   :req-un [::label ::value]))
+(spec/def ::phone (spec/nilable (spec/keys
+                                 :req-un [::label ::value])))
 (spec/def ::relevantReadingsSubitem (spec/keys
                                      :req-un [::authors ::title]
                                      :opt-un [::tags]))
