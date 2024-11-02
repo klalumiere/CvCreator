@@ -49,7 +49,7 @@
 
 ## Update data
 
-- [ ] Translate my CV in json
+- [x] Translate my CV in json
 - [ ] Validate my author data in the CI too
 - [ ] Make sure I want every empty sections that remains when I remove every tags
 - [ ] Sort tags in same order they appear in metadata?
