@@ -46,22 +46,49 @@
         }
     },
     "skillSummary": {
-        "label": "Résumé des habiletés",
+        "label": "Sommaire de compétences",
         "items": [
             {
-                "value": "Une habileté"
+                "value": "Développeur \"Backend\" chez Coveo"
             },
             {
-                "value": "Une habileté avec",
+                "value": "Plus de dix (10) années d'expérience en développement logiciel"
+            },
+            {
+                "value": "Doctorat en physique"
+            },
+            {
+                "value": "Plus de sept (7) années d'expérience en recherche",
                 "subitems": [
                     {
-                        "value": "une sous-habileté"
+                        "value": "Modélisation mathématique et informatique de problèmes"
+                    },
+                    {
+                        "value": "Conception et implantation de programmes hautes performances"
+                    },
+                    {
+                        "value": "Travaux d'équipe ayant mené à six (6) publications"
+                    },
+                    {
+                        "value": "Présentation, dont huit (8) dans des conférences internationales"
                     }
                 ]
             },
             {
-                "value": "Une autre habileté"
-            }
+                "value": "Bilingue (anglais et français)"
+            },
+            {
+                "value": "Expert avec: C++, CMake, Linux, Python, Docker, Bash",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Expérimenté avec: AWS, Git, Jenkins, Groovy, GitHub, Microsoft vcpkg, Eigen, Google Test, C, PowerShell, Batch (Windows' cmd.exe), Qt, Ruby, MPI, PETSc, SLEPc, OPEN CASCADE, Linux Kernel, MSBuild, Mercurial, VTK, Java, Javascript, Jasmine, jQuery, LaTeX, HTML, Doxygen, C#, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Familié avec: PHP, Clojure",
+                "tags": [ "computerScience" ]
+            }            
         ]
     },
     "education": {

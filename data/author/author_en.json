@@ -50,18 +50,45 @@
         "label": "Skill Summary",
         "items": [
             {
-                "value": "One skill"
+                "value": "Backend Developer at Coveo"
             },
             {
-                "value": "A skill with",
+                "value": "More than ten (10) years of experience in software development"
+            },
+            {
+                "value": "PhD degree in Physics"
+            },
+            {
+                "value": "More than seven (7) years of research experience",
                 "subitems": [
                     {
-                        "value": "A subskill"
+                        "value": "Problem modeling using mathematics and computer science"
+                    },
+                    {
+                        "value": "Conception and implementation of high performance programs"
+                    },
+                    {
+                        "value": "Team work leading to six (6) publications"
+                    },
+                    {
+                        "value": "Keynotes, with eight (8) in international conferences"
                     }
                 ]
             },
             {
-                "value": "Another skill"
+                "value": "Bilingual (english and french)"
+            },
+            {
+                "value": "Expert with: C++, CMake, Linux, Python, Docker, Bash",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Experienced with: AWS, Git, Jenkins, Groovy, GitHub, Microsoft vcpkg, Eigen, Google Test, C, PowerShell, Batch (Windows' cmd.exe), Qt, Ruby, MPI, PETSc, SLEPc, OPEN CASCADE, Linux Kernel, MSBuild, Mercurial, VTK, Java, Javascript, Jasmine, jQuery, LaTeX, HTML, Doxygen, C#, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Familiar with: PHP, Clojure",
+                "tags": [ "computerScience" ]
             }
         ]
     },
