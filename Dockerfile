@@ -9,9 +9,9 @@ RUN npm install \
 FROM clojure:temurin-23-lein-noble AS backend
 
 WORKDIR /builder
-COPY project.clj project.clj
+COPY backend/project.clj project.clj
+COPY backend/src src
 COPY --from=frontend /builder/frontend/build resources/public
-COPY src src
 RUN lein ring uberjar
 
 
