@@ -531,10 +531,25 @@
         ]
     },
     "socialImplications": {
-        "label": "Social Implications",
+        "label": "Social Implication",
         "items": [
             {
-                "value": "Dancing in the street"
+                "value": "Keynote \"Unit testing in scientific programming\" at Université de Sherbrooke (2013)"
+            },
+            {
+                "value": "Keynote \"Clean Code in science\" at Université de Sherbrooke (2013)"
+            },
+            {
+                "value": "Organization of students versus professors hockey game (2012)"
+            },
+            {
+                "value": "Physics representative at graduate students' association RECSUS (2012)"
+            },
+            {
+                "value": "Participation in the process of recruiting a new professor at Université de Sherbrooke (2012)"
+            },
+            {
+                "value": "Referee of two papers for the American Physical Society (2012)"
             }
         ]
     },
