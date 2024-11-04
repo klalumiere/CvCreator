@@ -62,5 +62,6 @@
 
 - [x] Remove Ruby and other unused files
 - [x] Update README.md 
-- [ ] Update project description in GitHub
+- [ ] Update "project description" in GitHub (right and side of the main page) to add the `Website` `https://cvcreator.fly.dev/`
 - [ ] Add link to `https://cvcreator.fly.dev/` in the README.md
+- [ ] Remove this file!
