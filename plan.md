@@ -61,4 +61,6 @@
 ## Cleanup
 
 - [x] Remove Ruby and other unused files
-- [ ] Update README.md and project description in GitHub
+- [x] Update README.md 
+- [ ] Update project description in GitHub
+- [ ] Add link to `https://cvcreator.fly.dev/` in the README.md
