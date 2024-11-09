@@ -45,14 +45,14 @@
                                                                     :subitems [a-subitem-relevant-readings]}))
 
 
-(def a-section (section/map->Section {:label a-section-label
+(def a-section (section/map->BulletPointSection {:label a-section-label
                                       :items [an-item-with-subitems]}))
 (def an-autodidact-training-section (section/map->AutodidactTrainingSection {:label "Autodidact training"
                                                                              :relevantReadings a-relevant-readings-item
                                                                              :optionalCourses an-optional-courses-item}))
-(def an-education-section (section/map->Section {:label "Education"
+(def an-education-section (section/map->BulletPointSection {:label "Education"
                                                  :items [an-education-item]}))
-(def an-experience-section (section/map->Section {:label "Experience"
+(def an-experience-section (section/map->BulletPointSection {:label "Experience"
                                                   :items [an-experience-item]}))
 
 
@@ -144,13 +144,13 @@
     (test/is (string/blank?
               (renderer/render-html-all nil))))
 
-  (test/testing "render-html Section is not empty when items are not"
+  (test/testing "render-html BulletPointSection is not empty when items are not"
     (test/is (not (string/blank?
                    (renderer/render-html a-section)))))
 
-  (test/testing "render-html Section is empty when items are empty"
+  (test/testing "render-html BulletPointSection is empty when items are empty"
     (test/is (string/blank?
-              (renderer/render-html (section/map->Section {:items []})))))
+              (renderer/render-html (section/map->BulletPointSection {:items []})))))
 
   (test/testing "render-html AutodidactTrainingSection is not empty when items are not"
     (test/is (not (string/blank?
