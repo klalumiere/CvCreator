@@ -19,12 +19,13 @@
 
 (defrecord AutodidactTrainingSection [label
                                       relevantReadings
-                                      optionalCourses])
+                                      optionalCourses
+                                      tags])
 
 
 (defrecord Item [value subitems tags])
 
-(defrecord AutodidactTrainingItem [label subitems])
+(defrecord AutodidactTrainingItem [label subitems tags])
 
 (defrecord EducationItem [degree school date subitems])
 (defrecord ExperienceItem [title business date subitems])
