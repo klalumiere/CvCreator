@@ -5,14 +5,17 @@
 }
 
 @media screen {
+  .Container {
+    display: flex;
+  }
   .Menu {
-    width: 15%;
     margin: 2px 2px 2px 20px;
-    float: left;
+    position: fixed;
+    width: 15%;
   }
   .Cv {
-    width: 80%;
+    flex: 1;
     margin: 2px 2px 2px 2px;
-    float: left;
+    width: 80%;
   }
 }
