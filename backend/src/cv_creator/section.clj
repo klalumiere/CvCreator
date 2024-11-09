@@ -8,6 +8,7 @@
  create-optional-courses-item-from-map
  create-relevant-readings-item-from-map)
 
+(defrecord BulletPointSection [label items tags])
 (defrecord Section [label items tags])
 
 (defrecord HeadSection [name
@@ -55,6 +56,10 @@
                                            (-> aMap
                                                (utility/update-if-exist :phone #(map->PhoneItem %))
                                                (utility/update-if-exist :webPage #(map->WebPageItem %)))))
+
+(defn create-bullet-point-section-from-map [aMap] (map->BulletPointSection
+                                                   (-> aMap
+                                                       (utility/update-if-exist :items #(mapv create-item-from-map %)))))
 
 (defn create-section-from-map [aMap] (map->Section
                                       (-> aMap
