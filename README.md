@@ -10,7 +10,7 @@ To start the backend
 
 ```shell
 cd backend
-CV_CREATOR_CROSS_ORIGIN=http://localhost:3000 lein ring server
+CV_CREATOR_CROSS_ORIGIN=http://localhost:3000 CV_CREATOR_DATA_DIR_PATH=../data/sample lein ring server
 ```
 
 and then to start the frontend
