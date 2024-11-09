@@ -61,7 +61,7 @@
                                                    (-> aMap
                                                        (utility/update-if-exist :items #(mapv create-item-from-map %)))))
 
-(defn create-section-from-map [aMap] (map->BulletPointSection
+(defn create-section-from-map [aMap] (map->Section
                                       (-> aMap
                                           (utility/update-if-exist :items #(mapv create-item-from-map %)))))
 
