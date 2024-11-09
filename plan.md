@@ -52,7 +52,7 @@
 - [x] Translate my CV in json
 - [x] Validate my author data in the CI
 - [x] Make sure I want every empty sections that remains when I remove every tags
-- [ ] Sort tags in same order they appear in metadata?
+- [x] Sort tags in same order they appear in metadata?
 - [ ] Align sections better so that the date on the right end side aligns with the blue line?
 - [ ] Update my CV (add and _remove_ stuff)
 - [ ] Fix menu on top of screen when we scroll?

@@ -114,7 +114,6 @@ export function App() {
 
   const tagsLabel = !languageKey ? "" : menus[languageKey].tagsLabel
   const renderedTags = !languageKey ? "" :  menus[languageKey].tags
-    .sort((lhs, rhs) => lhs.label < rhs.label ? -1 : 0)
     .map(tag =>
       <div key={tag.value}>
         <label>
