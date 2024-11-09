@@ -130,7 +130,7 @@ export function App() {
 
 
   return (
-    <div>
+    <div className="Container">
       <div className="Menu">
         <br/>
         <strong><div>{languageLabel}</div></strong>

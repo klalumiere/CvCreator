@@ -54,7 +54,8 @@
 - [x] Make sure I want every empty sections that remains when I remove every tags
 - [x] Sort tags in same order they appear in metadata?
 - [x] Align sections better so that the date on the right end side aligns with the blue line?
-- [ ] Fix menu on top of screen when we scroll?
+- [x] Fix menu on top of screen when we scroll?
+- [ ] Fix margins when printing CV
 - [ ] Update my CV (add and _remove_ stuff)
 - [ ] Switch to `CV_CREATOR_DATA_DIR_PATH = "data/author"` in `fly.toml`.
 - [ ] Update "project description" in GitHub (right and side of the main page) to add the `Website` `https://cvcreator.fly.dev/`
