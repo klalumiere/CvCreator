@@ -9,6 +9,7 @@
  create-relevant-readings-item-from-map)
 
 (defrecord BulletPointSection [label items tags])
+(defrecord Section [label items tags])
 
 (defrecord HeadSection [name
                         eMail
@@ -43,11 +44,11 @@
                                                               (utility/update-if-exist :relevantReadings #(create-relevant-readings-item-from-map %))
                                                               (utility/update-if-exist :optionalCourses #(create-optional-courses-item-from-map %)))))
 
-(defn create-education-section-from-map [aMap] (map->BulletPointSection
+(defn create-education-section-from-map [aMap] (map->Section
                                                 (-> aMap
                                                     (utility/update-if-exist :items #(mapv create-education-item-from-map %)))))
 
-(defn create-experience-section-from-map [aMap] (map->BulletPointSection
+(defn create-experience-section-from-map [aMap] (map->Section
                                                  (-> aMap
                                                      (utility/update-if-exist :items #(mapv create-experience-item-from-map %)))))
 
@@ -55,6 +56,10 @@
                                            (-> aMap
                                                (utility/update-if-exist :phone #(map->PhoneItem %))
                                                (utility/update-if-exist :webPage #(map->WebPageItem %)))))
+
+(defn create-bullet-point-section-from-map [aMap] (map->BulletPointSection
+                                                   (-> aMap
+                                                       (utility/update-if-exist :items #(mapv create-item-from-map %)))))
 
 (defn create-section-from-map [aMap] (map->BulletPointSection
                                       (-> aMap

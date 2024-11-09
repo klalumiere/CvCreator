@@ -46,13 +46,13 @@
 
 
 (def a-section (section/map->BulletPointSection {:label a-section-label
-                                      :items [an-item-with-subitems]}))
+                                                 :items [an-item-with-subitems]}))
 (def an-autodidact-training-section (section/map->AutodidactTrainingSection {:label "Autodidact training"
                                                                              :relevantReadings a-relevant-readings-item
                                                                              :optionalCourses an-optional-courses-item}))
-(def an-education-section (section/map->BulletPointSection {:label "Education"
+(def an-education-section (section/map->Section {:label "Education"
                                                  :items [an-education-item]}))
-(def an-experience-section (section/map->BulletPointSection {:label "Experience"
+(def an-experience-section (section/map->Section {:label "Experience"
                                                   :items [an-experience-item]}))
 
 
@@ -67,9 +67,9 @@
                   :optionalCourses {:label "Optional courses"
                                     :subitems [{:title "Cooking for dummies" :place "Restaurant"}]}}))))
 
-  (test/testing "create-section-from-map creates a section from a map"
+  (test/testing "create-bullet-point-section-from-map creates a section from a map"
     (test/is (= a-section
-                (section/create-section-from-map
+                (section/create-bullet-point-section-from-map
                  {:label a-section-label
                   :items [{:value "An item with subitems"
                            :subitems [{:value "An item"} {:value "An item"}]}]}))))

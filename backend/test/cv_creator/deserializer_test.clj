@@ -10,7 +10,7 @@
 (test/deftest deserializer
 
   (test/testing "dispatch-deserialization dipatches to correct 'constructor'"
-    (test/is (= (section/create-section-from-map {:label "aLabel" :items [{:value "aValue"}]})
+    (test/is (= (section/create-bullet-point-section-from-map {:label "aLabel" :items [{:value "aValue"}]})
                 (deserializer/dispatch-deserialization :contributedTalks {:label "aLabel" :items [{:value "aValue"}]})))))
 
 (test/deftest ^:integration deserializer-gentest

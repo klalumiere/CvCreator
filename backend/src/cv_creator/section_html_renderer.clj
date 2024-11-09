@@ -9,7 +9,7 @@
   (:import [cv_creator.section
             AutodidactTrainingItem
             AutodidactTrainingSection
-            BulletPointSection 
+            BulletPointSection
             EducationItem
             ExperienceItem
             HeadSection
@@ -18,6 +18,7 @@
             EducationSubitem
             OptionalCoursesSubitem
             RelevantReadingsSubitem
+            Section
             WebPageItem]))
 
 
@@ -119,6 +120,15 @@
                                    (selmer/render "<br><strong style=\"font-size: 125%;\">{{label}}</strong>
 <hr class=\"section\">
 <ul>{{rendered-items|safe}}</ul>
+<br>" (assoc this :rendered-items (cv-creator.html-renderer/render-html-all (:items this)))))))
+
+
+(extend-type Section cv-creator.html-renderer/HtmlRenderer
+             (render-html [this] (if (empty? (:items this))
+                                   ""
+                                   (selmer/render "<br><strong style=\"font-size: 125%;\">{{label}}</strong>
+<hr class=\"section\">
+{{rendered-items|safe}}
 <br>" (assoc this :rendered-items (cv-creator.html-renderer/render-html-all (:items this)))))))
 
 
