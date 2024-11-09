@@ -501,7 +501,8 @@
                     "place": "Université de Sherbrooke",
                     "tags": ["computerScience"]
                 }
-            ]
+            ],
+            "tags": ["computerScience"]
         }
     },
     "honors": {
