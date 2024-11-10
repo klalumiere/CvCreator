@@ -79,11 +79,11 @@
                 "value": "Bilingual (english and french)"
             },
             {
-                "value": "Expert with: C++, CMake, Linux, Python, Docker, Bash, Microsoft vcpkg, GitHub",
+                "value": "Expert with: C++, Python, CMake, Linux, Docker, Bash, Microsoft vcpkg, GitHub",
                 "tags": [ "computerScience" ]
             },
             {
-                "value": "Professional experienced with: Java, Google Test, AWS, Terraform, Kubernetes, Jenkins, Groovy, C#, Eigen, PowerShell, Batch (Windows' cmd.exe), Qt, MPI, PETSc, SLEPc, OPEN CASCADE, C, Linux Kernel, MSBuild, Mercurial, VTK, LaTeX, Doxygen, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
+                "value": "Professional experienced with: Java, Google Test, AWS, Terraform, Kubernetes, Jenkins, Groovy, C#, Go, Eigen, PowerShell, Batch (Windows' cmd.exe), Qt, MPI, PETSc, SLEPc, OPEN CASCADE, C, Linux Kernel, MSBuild, Mercurial, VTK, LaTeX, Doxygen, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
                 "tags": [ "computerScience" ]
             },
             {
@@ -150,20 +150,52 @@
                 "date": "July 2018 -",
                 "subitems": [
                     {
-                        "tags": [ "computerScience" ],
-                        "value": "Complete refactoring of the build system of about one million lines of C++ code"
-                    },
-                    {
-                        "tags": [ "computerScience" ],
-                        "value": "Design and maintenance of the continuous integration (CI) system for the C++ teams"
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Lead the effort to implement \"Bring Your Own Key\" (BYOK)"
                     },
                     {
                         "tags": [ "computerScience", "teaching" ],
-                        "value": "Point of contact between my team and the security team"
+                        "value": "Supervision of an intern using large scale refactoring to replace a custom implementation of std::share_ptr by the standard one"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Introduce large scale refactoring via clang-tidy plugins and use it to replace a custom implementation of std::filesystem::path by the standard one"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Lead the effort to run Coveo's C++ code on the ARM architecture"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Speed up the most used Continuous Integration (CI) system by a factor 3"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Transition the CI systems from Jenkins to GitHub Workflows for the C++ teams repositories"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Introduce \"Development Containers\" so that developers can develop cross-platform in the same environment as the CI systems run"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Split a repository of 440k lines of C++ code to allow teams to deploy independently"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Move the dependency manager of about one million lines of C++ code from a custom solution to Microsoft vcpkg"
                     },
                     {
                         "tags": [ "computerScience", "teaching" ],
                         "value": "Supervision of an intern evaluating the transition of the C++ dependency manager"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Move the build system of about one million lines of C++ code from MSBuild to CMake"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Point of contact between my team and the security team"
                     }
                 ]
             },
@@ -575,6 +607,9 @@
         "items": [
             {
                 "value": "Stack Overflow https://stackoverflow.com/users/3068259/kevin"
+            },
+            {
+                "value": "Organize a C++ Meetup presenting our effort using large scale refactoring to replace a custom implementation of std::share_ptr by the standard one"
             },
             {
                 "value": "Keynote \"Unit testing in scientific programming\" at Université de Sherbrooke (2013)"
