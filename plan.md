@@ -2,7 +2,10 @@
 
 ## Update data
 
-- [ ] Update my CV (add and _remove_ stuff)
+- [ ] Update my CV
+    - [x] Remove stuff
+    - [x] Speel check
+    - [ ] Translate in french
 
 ## Deploy
 
