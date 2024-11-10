@@ -39,7 +39,7 @@
     "head": {
         "name": "Kevin Lalumière",
         "eMail": "kevin.lalumiere@gmail.com",
-        "addressTown": "Montreal(Qc), Canada",
+        "addressTown": "Montréal(Qc), Canada",
         "webPage": {
             "label": "Page web",
             "value": "https://github.com/klalumiere"
@@ -49,7 +49,7 @@
         "label": "Sommaire de compétences",
         "items": [
             {
-                "value": "Développeur \"Backend\" chez Coveo"
+                "value": "Développeur \"Backend Senior II\" chez Coveo"
             },
             {
                 "value": "Plus de dix (10) années d'expérience en développement logiciel"
@@ -78,15 +78,19 @@
                 "value": "Bilingue (anglais et français)"
             },
             {
-                "value": "Expert avec: C++, CMake, Linux, Python, Docker, Bash",
+                "value": "Expert avec: C++, Python, CMake, Linux, Docker, Bash, Microsoft vcpkg, GitHub",
                 "tags": [ "computerScience" ]
             },
             {
-                "value": "Expérimenté avec: AWS, Git, Jenkins, Groovy, GitHub, Microsoft vcpkg, Eigen, Google Test, C, PowerShell, Batch (Windows' cmd.exe), Qt, Ruby, MPI, PETSc, SLEPc, OPEN CASCADE, Linux Kernel, MSBuild, Mercurial, VTK, Java, Javascript, Jasmine, jQuery, LaTeX, HTML, Doxygen, C#, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
+                "value": "Expérimenté professionnellement avec: Java, Google Test, AWS, Terraform, Kubernetes, Jenkins, Groovy, C#, Go, Eigen, PowerShell, Batch (Windows' cmd.exe), Qt, MPI, PETSc, SLEPc, OPEN CASCADE, C, Linux Kernel, MSBuild, Mercurial, VTK, LaTeX, Doxygen, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
                 "tags": [ "computerScience" ]
             },
             {
-                "value": "Familié avec: PHP, Clojure",
+                "value": "Expérimenté personnellement avec: Clojure, React, Typescript, Kotlin, Ruby, Javascript, Jasmine, jQuery, HTML, CSS",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Familié avec: Rust, PHP",
                 "tags": [ "computerScience" ]
             }            
         ]
@@ -140,25 +144,57 @@
         "label": "Expériences de travail",
         "items": [
             {
-                "title": "Développeur \"Backend\" dans l'équipe Index Infrastructure",
+                "title": "Développeur \"Backend Senior II\" dans l'équipe Index Infrastructure",
                 "business": "Coveo, Montreal(Qc), Canada",
                 "date": "Juillet 2018 -",
                 "subitems": [
                     {
-                        "tags": [ "computerScience" ],
-                        "value": "Refactoring complet du système de construction d'environ un million de lignes de code C++"
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Direction de l'effort pour implémenter \"Bring Your Own Key\" (BYOK)"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Supervision d'un stagiaire utilisant le refactoring à grande échelle pour remplacer une implémentation personnalisée de std::share_ptr par celle standard"
                     },
                     {
                         "tags": [ "computerScience" ],
-                        "value": "Conception et maintenance du système d'intégration continue (CI) pour les équipes C++"
+                        "value": "Introduction du refactoring à grande échelle via les plugins clang-tidy et utilisation pour remplacer une implémentation personnalisée de std::filesystem::path par celle standard"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Direction de l'effort pour exécuter le code C++ de Coveo sur l'architecture ARM"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Accélération du système d'intégration continue (IC) le plus utilisé d'un facteur 3"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Transition des systèmes IC de Jenkins vers les workflows GitHub pour les \"repositories\" des équipes C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Introduction des \"conteneurs de développement\" afin que les développeurs puissent développer sur plusieurs plates-formes dans le même environnement que celui dans lequel s'exécutent les systèmes IC"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Division d'un \"repository\" de 440k lignes de code C++ pour permettre aux équipes de déployer de manière indépendante"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Changement du gestionnaire de dépendances d'environ un million de lignes de code C++ d'une solution personnalisée vers Microsoft vcpkg"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Supervision d'un stagiaire évaluant la transition du gestionnaire de dépendances C++"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Déplacement du système de build d'environ un million de lignes de code C++ de MSBuild vers CMake"
                     },
                     {
                         "tags": [ "computerScience", "teaching" ],
                         "value": "Point de contact entre mon équipe et l'équipe de sécurité"
-                    },
-                    {
-                        "tags": [ "computerScience", "teaching" ],
-                        "value": "Supervision d'un stagiaire évaluant la transition du gestionnaire de dépendances de C++"
                     }
                 ]
             },
@@ -210,10 +246,6 @@
                     {
                         "tags": [ "computerScience" ],
                         "value": "Participation au développement d'une librairie scientifique haute performance en C++"
-                    },
-                    {
-                        "tags": [ "computerScience" ],
-                        "value": "Développement et maintiens d'un Wiki et forum privé à l'aide de la technologie Wordpress"
                     }
                 ]
             },
@@ -318,6 +350,55 @@
             "label": "Lectures pertinentes",
             "subitems": [
                 {
+                    "authors": "Ben Horowitz",
+                    "title": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers"
+                },
+                {
+                    "authors": "Joshua Bloch",
+                    "title": "Effective Java",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "David McRaney",
+                    "title": "How Minds Change: The Surprising Science of Belief, Opinion, and Persuasion"
+                },
+                {
+                    "authors": "Kerry Patterson, Stephen R. Covey, Joseph Grenny, Ron McMillan, Al Switzler",
+                    "title": "Crucial Conversations: Tools for Talking When Stakes are High"
+                },
+                {
+                    "authors": "Martin Fowler",
+                    "title": "Refactoring: Improving the Design of Existing Code",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Martin Kleppmann",
+                    "title": "Designing Data-Intensive Applications",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Nicole Forsgren, Jez Humble, Gene Kim",
+                    "title": "Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Daniel Goleman",
+                    "title": "Emotional Intelligence: Why It Can Matter More Than IQ"
+                },
+                {
+                    "authors": "Nassim Nicholas Taleb",
+                    "title": "Antifragile: Things That Gain from Disorder"
+                },
+                {
+                    "authors": "Douglas W. Hubbard, Richard Seiersen",
+                    "title": "How to Measure Anything in Cybersecurity Risk"
+                },
+                {
+                    "authors": "Gene Kim, Kevin Behr, George Spafford",
+                    "title": "The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win",
+                    "tags": [ "computerScience" ]
+                },
+                {
                     "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
                     "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
                     "tags": [ "computerScience" ]
@@ -378,7 +459,7 @@
                 },
                 {
                     "authors": "Andrew Hunt and David Thomas",
-                    "title": "The Pragmatic Programmer: From Journeyman to Master",
+                    "title": "The Pragmatic Programmer: From Journeyman to Master, 20th anniversary edition",
                     "tags": [ "computerScience" ]
                 },
                 {
@@ -427,10 +508,6 @@
                     "tags": [ "computerScience" ]
                 },
                 {
-                    "title": "Scrum: The Art of Doing Twice the Work in Half the Time",
-                    "authors": "Jeff Sutherland, JJ Sutherland"
-                },
-                {
                     "title": "Modern C++ Programming with test driven development",
                     "authors": "Jeff Langr",
                     "tags": [ "computerScience" ]
@@ -458,16 +535,6 @@
                 {
                     "authors": "Brian P. Hogan",
                     "title": "Small, Sharp Software Tools: Harness the Combinatoric Power of Command-Line Tools and Utilities",
-                    "tags": [ "computerScience" ]
-                },
-                {
-                    "authors": "Gerald M. Weinberg",
-                    "title": "The Psychology of Computer Programming",
-                    "tags": [ "computerScience" ]
-                },
-                {
-                    "authors": "Michael Keeling",
-                    "title": "Design It!: From Programmer to Software Architect",
                     "tags": [ "computerScience" ]
                 }
             ]
@@ -533,6 +600,12 @@
         "label": "Implications sociales",
         "items": [
             {
+                "value": "Stack Overflow https://stackoverflow.com/users/3068259/kevin"
+            },
+            {
+                "value": "Organization d'un Meetup C++ présentant notre effort d'utilisation du refactoring à grande échelle pour remplacer une implémentation personnalisée de std::share_ptr par celle standard"
+            },
+            {
                 "value": "Présentation \"Tests unitaires dans la programmation scientifique\" à l'Université de Sherbrooke (2013)"
             },
             {
@@ -555,6 +628,14 @@
     "publications": {
         "label": "Publications",
         "items": [
+            {
+                "value": "Kevin Lalumière, Error Handling Tradeoffs and Crashing in Production, https://source.coveo.com/2023/04/17/error-handling-tradeoffs-and-crashing-in-production/, (2023).",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Kevin Lalumière, Software Engineering: It’s All About Abstraction, https://source.coveo.com/2022/03/30/software-engineering-it-s-all-about-abstraction/, (2022).",
+                "tags": [ "computerScience" ]
+            },
             {
                 "value": "Kevin Lalumière, Interaction between Move Semantic and Copy Elision in C++, https://source.coveo.com/2018/11/07/interaction-between-move-semantic-and-copy-elision-in-c++/, (2018).",
                 "tags": [ "computerScience" ]
