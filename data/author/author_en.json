@@ -2,7 +2,7 @@
     "metadata": {
         "default": true,
         "languageLabel": "Language",
-        "tagsLabel": "Tags",
+        "tagsLabel": "Skills",
         "language": {
             "label": "English",
             "value": "english"
