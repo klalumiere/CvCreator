@@ -600,6 +600,14 @@
         "label": "Publications",
         "items": [
             {
+                "value": "Kevin Lalumière, Error Handling Tradeoffs and Crashing in Production, https://source.coveo.com/2023/04/17/error-handling-tradeoffs-and-crashing-in-production/, (2023).",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Kevin Lalumière, Software Engineering: It’s All About Abstraction, https://source.coveo.com/2022/03/30/software-engineering-it-s-all-about-abstraction/, (2022).",
+                "tags": [ "computerScience" ]
+            },
+            {
                 "value": "Kevin Lalumière, Interaction between Move Semantic and Copy Elision in C++, https://source.coveo.com/2018/11/07/interaction-between-move-semantic-and-copy-elision-in-c++/, (2018).",
                 "tags": [ "computerScience" ]
             },
