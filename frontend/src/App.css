@@ -22,3 +22,16 @@
     width: 80%;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .Menu {
+    float: left;
+    margin: 2px 2px 2px 20px;
+    width: 15%;
+  }
+  .Cv {
+    float: left;
+    margin: 2px 2px 2px 2px;
+    width: 80%;
+  }
+}
