@@ -2,7 +2,7 @@
     "metadata": {
         "default": true,
         "languageLabel": "Language",
-        "tagsLabel": "Skills",
+        "tagsLabel": "Tags",
         "language": {
             "label": "English",
             "value": "english"
@@ -319,6 +319,55 @@
             "label": "Relevant readings",
             "subitems": [
                 {
+                    "authors": "Ben Horowitz",
+                    "title": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers"
+                },
+                {
+                    "authors": "Effective Java",
+                    "title": "Joshua Bloch",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "David McRaney",
+                    "title": "How Minds Change: The Surprising Science of Belief, Opinion, and Persuasion"
+                },
+                {
+                    "authors": "Kerry Patterson, Stephen R. Covey, Joseph Grenny, Ron McMillan, Al Switzler",
+                    "title": "Crucial Conversations: Tools for Talking When Stakes are High"
+                },
+                {
+                    "authors": "Martin Fowler",
+                    "title": "Refactoring: Improving the Design of Existing Code",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Martin Kleppmann",
+                    "title": "Designing Data-Intensive Applications",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Nicole Forsgren, Jez Humble, Gene Kim",
+                    "title": "Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations",
+                    "tags": [ "computerScience" ]
+                },
+                {
+                    "authors": "Daniel Goleman",
+                    "title": "Emotional Intelligence: Why It Can Matter More Than IQ"
+                },
+                {
+                    "authors": "Nassim Nicholas Taleb",
+                    "title": "Antifragile: Things That Gain from Disorder"
+                },
+                {
+                    "authors": "Douglas W. Hubbard, Richard Seiersen",
+                    "title": "How to Measure Anything in Cybersecurity Risk"
+                },
+                {
+                    "authors": "Gene Kim, Kevin Behr, George Spafford",
+                    "title": "The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win",
+                    "tags": [ "computerScience" ]
+                },
+                {
                     "authors": "Titus Winters, Tom Manshreck, Hyrum Wright",
                     "title": "Software Engineering at Google: Lessons Learned from Programming Over Time",
                     "tags": [ "computerScience" ]
@@ -379,7 +428,7 @@
                 },
                 {
                     "authors": "Andrew Hunt and David Thomas",
-                    "title": "The Pragmatic Programmer: From Journeyman to Master",
+                    "title": "The Pragmatic Programmer: From Journeyman to Master, 20th anniversary edition",
                     "tags": [ "computerScience" ]
                 },
                 {
@@ -428,10 +477,6 @@
                     "tags": [ "computerScience" ]
                 },
                 {
-                    "title": "Scrum: The Art of Doing Twice the Work in Half the Time",
-                    "authors": "Jeff Sutherland, JJ Sutherland"
-                },
-                {
                     "title": "Modern C++ Programming with test driven development",
                     "authors": "Jeff Langr",
                     "tags": [ "computerScience" ]
@@ -459,16 +504,6 @@
                 {
                     "authors": "Brian P. Hogan",
                     "title": "Small, Sharp Software Tools: Harness the Combinatoric Power of Command-Line Tools and Utilities",
-                    "tags": [ "computerScience" ]
-                },
-                {
-                    "authors": "Gerald M. Weinberg",
-                    "title": "The Psychology of Computer Programming",
-                    "tags": [ "computerScience" ]
-                },
-                {
-                    "authors": "Michael Keeling",
-                    "title": "Design It!: From Programmer to Software Architect",
                     "tags": [ "computerScience" ]
                 }
             ]
