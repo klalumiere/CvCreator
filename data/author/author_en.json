@@ -79,15 +79,19 @@
                 "value": "Bilingual (english and french)"
             },
             {
-                "value": "Expert with: C++, CMake, Linux, Python, Docker, Bash",
+                "value": "Expert with: C++, CMake, Linux, Python, Docker, Bash, Microsoft vcpkg, GitHub",
                 "tags": [ "computerScience" ]
             },
             {
-                "value": "Experienced with: AWS, Git, Jenkins, Groovy, GitHub, Microsoft vcpkg, Eigen, Google Test, C, PowerShell, Batch (Windows' cmd.exe), Qt, Ruby, MPI, PETSc, SLEPc, OPEN CASCADE, Linux Kernel, MSBuild, Mercurial, VTK, Java, Javascript, Jasmine, jQuery, LaTeX, HTML, Doxygen, C#, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
+                "value": "Professional experienced with: Java, Google Test, AWS, Terraform, Kubernetes, Jenkins, Groovy, C#, Eigen, PowerShell, Batch (Windows' cmd.exe), Qt, MPI, PETSc, SLEPc, OPEN CASCADE, C, Linux Kernel, MSBuild, Mercurial, VTK, LaTeX, Doxygen, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
                 "tags": [ "computerScience" ]
             },
             {
-                "value": "Familiar with: PHP, Clojure",
+                "value": "Personal experienced with: Clojure, React, Typescript, Kotlin, Ruby, Javascript, Jasmine, jQuery, HTML, CSS",
+                "tags": [ "computerScience" ]
+            },
+            {
+                "value": "Familiar with: Rust, PHP",
                 "tags": [ "computerScience" ]
             }
         ]
@@ -141,7 +145,7 @@
         "label": "Experience",
         "items": [
             {
-                "title": "Backend Developer in Index Infrastructure team",
+                "title": "Senior II Backend Developer in Index Infrastructure team",
                 "business": "Coveo, Montreal(Qc), Canada",
                 "date": "July 2018 -",
                 "subitems": [
