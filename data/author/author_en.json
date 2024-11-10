@@ -183,7 +183,7 @@
                     },
                     {
                         "tags": [ "computerScience" ],
-                        "value": "Move the dependency manager of about one million lines of C++ code from a custom solution to Microsoft vcpkg"
+                        "value": "Change the dependency manager of about one million lines of C++ code from a custom solution to Microsoft vcpkg"
                     },
                     {
                         "tags": [ "computerScience", "teaching" ],
