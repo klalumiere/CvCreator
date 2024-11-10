@@ -247,10 +247,6 @@
                     {
                         "tags": [ "computerScience" ],
                         "value": "Contribution in development of a high performance scientific library using C++"
-                    },
-                    {
-                        "tags": [ "computerScience" ],
-                        "value": "Development and maintenance of a private Wiki and forum using Wordpress technology"
                     }
                 ]
             },
@@ -359,8 +355,8 @@
                     "title": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers"
                 },
                 {
-                    "authors": "Effective Java",
-                    "title": "Joshua Bloch",
+                    "authors": "Joshua Bloch",
+                    "title": "Effective Java",
                     "tags": [ "computerScience" ]
                 },
                 {

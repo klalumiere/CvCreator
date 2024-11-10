@@ -11,6 +11,7 @@
 - [ ] Add link to `https://cvcreator.fly.dev/` in the README.md
 - [ ] Change url in my GitHub profile from `https://fierce-hamlet-5053.herokuapp.com/` to `https://cvcreator.fly.dev/`
 - [ ] Change url `http://fierce-hamlet-5053.herokuapp.com/` on my stack overflow page
+- [ ] Update Linked in
 
 ## Cleanup
 
