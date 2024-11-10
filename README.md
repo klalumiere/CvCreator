@@ -1,6 +1,7 @@
 # CvCreator
 
 Use some JSON data files to generate a CV in many languages with optional entries.
+Live at <https://cvcreator.fly.dev/>.
 
 ## Quick Start
 
