@@ -8,8 +8,10 @@ jobs:
       name: Fly
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v4
         - uses: superfly/flyctl-actions/setup-flyctl@master
+        - name: Use repository's data
+          run: sed -i "s/data\/sample/${{vars.KLALUMIERE_CVCREATOR_DATA_PATH}}/" fly.toml
         - name: Deployment
           env:
             FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
