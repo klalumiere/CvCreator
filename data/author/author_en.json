@@ -574,6 +574,9 @@
         "label": "Social Implication",
         "items": [
             {
+                "value": "Stack Overflow https://stackoverflow.com/users/3068259/kevin"
+            },
+            {
                 "value": "Keynote \"Unit testing in scientific programming\" at Université de Sherbrooke (2013)"
             },
             {
