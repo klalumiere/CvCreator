@@ -1,12 +1,5 @@
 # Plan
 
-## Update data
-
-- [ ] Update my CV
-    - [x] Remove stuff
-    - [x] Speel check
-    - [ ] Translate in french
-
 ## Deploy
 
 - [ ] Switch to `CV_CREATOR_DATA_DIR_PATH = "data/author"` in `fly.toml`.
