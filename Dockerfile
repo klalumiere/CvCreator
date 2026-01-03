@@ -2,8 +2,9 @@ FROM node:20-bookworm AS frontend
 
 COPY frontend /builder/frontend
 WORKDIR /builder/frontend
-RUN npm install \
-    && npm run build
+RUN npm install --global pnpm \
+    && pnpm install --frozen-lockfile \
+    && pnpm run build
 
 
 FROM clojure:temurin-23-lein-noble AS backend

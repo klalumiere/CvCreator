@@ -39,12 +39,17 @@ jobs:
         working-directory: ./frontend
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v4
         with:
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
           node-version: 20
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - run: pnpm test
 
   ci-packaging:
     runs-on: ubuntu-latest

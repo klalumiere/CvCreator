@@ -3,7 +3,7 @@
 !backend/src
 !data
 !frontend/config
-!frontend/package-lock.json
+!frontend/pnpm-lock.yaml
 !frontend/package.json
 !frontend/public
 !frontend/scripts
