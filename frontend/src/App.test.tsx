@@ -11,8 +11,8 @@ const languageLabelEnglish = "english"
 const languageLabelFrench = "french"
 
 let aLanguageToLocalizedMenu: AppModule.LanguageToLocalizedMenu
-let mockFetchCv: jest.SpyInstance
-let mockFetchMenus: jest.SpyInstance
+let mockFetchCv: vi.SpyInstance
+let mockFetchMenus: vi.SpyInstance
 
 function getTestIdForLanguage(language: string): string {
   return `language-input-${aLanguageToLocalizedMenu[language].label}`
@@ -41,8 +41,8 @@ beforeEach(() => {
   }
 
   AppModule.resetInitializedForTests()
-  mockFetchCv = jest.spyOn(AppModule, 'fetchCv').mockImplementation(() => Promise.resolve(cvData) )
-  mockFetchMenus = jest.spyOn(AppModule, 'fetchMenus').mockImplementation(() => Promise.resolve(aLanguageToLocalizedMenu))
+  mockFetchCv = vi.spyOn(AppModule, 'fetchCv').mockImplementation(() => Promise.resolve(cvData) )
+  mockFetchMenus = vi.spyOn(AppModule, 'fetchMenus').mockImplementation(() => Promise.resolve(aLanguageToLocalizedMenu))
 })
 
 afterEach(() => {
