@@ -18,7 +18,7 @@ and then to start the frontend
 
 ```shell
 cd frontend
-REACT_APP_CV_CREATOR_BACKEND_URL=http://localhost:8080 pnpm start
+VITE_CV_CREATOR_BACKEND_URL=http://localhost:8080 pnpm start
 ```
 
 The environment variable `CV_CREATOR_DATA_DIR_PATH` controls the directory searched for JSON data files.
