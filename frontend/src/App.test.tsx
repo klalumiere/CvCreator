@@ -1,5 +1,6 @@
 import userEvent from '@testing-library/user-event'
 import {render, screen} from "@testing-library/react"
+import {vi, type MockInstance} from 'vitest';
 import * as AppModule from "./App"
 
 const aTagInEnglish: AppModule.Tag = { value: "testComputerScience", label: "Computer Science" }
@@ -11,8 +12,8 @@ const languageLabelEnglish = "english"
 const languageLabelFrench = "french"
 
 let aLanguageToLocalizedMenu: AppModule.LanguageToLocalizedMenu
-let mockFetchCv: vi.SpyInstance
-let mockFetchMenus: vi.SpyInstance
+let mockFetchCv: MockInstance
+let mockFetchMenus: MockInstance
 
 function getTestIdForLanguage(language: string): string {
   return `language-input-${aLanguageToLocalizedMenu[language].label}`
