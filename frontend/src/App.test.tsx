@@ -44,6 +44,14 @@ beforeEach(() => {
   AppModule.resetInitializedForTests()
   mockFetchCv = vi.spyOn(AppModule, 'fetchCv').mockImplementation(() => Promise.resolve(cvData) )
   mockFetchMenus = vi.spyOn(AppModule, 'fetchMenus').mockImplementation(() => Promise.resolve(aLanguageToLocalizedMenu))
+  global.fetch = vi.fn().mockImplementation(() =>
+    Promise.resolve({
+      ok: true,
+      status: 200,
+      json: async () => ({ }),
+      text: async () => ({ }),
+    } as Response)
+  )
 })
 
 afterEach(() => {
