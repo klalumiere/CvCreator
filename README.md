@@ -50,7 +50,7 @@ cd backend && lein run -m cv-creator.core/-main ../data/sample english computerS
 
 ## More
 
-Take a look at the Continuous Integration (CI) in the file [.github/workflows/test.yml](./.github/workflows/test.yml).
+Take a look at the Continuous Integration (CI) in the file [.github/workflows/ci.yml](./.github/workflows/ci.yml).
 
 ## Legacy
 
