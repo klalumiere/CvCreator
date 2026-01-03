@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import React from 'react'
 import './App.css';
 import * as SelfModule from './App'; // Require to mock functions
 
@@ -54,8 +55,8 @@ export function joinTags(tags: Set<string>) {
 function getDefaultLanguageKey(menus: LanguageToLocalizedMenu): string {
   const firstKey = Object.keys(menus).find(Boolean)
   return Object.entries(menus)
-    .filter(([_, menu]) => menu.default === true)
-    .reduce((accumulator, [key, _]) => key, firstKey) ?? ""
+    .filter(([, menu]) => menu.default === true)
+    .reduce((accumulator, [key, ]) => key, firstKey) ?? ""
 }
 
 export function resetInitializedForTests() {
@@ -86,7 +87,7 @@ export function App() {
   }
 
   function onTagChange(event: React.ChangeEvent<HTMLInputElement>) {
-    let newTags = new Set(tags)
+    const newTags = new Set(tags)
     if(event.target.checked) {
       newTags.add(event.target.id)
     } else {
@@ -97,7 +98,7 @@ export function App() {
 
 
   const languageLabel = languageKey ? menus[languageKey].languageLabel : ""
-  const renderedLanguage = Object.keys(menus).sort().map((key: string, _: number) =>
+  const renderedLanguage = Object.keys(menus).sort().map((key: string, ) =>
     <div key={key}>
       <label>
         <input 
