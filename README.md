@@ -18,6 +18,7 @@ and then to start the frontend
 
 ```shell
 cd frontend
+pnpm install
 VITE_CV_CREATOR_BACKEND_URL=http://localhost:8080 pnpm start
 ```
 
