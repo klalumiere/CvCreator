@@ -2,10 +2,9 @@
 !backend/project.clj
 !backend/src
 !data
-!frontend/config
-!frontend/package-lock.json
+!frontend/index.html
+!frontend/pnpm-lock.yaml
 !frontend/package.json
 !frontend/public
-!frontend/scripts
 !frontend/src
 !frontend/tsconfig.json

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import * as SelfModule from './App'; // Require to mock functions
 
-const backendUrl = process.env.REACT_APP_CV_CREATOR_BACKEND_URL ?? "."
+const backendUrl = import.meta.env.VITE_CV_CREATOR_BACKEND_URL ?? ".";
 
 let initialized =  false
 

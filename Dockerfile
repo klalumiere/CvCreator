@@ -1,9 +1,10 @@
-FROM node:20-bookworm AS frontend
+FROM node:22-bookworm AS frontend
 
 COPY frontend /builder/frontend
 WORKDIR /builder/frontend
-RUN npm install \
-    && npm run build
+RUN npm install --global pnpm \
+    && pnpm install --frozen-lockfile \
+    && pnpm build
 
 
 FROM clojure:temurin-23-lein-noble AS backend
@@ -11,7 +12,7 @@ FROM clojure:temurin-23-lein-noble AS backend
 WORKDIR /builder
 COPY backend/project.clj project.clj
 COPY backend/src src
-COPY --from=frontend /builder/frontend/build resources/public
+COPY --from=frontend /builder/frontend/dist resources/public
 RUN lein ring uberjar
 
 
