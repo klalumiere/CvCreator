@@ -3,8 +3,9 @@
 !backend/src
 !data
 !frontend/index.html
-!frontend/pnpm-lock.yaml
 !frontend/package.json
+!frontend/pnpm-lock.yaml
 !frontend/public
 !frontend/src
+!frontend/tsconfig.build.json
 !frontend/tsconfig.json

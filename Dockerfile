@@ -3,7 +3,7 @@ FROM node:22-bookworm AS frontend
 COPY frontend /builder/frontend
 WORKDIR /builder/frontend
 RUN npm install --global pnpm \
-    && pnpm install --frozen-lockfile \
+    && pnpm install --frozen-lockfile --prod \
     && pnpm build
 
 

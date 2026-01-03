@@ -1,6 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import {render, screen} from "@testing-library/react"
 import {vi, type MockInstance} from 'vitest';
+import React from 'react'
 import * as AppModule from "./App"
 
 const aTagInEnglish: AppModule.Tag = { value: "testComputerScience", label: "Computer Science" }
