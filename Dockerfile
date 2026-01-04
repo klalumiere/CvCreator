@@ -1,4 +1,4 @@
-FROM node:22-bookworm AS frontend
+FROM node:24-bookworm AS frontend
 
 COPY frontend /builder/frontend
 WORKDIR /builder/frontend
