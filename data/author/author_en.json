@@ -631,6 +631,10 @@
         "label": "Publications",
         "items": [
             {
+                "value": "Kevin Lalumière, Échanges avec les collègues qui refusent d'appliquer les bonnes pratiques, https://www.youtube.com/watch?v=O3893F3aDQo, (2025).",
+                "tags": [ "computerScience" ]
+            },
+            {
                 "value": "Kevin Lalumière, Error Handling Tradeoffs and Crashing in Production, https://source.coveo.com/2023/04/17/error-handling-tradeoffs-and-crashing-in-production/, (2023).",
                 "tags": [ "computerScience" ]
             },
