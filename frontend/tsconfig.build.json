@@ -3,5 +3,5 @@
   "compilerOptions": {
     "types": ["vite/client"]
   },
-  "exclude": ["**/*.test.tsx"]
+  "exclude": ["**/*.test.tsx", "src/setupTests.ts"]
 }
