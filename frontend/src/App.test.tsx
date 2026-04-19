@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event'
-import {render, screen} from "@testing-library/react"
+import {render, screen, waitFor} from "@testing-library/react"
 import {vi, type MockInstance} from 'vitest';
 import React from 'react'
 import * as AppModule from "./App"
@@ -85,7 +85,7 @@ test('given many languages in menu, default is checked', async () => {
   render(<AppModule.App/>)
 
   const inputBoxFrench = await screen.findByTestId(getTestIdForLanguage(languageLabelFrench)) as HTMLInputElement
-  expect(inputBoxFrench.checked).toEqual(true)
+  await waitFor(() => expect(inputBoxFrench.checked).toEqual(true))
 })
 
 test('when changing languages, menu language changes', async () => {
