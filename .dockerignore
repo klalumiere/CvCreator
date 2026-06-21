@@ -5,6 +5,7 @@
 !frontend/index.html
 !frontend/package.json
 !frontend/pnpm-lock.yaml
+!frontend/pnpm-workspace.yaml
 !frontend/public
 !frontend/src
 !frontend/tsconfig.build.json
