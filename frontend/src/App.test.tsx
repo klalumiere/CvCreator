@@ -63,12 +63,12 @@ afterEach(() => {
 test('screen contains menu data', async () => {
   aLanguageToLocalizedMenu[languageLabelEnglish].default = true
   render(<AppModule.App/>)
-  expect(await screen.findByText(aLanguageToLocalizedMenu[languageLabelEnglish].tagsLabel)).toBeInTheDocument()
+  expect(await screen.findByText(aLanguageToLocalizedMenu[languageLabelEnglish].tagsLabel)).toBeTruthy()
 })
 
 test('screen contains cv data', async () => {
   render(<AppModule.App/>)
-  expect(await screen.findByText(cvData)).toBeInTheDocument()
+  expect(await screen.findByText(cvData)).toBeTruthy()
 })
 
 test('given many languages in menu, only one of them is checked', async () => {
@@ -96,7 +96,7 @@ test('when changing languages, menu language changes', async () => {
   const inputBoxFrench = await screen.findByTestId(getTestIdForLanguage(languageLabelFrench)) as HTMLInputElement
   await user.click(inputBoxFrench)
 
-  expect(await screen.findByText(aLanguageToLocalizedMenu[languageLabelFrench].tagsLabel)).toBeInTheDocument()
+  expect(await screen.findByText(aLanguageToLocalizedMenu[languageLabelFrench].tagsLabel)).toBeTruthy()
 })
 
 test('when changing languages, cv is fetched with proper language', async () => {
@@ -125,8 +125,8 @@ test('screen contains tags label', async () => {
 
   render(<AppModule.App/>)
 
-  expect(await screen.findByText(aTagInEnglish.label)).toBeInTheDocument()
-  expect(await screen.findByText(anotherTagInEnglish.label)).toBeInTheDocument()
+  expect(await screen.findByText(aTagInEnglish.label)).toBeTruthy()
+  expect(await screen.findByText(anotherTagInEnglish.label)).toBeTruthy()
 })
 
 test('screen contains tags label for its language', async () => {
@@ -134,8 +134,8 @@ test('screen contains tags label for its language', async () => {
 
   render(<AppModule.App/>)
 
-  expect(await screen.findByText(aTagInFrench.label)).toBeInTheDocument()
-  expect(await screen.findByText(anotherTagInFrench.label)).toBeInTheDocument()
+  expect(await screen.findByText(aTagInFrench.label)).toBeTruthy()
+  expect(await screen.findByText(anotherTagInFrench.label)).toBeTruthy()
 })
 
 test('every tag are checked by default', async () => {
