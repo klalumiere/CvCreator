@@ -46,5 +46,8 @@ kill_timeout = "5s"
 
 [[vm]]
   size = "shared-cpu-1x"
-  memory = "512mb"
+  memory = "256mb"
   cpus = 1
+
+# Safety net: a memory spike slows the app down instead of getting it OOM-killed.
+swap_size_mb = 256
