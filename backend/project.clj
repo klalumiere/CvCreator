@@ -12,9 +12,12 @@
                  [selmer "1.12.58"]]
   :plugins [[lein-ring "0.12.6"]]
   :ring {:handler cv-creator.server/app :port 8080}
+  :main cv-creator.server
   :repl-options {:init-ns cv-creator.server}
   :target-path "target/%s"
   :test-selectors {:default (complement :integration)
                    :integration :integration}
-  :profiles {:uberjar {:all :aot :uberjar-name "cv-creator.jar"}
+  :profiles {:uberjar {:aot :all
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]
+                       :uberjar-name "cv-creator.jar"}
              :test     {:dependencies [[org.clojure/test.check "1.1.1"]]}})

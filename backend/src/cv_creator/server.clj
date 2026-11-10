@@ -4,6 +4,7 @@
    [compojure.core :as compojure]
    [compojure.handler]
    [compojure.route :as route]
+   [ring.adapter.jetty]
    [ring.middleware.json]
 
    [cv-creator.core]
@@ -52,3 +53,8 @@
       compojure.handler/api
       ring.middleware.json/wrap-json-response
       wrap-root-is-index-dot-html))
+
+; `lein ring uberjar` only AOT compiles a generated main namespace, so every other namespace
+; would be compiled from source at startup, which costs a lot of memory.
+(defn -main [& _args]
+  (ring.adapter.jetty/run-jetty app {:port 8080 :max-threads 8 :min-threads 2}))
