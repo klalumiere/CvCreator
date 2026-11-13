@@ -82,7 +82,7 @@
                 "tags": [ "computerScience" ]
             },
             {
-                "value": "Expérimenté professionnellement avec: Java, Google Test, AWS, Terraform, Kubernetes, Jenkins, Groovy, C#, Go, Eigen, PowerShell, Batch (Windows' cmd.exe), Qt, MPI, PETSc, SLEPc, OPEN CASCADE, C, Linux Kernel, MSBuild, Mercurial, VTK, LaTeX, Doxygen, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
+                "value": "Expérimenté professionnellement avec: Java, Google Test, AWS, RabbitMQ, clang-tidy, agents de programmation IA, Terraform, Kubernetes, Jenkins, Groovy, C#, Go, Eigen, PowerShell, Batch (Windows' cmd.exe), Qt, MPI, PETSc, SLEPc, OPEN CASCADE, C, Linux Kernel, MSBuild, Mercurial, VTK, LaTeX, Doxygen, Bitbucket, Jira, Confluence, Apache Ivy, macOS, Windows",
                 "tags": [ "computerScience" ]
             },
             {
@@ -149,20 +149,40 @@
                 "date": "Juillet 2018 -",
                 "subitems": [
                     {
-                        "tags": [ "computerScience", "teaching" ],
-                        "value": "Direction de l'effort pour implémenter \"Bring Your Own Key\" (BYOK)"
+                        "tags": [ "computerScience" ],
+                        "value": "Création d'un service et d'une interface web pour déployer les nouvelles versions du moteur de recherche sans coordination manuelle avec l'équipe SRE"
                     },
                     {
                         "tags": [ "computerScience", "teaching" ],
-                        "value": "Supervision d'un stagiaire utilisant le refactoring à grande échelle pour remplacer une implémentation personnalisée de std::share_ptr par celle standard"
+                        "value": "Direction de la migration de RabbitMQ auto-hébergé vers Amazon MQ, en coordonnant 7 équipes et 13 \"repositories\""
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "AI Champion: mise en place d'agents de programmation IA sur les \"repositories\" C++ et utilisation pour augmenter la couverture de tests et faire du refactoring à grande échelle"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Direction de l'effort pour implémenter \"Bring Your Own Key\" (BYOK), maintenant une option Enterprise payante"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Security Champion et point de contact entre mon équipe et l'équipe de sécurité; aide à la gestion d'incidents de sécurité"
                     },
                     {
                         "tags": [ "computerScience" ],
-                        "value": "Introduction du refactoring à grande échelle via les plugins clang-tidy et utilisation pour remplacer une implémentation personnalisée de std::filesystem::path par celle standard"
+                        "value": "Direction de l'effort pour exécuter le code C++ de Coveo sur ARM (AWS Graviton)"
+                    },
+                    {
+                        "tags": [ "computerScience", "teaching" ],
+                        "value": "Introduction du refactoring à grande échelle via les plugins clang-tidy et utilisation pour remplacer des implémentations personnalisées de std::filesystem::path et std::shared_ptr (cette dernière par un stagiaire que j'ai supervisé)"
                     },
                     {
                         "tags": [ "computerScience" ],
-                        "value": "Direction de l'effort pour exécuter le code C++ de Coveo sur l'architecture ARM"
+                        "value": "Retrait de Jenkins en migrant l'IC des équipes C++ vers les workflows GitHub, puis vers le pipeline standard de l'entreprise"
+                    },
+                    {
+                        "tags": [ "computerScience" ],
+                        "value": "Retrait d'un service central historique (Node Manager) et arrêt des builds C++ sous Windows"
                     },
                     {
                         "tags": [ "computerScience" ],
@@ -170,31 +190,19 @@
                     },
                     {
                         "tags": [ "computerScience" ],
-                        "value": "Transition des systèmes IC de Jenkins vers les workflows GitHub pour les \"repositories\" des équipes C++"
-                    },
-                    {
-                        "tags": [ "computerScience" ],
-                        "value": "Introduction des \"conteneurs de développement\" afin que les développeurs puissent développer sur plusieurs plates-formes dans le même environnement que celui dans lequel s'exécutent les systèmes IC"
-                    },
-                    {
-                        "tags": [ "computerScience" ],
                         "value": "Division d'un \"repository\" de 440k lignes de code C++ pour permettre aux équipes de déployer de manière indépendante"
                     },
                     {
-                        "tags": [ "computerScience" ],
-                        "value": "Changement du gestionnaire de dépendances d'environ un million de lignes de code C++ d'une solution personnalisée vers Microsoft vcpkg"
-                    },
-                    {
                         "tags": [ "computerScience", "teaching" ],
-                        "value": "Supervision d'un stagiaire évaluant la transition du gestionnaire de dépendances C++"
+                        "value": "Changement du gestionnaire de dépendances d'environ un million de lignes de code C++ d'une solution personnalisée vers Microsoft vcpkg, après une évaluation par un stagiaire que j'ai supervisé"
                     },
                     {
                         "tags": [ "computerScience" ],
                         "value": "Déplacement du système de build d'environ un million de lignes de code C++ de MSBuild vers CMake"
                     },
                     {
-                        "tags": [ "computerScience", "teaching" ],
-                        "value": "Point de contact entre mon équipe et l'équipe de sécurité"
+                        "tags": [ "teaching" ],
+                        "value": "Organisation des Lightning Talks et du club de lecture R&D; entrevues techniques"
                     }
                 ]
             },
@@ -603,7 +611,7 @@
                 "value": "Stack Overflow https://stackoverflow.com/users/3068259/kevin"
             },
             {
-                "value": "Organization d'un Meetup C++ présentant notre effort d'utilisation du refactoring à grande échelle pour remplacer une implémentation personnalisée de std::share_ptr par celle standard"
+                "value": "Organization d'un Meetup C++ présentant notre effort d'utilisation du refactoring à grande échelle pour remplacer une implémentation personnalisée de std::shared_ptr par celle standard"
             },
             {
                 "value": "Présentation \"Tests unitaires dans la programmation scientifique\" à l'Université de Sherbrooke (2013)"
