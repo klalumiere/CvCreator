@@ -4,12 +4,8 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@types/node": "^25.5.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "typescript": "^6.0.2"
+    "react-dom": "^19.2.4"
   },
   "scripts": {
     "start": "vite",
@@ -17,28 +13,19 @@
     "lint": "eslint . --max-warnings 0",
     "test": "vitest"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
-    "eslint": "10.1.0",
+    "eslint": "^10.14.0",
     "globals": "^17.4.0",
     "jiti": "^2.6.1",
     "jsdom": "^29.0.1",
-    "typescript-eslint": "^8.58.0",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.72.2",
     "vite": "^8.1.6",
     "vitest": "^4.1.12"
   }
